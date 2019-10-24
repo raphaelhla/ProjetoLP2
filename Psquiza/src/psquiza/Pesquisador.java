@@ -45,12 +45,20 @@ public class Pesquisador {
 		this.fotoURL = fotoURL;
 	}
 	
+	public String getStatus() {
+		return this.status;
+	}
 	public void ativaPesquisador() {
 		this.status = "ativado";
 	}
 	
 	public void desativaPesquisador() {
 		this.status = "desativado";
+	}
+
+	@Override
+	public String toString() {
+		return this.nome + " (" + this.funcao + ") - " + this.biografia + " - " + this.email + " - " + this.fotoURL;
 	}
 	
 	

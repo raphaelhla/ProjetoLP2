@@ -8,7 +8,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Validador x = new Validador();
-		String URL = "HTTPs://IRINEU";
-		System.out.println(URL.substring(0, 8));
+		String URL = "sem o necessario";
+		x.verificafotoURL(URL);
 	}
 }
