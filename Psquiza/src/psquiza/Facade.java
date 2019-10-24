@@ -18,6 +18,18 @@ public class Facade {
 		this.pesquisadorController.cadastraPesquisador(nome, funcao, biografia, email, fotoURL);
 	}
 	
+	public void alteraPesquisador(String email, String atributo, String novoValor) {
+		this.pesquisadorController.alteraPesquisador(email, atributo, novoValor);
+	}
+	
+	public void ativaPesquisador(String email) {
+		this.pesquisadorController.ativaPesquisador(email);
+	}
+	
+	public void desativaPesquisador(String email) {
+		this.pesquisadorController.desativaPesquisador(email);
+	}
+	
     // METODOS DA PARTE 3 (ALISSON) ABAIXO DESSE COMENTARIO
 	
 	

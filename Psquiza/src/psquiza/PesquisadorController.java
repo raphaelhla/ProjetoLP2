@@ -23,4 +23,34 @@ public class PesquisadorController {
 		this.pesquisadores.put(email, new Pesquisador(nome, funcao, biografia, email, fotoURL));
 	}
 
+	public void alteraPesquisador(String email, String atributo, String novoValor) {
+		Pesquisador pesquisador = pesquisadores.get(email);
+		switch (atributo) {
+		case "nome":
+			pesquisador.setNome(novoValor);
+			break;
+		case "funcao":
+			pesquisador.setFuncao(novoValor);
+			break;
+		case "biografia":
+			pesquisador.setBiografia(novoValor);
+		case "email":
+			pesquisador.setEmail(novoValor);
+			pesquisadores.remove(email);
+			pesquisadores.put(novoValor, pesquisador);
+		case "fotoURL":
+			pesquisador.setFotoURL(novoValor);
+		default:
+			break;
+		}
+	}
+
+	public void ativaPesquisador(String email) {
+		pesquisadores.get(email).ativaPesquisador();
+	}
+	
+	public void desativaPesquisador(String email) {
+		pesquisadores.get(email).desativaPesquisador();
+	}
+
 }

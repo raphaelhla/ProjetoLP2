@@ -7,6 +7,7 @@ public class Pesquisador {
 	private String biografia;
 	private String email;
 	private String fotoURL;
+	private String status;
 	private Validador validador;
 
 	public Pesquisador(String nome, String funcao, String biografia, String email, String fotoURL) {
@@ -23,6 +24,35 @@ public class Pesquisador {
 		this.email = email;
 		this.fotoURL = fotoURL;
 	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
+	}
+
+	public void setBiografia(String biografia) {
+		this.biografia = biografia;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setFotoURL(String fotoURL) {
+		this.fotoURL = fotoURL;
+	}
+	
+	public void ativaPesquisador() {
+		this.status = "ativado";
+	}
+	
+	public void desativaPesquisador() {
+		this.status = "desativado";
+	}
+	
 	
 	
 }
