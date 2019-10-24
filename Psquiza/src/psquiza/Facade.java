@@ -5,8 +5,9 @@ import easyaccept.EasyAccept;
 public class Facade {
 
 	public static void main(String[] args) {
-		args = new String[] { "psquiza.Facade", "testes_easyaccept/use_case_1.txt", "testes_easyaccept/use_case_2.txt",
-				"testes_easyaccept/use_case_3.txt", "testes_easyaccept/use_case_4.txt" };
+		args = new String[] { "psquiza.Facade", "testes_easyaccept/use_case_1.txt",
+				"testes_easyaccept/use_case_2.txt",
+				/**"testes_easyaccept/use_case_3.txt", "testes_easyaccept/use_case_4.txt" */};
 		EasyAccept.main(args);
 	}
 

@@ -28,6 +28,9 @@ public class Validador {
 	}
 	
 	public void verificafotoURL(String fotoURL) {
+		if (fotoURL.length() < 8) {
+			throw new IllegalArgumentException("Formato de foto invalido.");
+		}
 		String inicialTipo1 = fotoURL.substring(0, 7);
 		String inicialTipo2 = fotoURL.substring(0, 8);
 		

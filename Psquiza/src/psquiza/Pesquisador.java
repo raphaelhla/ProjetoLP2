@@ -11,18 +11,21 @@ public class Pesquisador {
 	private Validador validador;
 
 	public Pesquisador(String nome, String funcao, String biografia, String email, String fotoURL) {
+		validador = new Validador();
 		validador.verificaEntradaNulaVazia(nome, "Campo nome nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(funcao, "Campo funcao nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(biografia, "Campo biografia nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(fotoURL, "Campo fotoURL nao pode ser nulo ou vazio.");
-		validador.verificaEmail(email);
+//		validador.verificaEmail(email);
+		validador.verificafotoURL(fotoURL);
 		
 		this.nome = nome;
 		this.funcao = funcao;
 		this.biografia = biografia;
 		this.email = email;
 		this.fotoURL = fotoURL;
+		this.status = "ativo";
 	}
 
 	public void setNome(String nome) {
@@ -49,11 +52,11 @@ public class Pesquisador {
 		return this.status;
 	}
 	public void ativaPesquisador() {
-		this.status = "ativado";
+		this.status = "ativo";
 	}
 	
 	public void desativaPesquisador() {
-		this.status = "desativado";
+		this.status = "inativo";
 	}
 
 	@Override

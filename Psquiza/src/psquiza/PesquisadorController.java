@@ -20,6 +20,7 @@ public class PesquisadorController {
 		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(fotoURL, "Campo fotoURL nao pode ser nulo ou vazio.");
 		validador.verificaEmail(email);
+		validador.verificafotoURL(fotoURL);
 		this.pesquisadores.put(email, new Pesquisador(nome, funcao, biografia, email, fotoURL));
 	}
 
@@ -44,24 +45,25 @@ public class PesquisadorController {
 		case "biografia":
 			validador.verificaEntradaNulaVazia(novoValor, "Campo biografia nao pode ser nulo ou vazio.");
 			pesquisador.setBiografia(novoValor);
+			break;
 		case "email":
 			validador.verificaEntradaNulaVazia(novoValor, "Campo email nao pode ser nulo ou vazio.");
 			validador.verificaEmail(novoValor);
-			pesquisador.setEmail(novoValor);
 			pesquisadores.remove(email);
+			pesquisador.setEmail(novoValor);
 			pesquisadores.put(novoValor, pesquisador);
+			break;
 		case "fotoURL":
 			validador.verificaEntradaNulaVazia(novoValor, "Campo fotoURL nao pode ser nulo ou vazio.");
 			validador.verificafotoURL(novoValor);
 			pesquisador.setFotoURL(novoValor);
-		default:
 			break;
 		}
 	}
 
 	public void ativaPesquisador(String email) {
 		verificaSeExistePesquisador(email);
-		if (pesquisadores.get(email).getStatus().equals("ativado")) {
+		if (pesquisadores.get(email).getStatus().equals("ativo")) {
 			throw new IllegalArgumentException("Pesquisador ja ativado.");
 		}
 		pesquisadores.get(email).ativaPesquisador();
@@ -69,7 +71,7 @@ public class PesquisadorController {
 	
 	public void desativaPesquisador(String email) {
 		verificaSeExistePesquisador(email);
-		if (pesquisadores.get(email).getStatus().equals("desativado")) {
+		if (pesquisadores.get(email).getStatus().equals("inativo")) {
 			throw new IllegalArgumentException("Pesquisador ja ativado.");
 		}
 		pesquisadores.get(email).desativaPesquisador();
