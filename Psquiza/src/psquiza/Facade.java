@@ -21,24 +21,70 @@ public class Facade {
 
 	// METODOS DA PARTE 2 (RAPHAEL) ABAIXO DESSE COMENTARIO
 
+	/**
+	 * Metodo que cadastra um pesquisador a partir do seu nome, funcao, biografia,
+	 * email e fotoURL.
+	 * 
+	 * @param nome      Nome do pesquisador.
+	 * @param funcao    Funcao do pesquisador.
+	 * @param biografia Biografia do pesquisador.
+	 * @param email     Email do pesquisador.
+	 * @param fotoURL   Url da foto do pesquisador.
+	 */
 	public void cadastraPesquisador(String nome, String funcao, String biografia, String email, String fotoURL) {
 		this.pesquisadorController.cadastraPesquisador(nome, funcao, biografia, email, fotoURL);
 	}
 
+	/**
+	 * Metodo que edita um pesquisador a partir do seu email, do atributo a ser
+	 * editado e um novo valor para o atributo.
+	 * 
+	 * @param email     Email do pesquisador.
+	 * @param atributo  Atributo que vai ser editado.
+	 * @param novoValor Novo valor para o atributo.
+	 */
 	public void alteraPesquisador(String email, String atributo, String novoValor) {
 		this.pesquisadorController.alteraPesquisador(email, atributo, novoValor);
 	}
 
+	/**
+	 * Metodo responsavel por ativar o pesquisador a partir do seu email.
+	 * 
+	 * @param email Email do pesquisador
+	 */
 	public void ativaPesquisador(String email) {
 		this.pesquisadorController.ativaPesquisador(email);
 	}
 
+	/**
+	 * Metodo responsavel por desativar o pesquisador a partir do seu email.
+	 * 
+	 * @param email Email do pesquisador
+	 */
 	public void desativaPesquisador(String email) {
 		this.pesquisadorController.desativaPesquisador(email);
 	}
 
+	/**
+	 * Metodo que retorna a representacao em string do pesquisador a partir do seu
+	 * cpf.
+	 * 
+	 * @param email Email do pesquisador
+	 * @return retorna a representacao em string do pesquisador
+	 */
 	public String exibePesquisador(String email) {
 		return this.pesquisadorController.exibePesquisador(email);
+	}
+	
+	/**
+	 * Metodo que verifica se um pesquisador é ativo ou nao, a partir do seu email.
+	 * 
+	 * @param email Email do pesquisador.
+	 * @return um valor booleano verdade caso o pesquisador esteja ativo, caso
+	 *         contrario retorna falso.
+	 */
+	public boolean pesquisadorEhAtivo(String email) {
+		return this.pesquisadorController.pesquisadorEhAtivo(email);
 	}
 
 	// METODOS DA PARTE 3 (ALISSON) ABAIXO DESSE COMENTARIO

@@ -17,7 +17,7 @@ public class Pesquisador {
 		validador.verificaEntradaNulaVazia(biografia, "Campo biografia nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(fotoURL, "Campo fotoURL nao pode ser nulo ou vazio.");
-//		validador.verificaEmail(email);
+		validador.verificaEmail(email);
 		validador.verificafotoURL(fotoURL);
 		
 		this.nome = nome;
