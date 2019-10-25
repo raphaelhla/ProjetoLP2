@@ -64,6 +64,4 @@ public class Pesquisador {
 		return this.nome + " (" + this.funcao + ") - " + this.biografia + " - " + this.email + " - " + this.fotoURL;
 	}
 	
-	
-	
 }

@@ -38,4 +38,5 @@ public class Validador {
 			throw new IllegalArgumentException("Formato de foto invalido.");
 		}
 	}
+	
 }
