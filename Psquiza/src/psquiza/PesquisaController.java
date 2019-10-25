@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-	* Laboratório de Programação 2 - Lab 1
+	* Laboratï¿½rio de Programaï¿½ï¿½o 2 - Lab 1
 	* 
 	* @author Matheus Vinicius Benevides Lima - 119210384
 	*/
@@ -47,7 +47,7 @@ import java.util.Map;
 
 		}
 
-		public void alteraPesquisa(String código, String conteúdoASerAlterado, String novoConteúdo) {
+		public void alteraPesquisa(String codigo, String conteudoASerAlterado, String novoConteudo) {
 
 		}
 
