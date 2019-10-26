@@ -15,8 +15,4 @@ public class Problema {
 	public String toString() {
 		return this.descricao + " - " + this.viabilidade;
 	}
-	
-	
-	
-	
 }
