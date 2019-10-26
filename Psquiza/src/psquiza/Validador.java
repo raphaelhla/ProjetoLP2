@@ -39,4 +39,10 @@ public class Validador {
 		}
 	}
 	
+	public void verificaNivelRisco(String nivelRisco) {
+		if (!nivelRisco.equals("BAIXO") && !nivelRisco.equals("MEDIO") && !nivelRisco.equals("ALTO")) {
+			throw new IllegalArgumentException("Valor invalido do nivel do risco.");
+		}
+	}
+	
 }

@@ -13,8 +13,11 @@ public class Facade {
 
 	private PesquisadorController pesquisadorController;
 
+	private AtividadeController atividadeController;
+
 	public Facade() {
 		this.pesquisadorController = new PesquisadorController();
+		this.atividadeController = new AtividadeController();
 	}
 
 	// METODOS DA PARTE 1 (MATHEUS) ABAIXO DESSE COMENTARIO
@@ -90,5 +93,28 @@ public class Facade {
 	// METODOS DA PARTE 3 (ALISSON) ABAIXO DESSE COMENTARIO
 
 	// METODOS DA PARTE 4 (WESLLEY) ABAIXO DESSE COMENTARIO
+	
+	public String cadastraAtividade(String descricao, String nivelRisco, String descricaoRisco) {
+		return this.atividadeController.cadastraAtividade(descricao, nivelRisco, descricaoRisco);
+	}
 
+	public void apagaAtividade(String codigo) {
+		this.atividadeController.apagaAtividade(codigo);
+	}
+
+	public void cadastraItem(String codigo, String item) {
+		this.atividadeController.cadastraItem(codigo, item);
+	}
+
+	public String exibeAtividade(String codigo) {
+		return this.atividadeController.exibeAtividade(codigo);
+	}
+
+	public int contaItensPendentes(String codigo) {
+		return this.atividadeController.contaItensPedentes(codigo);
+	}
+
+	public int contaItensRealizados(String codigo) {
+		return this.atividadeController.contaItensRealizados(codigo);
+	}
 }
