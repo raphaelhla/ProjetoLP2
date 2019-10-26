@@ -9,13 +9,15 @@ public class Facade {
 				"testes_easyaccept/use_case_3.txt", "testes_easyaccept/use_case_4.txt" };
 		EasyAccept.main(args);
 	}
-
+	
+	private PesquisaController pesquisaController;
 	private PesquisadorController pesquisadorController;
 	private ProblemaController problemaController;
 	private ObjetivoController objetivoController;
 	private AtividadeController atividadeController;
 
 	public Facade() {
+		this.pesquisaController = new PesquisaController();
 		this.pesquisadorController = new PesquisadorController();
 		this.problemaController = new ProblemaController();
 		this.objetivoController = new ObjetivoController();
@@ -24,6 +26,31 @@ public class Facade {
 	}
 
 	// METODOS DA PARTE 1 (MATHEUS) ABAIXO DESSE COMENTARIO
+	public String cadastraPesquisa(String descricao, String campoDeInteresse) {
+		return pesquisaController.cadastraPesquisa(descricao, campoDeInteresse);
+	}
+	
+	public void alteraPesquisa(String codigo, String conteudoASerAlterado, String novoConteudo) {
+		pesquisaController.alteraPesquisa(codigo, conteudoASerAlterado, novoConteudo);
+		
+	}
+	
+	public void encerraPesquisa(String codigo, String motivo) {
+		pesquisaController.encerraPesquisa(codigo, motivo);
+	}
+	
+	public void ativaPesquisa(String codigo) {
+		pesquisaController.ativaPesquisa(codigo);
+	}
+	
+	public String exibePesquisa(String codigo) {
+		return pesquisaController.exibePesquisa(codigo);
+	}
+	
+	public boolean pesquisaEhAtiva(String codigo) {
+		return pesquisaController.ehAtiva(codigo);
+	}
+
 
 	// METODOS DA PARTE 2 (RAPHAEL) ABAIXO DESSE COMENTARIO
 
