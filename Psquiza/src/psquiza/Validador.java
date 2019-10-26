@@ -53,7 +53,7 @@ public class Validador {
 	
 	public void verificaAderencia(int aderencia) {
 		if (aderencia < 1 || aderencia > 5) {
-			throw new IllegalArgumentException("Valor invalido de aderencia.");
+			throw new IllegalArgumentException("Valor invalido de aderencia");
 		}
 	}
 	

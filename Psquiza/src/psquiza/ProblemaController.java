@@ -18,6 +18,7 @@ public class ProblemaController {
 	public String cadastraProblema(String descricao, int viabilidade) {
 		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
 		validador.verificaViabilidade(viabilidade);
+		
 		Problema problema = new Problema(descricao, viabilidade);
 		String chave = "P" + indiceProblema;
 		problemas.put(chave, problema);
