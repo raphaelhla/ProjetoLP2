@@ -59,11 +59,10 @@ public class PesquisadorController {
 	 * @return um valor booleano verdade caso exista o pesquisador, caso contrario
 	 *         retorna falso.
 	 */
-	private boolean existePesquisador(String email) {
-		if (pesquisadores.containsKey(email)) {
-			return true;
+	private void verificaSeExistePesquisador(String email) {
+		if (!pesquisadores.containsKey(email)) {
+			throw new IllegalArgumentException("Pesquisador nao encontrado");
 		}
-		return false;
 	}
 
 	/**
@@ -75,9 +74,7 @@ public class PesquisadorController {
 	 * @param novoValor Novo valor para o atributo.
 	 */
 	public void alteraPesquisador(String email, String atributo, String novoValor) {
-		if (!existePesquisador(email)) {
-			throw new IllegalArgumentException("Pesquisador nao encontrado");
-		}
+		verificaSeExistePesquisador(email);
 		if (!pesquisadorEhAtivo(email)) {
 			throw new IllegalArgumentException("Pesquisador inativo.");
 		}
@@ -116,9 +113,7 @@ public class PesquisadorController {
 	 * @param email Email do pesquisador
 	 */
 	public void ativaPesquisador(String email) {
-		if (!existePesquisador(email)) {
-			throw new IllegalArgumentException("Pesquisador nao encontrado");
-		}
+		verificaSeExistePesquisador(email);
 		if (pesquisadorEhAtivo(email)) {
 			throw new IllegalArgumentException("Pesquisador ja ativado.");
 		}
@@ -131,9 +126,7 @@ public class PesquisadorController {
 	 * @param email Email do pesquisador
 	 */
 	public void desativaPesquisador(String email) {
-		if (!existePesquisador(email)) {
-			throw new IllegalArgumentException("Pesquisador nao encontrado");
-		}
+		verificaSeExistePesquisador(email);
 		if (!pesquisadorEhAtivo(email)) {
 			throw new IllegalArgumentException("Pesquisador inativo.");
 		}
@@ -148,9 +141,7 @@ public class PesquisadorController {
 	 * @return retorna a representacao em string do pesquisador
 	 */
 	public String exibePesquisador(String email) {
-		if (!existePesquisador(email)) {
-			throw new IllegalArgumentException("Pesquisador nao encontrado");
-		}
+		verificaSeExistePesquisador(email);
 		if (pesquisadores.get(email).getStatus().equals("inativo")) {
 			throw new IllegalArgumentException("Pesquisador inativo.");
 		}
@@ -166,9 +157,7 @@ public class PesquisadorController {
 	 */
 	public boolean pesquisadorEhAtivo(String email) {
 		validador.verificaEntradaNulaVazia(email, "Email nao pode ser vazio ou nulo.");
-		if (!existePesquisador(email)) {
-			throw new IllegalArgumentException("Pesquisador nao encontrado");
-		}
+		verificaSeExistePesquisador(email);
 		if (pesquisadores.get(email).getStatus().equals("ativo")) {
 			return true;
 		}
