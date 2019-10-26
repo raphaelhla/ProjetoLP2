@@ -5,10 +5,8 @@ import easyaccept.EasyAccept;
 public class Facade {
 
 	public static void main(String[] args) {
-		args = new String[] { "psquiza.Facade", /**"testes_easyaccept/use_case_1.txt",*/
-				"testes_easyaccept/use_case_2.txt",
-				"testes_easyaccept/use_case_3.txt",
-				 /** "testes_easyaccept/use_case_4.txt" */};
+		args = new String[] { "psquiza.Facade", "testes_easyaccept/use_case_1.txt", "testes_easyaccept/use_case_2.txt",
+				"testes_easyaccept/use_case_3.txt", "testes_easyaccept/use_case_4.txt" };
 		EasyAccept.main(args);
 	}
 
@@ -22,7 +20,7 @@ public class Facade {
 		this.problemaController = new ProblemaController();
 		this.objetivoController = new ObjetivoController();
 		this.atividadeController = new AtividadeController();
-		
+
 	}
 
 	// METODOS DA PARTE 1 (MATHEUS) ABAIXO DESSE COMENTARIO
@@ -83,7 +81,7 @@ public class Facade {
 	public String exibePesquisador(String email) {
 		return this.pesquisadorController.exibePesquisador(email);
 	}
-	
+
 	/**
 	 * Metodo que verifica se um pesquisador é ativo ou nao, a partir do seu email.
 	 * 
@@ -97,32 +95,32 @@ public class Facade {
 
 	// METODOS DA PARTE 3 (ALISSON) ABAIXO DESSE COMENTARIO
 
-	public String cadastraProblema(String descricao, int viabilidade) {
+	public String cadastraProblema(String descricao, String viabilidade) {
 		return this.problemaController.cadastraProblema(descricao, viabilidade);
 	}
-	
-	public String cadastraObjetivo(String tipo, String descricao, int aderencia, int viabilidade) {
+
+	public String cadastraObjetivo(String tipo, String descricao, String aderencia, String viabilidade) {
 		return this.objetivoController.cadastraObjetivo(tipo, descricao, aderencia, viabilidade);
 	}
-	
+
 	public void apagarProblema(String codigo) {
 		this.problemaController.apagarProblema(codigo);
 	}
-	
+
 	public void apagarObjetivo(String codigo) {
 		this.objetivoController.apagarObjetivo(codigo);
 	}
-	
+
 	public String exibeProblema(String codigo) {
 		return this.problemaController.exibeProblema(codigo);
 	}
-	
+
 	public String exibeObjetivo(String codigo) {
 		return this.objetivoController.exibeObjetivo(codigo);
 	}
-	
+
 	// METODOS DA PARTE 4 (WESLLEY) ABAIXO DESSE COMENTARIO
-	
+
 	public String cadastraAtividade(String descricao, String nivelRisco, String descricaoRisco) {
 		return this.atividadeController.cadastraAtividade(descricao, nivelRisco, descricaoRisco);
 	}

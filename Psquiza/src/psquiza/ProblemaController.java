@@ -15,11 +15,12 @@ public class ProblemaController {
 		this.validador = new Validador();
 	}
 
-	public String cadastraProblema(String descricao, int viabilidade) {
+	public String cadastraProblema(String descricao, String viabilidade) {
 		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(viabilidade, "Campo viabilidade nao pode ser nulo ou vazio.");
 		validador.verificaViabilidade(viabilidade);
-		
-		Problema problema = new Problema(descricao, viabilidade);
+		int v = Integer.parseInt(viabilidade);
+		Problema problema = new Problema(descricao, v);
 		String chave = "P" + indiceProblema;
 		problemas.put(chave, problema);
 		indiceProblema += 1;

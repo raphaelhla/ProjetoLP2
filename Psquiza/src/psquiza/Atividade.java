@@ -55,14 +55,7 @@ public class Atividade {
 	public String toString() {
 		String saida = this.descricao + " (" + this.nivelRisco + " - " + this.descricaoRisco + ")";
 		for (int i = 0; i < this.listaItens.size(); i++) {
-			if (i == 0) {
-				saida += ": " + System.lineSeparator() + " - " + this.listaItens.get(i)[0] + " - "
-						+ this.listaItens.get(i)[1] + System.lineSeparator();
-			} else if (i + 1 < this.listaItens.size()) {
-				saida += " - " + this.listaItens.get(i)[0] + " - " + this.listaItens.get(i)[1] + System.lineSeparator();
-			} else {
-				saida += " - " + this.listaItens.get(i)[0] + " - " + this.listaItens.get(i)[1];
-			}
+			saida += " | " + this.listaItens.get(i)[0] + " - " + this.listaItens.get(i)[1];
 		}
 		return saida;
 	}
