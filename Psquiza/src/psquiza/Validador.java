@@ -68,5 +68,26 @@ public class Validador {
 			throw new IllegalArgumentException("Valor invalido de aderencia");
 		}
 	}
+	
+	public void verificaCampoDeInteresse(String campoDeInteresse) {
+		verificaEntradaNulaVazia(campoDeInteresse, "Formato do campo de interesse invalido.");
+		
+		if (campoDeInteresse.length() > 255) {
+			throw new IllegalArgumentException("Formato do campo de interesse invalido.");
+		}
+		
+		String[] topicos = campoDeInteresse.split(",");
+		if (topicos.length > 4) {
+			throw new IllegalArgumentException("Formato do campo de interesse invalido.");
+		}
+		for (String e : topicos) {
+			if (e.length() < 3) {
+				throw new IllegalArgumentException("Formato do campo de interesse invalido.");
+			}
+			if ("".equals(e.trim())) {
+				throw new IllegalArgumentException("Formato do campo de interesse invalido.");
+			}
+		}
+	}
 
 }

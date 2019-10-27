@@ -11,7 +11,6 @@ public class Pesquisa {
 	public Pesquisa(String descricao, String campoDeInteresse) {
 		validador = new Validador();
 		validador.verificaEntradaNulaVazia(descricao, "Descricao nao pode ser nula ou vazia.");
-		validador.verificaEntradaNulaVazia(campoDeInteresse, "Formato do campo de interesse invalido.");
 		this.statusPesquisa = true;
 		this.descricao = descricao;
 		this.campoDeInteresse = campoDeInteresse;
@@ -49,7 +48,7 @@ public class Pesquisa {
 
 	@Override
 	public String toString() {
-		return this.codigo + " - " + this.descricao + " - " + this.campoDeInteresse;
+		return this.descricao + " - " + this.campoDeInteresse;
 	}
 	
 	
