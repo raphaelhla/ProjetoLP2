@@ -45,6 +45,12 @@ public class Validador {
 		}
 	}
 
+	public void verificaTipoObjetivo(String tipo) {
+		if (!tipo.equals("GERAL") && !tipo.equals("ESPECIFICO")) {
+			throw new IllegalArgumentException("Valor invalido de tipo.");
+		}
+	}
+	
 	public void verificaViabilidade(String viabilidade) {
 		int v = 0;
 		try {

@@ -38,14 +38,13 @@ public class ObjetivoController {
 	 */
 	public String cadastraObjetivo(String tipo, String descricao, String aderencia, String viabilidade) {
 		validador.verificaEntradaNulaVazia(tipo, "Campo tipo nao pode ser nulo ou vazio.");
+		validador.verificaTipoObjetivo(tipo);
 		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(aderencia, "Campo aderencia nao pode ser nulo ou vazio.");
 		validador.verificaAderencia(aderencia);
 		validador.verificaEntradaNulaVazia(viabilidade, "Campo viabilidade nao pode ser nulo ou vazio.");
 		validador.verificaViabilidade(viabilidade);
-		if (!tipo.equals("GERAL") && !tipo.equals("ESPECIFICO")) {
-			throw new IllegalArgumentException("Valor invalido de tipo.");
-		}
+		
 		int a = Integer.parseInt(aderencia);
 		int v = Integer.parseInt(viabilidade);
 		Objetivo objetivo = new Objetivo(tipo, descricao, a, v);

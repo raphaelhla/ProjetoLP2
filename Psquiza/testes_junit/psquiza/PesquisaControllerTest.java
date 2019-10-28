@@ -6,9 +6,6 @@ import org.junit.jupiter.api.Test;
 
 class PesquisaControllerTest {
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
+
 
 }
