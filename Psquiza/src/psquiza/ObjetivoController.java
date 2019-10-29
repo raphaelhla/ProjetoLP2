@@ -3,6 +3,12 @@ package psquiza;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Representacao de um controller de objetivos
+ * 
+ * @author Jose Alisson -
+ *
+ */
 public class ObjetivoController {
 
 	private Map<String, Objetivo> objetivos;
@@ -44,7 +50,7 @@ public class ObjetivoController {
 		validador.verificaAderencia(aderencia);
 		validador.verificaEntradaNulaVazia(viabilidade, "Campo viabilidade nao pode ser nulo ou vazio.");
 		validador.verificaViabilidade(viabilidade);
-		
+
 		int a = Integer.parseInt(aderencia);
 		int v = Integer.parseInt(viabilidade);
 		Objetivo objetivo = new Objetivo(tipo, descricao, a, v);
