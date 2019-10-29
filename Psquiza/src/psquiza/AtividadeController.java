@@ -26,50 +26,41 @@ public class AtividadeController {
 		return codigo;
 	}
 
-	public void apagaAtividade(String codigo) {
-		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		if (this.mapaAtividades.containsKey(codigo)) {
-			this.mapaAtividades.remove(codigo);
-		} else {
+	private void verificaSeExisteAtividade(String codigo) {
+		if (!mapaAtividades.containsKey(codigo)) {
 			throw new IllegalArgumentException("Atividade nao encontrada");
 		}
+	}
+
+	public void apagaAtividade(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(codigo);
+		this.mapaAtividades.remove(codigo);
 	}
 
 	public void cadastraItem(String codigo, String item) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(item, "Item nao pode ser nulo ou vazio.");
-		if (this.mapaAtividades.containsKey(codigo)) {
-			this.mapaAtividades.get(codigo).cadastraItem(item);
-		} else {
-			throw new IllegalArgumentException("Atividade nao encontrada");
-		}
+		verificaSeExisteAtividade(codigo);
+		this.mapaAtividades.get(codigo).cadastraItem(item);
 	}
 
 	public String exibeAtividade(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		if (this.mapaAtividades.containsKey(codigo)) {
-			return this.mapaAtividades.get(codigo).toString();
-		} else {
-			throw new IllegalArgumentException("Atividade nao encontrada");
-		}
+		verificaSeExisteAtividade(codigo);
+		return this.mapaAtividades.get(codigo).toString();
 	}
 
 	public int contaItensPedentes(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		if (this.mapaAtividades.containsKey(codigo)) {
-			return this.mapaAtividades.get(codigo).getQtdItensPendentes();
-		} else {
-			throw new IllegalArgumentException("Atividade nao encontrada");
-		}
+		verificaSeExisteAtividade(codigo);
+		return this.mapaAtividades.get(codigo).getQtdItensPendentes();
 	}
 
 	public int contaItensRealizados(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		if (this.mapaAtividades.containsKey(codigo)) {
-			return this.mapaAtividades.get(codigo).getQtdItensRealizados();
-		} else {
-			throw new IllegalArgumentException("Atividade nao encontrada");
-		}
+		verificaSeExisteAtividade(codigo);
+		return this.mapaAtividades.get(codigo).getQtdItensRealizados();
 	}
 
 }
