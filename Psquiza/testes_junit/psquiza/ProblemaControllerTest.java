@@ -1,0 +1,40 @@
+package psquiza;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class ProblemaControllerTest {
+
+	private ProblemaController problemaController;
+	
+	@BeforeEach
+	public void criaController() {
+		problemaController = new ProblemaController();
+	}
+	
+	@Test
+	public void testCadastraProblema() {
+		assertEquals("P1", problemaController.cadastraProblema("teste", "4"));
+	}
+	
+	@Test
+	public void testApagaProblema() {
+		try {
+			problemaController.cadastraProblema("TESTE", "4");
+			problemaController.apagarProblema("P1");
+			problemaController.exibeProblema("P1");
+			fail("Deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Problema nao encontrado", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testExibeProblema() {
+		problemaController.cadastraProblema("TESTE", "4");
+		assertEquals("P1 - TESTE - 4", problemaController.exibeProblema("P1"));
+	}
+
+}
