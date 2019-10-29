@@ -62,7 +62,7 @@ public class ProblemaController {
 	 * @return um valor booleano verdade caso exista o problema, caso contrario
 	 *         retorna falso.
 	 */
-	private void verificaSeExisteObjetivo(String codigo) {
+	private void verificaSeExisteProblema(String codigo) {
 		if (!problemas.containsKey(codigo)) {
 			throw new IllegalArgumentException("Problema nao encontrado");
 		}
@@ -75,7 +75,7 @@ public class ProblemaController {
 	 */
 	public void apagarProblema(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		verificaSeExisteObjetivo(codigo);
+		verificaSeExisteProblema(codigo);
 		this.problemas.remove(codigo);
 	}
 
@@ -88,7 +88,7 @@ public class ProblemaController {
 	 */
 	public String exibeProblema(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		verificaSeExisteObjetivo(codigo);
+		verificaSeExisteProblema(codigo);
 		return codigo + " - " + this.problemas.get(codigo).toString();
 	}
 
