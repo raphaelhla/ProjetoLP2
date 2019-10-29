@@ -3,14 +3,48 @@ package psquiza;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representacao de uma atividade. Toda atividade precisa ter uma descricao,
+ * nivel do risco, descricao do risco
+ * 
+ * @author Weslley Azevedo - 11911241
+ *
+ */
 public class Atividade {
 
-	private String descricao;
-	private String nivelRisco;
-	private String descricaoRisco;
+	/**
+	 * Validador utilizado para validar entradas do sistema.
+	 */
 	private Validador validador;
+
+	/**
+	 * Descricao da atividade.
+	 */
+	private String descricao;
+
+	/**
+	 * Nivel do risco da atividade.
+	 */
+	private String nivelRisco;
+
+	/**
+	 * Descricao do risco da atividade.
+	 */
+	private String descricaoRisco;
+
+	/**
+	 * Lista que contem todos os itens cadastrados na atividade.
+	 */
 	private List<String[]> listaItens;
 
+	/**
+	 * Constroi uma atividade a partir da sua descricao, nivel de risco e descricao
+	 * do risco.
+	 * 
+	 * @param descricao      Descricao da atividade.
+	 * @param nivelRisco     Nivel do risco da atividade.
+	 * @param descricaoRisco Descricao do risco da atividade.
+	 */
 	public Atividade(String descricao, String nivelRisco, String descricaoRisco) {
 		this.validador = new Validador();
 		validador.verificaEntradaNulaVazia(descricao, "Campo Descricao nao pode ser nulo ou vazio.");
@@ -23,6 +57,11 @@ public class Atividade {
 		this.listaItens = new ArrayList<>();
 	}
 
+	/**
+	 * Cadastra um item na atividade a partir da String de representacao do item.
+	 * 
+	 * @param item a representacao em String do item.
+	 */
 	public void cadastraItem(String item) {
 		validador.verificaEntradaNulaVazia(item, "Item nao pode ser nulo ou vazio.");
 		String[] array = new String[2];
@@ -31,6 +70,11 @@ public class Atividade {
 		this.listaItens.add(array);
 	}
 
+	/**
+	 * Retorna a quantidade de itens pendentes contidos nessa atividade.
+	 * 
+	 * @return a representacao em Int da quantidade de itens pendentes.
+	 */
 	public int getQtdItensPendentes() {
 		int saida = 0;
 		for (int i = 0; i < this.listaItens.size(); i++) {
@@ -41,6 +85,11 @@ public class Atividade {
 		return saida;
 	}
 
+	/**
+	 * Retorna a quantidade de itens realizados contidos nessa atividade.
+	 * 
+	 * @return a representacao em Int da quantidade de itens realizados.
+	 */
 	public int getQtdItensRealizados() {
 		int saida = 0;
 		for (int i = 0; i < this.listaItens.size(); i++) {
@@ -51,6 +100,13 @@ public class Atividade {
 		return saida;
 	}
 
+	/**
+	 * Retorna a String que representa a atividade. A representacao segue o formato
+	 * " descricao (nivelRisco - descricaoRisco ) | ESTADOITEM - ITEM1 | ESTADOITEM
+	 * - ITEM2 ..."
+	 * 
+	 * @return a representacao em String de uma atividade.
+	 */
 	@Override
 	public String toString() {
 		String saida = this.descricao + " (" + this.nivelRisco + " - " + this.descricaoRisco + ")";

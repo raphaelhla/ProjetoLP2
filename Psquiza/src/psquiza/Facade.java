@@ -9,7 +9,7 @@ public class Facade {
 				"testes_easyaccept/use_case_3.txt", "testes_easyaccept/use_case_4.txt" };
 		EasyAccept.main(args);
 	}
-	
+
 	private PesquisaController pesquisaController;
 	private PesquisadorController pesquisadorController;
 	private ProblemaController problemaController;
@@ -29,27 +29,26 @@ public class Facade {
 	public String cadastraPesquisa(String descricao, String campoDeInteresse) {
 		return pesquisaController.cadastraPesquisa(descricao, campoDeInteresse);
 	}
-	
+
 	public void alteraPesquisa(String codigo, String conteudoASerAlterado, String novoConteudo) {
 		pesquisaController.alteraPesquisa(codigo, conteudoASerAlterado, novoConteudo);
 	}
-	
+
 	public void encerraPesquisa(String codigo, String motivo) {
 		pesquisaController.encerraPesquisa(codigo, motivo);
 	}
-	
+
 	public void ativaPesquisa(String codigo) {
 		pesquisaController.ativaPesquisa(codigo);
 	}
-	
+
 	public String exibePesquisa(String codigo) {
 		return pesquisaController.exibePesquisa(codigo);
 	}
-	
+
 	public boolean pesquisaEhAtiva(String codigo) {
 		return pesquisaController.ehAtiva(codigo);
 	}
-
 
 	// METODOS DA PARTE 2 (RAPHAEL) ABAIXO DESSE COMENTARIO
 
@@ -147,26 +146,65 @@ public class Facade {
 
 	// METODOS DA PARTE 4 (WESLLEY) ABAIXO DESSE COMENTARIO
 
+	/**
+	 * Metodo que cadastra uma atividade a partir da sua descricao, nivel de risco e
+	 * descricao do risco.
+	 * 
+	 * @param descricao      Descricao da atividade.
+	 * @param nivelRisco     Nivel de risco da atividade.
+	 * @param descricaoRisco Descricao do risco da atividade.
+	 * @return a representacao em String do codigo de identificacao da atividade.
+	 */
 	public String cadastraAtividade(String descricao, String nivelRisco, String descricaoRisco) {
 		return this.atividadeController.cadastraAtividade(descricao, nivelRisco, descricaoRisco);
 	}
 
+	/**
+	 * Apaga uma atividade a partir de seu codigo.
+	 * 
+	 * @param codigo Codigo da atividade.
+	 */
 	public void apagaAtividade(String codigo) {
 		this.atividadeController.apagaAtividade(codigo);
 	}
 
+	/**
+	 * Cadastra um item na atividade a partir do codigo da atividade e a String que
+	 * representa o item.
+	 * 
+	 * @param codigo Codigo da atividade.
+	 * @param item   Representacao em String do item.
+	 */
 	public void cadastraItem(String codigo, String item) {
 		this.atividadeController.cadastraItem(codigo, item);
 	}
 
+	/**
+	 * Retorna a String que representa a atividade.
+	 * 
+	 * @param codigo Codigo da atividade.
+	 * @return a representacao em String da atividade.
+	 */
 	public String exibeAtividade(String codigo) {
 		return this.atividadeController.exibeAtividade(codigo);
 	}
 
+	/**
+	 * Retorna a quantidade de itens pendentes contidos em determinada atividade.
+	 * 
+	 * @param codigo Codigo da atividade.
+	 * @return a representacao em Int da quantidade de itens pendentes.
+	 */
 	public int contaItensPendentes(String codigo) {
 		return this.atividadeController.contaItensPedentes(codigo);
 	}
 
+	/**
+	 * Retorna a quantidade de itens realizados contidos em determinada atividade.
+	 * 
+	 * @param codigo Codigo da atividade.
+	 * @return a representacao em Int da quantidade de itens realizados.
+	 */
 	public int contaItensRealizados(String codigo) {
 		return this.atividadeController.contaItensRealizados(codigo);
 	}
