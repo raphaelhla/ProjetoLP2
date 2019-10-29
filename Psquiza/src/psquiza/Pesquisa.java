@@ -6,7 +6,6 @@ public class Pesquisa {
 	private String campoDeInteresse;
 	private boolean statusPesquisa;
 	private Validador validador;
-	private String codigo;
 
 	public Pesquisa(String descricao, String campoDeInteresse) {
 		validador = new Validador();
