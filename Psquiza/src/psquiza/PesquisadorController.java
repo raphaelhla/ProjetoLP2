@@ -50,8 +50,6 @@ public class PesquisadorController {
 		validador.verificaEmail(email);
 		validador.verificafotoURL(fotoURL);
 		this.pesquisadores.put(email, new Pesquisador(nome, funcao, biografia, email, fotoURL));
-		System.out.println("MUDEEEEEI!!!!!");
-		System.out.println("Mudei 2x");
 	}
 
 	/**

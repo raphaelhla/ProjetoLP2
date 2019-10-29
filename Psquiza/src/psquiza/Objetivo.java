@@ -12,7 +12,6 @@ public class Objetivo {
 		this.descricao = descricao;
 		this.aderencia = aderencia;
 		this.viabilidade = viabilidade;
-		System.out.println("TESTE");
 	}
 
 	@Override
