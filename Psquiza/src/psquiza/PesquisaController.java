@@ -5,11 +5,6 @@ import psquiza.Pesquisa;
 import java.util.Map;
 import psquiza.Validador;
 
-/**
- * Laboratorio de Programacaoo 2 - Lab 1
- * 
- * @author Matheus Vinicius Benevides Lima - 119210384
- */
 public class PesquisaController {
 
 	private Map<String, Pesquisa> mapPesquisas;
@@ -21,45 +16,43 @@ public class PesquisaController {
 		this.codigos = new HashMap<String, Integer>();
 		this.validador = new Validador();
 	}
+
 	public String cadastraPesquisa(String descricao, String campoDeInteresse) {
 		validador.verificaEntradaNulaVazia(descricao, "Descricao nao pode ser nula ou vazia.");
 		validador.verificaCampoDeInteresse(campoDeInteresse);
-			
 		String codigo = campoDeInteresse.substring(0, 3).toUpperCase();
 		if (codigos.containsKey(codigo)) {
 			int v = codigos.get(codigo);
 			v += 1;
 			codigos.remove(codigo);
 			codigos.put(codigo, v);
-		}else {
+		} else {
 			codigos.put(codigo, 1);
 		}
 		String chave = codigo + codigos.get(codigo);
 		mapPesquisas.put(chave, new Pesquisa(descricao, campoDeInteresse));
 		return chave;
 	}
-	
+
 	private void verificaSeExistePesquisa(String codigo) {
 		if (!mapPesquisas.containsKey(codigo)) {
 			throw new IllegalArgumentException("Pesquisa nao encontrada.");
 		}
 	}
-	
+
 	public void alteraPesquisa(String codigo, String conteudoASerAlterado, String novoConteudo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigo);
-		if(mapPesquisas.get(codigo).getStatusPesquisa() == false) {
+		if (mapPesquisas.get(codigo).getStatusPesquisa() == false) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
-		}else {
-			if(conteudoASerAlterado.equals("DESCRICAO")) {
+		} else {
+			if (conteudoASerAlterado.equals("DESCRICAO")) {
 				validador.verificaEntradaNulaVazia(novoConteudo, "Descricao nao pode ser nula ou vazia.");
 				mapPesquisas.get(codigo).setDescricao(novoConteudo);
-				
-			}
-			else if(conteudoASerAlterado.equals("CAMPO")) {
+			} else if (conteudoASerAlterado.equals("CAMPO")) {
 				validador.verificaEntradaNulaVazia(novoConteudo, "Formato do campo de interesse invalido.");
 				mapPesquisas.get(codigo).setCampoDeInteresse(novoConteudo);
-			}else {
+			} else {
 				throw new IllegalArgumentException("Nao e possivel alterar esse valor de pesquisa.");
 			}
 		}
@@ -80,7 +73,7 @@ public class PesquisaController {
 		verificaSeExistePesquisa(codigo);
 		if (mapPesquisas.get(codigo).getStatusPesquisa() == true) {
 			throw new IllegalArgumentException("Pesquisa ja ativada.");
-		} 
+		}
 		mapPesquisas.get(codigo).ativaPesquisa();
 	}
 

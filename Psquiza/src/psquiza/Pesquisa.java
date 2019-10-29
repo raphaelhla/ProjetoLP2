@@ -6,7 +6,6 @@ public class Pesquisa {
 	private String campoDeInteresse;
 	private boolean statusPesquisa;
 	private Validador validador;
-	private String codigo;
 
 	public Pesquisa(String descricao, String campoDeInteresse) {
 		validador = new Validador();
@@ -14,9 +13,7 @@ public class Pesquisa {
 		this.statusPesquisa = true;
 		this.descricao = descricao;
 		this.campoDeInteresse = campoDeInteresse;
-
 	}
-	
 	
 	public String getDescricao() {
 		return descricao;
@@ -51,6 +48,4 @@ public class Pesquisa {
 		return this.descricao + " - " + this.campoDeInteresse;
 	}
 	
-	
-
 }
