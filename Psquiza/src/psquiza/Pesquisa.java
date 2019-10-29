@@ -13,9 +13,7 @@ public class Pesquisa {
 		this.statusPesquisa = true;
 		this.descricao = descricao;
 		this.campoDeInteresse = campoDeInteresse;
-
 	}
-	
 	
 	public String getDescricao() {
 		return descricao;
@@ -50,6 +48,4 @@ public class Pesquisa {
 		return this.descricao + " - " + this.campoDeInteresse;
 	}
 	
-	
-
 }
