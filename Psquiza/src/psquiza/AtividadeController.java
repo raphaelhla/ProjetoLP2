@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Representacao de um controller de atividade.
  * 
- * @author Weslley Azevedo - 119111241 weslley
+ * @author Weslley Azevedo - 119111241
  *
  */
 public class AtividadeController {
