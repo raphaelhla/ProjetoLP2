@@ -110,7 +110,7 @@ public class AtividadeController {
 	 * @param codigo Codigo da atividade.
 	 * @return a representacao em Int da quantidade de itens pendentes.
 	 */
-	public int contaItensPedentes(String codigo) {
+	public int contaItensPendentes(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		verificaSeExisteAtividade(codigo);
 		return this.mapaAtividades.get(codigo).getQtdItensPendentes();

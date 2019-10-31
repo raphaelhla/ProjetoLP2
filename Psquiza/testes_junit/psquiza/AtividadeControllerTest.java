@@ -42,7 +42,7 @@ class AtividadeControllerTest {
 	public void testContaItensPendentes() {
 		atividadeController.cadastraAtividade("Monitoramento slack", "MEDIO", "Risco medio");
 		atividadeController.cadastraItem("A1", "Monitoramento discord");
-		assertEquals(1, atividadeController.contaItensPedentes("A1"));
+		assertEquals(1, atividadeController.contaItensPendentes("A1"));
 	}
 	
 	@Test
