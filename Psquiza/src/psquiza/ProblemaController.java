@@ -43,12 +43,10 @@ public class ProblemaController {
 	 * @param viabilidade Viabilidade do problema.
 	 * @return o codigo de identificacao do problema.
 	 */
-	public String cadastraProblema(String descricao, String viabilidade) {
+	public String cadastraProblema(String descricao, int viabilidade) {
 		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(viabilidade, "Campo viabilidade nao pode ser nulo ou vazio.");
 		validador.verificaViabilidade(viabilidade);
-		int v = Integer.parseInt(viabilidade);
-		Problema problema = new Problema(descricao, v);
+		Problema problema = new Problema(descricao, viabilidade);
 		String chave = "P" + indiceProblema;
 		problemas.put(chave, problema);
 		indiceProblema += 1;

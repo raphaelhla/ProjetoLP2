@@ -12,28 +12,28 @@ class PesquisadorControllerTest {
 	@BeforeEach
 	void inicializador() {
 		controller = new PesquisadorController();
-		controller.cadastraPesquisador("João", "estudante", "interessado em games", "monoteemo@lol", "https://steam");
+		controller.cadastraPesquisador("Joao", "estudante", "interessado em games", "monoteemo@lol", "https://steam");
 	}
 
 	@Test
 	void testCadastraPesquisador() {
-		assertEquals("João (estudante) - interessado em games - monoteemo@lol - https://steam", controller.exibePesquisador("monoteemo@lol"));
+		assertEquals("Joao (estudante) - interessado em games - monoteemo@lol - https://steam", controller.exibePesquisador("monoteemo@lol"));
 		
 		}
 
 
 	@Test
 	void testAlteraPesquisador() {
-		assertEquals("João (estudante) - interessado em games - monoteemo@lol - https://steam", controller.exibePesquisador("monoteemo@lol"));
-		controller.alteraPesquisador("monoteemo@lol", "nome", "Matheus");
+		assertEquals("Joao (estudante) - interessado em games - monoteemo@lol - https://steam", controller.exibePesquisador("monoteemo@lol"));
+		controller.alteraPesquisador("monoteemo@lol", "NOME", "Matheus");
 		assertEquals("Matheus (estudante) - interessado em games - monoteemo@lol - https://steam", controller.exibePesquisador("monoteemo@lol"));
-		controller.alteraPesquisador("monoteemo@lol", "funcao", "streamer");
+		controller.alteraPesquisador("monoteemo@lol", "FUNCAO", "streamer");
 		assertEquals("Matheus (streamer) - interessado em games - monoteemo@lol - https://steam", controller.exibePesquisador("monoteemo@lol"));
-		controller.alteraPesquisador("monoteemo@lol", "biografia", "solta cogumelos pelo mapa");
+		controller.alteraPesquisador("monoteemo@lol", "BIOGRAFIA", "solta cogumelos pelo mapa");
 		assertEquals("Matheus (streamer) - solta cogumelos pelo mapa - monoteemo@lol - https://steam", controller.exibePesquisador("monoteemo@lol"));
-		controller.alteraPesquisador("monoteemo@lol", "email", "melhorteemo@lol");
+		controller.alteraPesquisador("monoteemo@lol", "EMAIL", "melhorteemo@lol");
 		assertEquals("Matheus (streamer) - solta cogumelos pelo mapa - melhorteemo@lol - https://steam", controller.exibePesquisador("melhorteemo@lol"));
-		controller.alteraPesquisador("melhorteemo@lol", "fotoURL", "https://twitch.tv/nayark");
+		controller.alteraPesquisador("melhorteemo@lol", "FOTO", "https://twitch.tv/nayark");
 	}
 
 	@Test
@@ -51,7 +51,7 @@ class PesquisadorControllerTest {
 
 	@Test
 	void testExibePesquisador() {
-		assertEquals("João (estudante) - interessado em games - monoteemo@lol - https://steam", controller.exibePesquisador("monoteemo@lol"));
+		assertEquals("Joao (estudante) - interessado em games - monoteemo@lol - https://steam", controller.exibePesquisador("monoteemo@lol"));
 		
 
 	}

@@ -16,13 +16,13 @@ class ProblemaControllerTest {
 	
 	@Test
 	public void testCadastraProblema() {
-		assertEquals("P1", problemaController.cadastraProblema("teste", "4"));
+		assertEquals("P1", problemaController.cadastraProblema("teste", 4));
 	}
 	
 	@Test
 	public void testApagaProblema() {
 		try {
-			problemaController.cadastraProblema("TESTE", "4");
+			problemaController.cadastraProblema("TESTE", 4);
 			problemaController.apagarProblema("P1");
 			problemaController.exibeProblema("P1");
 			fail("Deveria lancar excecao");
@@ -33,7 +33,7 @@ class ProblemaControllerTest {
 	
 	@Test
 	public void testExibeProblema() {
-		problemaController.cadastraProblema("TESTE", "4");
+		problemaController.cadastraProblema("TESTE", 4);
 		assertEquals("P1 - TESTE - 4", problemaController.exibeProblema("P1"));
 	}
 

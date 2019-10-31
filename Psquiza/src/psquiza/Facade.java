@@ -120,11 +120,11 @@ public class Facade {
 
 	// METODOS DA PARTE 3 (ALISSON) ABAIXO DESSE COMENTARIO
 
-	public String cadastraProblema(String descricao, String viabilidade) {
+	public String cadastraProblema(String descricao, int viabilidade) {
 		return this.problemaController.cadastraProblema(descricao, viabilidade);
 	}
 
-	public String cadastraObjetivo(String tipo, String descricao, String aderencia, String viabilidade) {
+	public String cadastraObjetivo(String tipo, String descricao, int aderencia, int viabilidade) {
 		return this.objetivoController.cadastraObjetivo(tipo, descricao, aderencia, viabilidade);
 	}
 

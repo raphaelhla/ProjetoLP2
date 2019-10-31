@@ -51,26 +51,14 @@ public class Validador {
 		}
 	}
 	
-	public void verificaViabilidade(String viabilidade) {
-		int v = 0;
-		try {
-			v = Integer.parseInt(viabilidade);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException("Valor invalido de viabilidade.");
-		}
-		if (v < 1 || v > 5) {
+	public void verificaViabilidade(int viabilidade) {
+		if (viabilidade < 1 || viabilidade > 5) {
 			throw new IllegalArgumentException("Valor invalido de viabilidade.");
 		}
 	}
 
-	public void verificaAderencia(String aderencia) {
-		int a = 0;
-		try {
-			a = Integer.parseInt(aderencia);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException("Valor invalido de aderencia.");
-		}
-		if (a < 1 || a > 5) {
+	public void verificaAderencia(int aderencia) {
+		if (aderencia < 1 || aderencia > 5) {
 			throw new IllegalArgumentException("Valor invalido de aderencia");
 		}
 	}

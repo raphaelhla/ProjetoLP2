@@ -75,35 +75,38 @@ public class PesquisadorController {
 	 */
 	public void alteraPesquisador(String email, String atributo, String novoValor) {
 		verificaSeExistePesquisador(email);
+		validador.verificaEntradaNulaVazia(atributo, "Atributo nao pode ser vazio ou nulo.");;
 		if (!pesquisadorEhAtivo(email)) {
 			throw new IllegalArgumentException("Pesquisador inativo.");
 		}
 		Pesquisador pesquisador = pesquisadores.get(email);
 		switch (atributo) {
-		case "nome":
+		case "NOME":
 			validador.verificaEntradaNulaVazia(novoValor, "Campo nome nao pode ser nulo ou vazio.");
 			pesquisador.setNome(novoValor);
 			break;
-		case "funcao":
+		case "FUNCAO":
 			validador.verificaEntradaNulaVazia(novoValor, "Campo funcao nao pode ser nulo ou vazio.");
 			pesquisador.setFuncao(novoValor);
 			break;
-		case "biografia":
+		case "BIOGRAFIA":
 			validador.verificaEntradaNulaVazia(novoValor, "Campo biografia nao pode ser nulo ou vazio.");
 			pesquisador.setBiografia(novoValor);
 			break;
-		case "email":
+		case "EMAIL":
 			validador.verificaEntradaNulaVazia(novoValor, "Campo email nao pode ser nulo ou vazio.");
 			validador.verificaEmail(novoValor);
 			pesquisadores.remove(email);
 			pesquisador.setEmail(novoValor);
 			pesquisadores.put(novoValor, pesquisador);
 			break;
-		case "fotoURL":
+		case "FOTO":
 			validador.verificaEntradaNulaVazia(novoValor, "Campo fotoURL nao pode ser nulo ou vazio.");
 			validador.verificafotoURL(novoValor);
 			pesquisador.setFotoURL(novoValor);
 			break;
+		default:
+			throw new IllegalArgumentException("Atributo invalido.");
 		}
 	}
 
