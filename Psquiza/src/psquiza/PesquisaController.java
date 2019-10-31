@@ -88,4 +88,12 @@ public class PesquisaController {
 		verificaSeExistePesquisa(codigo);
 		return mapPesquisas.get(codigo).getStatusPesquisa();
 	}
+
+	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade, Atividade atividade) {
+		return this.mapPesquisas.get(codigoPesquisa).associaAtividade(codigoAtividade, atividade);
+	}
+
+	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
+		return this.mapPesquisas.get(codigoPesquisa).desassociaAtividade(codigoAtividade);
+	}
 }

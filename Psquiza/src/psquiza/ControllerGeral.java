@@ -68,7 +68,7 @@ public class ControllerGeral {
 		return this.pesquisadorController.pesquisadorEhAtivo(email);
 	}
 
-	// METODOS DA PARTE 3 (ALISSON) ABAIXO DESSE COMENTARIO
+	// METODOS DA PARTE 3 (RAPHAEL) ABAIXO DESSE COMENTARIO
 
 	public String cadastraProblema(String descricao, int viabilidade) {
 		return this.problemaController.cadastraProblema(descricao, viabilidade);
@@ -93,8 +93,12 @@ public class ControllerGeral {
 	public String exibeObjetivo(String codigo) {
 		return this.objetivoController.exibeObjetivo(codigo);
 	}
+	
+	public String busca(String termo, int numeroDoResultado) {
+		return "";
+	}
 
-	// METODOS DA PARTE 4 (RAPHAEL) ABAIXO DESSE COMENTARIO
+	// METODOS DA PARTE 4 (ALISSON) ABAIXO DESSE COMENTARIO
 
 	public String cadastraAtividade(String descricao, String nivelRisco, String descricaoRisco) {
 		return this.atividadeController.cadastraAtividade(descricao, nivelRisco, descricaoRisco);
@@ -120,7 +124,21 @@ public class ControllerGeral {
 		return this.atividadeController.contaItensRealizados(codigo);
 	}
 	
-	public String busca(String termo, int numeroDoResultado) {
-		return "";
+	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
+		Atividade atividade = this.atividadeController.getAtividade(codigoAtividade);
+		return this.pesquisaController.associaAtividade(codigoPesquisa, codigoAtividade, atividade);
 	}
+
+	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
+		return this.pesquisaController.desassociaAtividade(codigoPesquisa, codigoAtividade);
+	}
+
+	public void executaAtividade(String codigoAtividade, int item, int duracao) {
+		this.atividadeController.executaAtividade(codigoAtividade, item, duracao);
+	}
+
+	public int getDuracao(String codigoAtividade) {
+		return this.atividadeController.getDuracao(codigoAtividade);
+	}
+
 }

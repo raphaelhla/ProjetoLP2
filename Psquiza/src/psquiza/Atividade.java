@@ -35,7 +35,7 @@ public class Atividade {
 	/**
 	 * Lista que contem todos os itens cadastrados na atividade.
 	 */
-	private List<String[]> listaItens;
+	private List<Item> itens;
 
 	/**
 	 * Constroi uma atividade a partir da sua descricao, nivel de risco e descricao
@@ -54,7 +54,7 @@ public class Atividade {
 		this.descricao = descricao;
 		this.nivelRisco = nivelRisco;
 		this.descricaoRisco = descricaoRisco;
-		this.listaItens = new ArrayList<>();
+		this.itens = new ArrayList<>();
 	}
 
 	/**
@@ -64,10 +64,7 @@ public class Atividade {
 	 */
 	public void cadastraItem(String item) {
 		validador.verificaEntradaNulaVazia(item, "Item nao pode ser nulo ou vazio.");
-		String[] array = new String[2];
-		array[0] = "PENDENTE";
-		array[1] = item;
-		this.listaItens.add(array);
+		this.itens.add(new Item(item));
 	}
 
 	/**
@@ -77,8 +74,8 @@ public class Atividade {
 	 */
 	public int getQtdItensPendentes() {
 		int saida = 0;
-		for (int i = 0; i < this.listaItens.size(); i++) {
-			if (this.listaItens.get(i)[0].equals("PENDENTE")) {
+		for (Item item : itens) {
+			if (item.getStatus().equals("PENDENTE")) {
 				saida++;
 			}
 		}
@@ -92,8 +89,8 @@ public class Atividade {
 	 */
 	public int getQtdItensRealizados() {
 		int saida = 0;
-		for (int i = 0; i < this.listaItens.size(); i++) {
-			if (this.listaItens.get(i)[0].equals("REALIZADO")) {
+		for (Item item : itens) {
+			if (item.getStatus().equals("REALIZADO")) {
 				saida++;
 			}
 		}
@@ -110,10 +107,23 @@ public class Atividade {
 	@Override
 	public String toString() {
 		String saida = this.descricao + " (" + this.nivelRisco + " - " + this.descricaoRisco + ")";
-		for (int i = 0; i < this.listaItens.size(); i++) {
-			saida += " | " + this.listaItens.get(i)[0] + " - " + this.listaItens.get(i)[1];
+		for (int i = 0; i < this.itens.size(); i++) {
+			saida += " | " + this.itens.get(i).toString();
 		}
 		return saida;
+	}
+
+	public void executaAtividade(int item, int duracao) {
+		this.itens.get(item -1).executaItem(duracao);
+		
+	}
+
+	public int getDuracao() {
+		int duracao = 0;
+		for (Item item : itens) {
+			duracao += item.getDuracao();
+		}
+		return duracao;
 	}
 
 }

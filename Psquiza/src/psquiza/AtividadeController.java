@@ -128,4 +128,17 @@ public class AtividadeController {
 		return this.mapaAtividades.get(codigo).getQtdItensRealizados();
 	}
 
+	public Atividade getAtividade(String codigo) {
+		verificaSeExisteAtividade(codigo);
+		return this.mapaAtividades.get(codigo);
+	}
+
+	public void executaAtividade(String codigoAtividade, int item, int duracao) {
+		this.mapaAtividades.get(codigoAtividade).executaAtividade(item, duracao);
+		
+	}
+
+	public int getDuracao(String codigoAtividade) {
+		return this.mapaAtividades.get(codigoAtividade).getDuracao();
+	}
 }

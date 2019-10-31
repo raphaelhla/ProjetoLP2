@@ -1,11 +1,15 @@
 package psquiza;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Pesquisa {
 
 	private String descricao;
 	private String campoDeInteresse;
 	private boolean statusPesquisa;
 	private Validador validador;
+	private Map<String, Atividade> atividadesAssociadas;
 
 	public Pesquisa(String descricao, String campoDeInteresse) {
 		validador = new Validador();
@@ -13,6 +17,7 @@ public class Pesquisa {
 		this.statusPesquisa = true;
 		this.descricao = descricao;
 		this.campoDeInteresse = campoDeInteresse;
+		this.atividadesAssociadas = new HashMap<String, Atividade>();
 	}
 	
 	public String getDescricao() {
@@ -47,5 +52,16 @@ public class Pesquisa {
 	public String toString() {
 		return this.descricao + " - " + this.campoDeInteresse;
 	}
+
+	public boolean associaAtividade(String codigoAtividade, Atividade atividade) {
+		this.atividadesAssociadas.put(codigoAtividade, atividade);
+		return false;
+	}
+
+	public boolean desassociaAtividade(String codigoAtividade) {
+		this.atividadesAssociadas.remove(codigoAtividade);
+		return false;
+	}
+	
 	
 }

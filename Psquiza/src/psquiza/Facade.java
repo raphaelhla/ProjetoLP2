@@ -67,7 +67,7 @@ public class Facade {
 		return this.controllerGeral.pesquisadorEhAtivo(email);
 	}
 
-	// METODOS DA PARTE 3 (ALISSON) ABAIXO DESSE COMENTARIO
+	// METODOS DA PARTE 3 (RAPHAEL) ABAIXO DESSE COMENTARIO
 
 	public String cadastraProblema(String descricao, int viabilidade) {
 		return this.controllerGeral.cadastraProblema(descricao, viabilidade);
@@ -92,8 +92,25 @@ public class Facade {
 	public String exibeObjetivo(String codigo) {
 		return this.controllerGeral.exibeObjetivo(codigo);
 	}
+	
+	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
+		return this.controllerGeral.associaAtividade(codigoPesquisa, codigoAtividade);
+	}
+	
+	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
+		return this.controllerGeral.desassociaAtividade(codigoPesquisa, codigoAtividade);
+	}
+	
+	public void executaAtividade(String codigoAtividade, int item, int duracao) {
+		this.controllerGeral.executaAtividade(codigoAtividade, item, duracao);
+	}
+	
+	
+	public int getDuracao(String codigoAtividade) {
+		return this.controllerGeral.getDuracao(codigoAtividade);
+	}
 
-	// METODOS DA PARTE 4 (RAPHAEL) ABAIXO DESSE COMENTARIO
+	// METODOS DA PARTE 4 (ALISSON) ABAIXO DESSE COMENTARIO
 
 	public String cadastraAtividade(String descricao, String nivelRisco, String descricaoRisco) {
 		return this.controllerGeral.cadastraAtividade(descricao, nivelRisco, descricaoRisco);
