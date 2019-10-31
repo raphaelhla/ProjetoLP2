@@ -7,7 +7,7 @@ import java.util.List;
  * Representacao de uma atividade. Toda atividade precisa ter uma descricao,
  * nivel do risco, descricao do risco
  * 
- * @author Weslley Azevedo - 11911241
+ * @author Weslley Azevedo - 11911241 raphael
  *
  */
 public class Atividade {
