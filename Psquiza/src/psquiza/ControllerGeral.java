@@ -141,4 +141,5 @@ public class ControllerGeral {
 		return this.atividadeController.getDuracao(codigoAtividade);
 	}
 
+	
 }
