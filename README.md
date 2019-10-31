@@ -13,9 +13,9 @@
 
 # Links
 
-  - [Especificação](https://docs.google.com/document/d/e/2PACX-1vRKnuseh-1y300CI4fTlgVB8XMx3yDhEl9fg2NfkyrBDqYT9-tTjHTgSdD59htIIxDtJQDdSSYLzrnv/pub){:target="_blank"}
-  - [Casos de uso](https://drive.google.com/drive/folders/1H7au_Jzxi8UKih0bW8jVqAfe00ROOOMJ){:target="_blank" rel="noopener"}
-  - [Github do projeto](https://github.com/raphaelhla/ProjetoLP2){:target="_blank"}
+  - [Especificação](https://docs.google.com/document/d/e/2PACX-1vRKnuseh-1y300CI4fTlgVB8XMx3yDhEl9fg2NfkyrBDqYT9-tTjHTgSdD59htIIxDtJQDdSSYLzrnv/pub)
+  - [Casos de uso](https://drive.google.com/drive/folders/1H7au_Jzxi8UKih0bW8jVqAfe00ROOOMJ)
+  - [Github do projeto](https://github.com/raphaelhla/ProjetoLP2)
   
 # Divisao das partes
     Parte 1 do projeto:
