@@ -1,6 +1,9 @@
 package psquiza;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -93,4 +96,17 @@ public class ObjetivoController {
 		return codigo + " - " + this.objetivos.get(codigo).toString();
 	}
 
+	public String busca(String termo) {
+		String saida = "";
+		List<String> stringObjetivos = new ArrayList<>();
+		List<String> chaves = new ArrayList<>(objetivos.keySet());
+		Collections.sort(chaves);
+		for (String e : chaves) {
+			if (objetivos.get(e).busca(termo)) {
+				stringObjetivos.add(e + ": " + objetivos.get(e).getDescricao());
+			}
+		}
+		saida = String.join(" | ", stringObjetivos);
+		return saida;
+	}
 }

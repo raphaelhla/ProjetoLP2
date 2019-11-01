@@ -1,6 +1,9 @@
 package psquiza;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -167,5 +170,18 @@ public class PesquisadorController {
 		return false;
 	}
 
-
+	public String busca(String termo) {
+		String saida = "";
+		List<String> stringPesquisadores = new ArrayList<>();
+		List<String> chaves = new ArrayList<>(pesquisadores.keySet());
+		Collections.sort(chaves);
+		for (String e : chaves) {
+			if (pesquisadores.get(e).busca(termo)) {
+				stringPesquisadores.add(e + ": " + pesquisadores.get(e).getBiografia());
+			}
+		}
+		saida = String.join(" | ", stringPesquisadores);
+		return saida;
+	}
+	
 }

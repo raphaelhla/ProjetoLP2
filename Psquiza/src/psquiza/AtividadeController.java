@@ -151,7 +151,9 @@ public class AtividadeController {
 		List<String> chaves = new ArrayList<>(mapaAtividades.keySet());
 		Collections.sort(chaves);
 		for (String e : chaves) {
-			stringAtividades.add(e + ": " + mapaAtividades.get(e).buscaItem(termo));
+			if (!mapaAtividades.get(e).buscaItem(termo).equals("")){
+				stringAtividades.add(e + ": " + mapaAtividades.get(e).buscaItem(termo));
+			}
 			if (mapaAtividades.get(e).buscaDescricao(termo)) {
 				stringAtividades.add(e + ": " + mapaAtividades.get(e).getDescricao());
 			}

@@ -9,6 +9,8 @@ public class Main {
 		facade.cadastraProblema("Pedro amorin", 3);
 		facade.cadastraProblema("Eu amo programar", 5);
 		facade.cadastraAtividade("Iriamo da silva", "BAIXO", "olhamos para cima");
-		System.out.println(facade.busca("amo", 6));
+//		System.out.println(facade.busca("amo", 4));
+		String x = "amo";
+		System.out.println(x.contains("Amo"));
 	}
 }

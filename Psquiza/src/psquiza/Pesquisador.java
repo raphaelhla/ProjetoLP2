@@ -155,4 +155,14 @@ public class Pesquisador {
 		return this.nome + " (" + this.funcao + ") - " + this.biografia + " - " + this.email + " - " + this.fotoURL;
 	}
 
+	public boolean busca(String termo) {
+		if (this.biografia.contains(termo)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public String getBiografia() {
+		return this.biografia;
+	}
 }

@@ -57,4 +57,14 @@ public class Objetivo {
 		return this.tipo + " - " + this.descricao + " - " + valor;
 	}
 
+	public boolean busca(String termo) {
+		if (this.descricao.contains(termo)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public String getDescricao() {
+		return this.descricao;
+	}
 }
