@@ -28,4 +28,15 @@ public class Item {
 	public int getDuracao() {
 		return this.duracao;
 	}
+	
+	public String getDescricao() {
+		return this.descricao;
+	}
+	
+	public boolean busca(String termo) {
+		if (this.descricao.contains(termo)) {
+			return true;
+		}
+		return false;
+	}
 }

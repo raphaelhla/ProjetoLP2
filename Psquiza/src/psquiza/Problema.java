@@ -41,4 +41,15 @@ public class Problema {
 	public String toString() {
 		return this.descricao + " - " + this.viabilidade;
 	}
+	
+	public boolean busca(String termo) {
+		if (this.descricao.contains(termo)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public String getDescricao() {
+		return this.descricao;
+	}
 }

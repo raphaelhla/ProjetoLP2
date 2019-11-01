@@ -1,5 +1,8 @@
 package psquiza;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ControllerGeral {
 
 	private PesquisaController pesquisaController;
@@ -7,6 +10,7 @@ public class ControllerGeral {
 	private ProblemaController problemaController;
 	private ObjetivoController objetivoController;
 	private AtividadeController atividadeController;
+	private Validador validador;
 
 	public ControllerGeral() {
 		this.pesquisaController = new PesquisaController();
@@ -14,6 +18,7 @@ public class ControllerGeral {
 		this.problemaController = new ProblemaController();
 		this.objetivoController = new ObjetivoController();
 		this.atividadeController = new AtividadeController();
+		this.validador = new Validador();
 
 	}
 
@@ -95,7 +100,14 @@ public class ControllerGeral {
 	}
 	
 	public String busca(String termo, int numeroDoResultado) {
-		return "";
+		validador.verificaEntradaNulaVazia(termo, "Termo nao pode ser nulo ou vazio.");
+		String saida = "";
+		List<String> saidasStrings = new ArrayList<>();
+		saidasStrings.add(problemaController.busca(termo));
+		saidasStrings.add(atividadeController.busca(termo));
+		saida = String.join(" | ", saidasStrings);
+		String[] x = saida.split(" \\| ");
+		return x[numeroDoResultado - 1];
 	}
 
 	// METODOS DA PARTE 4 (ALISSON) ABAIXO DESSE COMENTARIO

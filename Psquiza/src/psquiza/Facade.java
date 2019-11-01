@@ -93,22 +93,10 @@ public class Facade {
 		return this.controllerGeral.exibeObjetivo(codigo);
 	}
 	
-	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
-		return this.controllerGeral.associaAtividade(codigoPesquisa, codigoAtividade);
+	public String busca(String termo, int numeroDoResultado) {
+		return this.controllerGeral.busca(termo, numeroDoResultado);
 	}
 	
-	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
-		return this.controllerGeral.desassociaAtividade(codigoPesquisa, codigoAtividade);
-	}
-	
-	public void executaAtividade(String codigoAtividade, int item, int duracao) {
-		this.controllerGeral.executaAtividade(codigoAtividade, item, duracao);
-	}
-	
-	
-	public int getDuracao(String codigoAtividade) {
-		return this.controllerGeral.getDuracao(codigoAtividade);
-	}
 
 	// METODOS DA PARTE 4 (ALISSON) ABAIXO DESSE COMENTARIO
 
@@ -134,5 +122,21 @@ public class Facade {
 
 	public int contaItensRealizados(String codigo) {
 		return this.controllerGeral.contaItensRealizados(codigo);
+	}
+
+	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
+		return this.controllerGeral.associaAtividade(codigoPesquisa, codigoAtividade);
+	}
+	
+	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
+		return this.controllerGeral.desassociaAtividade(codigoPesquisa, codigoAtividade);
+	}
+	
+	public void executaAtividade(String codigoAtividade, int item, int duracao) {
+		this.controllerGeral.executaAtividade(codigoAtividade, item, duracao);
+	}
+	
+	public int getDuracao(String codigoAtividade) {
+		return this.controllerGeral.getDuracao(codigoAtividade);
 	}
 }

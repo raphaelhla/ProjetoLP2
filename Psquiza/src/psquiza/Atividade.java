@@ -126,4 +126,38 @@ public class Atividade {
 		return duracao;
 	}
 
+	public String buscaItem(String termo) {
+		String saida = "";
+		List<String> stringItens = new ArrayList<>();
+		for (Item e : itens) {
+			if (e.busca(termo)) {
+				stringItens.add(e.getDescricao());
+			}
+		}
+		saida = String.join(" | ", stringItens);
+		return saida;
+	}
+	
+	public boolean buscaDescricao(String termo) {
+		if (this.descricao.contains(termo)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean buscaDescricaoRisco(String termo) {
+		if (this.descricaoRisco.contains(termo)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public String getDescricaoRisco() {
+		return descricaoRisco;
+	}
+
 }

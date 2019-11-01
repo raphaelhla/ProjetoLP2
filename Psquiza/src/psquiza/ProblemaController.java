@@ -1,6 +1,9 @@
 package psquiza;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -88,6 +91,20 @@ public class ProblemaController {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		verificaSeExisteProblema(codigo);
 		return codigo + " - " + this.problemas.get(codigo).toString();
+	}
+	
+	public String busca(String termo) {
+		String saida = "";
+		List<String> stringProblemas = new ArrayList<>();
+		List<String> chaves = new ArrayList<>(problemas.keySet());
+		Collections.sort(chaves);
+		for (String e : chaves) {
+			if (problemas.get(e).busca(termo)) {
+				stringProblemas.add(e + ": " + problemas.get(e).getDescricao());
+			}
+		}
+		saida = String.join(" | ", stringProblemas);
+		return saida;
 	}
 
 }

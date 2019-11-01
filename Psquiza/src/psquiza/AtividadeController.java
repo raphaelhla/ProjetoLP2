@@ -1,6 +1,9 @@
 package psquiza;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -140,5 +143,23 @@ public class AtividadeController {
 
 	public int getDuracao(String codigoAtividade) {
 		return this.mapaAtividades.get(codigoAtividade).getDuracao();
+	}
+	
+	public String busca(String termo) {
+		String saida = "";
+		List<String> stringAtividades = new ArrayList<>();
+		List<String> chaves = new ArrayList<>(mapaAtividades.keySet());
+		Collections.sort(chaves);
+		for (String e : chaves) {
+			stringAtividades.add(e + ": " + mapaAtividades.get(e).buscaItem(termo));
+			if (mapaAtividades.get(e).buscaDescricao(termo)) {
+				stringAtividades.add(e + ": " + mapaAtividades.get(e).getDescricao());
+			}
+			if (mapaAtividades.get(e).buscaDescricaoRisco(termo)) {
+				stringAtividades.add(e + ": " + mapaAtividades.get(e).getDescricaoRisco());
+			}
+		}
+		saida = String.join(" | ", stringAtividades);
+		return saida;
 	}
 }
