@@ -8,8 +8,8 @@
 ## Alunos
   - Raphael Henrique de Lucena Agra - 119110413
   - Weslley Sousa Gonçalves de Azevedo - 119111241
-  - 
-  -
+  - Matheus Vinicius Benevides Lima - 
+  - José Alisson Araújo Pordeus - 
 
 ## Links
 
