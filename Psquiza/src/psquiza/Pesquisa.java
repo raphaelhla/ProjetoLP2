@@ -54,13 +54,28 @@ public class Pesquisa {
 	}
 
 	public boolean associaAtividade(String codigoAtividade, Atividade atividade) {
+		if (atividadesAssociadas.containsKey(codigoAtividade)) {
+			return false;
+		}
+		if (this.statusPesquisa == false) {
+			throw new IllegalArgumentException("Pesquisa desativada.");
+		}
 		this.atividadesAssociadas.put(codigoAtividade, atividade);
-		return false;
+		return true;
 	}
 
 	public boolean desassociaAtividade(String codigoAtividade) {
+		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
+			return false;
+		}
+		if (this.statusPesquisa == false) {
+			throw new IllegalArgumentException("Pesquisa desativada.");
+		}
+		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
+			throw new IllegalArgumentException("Atividade nao encontrada.");
+		}
 		this.atividadesAssociadas.remove(codigoAtividade);
-		return false;
+		return true;
 	}
 	
 	

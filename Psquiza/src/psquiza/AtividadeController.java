@@ -164,4 +164,16 @@ public class AtividadeController {
 		saida = String.join(" | ", stringAtividades);
 		return saida;
 	}
+
+	public int cadastraResultado(String codigoAtividade, String resultado) {
+		return this.mapaAtividades.get(codigoAtividade).cadastraResultado(resultado);
+	}
+
+	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
+		return this.mapaAtividades.get(codigoAtividade).removeResultado(numeroResultado);
+	}
+
+	public String listaResultados(String codigoAtividade) {
+		return this.mapaAtividades.get(codigoAtividade).listaResultados();
+	}
 }

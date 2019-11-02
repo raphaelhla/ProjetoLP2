@@ -1,7 +1,10 @@
 package psquiza;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Representacao de uma atividade. Toda atividade precisa ter uma descricao,
@@ -36,6 +39,9 @@ public class Atividade {
 	 * Lista que contem todos os itens cadastrados na atividade.
 	 */
 	private List<Item> itens;
+	
+	private Map<Integer, String> resultados;
+	private int indiceResultados;
 
 	/**
 	 * Constroi uma atividade a partir da sua descricao, nivel de risco e descricao
@@ -55,6 +61,8 @@ public class Atividade {
 		this.nivelRisco = nivelRisco;
 		this.descricaoRisco = descricaoRisco;
 		this.itens = new ArrayList<>();
+		this.resultados = new HashMap<Integer, String>();
+		this.indiceResultados = 0;
 	}
 
 	/**
@@ -158,6 +166,35 @@ public class Atividade {
 
 	public String getDescricaoRisco() {
 		return descricaoRisco;
+	}
+
+	public int cadastraResultado(String resultado) {
+		this.indiceResultados += 1;
+		this.resultados.put(this.indiceResultados, resultado);
+		return this.indiceResultados;
+	}
+
+	public boolean removeResultado(int numeroResultado) {
+		if (numeroResultado > indiceResultados) {
+			throw new IllegalArgumentException("Resultado nao encontrado.");
+		}
+		if (!this.resultados.containsKey(numeroResultado)) {
+			return false;
+		}
+		this.resultados.remove(numeroResultado);
+		return true;
+	}
+
+	public String listaResultados() {
+		String saida = "";
+		List<Integer> chaves = new ArrayList<Integer>(resultados.keySet());
+		Collections.sort(chaves);
+		List<String> stringResultados = new ArrayList<String>();
+		for (Integer e : chaves) {
+			stringResultados.add(resultados.get(e));
+		}
+		saida = String.join(" | ", stringResultados);
+		return saida;
 	}
 
 }

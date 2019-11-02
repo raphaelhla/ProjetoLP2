@@ -90,10 +90,14 @@ public class PesquisaController {
 	}
 
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade, Atividade atividade) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		return this.mapPesquisas.get(codigoPesquisa).associaAtividade(codigoAtividade, atividade);
 	}
 
 	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		return this.mapPesquisas.get(codigoPesquisa).desassociaAtividade(codigoAtividade);
 	}
 }

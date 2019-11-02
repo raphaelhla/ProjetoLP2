@@ -6,7 +6,12 @@ public class Facade {
 
 	public static void main(String[] args) {
 		args = new String[] { "psquiza.Facade", "testes_easyaccept/use_case_1.txt", "testes_easyaccept/use_case_2.txt",
-				"testes_easyaccept/use_case_3.txt", "testes_easyaccept/use_case_4.txt" };
+				"testes_easyaccept/use_case_3.txt", 
+				"testes_easyaccept/use_case_4.txt", 
+				/*"testes_easyaccept/use_case_5.txt", 
+				"testes_easyaccept/use_case_6.txt", */
+				"testes_easyaccept/use_case_7.txt", 
+				/*"testes_easyaccept/use_case_8.txt", */};
 		EasyAccept.main(args);
 	}
 
@@ -136,6 +141,17 @@ public class Facade {
 		this.controllerGeral.executaAtividade(codigoAtividade, item, duracao);
 	}
 	
+	public int cadastraResultado(String codigoAtividade, String resultado) {
+		return this.controllerGeral.cadastraResultado(codigoAtividade, resultado);
+	}
+	
+	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
+		return this.controllerGeral.removeResultado(codigoAtividade, numeroResultado);
+	}
+	
+	public String listaResultados(String codigoAtividade) {
+		return this.controllerGeral.listaResultados(codigoAtividade);
+	}
 	public int getDuracao(String codigoAtividade) {
 		return this.controllerGeral.getDuracao(codigoAtividade);
 	}

@@ -105,6 +105,8 @@ public class ControllerGeral {
 		List<String> saidasStrings = new ArrayList<>();
 		saidasStrings.add(problemaController.busca(termo));
 		saidasStrings.add(atividadeController.busca(termo));
+		saidasStrings.add(pesquisadorController.busca(termo));
+		saidasStrings.add(objetivoController.busca(termo));
 		saida = String.join(" | ", saidasStrings);
 		String[] x = saida.split(" \\| ");
 		return x[numeroDoResultado - 1];
@@ -142,6 +144,7 @@ public class ControllerGeral {
 	}
 
 	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
+		this.atividadeController.getAtividade(codigoAtividade);
 		return this.pesquisaController.desassociaAtividade(codigoPesquisa, codigoAtividade);
 	}
 
@@ -149,9 +152,19 @@ public class ControllerGeral {
 		this.atividadeController.executaAtividade(codigoAtividade, item, duracao);
 	}
 
+	public int cadastraResultado(String codigoAtividade, String resultado) {
+		return this.atividadeController.cadastraResultado(codigoAtividade, resultado);
+	}
+
+	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
+		return this.atividadeController.removeResultado(codigoAtividade, numeroResultado);
+	}
+
+	public String listaResultados(String codigoAtividade) {
+		return this.atividadeController.listaResultados(codigoAtividade);
+	}
+
 	public int getDuracao(String codigoAtividade) {
 		return this.atividadeController.getDuracao(codigoAtividade);
 	}
-
-	
 }
