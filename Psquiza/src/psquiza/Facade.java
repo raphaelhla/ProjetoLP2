@@ -11,7 +11,7 @@ public class Facade {
 				/*"testes_easyaccept/use_case_5.txt", 
 				"testes_easyaccept/use_case_6.txt", */
 				"testes_easyaccept/use_case_7.txt", 
-				/*"testes_easyaccept/use_case_8.txt", */};
+				"testes_easyaccept/use_case_8.txt",};
 		EasyAccept.main(args);
 	}
 
@@ -98,8 +98,16 @@ public class Facade {
 		return this.controllerGeral.exibeObjetivo(codigo);
 	}
 	
+	public String busca(String termo) {
+		return this.controllerGeral.busca(termo);
+	}
+	
 	public String busca(String termo, int numeroDoResultado) {
 		return this.controllerGeral.busca(termo, numeroDoResultado);
+	}
+	
+	public int contaResultadosBusca(String termo) {
+		return this.controllerGeral.contaResultadosBusca(termo);
 	}
 	
 

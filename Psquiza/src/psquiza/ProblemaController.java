@@ -98,6 +98,7 @@ public class ProblemaController {
 		List<String> stringProblemas = new ArrayList<>();
 		List<String> chaves = new ArrayList<>(problemas.keySet());
 		Collections.sort(chaves);
+		Collections.reverse(chaves);
 		for (String e : chaves) {
 			if (problemas.get(e).busca(termo)) {
 				stringProblemas.add(e + ": " + problemas.get(e).getDescricao());

@@ -101,6 +101,7 @@ public class ObjetivoController {
 		List<String> stringObjetivos = new ArrayList<>();
 		List<String> chaves = new ArrayList<>(objetivos.keySet());
 		Collections.sort(chaves);
+		Collections.reverse(chaves);
 		for (String e : chaves) {
 			if (objetivos.get(e).busca(termo)) {
 				stringObjetivos.add(e + ": " + objetivos.get(e).getDescricao());

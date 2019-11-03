@@ -99,17 +99,48 @@ public class ControllerGeral {
 		return this.objetivoController.exibeObjetivo(codigo);
 	}
 	
-	public String busca(String termo, int numeroDoResultado) {
-		validador.verificaEntradaNulaVazia(termo, "Termo nao pode ser nulo ou vazio.");
+	public String busca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		String saida = "";
 		List<String> saidasStrings = new ArrayList<>();
-		saidasStrings.add(problemaController.busca(termo));
-		saidasStrings.add(atividadeController.busca(termo));
+		saidasStrings.add(pesquisaController.busca(termo));
 		saidasStrings.add(pesquisadorController.busca(termo));
+		saidasStrings.add(problemaController.busca(termo));
 		saidasStrings.add(objetivoController.busca(termo));
+		saidasStrings.add(atividadeController.busca(termo));
+		
 		saida = String.join(" | ", saidasStrings);
-		String[] x = saida.split(" \\| ");
-		return x[numeroDoResultado - 1];
+		return saida;
+	}
+	
+	public String busca(String termo, int numeroDoResultado) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
+		if (numeroDoResultado < 0) {
+			throw new IllegalArgumentException("Numero do resultado nao pode ser negativo");
+		}
+		
+		String saida = "";
+		List<String> saidasStrings = new ArrayList<>();
+		saidasStrings.add(pesquisaController.busca(termo));
+		saidasStrings.add(pesquisadorController.busca(termo));
+		saidasStrings.add(problemaController.busca(termo));
+		saidasStrings.add(objetivoController.busca(termo));
+		saidasStrings.add(atividadeController.busca(termo));
+		
+		saida = String.join(" | ", saidasStrings);
+		String[] resultados = saida.split(" \\| ");
+		if (numeroDoResultado > resultados.length) {
+			throw new IllegalArgumentException("Entidade nao encontrada.");
+		}
+		return resultados[numeroDoResultado - 1];
+	}
+	
+	public int contaResultadosBusca(String termo) {
+		String[] resultados = busca(termo).split(" \\| ");
+		if (resultados.length == 0) {
+			throw new IllegalArgumentException("Nenhum resultado encontrado");
+		}
+		return resultados.length;
 	}
 
 	// METODOS DA PARTE 4 (ALISSON) ABAIXO DESSE COMENTARIO
@@ -167,4 +198,15 @@ public class ControllerGeral {
 	public int getDuracao(String codigoAtividade) {
 		return this.atividadeController.getDuracao(codigoAtividade);
 	}
+	
+//	COM2: Autoavaliacao na Disciplina de Programacao Orientada a Objeto. |
+//	COM1: Homofobia em mensagens online de alunos de computacao do primeiro periodo. |
+//	COM1: Homofobia em mensagens online de alunos de computacao do primeiro periodo. |
+//	gaaraxrocklee@12LinkinPark: Interessado na computacao com areia e em lutar com o rock lee ao som de linkin park. |
+//	P4: O problema causado pela areia na segunda guerra mundial ninja de computacao. |
+//	P1: O problema do discurso homofobico em chats online de alunos de computacao de primeiro periodo |
+//	O6: Diminuir a dor no coracao dos estudantes de computacao depois de ver rock lee vs gaara ao som de linkin park. |
+//	O1: Diminuir a frequencia de mensagens homofobicas trocadas em chats online entre alunos de primeiro periodo de computacao. |
+//	A5: Monitoramento por ninjas de computacao na guerra ninja. |
+//	A1: Monitoramento de chats dos alunos de computacao do primeiro periodo." busca termo="computacao"
 }

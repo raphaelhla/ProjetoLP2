@@ -165,4 +165,8 @@ public class Pesquisador {
 	public String getBiografia() {
 		return this.biografia;
 	}
+
+	public String getEmail() {
+		return this.email;
+	}
 }

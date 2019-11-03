@@ -78,5 +78,17 @@ public class Pesquisa {
 		return true;
 	}
 	
-	
+	public boolean buscaDescricao(String termo) {
+		if (this.descricao.contains(termo)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean buscaCampoInteresse(String termo) {
+		if (this.campoDeInteresse.contains(termo)) {
+			return true;
+		}
+		return false;
+	}
 }

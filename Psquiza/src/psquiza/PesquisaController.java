@@ -1,6 +1,10 @@
 package psquiza;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+
 import psquiza.Pesquisa;
 import java.util.Map;
 import psquiza.Validador;
@@ -99,5 +103,23 @@ public class PesquisaController {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		return this.mapPesquisas.get(codigoPesquisa).desassociaAtividade(codigoAtividade);
+	}
+
+	public String busca(String termo) {
+		String saida = "";
+		List<String> stringAtividades = new ArrayList<>();
+		List<String> chaves = new ArrayList<>(mapPesquisas.keySet());
+		Collections.sort(chaves);
+		Collections.reverse(chaves);
+		for (String e : chaves) {
+			if (mapPesquisas.get(e).buscaDescricao(termo)) {
+				stringAtividades.add(e + ": " + mapPesquisas.get(e).getDescricao());
+			}
+			if (mapPesquisas.get(e).buscaCampoInteresse(termo)) {
+				stringAtividades.add(e + ": " + mapPesquisas.get(e).getDescricao());
+			}
+		}
+		saida = String.join(" | ", stringAtividades);
+		return saida;
 	}
 }
