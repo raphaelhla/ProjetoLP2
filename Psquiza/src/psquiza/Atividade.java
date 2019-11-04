@@ -39,7 +39,7 @@ public class Atividade {
 	 * Lista que contem todos os itens cadastrados na atividade.
 	 */
 	private Map<Integer, Item> itens;
-	
+
 	private Map<Integer, String> resultados;
 	private int indiceItens;
 	private int indiceResultados;
@@ -76,7 +76,7 @@ public class Atividade {
 		validador.verificaEntradaNulaVazia(item, "Item nao pode ser nulo ou vazio.");
 		this.indiceItens += 1;
 		this.itens.put(indiceItens, new Item(item));
-		
+
 	}
 
 	/**
@@ -110,6 +110,24 @@ public class Atividade {
 	}
 
 	/**
+	 * Metodo que retorna a descricao da atividade.
+	 * 
+	 * @return a descricao da atividade.
+	 */
+	public String getDescricao() {
+		return descricao;
+	}
+
+	/**
+	 * Metodo que retorna a descricao de risco da atividade.
+	 * 
+	 * @return a descricao de risco da atividade.
+	 */
+	public String getDescricaoRisco() {
+		return descricaoRisco;
+	}
+
+	/**
 	 * Retorna a String que representa a atividade. A representacao segue o formato
 	 * " descricao (nivelRisco - descricaoRisco ) | ESTADOITEM - ITEM1 | ESTADOITEM
 	 * - ITEM2 ..."
@@ -125,6 +143,13 @@ public class Atividade {
 		return saida;
 	}
 
+	/**
+	 * Metodo que executa uma atividade a partir do item e da duracao da atividade.
+	 * Quando um item é executado, seu status é alterado para "REALIZADO".
+	 * 
+	 * @param item    Item executado.
+	 * @param duracao Duracao da execucao do item.
+	 */
 	public void executaAtividade(int item, int duracao) {
 		if (!this.itens.containsKey(item)) {
 			throw new IllegalArgumentException("Item nao encontrado.");
@@ -133,9 +158,63 @@ public class Atividade {
 			throw new IllegalArgumentException("Item ja executado.");
 		}
 		this.itens.get(item).executaItem(duracao);
-		
+
 	}
 
+	/**
+	 * Metodo que cadastra um resultado para a atividade a partir do resultado a ser
+	 * cadastrado.
+	 * 
+	 * @param resultado Resultado a ser cadastrado.
+	 * @return o inteiro que representa o resultado
+	 */
+	public int cadastraResultado(String resultado) {
+		this.indiceResultados += 1;
+		this.resultados.put(this.indiceResultados, resultado);
+		return this.indiceResultados;
+	}
+
+	/**
+	 * Metodo que remove um resultado a partir do numero que representa o resultado a ser removido.
+	 * 
+	 * @param numeroResultado Numero do resultado.
+	 * @return verdadeiro se a remocao for bem sucedida, caso contrario retorna
+	 *         falso.
+	 */
+	public boolean removeResultado(int numeroResultado) {
+		if (numeroResultado > indiceResultados) {
+			throw new IllegalArgumentException("Resultado nao encontrado.");
+		}
+		if (!this.resultados.containsKey(numeroResultado)) {
+			return false;
+		}
+		this.resultados.remove(numeroResultado);
+		return true;
+	}
+
+	/**
+	 * Metodo que retorna uma string com todos o resultados da atividade.
+	 * 
+	 * @return uma string com todos o resultados da atividade.
+	 */
+	public String listaResultados() {
+		String saida = "";
+		List<Integer> chaves = new ArrayList<Integer>(resultados.keySet());
+		Collections.sort(chaves);
+		List<String> stringResultados = new ArrayList<String>();
+		for (Integer e : chaves) {
+			stringResultados.add(resultados.get(e));
+		}
+		saida = String.join(" | ", stringResultados);
+		return saida;
+	}
+
+	/**
+	 * Metodo que retorna o inteiro que representa a duracao da execucao de todos os
+	 * itens da atividade.
+	 * 
+	 * @return o inteiro que representa a duracao da execucao de todos os itens da atividade
+	 */
 	public int getDuracao() {
 		int duracao = 0;
 		for (Item item : itens.values()) {
@@ -150,49 +229,11 @@ public class Atividade {
 		}
 		return false;
 	}
-	
+
 	public boolean buscaDescricaoRisco(String termo) {
 		if (this.descricaoRisco.contains(termo)) {
 			return true;
 		}
 		return false;
 	}
-	
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public String getDescricaoRisco() {
-		return descricaoRisco;
-	}
-
-	public int cadastraResultado(String resultado) {
-		this.indiceResultados += 1;
-		this.resultados.put(this.indiceResultados, resultado);
-		return this.indiceResultados;
-	}
-	
-	public boolean removeResultado(int numeroResultado) {
-		if (numeroResultado > indiceResultados) {
-			throw new IllegalArgumentException("Resultado nao encontrado.");
-		}
-		if (!this.resultados.containsKey(numeroResultado)) {
-			return false;
-		}
-		this.resultados.remove(numeroResultado);
-		return true;
-	}
-
-	public String listaResultados() {
-		String saida = "";
-		List<Integer> chaves = new ArrayList<Integer>(resultados.keySet());
-		Collections.sort(chaves);
-		List<String> stringResultados = new ArrayList<String>();
-		for (Integer e : chaves) {
-			stringResultados.add(resultados.get(e));
-		}
-		saida = String.join(" | ", stringResultados);
-		return saida;
-	}
-
 }

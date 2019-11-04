@@ -173,11 +173,9 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	public String getCodigoProblema() {
-		List<String> lista = new ArrayList<>();
+		List<String> lista;
 		if (this.problemaAssociado.size() > 0) {
-			for (String chave : this.problemaAssociado.keySet()) {
-				lista.add(chave);
-			}
+			lista = new ArrayList<>(problemaAssociado.keySet());
 			return lista.get(0);
 		}
 		return "Sem problemas associados.";

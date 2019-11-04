@@ -96,6 +96,18 @@ public class ObjetivoController {
 		return codigo + " - " + this.mapObjetivos.get(codigo).toString();
 	}
 
+	/**
+	 * Retorna o objeto Objetivo a partir de seu codigo.
+	 * 
+	 * @param codigo O codigo do Objetivo.
+	 * @return retorna o Objetivo.
+	 */
+	public Objetivo getObjetivo(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
+		verificaSeExisteObjetivo(codigo);
+		return this.mapObjetivos.get(codigo);
+	}
+	
 	public String busca(String termo) {
 		String saida = "";
 		List<String> stringObjetivos = new ArrayList<>();
@@ -110,15 +122,5 @@ public class ObjetivoController {
 		saida = String.join(" | ", stringObjetivos);
 		return saida;
 	}
-	
-	/**
-	 * Retorna o objeto Objetivo a partir de seu codigo.
-	 * @param codigo O codigo do Objetivo.
-	 * @return retorna o Objetivo.
-	 */
-	public Objetivo getObjetivo(String codigo) {
-		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		verificaSeExisteObjetivo(codigo);
-		return this.mapObjetivos.get(codigo);
-	}
+
 }

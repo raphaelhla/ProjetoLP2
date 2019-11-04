@@ -93,6 +93,18 @@ public class ProblemaController {
 		return codigo + " - " + this.mapProblemas.get(codigo).toString();
 	}
 
+	/**
+	 * Retorna o objeto Problema a partir de seu codigo.
+	 * 
+	 * @param codigo Codigo do Problema.
+	 * @return retorna o Problema.
+	 */
+	public Problema getProblema(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
+		verificaSeExisteProblema(codigo);
+		return this.mapProblemas.get(codigo);
+	}
+
 	public String busca(String termo) {
 		String saida = "";
 		List<String> stringProblemas = new ArrayList<>();
@@ -106,18 +118,6 @@ public class ProblemaController {
 		}
 		saida = String.join(" | ", stringProblemas);
 		return saida;
-	}
-
-	/**
-	 * Retorna o objeto Problema a partir de seu codigo.
-	 * 
-	 * @param codigo Codigo do Problema.
-	 * @return retorna o Problema.
-	 */
-	public Problema getProblema(String codigo) {
-		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		verificaSeExisteProblema(codigo);
-		return this.mapProblemas.get(codigo);
 	}
 
 }
