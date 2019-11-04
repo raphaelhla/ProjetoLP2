@@ -204,14 +204,4 @@ public class ControllerGeral {
 		return this.atividadeController.getDuracao(codigoAtividade);
 	}
 	
-//	COM2: Autoavaliacao na Disciplina de Programacao Orientada a Objeto. |
-//	COM1: Homofobia em mensagens online de alunos de computacao do primeiro periodo. |
-//	COM1: Homofobia em mensagens online de alunos de computacao do primeiro periodo. |
-//	gaaraxrocklee@12LinkinPark: Interessado na computacao com areia e em lutar com o rock lee ao som de linkin park. |
-//	P4: O problema causado pela areia na segunda guerra mundial ninja de computacao. |
-//	P1: O problema do discurso homofobico em chats online de alunos de computacao de primeiro periodo |
-//	O6: Diminuir a dor no coracao dos estudantes de computacao depois de ver rock lee vs gaara ao som de linkin park. |
-//	O1: Diminuir a frequencia de mensagens homofobicas trocadas em chats online entre alunos de primeiro periodo de computacao. |
-//	A5: Monitoramento por ninjas de computacao na guerra ninja. |
-//	A1: Monitoramento de chats dos alunos de computacao do primeiro periodo." busca termo="computacao"
 }
