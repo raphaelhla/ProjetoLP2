@@ -2,6 +2,7 @@ package psquiza;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class PesquisaController {
 			codigos.put(codigo, 1);
 		}
 		String chave = codigo + codigos.get(codigo);
-		mapPesquisas.put(chave, new Pesquisa(descricao, campoDeInteresse));
+		mapPesquisas.put(chave, new Pesquisa(descricao, campoDeInteresse,chave));
 		return chave;
 	}
 
@@ -125,5 +126,109 @@ public class PesquisaController {
 		}
 		saida = String.join(" | ", stringAtividades);
 		return saida;
+	}
+	
+	// US5 WESLLEY
+	
+	public boolean associaProblema(String codigoPesquisa, String codigoProblema, Problema problema) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoProblema, "Campo codigoProblema nao pode ser nulo ou vazio.");
+		verificaSeExistePesquisa(codigoPesquisa);
+		return this.mapPesquisas.get(codigoPesquisa).associaProblema(codigoProblema, problema);
+	}
+
+	public boolean desassociaProblema(String codigoPesquisa, String codigoProblema) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoProblema, "Campo codigoProblema nao pode ser nulo ou vazio.");
+		verificaSeExistePesquisa(codigoPesquisa);
+		return this.mapPesquisas.get(codigoPesquisa).desassociaProblema(codigoProblema);
+	}
+
+	private void verificaAssociacaoObjetivo(String codigoObjetivo, String codigoPesquisa) {
+		verificaSeExistePesquisa(codigoPesquisa);
+		for (String chave : this.mapPesquisas.keySet()) {
+			if (!chave.equals(codigoPesquisa)) {
+				if (this.mapPesquisas.get(chave).getAssociacaoObjetivo(codigoObjetivo)) {
+					throw new IllegalArgumentException("Objetivo ja associado a uma pesquisa.");
+				}
+			}
+		}
+	}
+
+	public boolean associaObjetivo(String codigoPesquisa, String codigoObjetivo, Objetivo objetivo) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoObjetivo, "Campo codigoObjetivo nao pode ser nulo ou vazio.");
+		verificaSeExistePesquisa(codigoPesquisa);
+		verificaAssociacaoObjetivo(codigoObjetivo, codigoPesquisa);
+		return this.mapPesquisas.get(codigoPesquisa).associaObjetivo(codigoObjetivo, objetivo);
+	}
+
+	public boolean desassociaObjetivo(String codigoPesquisa, String codigoObjetivo) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoObjetivo, "Campo codigoObjetivo nao pode ser nulo ou vazio.");
+		verificaSeExistePesquisa(codigoPesquisa);
+		return this.mapPesquisas.get(codigoPesquisa).desassociaObjetivo(codigoObjetivo);
+	}
+
+	private String ordernaPorProblema() {
+		Comparator<Pesquisa> c1 = new OrdenarPorProblema();
+		List<Pesquisa> listaPesquisasGeral = new ArrayList<>(this.mapPesquisas.values());
+		List<Pesquisa> listaPesquisasComObjetivos = new ArrayList<>();
+		List<Pesquisa> listaPesquisasSemObjetivos = new ArrayList<>();
+		for (Pesquisa p : listaPesquisasGeral) {
+			if (p.getTemProblemaAssociado()) {
+				listaPesquisasComObjetivos.add(p);
+			} else {
+				listaPesquisasSemObjetivos.add(p);
+			}
+		}
+		Collections.sort(listaPesquisasComObjetivos, c1);
+		Collections.sort(listaPesquisasSemObjetivos);
+		List<Pesquisa> listaPesquisasOrdenada = new ArrayList<>();
+		listaPesquisasOrdenada.addAll(listaPesquisasSemObjetivos);
+		listaPesquisasOrdenada.addAll(listaPesquisasComObjetivos);
+		Collections.reverse(listaPesquisasOrdenada);
+		List<String> saidaCase1 = new ArrayList<>();
+		for (Pesquisa p : listaPesquisasOrdenada) {
+			saidaCase1.add(p.getCodigo() + " - " + p.toString());
+		}
+		return String.join(" | ", saidaCase1);
+	}
+
+	private String ordenaPorObjetivos() {
+		Comparator<Pesquisa> c2 = new OrdenarPorObjetivos();
+		List<Pesquisa> listaPesquisasCase2 = new ArrayList<>(this.mapPesquisas.values());
+		Collections.sort(listaPesquisasCase2, c2);
+		Collections.reverse(listaPesquisasCase2);
+		List<String> saidaCase2 = new ArrayList<>();
+		for (Pesquisa p : listaPesquisasCase2) {
+			saidaCase2.add(p.getCodigo() + " - " + p.toString());
+		}
+		return String.join(" | ", saidaCase2);
+	}
+
+	private String ordenaPorPesquisa() {
+		List<Pesquisa> listaPesquisasCase3 = new ArrayList<>(this.mapPesquisas.values());
+		Collections.sort(listaPesquisasCase3);
+		Collections.reverse(listaPesquisasCase3);
+		List<String> saidaCase3 = new ArrayList<>();
+		for (Pesquisa p : listaPesquisasCase3) {
+			saidaCase3.add(p.getCodigo() + " - " + p.toString());
+		}
+		return String.join(" | ", saidaCase3);
+	}
+
+	public String listaPesquisas(String ordem) {
+		switch (ordem) {
+		case "PROBLEMA":
+			return ordernaPorProblema();
+		case "OBJETIVOS":
+			return ordenaPorObjetivos();
+		case "PESQUISA":
+			return ordenaPorPesquisa();
+		default:
+			throw new IllegalArgumentException("Valor invalido da ordem");
+		}
+
 	}
 }

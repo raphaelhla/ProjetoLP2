@@ -6,12 +6,10 @@ public class Facade {
 
 	public static void main(String[] args) {
 		args = new String[] { "psquiza.Facade", "testes_easyaccept/use_case_1.txt", "testes_easyaccept/use_case_2.txt",
-				"testes_easyaccept/use_case_3.txt", 
-				"testes_easyaccept/use_case_4.txt", 
-				/*"testes_easyaccept/use_case_5.txt", 
-				"testes_easyaccept/use_case_6.txt", */
-				"testes_easyaccept/use_case_7.txt", 
-				"testes_easyaccept/use_case_8.txt",};
+				"testes_easyaccept/use_case_3.txt", "testes_easyaccept/use_case_4.txt",
+				"testes_easyaccept/use_case_5.txt",
+				/* "testes_easyaccept/use_case_6.txt", */
+				"testes_easyaccept/use_case_7.txt", "testes_easyaccept/use_case_8.txt", };
 		EasyAccept.main(args);
 	}
 
@@ -44,6 +42,28 @@ public class Facade {
 
 	public boolean pesquisaEhAtiva(String codigo) {
 		return controllerGeral.pesquisaEhAtiva(codigo);
+	}
+
+	// US5 WESLLEY
+
+	public boolean associaProblema(String idPesquisa, String idProblema) {
+		return controllerGeral.associaProblema(idPesquisa, idProblema);
+	}
+
+	public boolean desassociaProblema(String idPesquisa, String idProblema) {
+		return controllerGeral.desassociaProblema(idPesquisa, idProblema);
+	}
+
+	public boolean associaObjetivo(String idPesquisa, String idObjetivo) {
+		return controllerGeral.associaObjetivo(idPesquisa, idObjetivo);
+	}
+
+	public boolean desassociaObjetivo(String idPesquisa, String idObjetivo) {
+		return controllerGeral.desassociaObjetivo(idPesquisa, idObjetivo);
+	}
+
+	public String listaPesquisas(String ordem) {
+		return controllerGeral.listaPesquisas(ordem);
 	}
 
 	// METODOS DA PARTE 2 (MATHEUS) ABAIXO DESSE COMENTARIO
@@ -97,19 +117,18 @@ public class Facade {
 	public String exibeObjetivo(String codigo) {
 		return this.controllerGeral.exibeObjetivo(codigo);
 	}
-	
+
 	public String busca(String termo) {
 		return this.controllerGeral.busca(termo);
 	}
-	
+
 	public String busca(String termo, int numeroDoResultado) {
 		return this.controllerGeral.busca(termo, numeroDoResultado);
 	}
-	
+
 	public int contaResultadosBusca(String termo) {
 		return this.controllerGeral.contaResultadosBusca(termo);
 	}
-	
 
 	// METODOS DA PARTE 4 (ALISSON) ABAIXO DESSE COMENTARIO
 
@@ -140,26 +159,27 @@ public class Facade {
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
 		return this.controllerGeral.associaAtividade(codigoPesquisa, codigoAtividade);
 	}
-	
+
 	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
 		return this.controllerGeral.desassociaAtividade(codigoPesquisa, codigoAtividade);
 	}
-	
+
 	public void executaAtividade(String codigoAtividade, int item, int duracao) {
 		this.controllerGeral.executaAtividade(codigoAtividade, item, duracao);
 	}
-	
+
 	public int cadastraResultado(String codigoAtividade, String resultado) {
 		return this.controllerGeral.cadastraResultado(codigoAtividade, resultado);
 	}
-	
+
 	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
 		return this.controllerGeral.removeResultado(codigoAtividade, numeroResultado);
 	}
-	
+
 	public String listaResultados(String codigoAtividade) {
 		return this.controllerGeral.listaResultados(codigoAtividade);
 	}
+
 	public int getDuracao(String codigoAtividade) {
 		return this.controllerGeral.getDuracao(codigoAtividade);
 	}

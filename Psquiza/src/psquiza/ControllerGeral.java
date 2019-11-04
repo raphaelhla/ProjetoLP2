@@ -46,6 +46,39 @@ public class ControllerGeral {
 	public boolean pesquisaEhAtiva(String codigo) {
 		return pesquisaController.ehAtiva(codigo);
 	}
+	
+	// US5 WESLLEY
+	
+	public boolean associaProblema(String codigoPesquisa, String codigoProblema) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoProblema, "Campo idProblema nao pode ser nulo ou vazio.");
+		Problema problema = this.problemaController.getProblema(codigoProblema);
+		return this.pesquisaController.associaProblema(codigoPesquisa, codigoProblema, problema);
+	}
+
+	public boolean desassociaProblema(String codigoPesquisa, String codigoProblema) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoProblema, "Campo idProblema nao pode ser nulo ou vazio.");
+		return this.pesquisaController.desassociaProblema(codigoPesquisa, codigoProblema);
+	}
+
+	public boolean associaObjetivo(String codigoPesquisa, String codigoObjetivo) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoObjetivo, "Campo idObjetivo nao pode ser nulo ou vazio.");
+		Objetivo objetivo = this.objetivoController.getObjetivo(codigoObjetivo);
+		return this.pesquisaController.associaObjetivo(codigoPesquisa, codigoObjetivo, objetivo);
+	}
+
+	public boolean desassociaObjetivo(String codigoPesquisa, String codigoObjetivo) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoObjetivo, "Campo idObjetivo nao pode ser nulo ou vazio.");
+		return this.pesquisaController.desassociaObjetivo(codigoPesquisa, codigoObjetivo);
+	}
+
+	public String listaPesquisas(String ordem) {
+		validador.verificaEntradaNulaVazia(ordem, "Valor invalido da ordem");
+		return this.pesquisaController.listaPesquisas(ordem);
+	}
 
 	// METODOS DA PARTE 2 (MATHEUS) ABAIXO DESSE COMENTARIO
 

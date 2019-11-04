@@ -13,7 +13,7 @@ class PesquisaTest {
 	void inicializador() {
 		pesquisaTest = new Pesquisa(
 				"Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras.",
-				"eleicao");
+				"eleicao","ELE1");
 	}
 
 	@Test

@@ -18,7 +18,7 @@ public class ProblemaController {
 	 * Mapa com todos os problemas do sistema, identificados unicamente por um
 	 * codigo.
 	 */
-	private Map<String, Problema> problemas;
+	private Map<String, Problema> mapProblemas;
 
 	/**
 	 * Indice utilizado para saber o numero do proximo problema a ser cadastrado.
@@ -34,7 +34,7 @@ public class ProblemaController {
 	 * Constroi um controller de problemas.
 	 */
 	public ProblemaController() {
-		this.problemas = new HashMap<String, Problema>();
+		this.mapProblemas = new HashMap<String, Problema>();
 		this.indiceProblema = 1;
 		this.validador = new Validador();
 	}
@@ -51,7 +51,7 @@ public class ProblemaController {
 		validador.verificaViabilidade(viabilidade);
 		Problema problema = new Problema(descricao, viabilidade);
 		String chave = "P" + indiceProblema;
-		problemas.put(chave, problema);
+		mapProblemas.put(chave, problema);
 		indiceProblema += 1;
 		return chave;
 	}
@@ -64,7 +64,7 @@ public class ProblemaController {
 	 *         retorna falso.
 	 */
 	private void verificaSeExisteProblema(String codigo) {
-		if (!problemas.containsKey(codigo)) {
+		if (!mapProblemas.containsKey(codigo)) {
 			throw new IllegalArgumentException("Problema nao encontrado");
 		}
 	}
@@ -77,7 +77,7 @@ public class ProblemaController {
 	public void apagarProblema(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		verificaSeExisteProblema(codigo);
-		this.problemas.remove(codigo);
+		this.mapProblemas.remove(codigo);
 	}
 
 	/**
@@ -90,22 +90,34 @@ public class ProblemaController {
 	public String exibeProblema(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		verificaSeExisteProblema(codigo);
-		return codigo + " - " + this.problemas.get(codigo).toString();
+		return codigo + " - " + this.mapProblemas.get(codigo).toString();
 	}
-	
+
 	public String busca(String termo) {
 		String saida = "";
 		List<String> stringProblemas = new ArrayList<>();
-		List<String> chaves = new ArrayList<>(problemas.keySet());
+		List<String> chaves = new ArrayList<>(mapProblemas.keySet());
 		Collections.sort(chaves);
 		Collections.reverse(chaves);
 		for (String e : chaves) {
-			if (problemas.get(e).busca(termo)) {
-				stringProblemas.add(e + ": " + problemas.get(e).getDescricao());
+			if (mapProblemas.get(e).busca(termo)) {
+				stringProblemas.add(e + ": " + mapProblemas.get(e).getDescricao());
 			}
 		}
 		saida = String.join(" | ", stringProblemas);
 		return saida;
+	}
+
+	/**
+	 * Retorna o objeto Problema a partir de seu codigo.
+	 * 
+	 * @param codigo Codigo do Problema.
+	 * @return retorna o Problema.
+	 */
+	public Problema getProblema(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
+		verificaSeExisteProblema(codigo);
+		return this.mapProblemas.get(codigo);
 	}
 
 }

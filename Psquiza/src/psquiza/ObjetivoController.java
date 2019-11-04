@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class ObjetivoController {
 
-	private Map<String, Objetivo> objetivos;
+	private Map<String, Objetivo> mapObjetivos;
 
 	/**
 	 * Indice utilizado para saber o numero do proximo objetivo a ser cadastrado.
@@ -30,7 +30,7 @@ public class ObjetivoController {
 	 * Controi um controller de objetivos.
 	 */
 	public ObjetivoController() {
-		this.objetivos = new HashMap<String, Objetivo>();
+		this.mapObjetivos = new HashMap<String, Objetivo>();
 		this.indiceObjetivo = 1;
 		this.validador = new Validador();
 	}
@@ -54,7 +54,7 @@ public class ObjetivoController {
 
 		Objetivo objetivo = new Objetivo(tipo, descricao, aderencia, viabilidade);
 		String chave = "O" + indiceObjetivo;
-		objetivos.put(chave, objetivo);
+		mapObjetivos.put(chave, objetivo);
 		indiceObjetivo += 1;
 		return chave;
 	}
@@ -67,7 +67,7 @@ public class ObjetivoController {
 	 *         retorna falso.
 	 */
 	private void verificaSeExisteObjetivo(String codigo) {
-		if (!objetivos.containsKey(codigo)) {
+		if (!mapObjetivos.containsKey(codigo)) {
 			throw new IllegalArgumentException("Objetivo nao encontrado");
 		}
 	}
@@ -80,7 +80,7 @@ public class ObjetivoController {
 	public void apagarObjetivo(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		verificaSeExisteObjetivo(codigo);
-		this.objetivos.remove(codigo);
+		this.mapObjetivos.remove(codigo);
 	}
 
 	/**
@@ -93,21 +93,32 @@ public class ObjetivoController {
 	public String exibeObjetivo(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		verificaSeExisteObjetivo(codigo);
-		return codigo + " - " + this.objetivos.get(codigo).toString();
+		return codigo + " - " + this.mapObjetivos.get(codigo).toString();
 	}
 
 	public String busca(String termo) {
 		String saida = "";
 		List<String> stringObjetivos = new ArrayList<>();
-		List<String> chaves = new ArrayList<>(objetivos.keySet());
+		List<String> chaves = new ArrayList<>(mapObjetivos.keySet());
 		Collections.sort(chaves);
 		Collections.reverse(chaves);
 		for (String e : chaves) {
-			if (objetivos.get(e).busca(termo)) {
-				stringObjetivos.add(e + ": " + objetivos.get(e).getDescricao());
+			if (mapObjetivos.get(e).busca(termo)) {
+				stringObjetivos.add(e + ": " + mapObjetivos.get(e).getDescricao());
 			}
 		}
 		saida = String.join(" | ", stringObjetivos);
 		return saida;
+	}
+	
+	/**
+	 * Retorna o objeto Objetivo a partir de seu codigo.
+	 * @param codigo O codigo do Objetivo.
+	 * @return retorna o Objetivo.
+	 */
+	public Objetivo getObjetivo(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
+		verificaSeExisteObjetivo(codigo);
+		return this.mapObjetivos.get(codigo);
 	}
 }
