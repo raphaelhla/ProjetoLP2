@@ -137,11 +137,41 @@ public class AtividadeController {
 	}
 
 	public void executaAtividade(String codigoAtividade, int item, int duracao) {
+		if (item < 0) {
+			throw new IllegalArgumentException("Item nao pode ser nulo ou negativo.");
+		}
+		if (duracao < 0) {
+			throw new IllegalArgumentException("Duracao nao pode ser nula ou negativa.");
+		}
 		this.mapaAtividades.get(codigoAtividade).executaAtividade(item, duracao);
 		
 	}
 
+	public int cadastraResultado(String codigoAtividade, String resultado) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(resultado, "Resultado nao pode ser nulo ou vazio.");
+		return this.mapaAtividades.get(codigoAtividade).cadastraResultado(resultado);
+	}
+
+	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		if (numeroResultado < 0) {
+			throw new IllegalArgumentException("numeroResultado nao pode ser nulo ou negativo.");
+		}
+		verificaSeExisteAtividade(codigoAtividade);
+		return this.mapaAtividades.get(codigoAtividade).removeResultado(numeroResultado);
+	}
+	
+
+	public String listaResultados(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(codigoAtividade);
+		return this.mapaAtividades.get(codigoAtividade).listaResultados();
+	}
+	
 	public int getDuracao(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(codigoAtividade);
 		return this.mapaAtividades.get(codigoAtividade).getDuracao();
 	}
 	
@@ -161,17 +191,5 @@ public class AtividadeController {
 		}
 		saida = String.join(" | ", stringAtividades);
 		return saida;
-	}
-
-	public int cadastraResultado(String codigoAtividade, String resultado) {
-		return this.mapaAtividades.get(codigoAtividade).cadastraResultado(resultado);
-	}
-
-	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
-		return this.mapaAtividades.get(codigoAtividade).removeResultado(numeroResultado);
-	}
-
-	public String listaResultados(String codigoAtividade) {
-		return this.mapaAtividades.get(codigoAtividade).listaResultados();
 	}
 }

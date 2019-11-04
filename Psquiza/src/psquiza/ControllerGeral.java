@@ -170,16 +170,21 @@ public class ControllerGeral {
 	}
 	
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		Atividade atividade = this.atividadeController.getAtividade(codigoAtividade);
 		return this.pesquisaController.associaAtividade(codigoPesquisa, codigoAtividade, atividade);
 	}
 
 	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		this.atividadeController.getAtividade(codigoAtividade);
 		return this.pesquisaController.desassociaAtividade(codigoPesquisa, codigoAtividade);
 	}
 
 	public void executaAtividade(String codigoAtividade, int item, int duracao) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		this.atividadeController.executaAtividade(codigoAtividade, item, duracao);
 	}
 

@@ -38,9 +38,10 @@ public class Atividade {
 	/**
 	 * Lista que contem todos os itens cadastrados na atividade.
 	 */
-	private List<Item> itens;
+	private Map<Integer, Item> itens;
 	
 	private Map<Integer, String> resultados;
+	private int indiceItens;
 	private int indiceResultados;
 
 	/**
@@ -60,8 +61,9 @@ public class Atividade {
 		this.descricao = descricao;
 		this.nivelRisco = nivelRisco;
 		this.descricaoRisco = descricaoRisco;
-		this.itens = new ArrayList<>();
+		this.itens = new HashMap<Integer, Item>();
 		this.resultados = new HashMap<Integer, String>();
+		this.indiceItens = 0;
 		this.indiceResultados = 0;
 	}
 
@@ -72,7 +74,9 @@ public class Atividade {
 	 */
 	public void cadastraItem(String item) {
 		validador.verificaEntradaNulaVazia(item, "Item nao pode ser nulo ou vazio.");
-		this.itens.add(new Item(item));
+		this.indiceItens += 1;
+		this.itens.put(indiceItens, new Item(item));
+		
 	}
 
 	/**
@@ -82,7 +86,7 @@ public class Atividade {
 	 */
 	public int getQtdItensPendentes() {
 		int saida = 0;
-		for (Item item : itens) {
+		for (Item item : itens.values()) {
 			if (item.getStatus().equals("PENDENTE")) {
 				saida++;
 			}
@@ -97,7 +101,7 @@ public class Atividade {
 	 */
 	public int getQtdItensRealizados() {
 		int saida = 0;
-		for (Item item : itens) {
+		for (Item item : itens.values()) {
 			if (item.getStatus().equals("REALIZADO")) {
 				saida++;
 			}
@@ -115,20 +119,26 @@ public class Atividade {
 	@Override
 	public String toString() {
 		String saida = this.descricao + " (" + this.nivelRisco + " - " + this.descricaoRisco + ")";
-		for (int i = 0; i < this.itens.size(); i++) {
+		for (int i = 1; i <= this.itens.size(); i++) {
 			saida += " | " + this.itens.get(i).toString();
 		}
 		return saida;
 	}
 
 	public void executaAtividade(int item, int duracao) {
-		this.itens.get(item -1).executaItem(duracao);
+		if (!this.itens.containsKey(item)) {
+			throw new IllegalArgumentException("Item nao encontrado.");
+		}
+		if (this.itens.get(item).getStatus().equals("REALIZADO")) {
+			throw new IllegalArgumentException("Item ja executado.");
+		}
+		this.itens.get(item).executaItem(duracao);
 		
 	}
 
 	public int getDuracao() {
 		int duracao = 0;
-		for (Item item : itens) {
+		for (Item item : itens.values()) {
 			duracao += item.getDuracao();
 		}
 		return duracao;
@@ -161,7 +171,7 @@ public class Atividade {
 		this.resultados.put(this.indiceResultados, resultado);
 		return this.indiceResultados;
 	}
-
+	
 	public boolean removeResultado(int numeroResultado) {
 		if (numeroResultado > indiceResultados) {
 			throw new IllegalArgumentException("Resultado nao encontrado.");
