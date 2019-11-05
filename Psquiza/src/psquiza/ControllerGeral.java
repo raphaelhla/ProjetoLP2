@@ -136,11 +136,21 @@ public class ControllerGeral {
 		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		String saida = "";
 		List<String> saidasStrings = new ArrayList<>();
-		saidasStrings.add(pesquisaController.busca(termo));
-		saidasStrings.add(pesquisadorController.busca(termo));
-		saidasStrings.add(problemaController.busca(termo));
-		saidasStrings.add(objetivoController.busca(termo));
-		saidasStrings.add(atividadeController.busca(termo));
+		if (!"".equals(pesquisaController.busca(termo))) {
+			saidasStrings.add(pesquisaController.busca(termo));
+		}
+		if (!"".equals(pesquisadorController.busca(termo))) {
+			saidasStrings.add(pesquisadorController.busca(termo));
+		}
+		if (!"".equals(problemaController.busca(termo))) {
+			saidasStrings.add(problemaController.busca(termo));
+		}
+		if (!"".equals(objetivoController.busca(termo))) {
+			saidasStrings.add(objetivoController.busca(termo));
+		}
+		if (!"".equals(atividadeController.busca(termo))) {
+			saidasStrings.add(atividadeController.busca(termo));
+		}
 		
 		saida = String.join(" | ", saidasStrings);
 		return saida;
@@ -152,15 +162,7 @@ public class ControllerGeral {
 			throw new IllegalArgumentException("Numero do resultado nao pode ser negativo");
 		}
 		
-		String saida = "";
-		List<String> saidasStrings = new ArrayList<>();
-		saidasStrings.add(pesquisaController.busca(termo));
-		saidasStrings.add(pesquisadorController.busca(termo));
-		saidasStrings.add(problemaController.busca(termo));
-		saidasStrings.add(objetivoController.busca(termo));
-		saidasStrings.add(atividadeController.busca(termo));
-		
-		saida = String.join(" | ", saidasStrings);
+		String saida = busca(termo);
 		String[] resultados = saida.split(" \\| ");
 		if (numeroDoResultado > resultados.length) {
 			throw new IllegalArgumentException("Entidade nao encontrada.");
@@ -170,7 +172,7 @@ public class ControllerGeral {
 	
 	public int contaResultadosBusca(String termo) {
 		String[] resultados = busca(termo).split(" \\| ");
-		if (resultados.length == 0) {
+		if (resultados.length == 0 || busca(termo).equals("")) {
 			throw new IllegalArgumentException("Nenhum resultado encontrado");
 		}
 		return resultados.length;

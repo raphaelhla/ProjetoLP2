@@ -69,4 +69,23 @@ class PesquisaTest {
 		assertTrue(false == pesquisaTest.getStatusPesquisa());
 	}
 
+	@Test
+	public void testBuscaDescricao() {
+		assertTrue(pesquisaTest.buscaDescricao("preditivos"));
+	}
+	
+	@Test
+	public void testBuscaDescricao2() {
+		assertFalse(pesquisaTest.buscaDescricao("oi"));
+	}
+	
+	@Test
+	public void testBuscaCampoInteresse() {
+		assertTrue(pesquisaTest.buscaCampoInteresse("eleicao"));
+	}
+	
+	@Test
+	public void testBuscaCampoInteresse2() {
+		assertFalse(pesquisaTest.buscaCampoInteresse("oi"));
+	}
 }

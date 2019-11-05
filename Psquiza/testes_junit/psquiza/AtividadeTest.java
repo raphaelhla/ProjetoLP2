@@ -40,4 +40,34 @@ class AtividadeTest {
 		
 		assertEquals("irineu (MEDIO - testenivel) | PENDENTE - Monitoramento discord", a2.toString());
 	}
+	
+	@Test
+	public void testGetDescricao() {
+		assertEquals("teste", a1.getDescricao());
+	}
+	
+	@Test
+	public void testGetDescricaoRisco() {
+		assertEquals("testenivel", a2.getDescricaoRisco());
+	}
+	
+	@Test
+	public void testBuscaDescricao() {
+		assertTrue(a1.buscaDescricao("teste"));
+	}
+	
+	@Test
+	public void testBuscaDescricao2() {
+		assertFalse(a1.buscaDescricao("oi"));
+	}
+	
+	@Test
+	public void testBuscaDescricaoRisco() {
+		assertTrue(a1.buscaDescricaoRisco("descricao"));
+	}
+	
+	@Test
+	public void testBuscaDescricaoRisco2() {
+		assertFalse(a1.buscaDescricaoRisco("oi"));
+	}
 }

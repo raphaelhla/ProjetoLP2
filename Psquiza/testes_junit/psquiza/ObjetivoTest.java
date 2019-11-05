@@ -24,4 +24,19 @@ class ObjetivoTest {
 	public void testToString2() {
 		assertEquals("ESPECIFICO - TESTE - 6", o2.toString());
 	}
+	
+	@Test
+	public void testGetDescricao() {
+		assertEquals("TESTE", o2.getDescricao());
+	}
+	
+	@Test
+	public void testBuscaDescricao() {
+		assertTrue(o1.busca("TESTE"));
+	}
+	
+	@Test
+	public void testBuscaDescricao2() {
+		assertFalse(o1.busca("oi"));
+	}
 }

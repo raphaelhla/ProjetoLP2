@@ -23,4 +23,19 @@ class ProblemaTest {
 	public void testToString2() {
 		assertEquals("irineu - 2", p2.toString());
 	}
+	
+	@Test
+	public void testBusca() {
+		assertTrue(p2.busca("irineu"));
+	}
+	
+	@Test
+	public void testBusca2() {
+		assertFalse(p2.busca("oi"));
+	}
+	
+	@Test
+	public void testGetDescricao() {
+		assertEquals("irineu", p2.getDescricao());
+	}
 }
