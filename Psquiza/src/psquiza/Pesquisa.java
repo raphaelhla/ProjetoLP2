@@ -286,8 +286,8 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		if (this.problemaAssociado.size() > 0) {
 			lista = new ArrayList<>(problemaAssociado.keySet());
 			return lista.get(0);
-		} else {
-			throw new IllegalArgumentException("Sem problemas associados.");
 		}
+		return "Sem problemas associados.";
 	}
+
 }
