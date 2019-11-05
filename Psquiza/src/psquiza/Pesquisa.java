@@ -147,9 +147,10 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	// US8 Raphael
-	
+
 	/**
-	 * Metodo que associa uma atividade a uma pesquisa a partir do codigo da atividade e da atividade.
+	 * Metodo que associa uma atividade a uma pesquisa a partir do codigo da
+	 * atividade e da atividade.
 	 * 
 	 * @param codigoAtividade Codigo da atividade.
 	 * @param atividade       Atividade a ser associada.
@@ -167,10 +168,12 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	/**
-	 * Metodo que desassocia uma atividade a uma pesquisa a partir do codigo da atividade.
+	 * Metodo que desassocia uma atividade a uma pesquisa a partir do codigo da
+	 * atividade.
 	 * 
 	 * @param codigoAtividade Codigo da atividade.
-	 * @return verdadeiro se for desassociada com sucesso, caso contrario retorna falso
+	 * @return verdadeiro se for desassociada com sucesso, caso contrario retorna
+	 *         falso
 	 */
 	public boolean desassociaAtividade(String codigoAtividade) {
 		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
@@ -209,7 +212,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return this.campoDeInteresse.contains(termo);
 	}
 
-	// US5 WESLLEY
+	// METODOS DA US5 (WESLLEY)
 
 	public boolean associaProblema(String codigoProblema, Problema problema) {
 		if (problemaAssociado.containsKey(codigoProblema)) {
@@ -218,10 +221,10 @@ public class Pesquisa implements Comparable<Pesquisa> {
 			throw new IllegalArgumentException("Pesquisa ja associada a um problema.");
 		} else if (this.statusPesquisa == false) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
-		} else {
-			this.problemaAssociado.put(codigoProblema, problema);
-			return true;
 		}
+		this.problemaAssociado.put(codigoProblema, problema);
+		return true;
+
 	}
 
 	public boolean desassociaProblema(String codigoProblema) {
@@ -229,10 +232,10 @@ public class Pesquisa implements Comparable<Pesquisa> {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (!problemaAssociado.containsKey(codigoProblema)) {
 			return false;
-		} else {
-			this.problemaAssociado.remove(codigoProblema);
-			return true;
 		}
+		this.problemaAssociado.remove(codigoProblema);
+		return true;
+
 	}
 
 	public boolean getAssociacaoObjetivo(String codigoObjetivo) {
@@ -244,10 +247,10 @@ public class Pesquisa implements Comparable<Pesquisa> {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (objetivosAssociados.containsKey(codigoObjetivo)) {
 			return false;
-		} else {
-			this.objetivosAssociados.put(codigoObjetivo, objetivo);
-			return true;
 		}
+		this.objetivosAssociados.put(codigoObjetivo, objetivo);
+		return true;
+
 	}
 
 	public boolean desassociaObjetivo(String codigoObjetivo) {
@@ -255,10 +258,10 @@ public class Pesquisa implements Comparable<Pesquisa> {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (!objetivosAssociados.containsKey(codigoObjetivo)) {
 			return false;
-		} else {
-			this.objetivosAssociados.remove(codigoObjetivo);
-			return true;
 		}
+		this.objetivosAssociados.remove(codigoObjetivo);
+		return true;
+
 	}
 
 	public String getCodigo() {
@@ -283,7 +286,8 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		if (this.problemaAssociado.size() > 0) {
 			lista = new ArrayList<>(problemaAssociado.keySet());
 			return lista.get(0);
+		} else {
+			throw new IllegalArgumentException("Sem problemas associados.");
 		}
-		return "Sem problemas associados.";
 	}
 }

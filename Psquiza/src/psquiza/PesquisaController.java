@@ -225,7 +225,7 @@ public class PesquisaController {
 		return saida;
 	}
 
-	// US5 WESLLEY
+	// METODOS DA US5 (WESLLEY)
 
 	public boolean associaProblema(String codigoPesquisa, String codigoProblema, Problema problema) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
@@ -269,24 +269,11 @@ public class PesquisaController {
 
 	private String ordernaPorProblema() {
 		Comparator<Pesquisa> c1 = new OrdenarPorProblema();
-		List<Pesquisa> listaPesquisasGeral = new ArrayList<>(this.mapPesquisas.values());
-		List<Pesquisa> listaPesquisasComObjetivos = new ArrayList<>();
-		List<Pesquisa> listaPesquisasSemObjetivos = new ArrayList<>();
-		for (Pesquisa p : listaPesquisasGeral) {
-			if (p.getTemProblemaAssociado()) {
-				listaPesquisasComObjetivos.add(p);
-			} else {
-				listaPesquisasSemObjetivos.add(p);
-			}
-		}
-		Collections.sort(listaPesquisasComObjetivos, c1);
-		Collections.sort(listaPesquisasSemObjetivos);
-		List<Pesquisa> listaPesquisasOrdenada = new ArrayList<>();
-		listaPesquisasOrdenada.addAll(listaPesquisasSemObjetivos);
-		listaPesquisasOrdenada.addAll(listaPesquisasComObjetivos);
-		Collections.reverse(listaPesquisasOrdenada);
+		List<Pesquisa> listaPesquisasCase1 = new ArrayList<>(this.mapPesquisas.values());
+		Collections.sort(listaPesquisasCase1, c1);
+		Collections.reverse(listaPesquisasCase1);
 		List<String> saidaCase1 = new ArrayList<>();
-		for (Pesquisa p : listaPesquisasOrdenada) {
+		for (Pesquisa p : listaPesquisasCase1) {
 			saidaCase1.add(p.getCodigo() + " - " + p.toString());
 		}
 		return String.join(" | ", saidaCase1);
@@ -304,7 +291,7 @@ public class PesquisaController {
 		return String.join(" | ", saidaCase2);
 	}
 
-	private String ordenaPorPesquisa() {
+	private String ordenaPesquisa() {
 		List<Pesquisa> listaPesquisasCase3 = new ArrayList<>(this.mapPesquisas.values());
 		Collections.sort(listaPesquisasCase3);
 		Collections.reverse(listaPesquisasCase3);
@@ -322,10 +309,9 @@ public class PesquisaController {
 		case "OBJETIVOS":
 			return ordenaPorObjetivos();
 		case "PESQUISA":
-			return ordenaPorPesquisa();
+			return ordenaPesquisa();
 		default:
 			throw new IllegalArgumentException("Valor invalido da ordem");
 		}
-
 	}
 }
