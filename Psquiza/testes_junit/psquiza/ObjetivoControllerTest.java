@@ -42,4 +42,16 @@ class ObjetivoControllerTest {
 		objetivoController.cadastraObjetivo("ESPECIFICO", "TESTE", 4, 2);
 		assertEquals("O1 - ESPECIFICO - TESTE - 6", objetivoController.exibeObjetivo("O1"));
 	}
+	
+	@Test
+	public void testBusca() {
+		objetivoController.cadastraObjetivo("ESPECIFICO", "TESTE", 4, 2);
+		assertEquals("", objetivoController.busca("slack"));
+	}
+	
+	@Test
+	public void testBusca2() {
+		objetivoController.cadastraObjetivo("ESPECIFICO", "TESTE", 4, 2);
+		assertEquals("O1: TESTE", objetivoController.busca("TESTE"));
+	}
 }

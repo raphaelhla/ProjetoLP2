@@ -19,7 +19,8 @@ public class Facade {
 		this.controllerGeral = new ControllerGeral();
 	}
 
-	// METODOS DA PARTE 1 (WESLLEY) ABAIXO DESSE COMENTARIO
+	// METODOS DA US1 (MATHEUS)
+	
 	public String cadastraPesquisa(String descricao, String campoDeInteresse) {
 		return controllerGeral.cadastraPesquisa(descricao, campoDeInteresse);
 	}
@@ -44,29 +45,7 @@ public class Facade {
 		return controllerGeral.pesquisaEhAtiva(codigo);
 	}
 
-	// US5 WESLLEY
-
-	public boolean associaProblema(String idPesquisa, String idProblema) {
-		return controllerGeral.associaProblema(idPesquisa, idProblema);
-	}
-
-	public boolean desassociaProblema(String idPesquisa, String idProblema) {
-		return controllerGeral.desassociaProblema(idPesquisa, idProblema);
-	}
-
-	public boolean associaObjetivo(String idPesquisa, String idObjetivo) {
-		return controllerGeral.associaObjetivo(idPesquisa, idObjetivo);
-	}
-
-	public boolean desassociaObjetivo(String idPesquisa, String idObjetivo) {
-		return controllerGeral.desassociaObjetivo(idPesquisa, idObjetivo);
-	}
-
-	public String listaPesquisas(String ordem) {
-		return controllerGeral.listaPesquisas(ordem);
-	}
-
-	// METODOS DA PARTE 2 (MATHEUS) ABAIXO DESSE COMENTARIO
+	// METODOS DA US2 (RAPHAEL)
 
 	public void cadastraPesquisador(String nome, String funcao, String biografia, String email, String fotoURL) {
 		this.controllerGeral.cadastraPesquisador(nome, funcao, biografia, email, fotoURL);
@@ -92,7 +71,7 @@ public class Facade {
 		return this.controllerGeral.pesquisadorEhAtivo(email);
 	}
 
-	// METODOS DA PARTE 3 (RAPHAEL) ABAIXO DESSE COMENTARIO
+	// METODOS DA US3 (ALISSON)
 
 	public String cadastraProblema(String descricao, int viabilidade) {
 		return this.controllerGeral.cadastraProblema(descricao, viabilidade);
@@ -118,19 +97,7 @@ public class Facade {
 		return this.controllerGeral.exibeObjetivo(codigo);
 	}
 
-	public String busca(String termo) {
-		return this.controllerGeral.busca(termo);
-	}
-
-	public String busca(String termo, int numeroDoResultado) {
-		return this.controllerGeral.busca(termo, numeroDoResultado);
-	}
-
-	public int contaResultadosBusca(String termo) {
-		return this.controllerGeral.contaResultadosBusca(termo);
-	}
-
-	// METODOS DA PARTE 4 (ALISSON) ABAIXO DESSE COMENTARIO
+	// METODOS DA US4 (WESLLEY)
 
 	public String cadastraAtividade(String descricao, String nivelRisco, String descricaoRisco) {
 		return this.controllerGeral.cadastraAtividade(descricao, nivelRisco, descricaoRisco);
@@ -156,6 +123,34 @@ public class Facade {
 		return this.controllerGeral.contaItensRealizados(codigo);
 	}
 
+	// METODOS DA US5 (WESLLEY)
+	
+	public boolean associaProblema(String idPesquisa, String idProblema) {
+		return controllerGeral.associaProblema(idPesquisa, idProblema);
+	}
+
+	public boolean desassociaProblema(String idPesquisa, String idProblema) {
+		return controllerGeral.desassociaProblema(idPesquisa, idProblema);
+	}
+
+	public boolean associaObjetivo(String idPesquisa, String idObjetivo) {
+		return controllerGeral.associaObjetivo(idPesquisa, idObjetivo);
+	}
+
+	public boolean desassociaObjetivo(String idPesquisa, String idObjetivo) {
+		return controllerGeral.desassociaObjetivo(idPesquisa, idObjetivo);
+	}
+
+	public String listaPesquisas(String ordem) {
+		return controllerGeral.listaPesquisas(ordem);
+	}
+	
+	// METODOS DA US6 (MATHEUS)
+	
+	
+	
+	// METODOS DA US7 (ALISSON)
+	
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
 		return this.controllerGeral.associaAtividade(codigoPesquisa, codigoAtividade);
 	}
@@ -183,4 +178,19 @@ public class Facade {
 	public int getDuracao(String codigoAtividade) {
 		return this.controllerGeral.getDuracao(codigoAtividade);
 	}
+	
+	// METODOS DA US8 (RAPHAEL)
+	
+	public String busca(String termo) {
+		return this.controllerGeral.busca(termo);
+	}
+
+	public String busca(String termo, int numeroDoResultado) {
+		return this.controllerGeral.busca(termo, numeroDoResultado);
+	}
+
+	public int contaResultadosBusca(String termo) {
+		return this.controllerGeral.contaResultadosBusca(termo);
+	}
+
 }

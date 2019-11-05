@@ -62,4 +62,16 @@ class PesquisadorControllerTest {
 		controller.desativaPesquisador("monoteemo@lol");
 		assertEquals(false, controller.pesquisadorEhAtivo("monoteemo@lol"));
 	}
+	
+	@Test
+	public void testBusca() {
+		controller.cadastraPesquisador("Joao", "estudante", "interessado em games", "monoteemo@lol", "https://steam");
+		assertEquals("", controller.busca("slack"));
+	}
+	
+	@Test
+	public void testBusca2() {
+		controller.cadastraPesquisador("Joao", "estudante", "interessado em games", "monoteemo@lol", "https://steam");
+		assertEquals("monoteemo@lol: interessado em games", controller.busca("games"));
+	}
 }

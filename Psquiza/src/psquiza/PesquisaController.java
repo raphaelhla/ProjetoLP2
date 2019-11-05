@@ -22,15 +22,15 @@ public class PesquisaController {
 		this.validador = new Validador();
 	}
 
-	
 	/***
 	 * Metodo que vai cadastrar uma pesquisa, usando como parametro duas
 	 * strings(descricao e campo de interesse).Nesse metodo tambem sera gerado um
 	 * codigo que representa os 3 primeiros caracteres do campo de interesse.O
 	 * metodo retorna esse codigo caso o cadastro seja realizado com sucesso.
 	 * 
-	 * @param descricao - String que representa a descricao da pesquisa.
-	 * @param campoDeInteresse - String que representa o campo de interesse da pesquisa.
+	 * @param descricao        - String que representa a descricao da pesquisa.
+	 * @param campoDeInteresse - String que representa o campo de interesse da
+	 *                         pesquisa.
 	 * @return - codigo gerado da pesquisa.
 	 */
 	public String cadastraPesquisa(String descricao, String campoDeInteresse) {
@@ -67,9 +67,11 @@ public class PesquisaController {
 	 * pesquisa, qual atributo vai ser alterado e o seu novo valor.
 	 * 
 	 * 
-	 * @param codigo - String codigo.
-	 * @param conteudoASerAlterado - String que representa o atributo a ser alterado.
-	 * @param novoConteudo - String que representa o novo valor do atributo alterado.
+	 * @param codigo               - String codigo.
+	 * @param conteudoASerAlterado - String que representa o atributo a ser
+	 *                             alterado.
+	 * @param novoConteudo         - String que representa o novo valor do atributo
+	 *                             alterado.
 	 */
 	public void alteraPesquisa(String codigo, String conteudoASerAlterado, String novoConteudo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
@@ -128,7 +130,8 @@ public class PesquisaController {
 	 * pesquisa representada por esse codigo.
 	 * 
 	 * @param codigo - String codigo.
-	 * @return - String que contem o codigo mais o toString da pesquisa a ser exibida.
+	 * @return - String que contem o codigo mais o toString da pesquisa a ser
+	 *         exibida.
 	 */
 	public String exibePesquisa(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
@@ -150,6 +153,16 @@ public class PesquisaController {
 	}
 
 	// US8 Raphael
+
+	/**
+	 * Metodo que associa uma atividade a uma pesquisa a partir do codigo da
+	 * pesquisa, do codigo da atividade e da atividade.
+	 * 
+	 * @param codigoPesquisa  Codigo da pesquisa.
+	 * @param codigoAtividade Codigo da atividade.
+	 * @param atividade       Atividade a ser associada.
+	 * @return verdadeiro se for associada com sucesso, caso contrario retorna falso
+	 */
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade, Atividade atividade) {
 		verificaSeExistePesquisa(codigoPesquisa);
 		if (mapPesquisas.get(codigoPesquisa).getStatusPesquisa() == false) {
@@ -158,6 +171,15 @@ public class PesquisaController {
 		return this.mapPesquisas.get(codigoPesquisa).associaAtividade(codigoAtividade, atividade);
 	}
 
+	/**
+	 * Metodo que desassocia uma atividade de uma pesquisa a partir do codigo da
+	 * pesquisa e do codigo da atividade.
+	 * 
+	 * @param codigoPesquisa  Codigo da pesquisa.
+	 * @param codigoAtividade Codigo da atividade.
+	 * @return verdadeiro se for desassociada com sucesso, caso contrario retorna
+	 *         falso
+	 */
 	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
 		verificaSeExistePesquisa(codigoPesquisa);
 		if (mapPesquisas.get(codigoPesquisa).getStatusPesquisa() == false) {

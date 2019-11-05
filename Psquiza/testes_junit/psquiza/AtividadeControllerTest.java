@@ -50,4 +50,16 @@ class AtividadeControllerTest {
 		atividadeController.cadastraAtividade("Monitoramento slack", "MEDIO", "Risco medio");
 		assertEquals(0, atividadeController.contaItensRealizados("A1"));
 	}
+	
+	@Test
+	public void testBusca() {
+		atividadeController.cadastraAtividade("Monitoramento slack", "MEDIO", "Risco medio");
+		assertEquals("A1: Monitoramento slack", atividadeController.busca("slack"));
+	}
+	
+	@Test
+	public void testBusca2() {
+		atividadeController.cadastraAtividade("Monitoramento slack", "MEDIO", "Risco medio");
+		assertEquals("A1: Risco medio", atividadeController.busca("medio"));
+	}
 }

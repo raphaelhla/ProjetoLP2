@@ -113,4 +113,15 @@ class PesquisaControllerTest {
 				pc.exibePesquisa("ELE1"));
 	}
 
+	@Test
+	public void testBusca() {
+		assertEquals("", pc.busca("slack"));
+	}
+
+	@Test
+	public void testBusca2() {
+		assertEquals(
+				"ELE1: Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. | ELE1: Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras.",
+				pc.busca("eleic"));
+	}
 }

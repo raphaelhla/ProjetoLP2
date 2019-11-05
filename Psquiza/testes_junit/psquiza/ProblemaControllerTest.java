@@ -37,4 +37,15 @@ class ProblemaControllerTest {
 		assertEquals("P1 - TESTE - 4", problemaController.exibeProblema("P1"));
 	}
 
+	@Test
+	public void testBusca() {
+		problemaController.cadastraProblema("TESTE", 4);
+		assertEquals("", problemaController.busca("slack"));
+	}
+	
+	@Test
+	public void testBusca2() {
+		problemaController.cadastraProblema("TESTE", 4);
+		assertEquals("P1: TESTE", problemaController.busca("TEST"));
+	}
 }

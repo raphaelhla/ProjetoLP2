@@ -19,19 +19,16 @@ class AtividadeTest {
 	public void testGetQtdItensPendentes() {
 		a1.cadastraItem("Monitoramento slack");
 		a1.cadastraItem("Monitoramento discord");
-		assertEquals(2, a1.getQtdItensPendentes());
-	}
-	
-	@Test
-	public void testGetQtdItensPendentes2() {
-		assertEquals(0, a1.getQtdItensPendentes());
+		a1.executaAtividade(2, 4);
+		assertEquals(1, a1.getQtdItensPendentes());
 	}
 	
 	@Test
 	public void testGetQtdItensRealizados() {
 		a1.cadastraItem("Monitoramento slack");
 		a1.cadastraItem("Monitoramento discord");
-		assertEquals(0, a1.getQtdItensRealizados());
+		a1.executaAtividade(2, 4);
+		assertEquals(1, a1.getQtdItensRealizados());
 	}
 	
 	@Test

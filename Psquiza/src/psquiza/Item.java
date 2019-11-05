@@ -34,9 +34,6 @@ public class Item {
 	}
 	
 	public boolean busca(String termo) {
-		if (this.descricao.contains(termo)) {
-			return true;
-		}
-		return false;
+		return this.descricao.contains(termo);
 	}
 }

@@ -22,7 +22,8 @@ public class ControllerGeral {
 
 	}
 
-	// METODOS DA PARTE 1 (WESLLEY) ABAIXO DESSE COMENTARIO
+	// METODOS DA US1 (MATHEUS)
+	
 	public String cadastraPesquisa(String descricao, String campoDeInteresse) {
 		return pesquisaController.cadastraPesquisa(descricao, campoDeInteresse);
 	}
@@ -47,7 +48,85 @@ public class ControllerGeral {
 		return pesquisaController.ehAtiva(codigo);
 	}
 	
-	// US5 WESLLEY
+	// METODOS DA US2 (RAPHAEL)
+
+	public void cadastraPesquisador(String nome, String funcao, String biografia, String email, String fotoURL) {
+		this.pesquisadorController.cadastraPesquisador(nome, funcao, biografia, email, fotoURL);
+	}
+
+	public void alteraPesquisador(String email, String atributo, String novoValor) {
+		this.pesquisadorController.alteraPesquisador(email, atributo, novoValor);
+	}
+
+	public void ativaPesquisador(String email) {
+		this.pesquisadorController.ativaPesquisador(email);
+	}
+
+	public void desativaPesquisador(String email) {
+		this.pesquisadorController.desativaPesquisador(email);
+	}
+
+	public String exibePesquisador(String email) {
+		return this.pesquisadorController.exibePesquisador(email);
+	}
+
+	public boolean pesquisadorEhAtivo(String email) {
+		return this.pesquisadorController.pesquisadorEhAtivo(email);
+	}
+
+	// METODOS DA US3 (ALISSON) 
+
+	public String cadastraProblema(String descricao, int viabilidade) {
+		return this.problemaController.cadastraProblema(descricao, viabilidade);
+	}
+
+	public String cadastraObjetivo(String tipo, String descricao, int aderencia, int viabilidade) {
+		return this.objetivoController.cadastraObjetivo(tipo, descricao, aderencia, viabilidade);
+	}
+
+	public void apagarProblema(String codigo) {
+		this.problemaController.apagarProblema(codigo);
+	}
+
+	public void apagarObjetivo(String codigo) {
+		this.objetivoController.apagarObjetivo(codigo);
+	}
+
+	public String exibeProblema(String codigo) {
+		return this.problemaController.exibeProblema(codigo);
+	}
+
+	public String exibeObjetivo(String codigo) {
+		return this.objetivoController.exibeObjetivo(codigo);
+	}
+
+	// METODOS DA US4 (WESLLEY)
+
+	public String cadastraAtividade(String descricao, String nivelRisco, String descricaoRisco) {
+		return this.atividadeController.cadastraAtividade(descricao, nivelRisco, descricaoRisco);
+	}
+
+	public void apagaAtividade(String codigo) {
+		this.atividadeController.apagaAtividade(codigo);
+	}
+
+	public void cadastraItem(String codigo, String item) {
+		this.atividadeController.cadastraItem(codigo, item);
+	}
+
+	public String exibeAtividade(String codigo) {
+		return this.atividadeController.exibeAtividade(codigo);
+	}
+
+	public int contaItensPendentes(String codigo) {
+		return this.atividadeController.contaItensPendentes(codigo);
+	}
+
+	public int contaItensRealizados(String codigo) {
+		return this.atividadeController.contaItensRealizados(codigo);
+	}
+	
+	// METODOS DA US5 (WESLLEY)
 	
 	public boolean associaProblema(String codigoPesquisa, String codigoProblema) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
@@ -79,58 +158,49 @@ public class ControllerGeral {
 		validador.verificaEntradaNulaVazia(ordem, "Valor invalido da ordem");
 		return this.pesquisaController.listaPesquisas(ordem);
 	}
-
-	// METODOS DA PARTE 2 (MATHEUS) ABAIXO DESSE COMENTARIO
-
-	public void cadastraPesquisador(String nome, String funcao, String biografia, String email, String fotoURL) {
-		this.pesquisadorController.cadastraPesquisador(nome, funcao, biografia, email, fotoURL);
+	
+	// METODS DA US6 (MATHEUS)
+	
+	
+	
+	// METODOS DA US7 (ALISSON)
+	
+	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		Atividade atividade = this.atividadeController.getAtividade(codigoAtividade);
+		return this.pesquisaController.associaAtividade(codigoPesquisa, codigoAtividade, atividade);
 	}
 
-	public void alteraPesquisador(String email, String atributo, String novoValor) {
-		this.pesquisadorController.alteraPesquisador(email, atributo, novoValor);
+	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		this.atividadeController.getAtividade(codigoAtividade);
+		return this.pesquisaController.desassociaAtividade(codigoPesquisa, codigoAtividade);
 	}
 
-	public void ativaPesquisador(String email) {
-		this.pesquisadorController.ativaPesquisador(email);
+	public void executaAtividade(String codigoAtividade, int item, int duracao) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		this.atividadeController.executaAtividade(codigoAtividade, item, duracao);
 	}
 
-	public void desativaPesquisador(String email) {
-		this.pesquisadorController.desativaPesquisador(email);
+	public int cadastraResultado(String codigoAtividade, String resultado) {
+		return this.atividadeController.cadastraResultado(codigoAtividade, resultado);
 	}
 
-	public String exibePesquisador(String email) {
-		return this.pesquisadorController.exibePesquisador(email);
+	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
+		return this.atividadeController.removeResultado(codigoAtividade, numeroResultado);
 	}
 
-	public boolean pesquisadorEhAtivo(String email) {
-		return this.pesquisadorController.pesquisadorEhAtivo(email);
+	public String listaResultados(String codigoAtividade) {
+		return this.atividadeController.listaResultados(codigoAtividade);
 	}
 
-	// METODOS DA PARTE 3 (RAPHAEL) ABAIXO DESSE COMENTARIO
-
-	public String cadastraProblema(String descricao, int viabilidade) {
-		return this.problemaController.cadastraProblema(descricao, viabilidade);
+	public int getDuracao(String codigoAtividade) {
+		return this.atividadeController.getDuracao(codigoAtividade);
 	}
-
-	public String cadastraObjetivo(String tipo, String descricao, int aderencia, int viabilidade) {
-		return this.objetivoController.cadastraObjetivo(tipo, descricao, aderencia, viabilidade);
-	}
-
-	public void apagarProblema(String codigo) {
-		this.problemaController.apagarProblema(codigo);
-	}
-
-	public void apagarObjetivo(String codigo) {
-		this.objetivoController.apagarObjetivo(codigo);
-	}
-
-	public String exibeProblema(String codigo) {
-		return this.problemaController.exibeProblema(codigo);
-	}
-
-	public String exibeObjetivo(String codigo) {
-		return this.objetivoController.exibeObjetivo(codigo);
-	}
+	
+	// METODOS DA US8 (RAPHAEL)
 	
 	public String busca(String termo) {
 		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
@@ -172,71 +242,9 @@ public class ControllerGeral {
 	
 	public int contaResultadosBusca(String termo) {
 		String[] resultados = busca(termo).split(" \\| ");
-		if (resultados.length == 0 || busca(termo).equals("")) {
+		if (busca(termo).equals("")) {
 			throw new IllegalArgumentException("Nenhum resultado encontrado");
 		}
 		return resultados.length;
 	}
-
-	// METODOS DA PARTE 4 (ALISSON) ABAIXO DESSE COMENTARIO
-
-	public String cadastraAtividade(String descricao, String nivelRisco, String descricaoRisco) {
-		return this.atividadeController.cadastraAtividade(descricao, nivelRisco, descricaoRisco);
-	}
-
-	public void apagaAtividade(String codigo) {
-		this.atividadeController.apagaAtividade(codigo);
-	}
-
-	public void cadastraItem(String codigo, String item) {
-		this.atividadeController.cadastraItem(codigo, item);
-	}
-
-	public String exibeAtividade(String codigo) {
-		return this.atividadeController.exibeAtividade(codigo);
-	}
-
-	public int contaItensPendentes(String codigo) {
-		return this.atividadeController.contaItensPendentes(codigo);
-	}
-
-	public int contaItensRealizados(String codigo) {
-		return this.atividadeController.contaItensRealizados(codigo);
-	}
-	
-	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
-		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		Atividade atividade = this.atividadeController.getAtividade(codigoAtividade);
-		return this.pesquisaController.associaAtividade(codigoPesquisa, codigoAtividade, atividade);
-	}
-
-	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
-		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		this.atividadeController.getAtividade(codigoAtividade);
-		return this.pesquisaController.desassociaAtividade(codigoPesquisa, codigoAtividade);
-	}
-
-	public void executaAtividade(String codigoAtividade, int item, int duracao) {
-		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		this.atividadeController.executaAtividade(codigoAtividade, item, duracao);
-	}
-
-	public int cadastraResultado(String codigoAtividade, String resultado) {
-		return this.atividadeController.cadastraResultado(codigoAtividade, resultado);
-	}
-
-	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
-		return this.atividadeController.removeResultado(codigoAtividade, numeroResultado);
-	}
-
-	public String listaResultados(String codigoAtividade) {
-		return this.atividadeController.listaResultados(codigoAtividade);
-	}
-
-	public int getDuracao(String codigoAtividade) {
-		return this.atividadeController.getDuracao(codigoAtividade);
-	}
-	
 }
