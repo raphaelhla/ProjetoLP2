@@ -4,7 +4,7 @@ package psquiza;
  * Representacao de um problema. Todo problema precisa ter descricao e
  * viabilidade.
  * 
- * @author Jose Alisson -
+ * @author Jose Alisson - 119110645
  *
  */
 public class Problema {
@@ -41,14 +41,23 @@ public class Problema {
 	public String toString() {
 		return this.descricao + " - " + this.viabilidade;
 	}
-	
+
+	/**
+	 * Metodo que verifica se a descricao do pesquisador contem uma string passada
+	 * como parametro e retorna um valor booleano.
+	 * 
+	 * @param termo Termo ser procurado.
+	 * @return verdade se a descricao contem o termo, caso contrario retorna falso.
+	 */
 	public boolean busca(String termo) {
-		if (this.descricao.contains(termo)) {
-			return true;
-		}
-		return false;
+		return this.descricao.contains(termo);
 	}
-	
+
+	/**
+	 * Metodo que retorna a descricao do problema.
+	 * 
+	 * @return a descricao do problema.
+	 */
 	public String getDescricao() {
 		return this.descricao;
 	}

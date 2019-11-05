@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Representacao de um controller de problemas.
  * 
- * @author Jose Alisson -
+ * @author Jose Alisson - 119110645
  *
  */
 public class ProblemaController {
@@ -105,6 +105,13 @@ public class ProblemaController {
 		return this.mapProblemas.get(codigo);
 	}
 
+	/**
+	 * Metodo que recebe um termo como parametro e retorna uma string representando
+	 * os problemas que possuem o termo.
+	 * 
+	 * @param termo Termo a ser procurado
+	 * @return uma string que representa os problemas que possuem o termo
+	 */
 	public String busca(String termo) {
 		String saida = "";
 		List<String> stringProblemas = new ArrayList<>();

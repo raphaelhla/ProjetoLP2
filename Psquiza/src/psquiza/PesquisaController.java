@@ -12,8 +12,20 @@ import psquiza.Validador;
 
 public class PesquisaController {
 	// US1 Matheus
+
+	/**
+	 * Mapa com todas as pesquisas cadastradas no sistema.
+	 */
 	private Map<String, Pesquisa> mapPesquisas;
+
+	/**
+	 * Mapa com o codigo de identificacao das pesquisas.
+	 */
 	private Map<String, Integer> codigos;
+
+	/**
+	 * Validador utilizado para lançar excecoes.
+	 */
 	private Validador validador;
 
 	public PesquisaController() {
@@ -188,6 +200,13 @@ public class PesquisaController {
 		return this.mapPesquisas.get(codigoPesquisa).desassociaAtividade(codigoAtividade);
 	}
 
+	/**
+	 * Metodo que recebe um termo como parametro e retorna uma string representando
+	 * as pesquisas que possuem o termo.
+	 * 
+	 * @param termo Termo a ser procurado
+	 * @return uma string que representa as pesquisas que possuem o termo
+	 */
 	public String busca(String termo) {
 		String saida = "";
 		List<String> stringAtividades = new ArrayList<>();
@@ -199,7 +218,7 @@ public class PesquisaController {
 				stringAtividades.add(e + ": " + mapPesquisas.get(e).getDescricao());
 			}
 			if (mapPesquisas.get(e).buscaCampoInteresse(termo)) {
-				stringAtividades.add(e + ": " + mapPesquisas.get(e).getDescricao());
+				stringAtividades.add(e + ": " + mapPesquisas.get(e).getCampoDeInteresse());
 			}
 		}
 		saida = String.join(" | ", stringAtividades);

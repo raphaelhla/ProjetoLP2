@@ -221,6 +221,13 @@ public class AtividadeController {
 		return this.mapaAtividades.get(codigoAtividade).getDuracao();
 	}
 
+	/**
+	 * Metodo que recebe um termo como parametro e retorna uma string representando
+	 * as atividades que possuem o termo.
+	 * 
+	 * @param termo Termo a ser procurado
+	 * @return uma string que representa as atividades que possuem o termo
+	 */
 	public String busca(String termo) {
 		String saida = "";
 		List<String> stringAtividades = new ArrayList<>();

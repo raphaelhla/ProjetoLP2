@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Representacao de um controller de objetivos
  * 
- * @author Jose Alisson -
+ * @author Jose Alisson - 119110645
  *
  */
 public class ObjetivoController {
@@ -108,6 +108,13 @@ public class ObjetivoController {
 		return this.mapObjetivos.get(codigo);
 	}
 	
+	/**
+	 * Metodo que recebe um termo como parametro e retorna uma string representando
+	 * os objetivos que possuem o termo.
+	 * 
+	 * @param termo Termo a ser procurado
+	 * @return uma string que representa os objetivos que possuem o termo
+	 */
 	public String busca(String termo) {
 		String saida = "";
 		List<String> stringObjetivos = new ArrayList<>();

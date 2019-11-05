@@ -78,7 +78,8 @@ public class PesquisadorController {
 	 */
 	public void alteraPesquisador(String email, String atributo, String novoValor) {
 		verificaSeExistePesquisador(email);
-		validador.verificaEntradaNulaVazia(atributo, "Atributo nao pode ser vazio ou nulo.");;
+		validador.verificaEntradaNulaVazia(atributo, "Atributo nao pode ser vazio ou nulo.");
+		;
 		if (!pesquisadorEhAtivo(email)) {
 			throw new IllegalArgumentException("Pesquisador inativo.");
 		}
@@ -170,6 +171,13 @@ public class PesquisadorController {
 		return false;
 	}
 
+	/**
+	 * Metodo que recebe um termo como parametro e retorna uma string representando
+	 * os pesquisadores que possuem o termo.
+	 * 
+	 * @param termo Termo a ser procurado
+	 * @return uma string que representa os pesquisadores que possuem o termo
+	 */
 	public String busca(String termo) {
 		String saida = "";
 		List<String> stringPesquisadores = new ArrayList<>();
@@ -184,5 +192,5 @@ public class PesquisadorController {
 		saida = String.join(" | ", stringPesquisadores);
 		return saida;
 	}
-	
+
 }

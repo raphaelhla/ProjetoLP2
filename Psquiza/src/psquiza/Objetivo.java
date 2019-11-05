@@ -4,7 +4,7 @@ package psquiza;
  * Representacao de um objetivo. Todo objetivo precisa ter tipo, descricao,
  * aderencia e viabilidade.
  * 
- * @author Jose Alisson -
+ * @author Jose Alisson - 119110645
  *
  */
 public class Objetivo {
@@ -57,13 +57,22 @@ public class Objetivo {
 		return this.tipo + " - " + this.descricao + " - " + valor;
 	}
 
+	/**
+	 * Metodo que verifica se a descricao do objetivo contem uma string passada
+	 * como parametro e retorna um valor booleano.
+	 * 
+	 * @param termo Termo ser procurado.
+	 * @return verdade se a descricao contem o termo, caso contrario retorna falso.
+	 */
 	public boolean busca(String termo) {
-		if (this.descricao.contains(termo)) {
-			return true;
-		}
-		return false;
+		return this.descricao.contains(termo);
 	}
-	
+
+	/**
+	 * Metodo que retorna a descricao do objetivo.
+	 * 
+	 * @return a descricao do objetivo.
+	 */
 	public String getDescricao() {
 		return this.descricao;
 	}

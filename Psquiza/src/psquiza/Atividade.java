@@ -40,8 +40,19 @@ public class Atividade {
 	 */
 	private Map<Integer, Item> itens;
 
+	/**
+	 * Mapa com todos os resultados cadastrados na atividade.
+	 */
 	private Map<Integer, String> resultados;
+
+	/**
+	 * Contador utilizado para o cadastro de itens.
+	 */
 	private int indiceItens;
+
+	/**
+	 * Contador utilizado para o cadastro de resultados.
+	 */
 	private int indiceResultados;
 
 	/**
@@ -175,7 +186,8 @@ public class Atividade {
 	}
 
 	/**
-	 * Metodo que remove um resultado a partir do numero que representa o resultado a ser removido.
+	 * Metodo que remove um resultado a partir do numero que representa o resultado
+	 * a ser removido.
 	 * 
 	 * @param numeroResultado Numero do resultado.
 	 * @return verdadeiro se a remocao for bem sucedida, caso contrario retorna
@@ -213,7 +225,8 @@ public class Atividade {
 	 * Metodo que retorna o inteiro que representa a duracao da execucao de todos os
 	 * itens da atividade.
 	 * 
-	 * @return o inteiro que representa a duracao da execucao de todos os itens da atividade
+	 * @return o inteiro que representa a duracao da execucao de todos os itens da
+	 *         atividade
 	 */
 	public int getDuracao() {
 		int duracao = 0;
@@ -223,17 +236,26 @@ public class Atividade {
 		return duracao;
 	}
 
+	/**
+	 * Metodo que verifica se a descricao da atividade contem uma string passada
+	 * como parametro e retorna um valor booleano.
+	 * 
+	 * @param termo Termo ser procurado.
+	 * @return verdade se a descricao contem o termo, caso contrario retorna falso.
+	 */
 	public boolean buscaDescricao(String termo) {
-		if (this.descricao.contains(termo)) {
-			return true;
-		}
-		return false;
+		return this.descricao.contains(termo);
 	}
 
+	/**
+	 * Metodo que verifica se a descricao de risco da atividade contem uma string
+	 * passada como parametro e retorna um valor booleano.
+	 * 
+	 * @param termo Termo ser procurado.
+	 * @return verdade se a descricao de risco contem o termo, caso contrario
+	 *         retorna falso.
+	 */
 	public boolean buscaDescricaoRisco(String termo) {
-		if (this.descricaoRisco.contains(termo)) {
-			return true;
-		}
-		return false;
+		return this.descricaoRisco.contains(termo);
 	}
 }

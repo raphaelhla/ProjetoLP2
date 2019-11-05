@@ -40,17 +40,17 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	private Validador validador;
 
 	/**
-	 * Map de atividades
+	 * Mapa de atividades associadas.
 	 */
 	private Map<String, Atividade> atividadesAssociadas;
 
 	/**
-	 * Map de problemas
+	 * Mapa de problemas associados.
 	 */
 	private Map<String, Problema> problemaAssociado;
 
 	/**
-	 * Map de objetivos
+	 * Mapa de objetivos associados.
 	 */
 	private Map<String, Objetivo> objetivosAssociados;
 
@@ -147,6 +147,14 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	// US8 Raphael
+	
+	/**
+	 * Metodo que associa uma atividade a uma pesquisa a partir do codigo da atividade e da atividade.
+	 * 
+	 * @param codigoAtividade Codigo da atividade.
+	 * @param atividade       Atividade a ser associada.
+	 * @return verdadeiro se for associada com sucesso, caso contrario retorna falso
+	 */
 	public boolean associaAtividade(String codigoAtividade, Atividade atividade) {
 		if (atividadesAssociadas.containsKey(codigoAtividade)) {
 			return false;
@@ -158,6 +166,12 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return true;
 	}
 
+	/**
+	 * Metodo que desassocia uma atividade a uma pesquisa a partir do codigo da atividade.
+	 * 
+	 * @param codigoAtividade Codigo da atividade.
+	 * @return verdadeiro se for desassociada com sucesso, caso contrario retorna falso
+	 */
 	public boolean desassociaAtividade(String codigoAtividade) {
 		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
 			return false;
@@ -172,18 +186,27 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return true;
 	}
 
+	/**
+	 * Metodo que verifica se a descricao da pesquisa contem uma string passada como
+	 * parametro e retorna um valor booleano.
+	 * 
+	 * @param termo Termo ser procurado.
+	 * @return verdade se a descricao contem o termo, caso contrario retorna falso.
+	 */
 	public boolean buscaDescricao(String termo) {
-		if (this.descricao.contains(termo)) {
-			return true;
-		}
-		return false;
+		return this.descricao.contains(termo);
 	}
 
+	/**
+	 * Metodo que verifica se o campo de interesse da pesquisa contem uma string
+	 * passada como parametro e retorna um valor booleano.
+	 * 
+	 * @param termo Termo ser procurado.
+	 * @return verdade se o campo de interesse contem o termo, caso contrario
+	 *         retorna falso.
+	 */
 	public boolean buscaCampoInteresse(String termo) {
-		if (this.campoDeInteresse.contains(termo)) {
-			return true;
-		}
-		return false;
+		return this.campoDeInteresse.contains(termo);
 	}
 
 	// US5 WESLLEY
@@ -252,10 +275,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	public boolean getTemProblemaAssociado() {
-		if (this.problemaAssociado.size() > 0) {
-			return true;
-		}
-		return false;
+		return (this.problemaAssociado.size() > 0);
 	}
 
 	public String getCodigoProblema() {

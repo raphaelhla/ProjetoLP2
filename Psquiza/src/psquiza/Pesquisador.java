@@ -155,17 +155,31 @@ public class Pesquisador {
 		return this.nome + " (" + this.funcao + ") - " + this.biografia + " - " + this.email + " - " + this.fotoURL;
 	}
 
+	/**
+	 * Metodo que verifica se a biografia do pesquisador contem uma string passada
+	 * como parametro e retorna um valor booleano.
+	 * 
+	 * @param termo Termo ser procurado.
+	 * @return verdade se a biografia contem o termo, caso contrario retorna falso.
+	 */
 	public boolean busca(String termo) {
-		if (this.biografia.contains(termo)) {
-			return true;
-		}
-		return false;
+		return this.biografia.contains(termo);
 	}
-	
+
+	/**
+	 * Metodo que retorna a biografia do pesquisador.
+	 * 
+	 * @return a biografia do pesquisador.
+	 */
 	public String getBiografia() {
 		return this.biografia;
 	}
 
+	/**
+	 * Metodo que retorna o email do pesquisador.
+	 * 
+	 * @return o email do pesquisador.
+	 */
 	public String getEmail() {
 		return this.email;
 	}
