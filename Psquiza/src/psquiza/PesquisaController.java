@@ -11,7 +11,7 @@ import java.util.Map;
 import psquiza.Validador;
 
 public class PesquisaController {
-
+	// US1 Matheus
 	private Map<String, Pesquisa> mapPesquisas;
 	private Map<String, Integer> codigos;
 	private Validador validador;
@@ -22,6 +22,17 @@ public class PesquisaController {
 		this.validador = new Validador();
 	}
 
+	
+	/***
+	 * Metodo que vai cadastrar uma pesquisa, usando como parametro duas
+	 * strings(descricao e campo de interesse).Nesse metodo tambem sera gerado um
+	 * codigo que representa os 3 primeiros caracteres do campo de interesse.O
+	 * metodo retorna esse codigo caso o cadastro seja realizado com sucesso.
+	 * 
+	 * @param descricao - String que representa a descricao da pesquisa.
+	 * @param campoDeInteresse - String que representa o campo de interesse da pesquisa.
+	 * @return - codigo gerado da pesquisa.
+	 */
 	public String cadastraPesquisa(String descricao, String campoDeInteresse) {
 		validador.verificaEntradaNulaVazia(descricao, "Descricao nao pode ser nula ou vazia.");
 		validador.verificaCampoDeInteresse(campoDeInteresse);
@@ -35,16 +46,31 @@ public class PesquisaController {
 			codigos.put(codigo, 1);
 		}
 		String chave = codigo + codigos.get(codigo);
-		mapPesquisas.put(chave, new Pesquisa(descricao, campoDeInteresse,chave));
+		mapPesquisas.put(chave, new Pesquisa(descricao, campoDeInteresse, chave));
 		return chave;
 	}
 
+	/**
+	 * Metodo que vai verificar se o codigo ja existe no mapPesquisas. Caso nao
+	 * exista, ele mostrar a mensagem "Pesquisa nao encontrada.".
+	 * 
+	 * @param codigo - String que representa o codigo da pesquisa.
+	 */
 	private void verificaSeExistePesquisa(String codigo) {
 		if (!mapPesquisas.containsKey(codigo)) {
 			throw new IllegalArgumentException("Pesquisa nao encontrada.");
 		}
 	}
 
+	/**
+	 * Metodo que altera uma pesquisa. E passado um codigo que representa uma
+	 * pesquisa, qual atributo vai ser alterado e o seu novo valor.
+	 * 
+	 * 
+	 * @param codigo - String codigo.
+	 * @param conteudoASerAlterado - String que representa o atributo a ser alterado.
+	 * @param novoConteudo - String que representa o novo valor do atributo alterado.
+	 */
 	public void alteraPesquisa(String codigo, String conteudoASerAlterado, String novoConteudo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigo);
@@ -63,6 +89,14 @@ public class PesquisaController {
 		}
 	}
 
+	/**
+	 * Metodo que vai encerrar uma pesquisa de acordo com o codigo que representa
+	 * ela.Tambem e passado como parametro o motivo do encerramento da pesquisa.
+	 * 
+	 * 
+	 * @param codigo - String codigo.
+	 * @param motivo - String que representa o motivo do encerramento da pesquisa.
+	 */
 	public void encerraPesquisa(String codigo, String motivo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(motivo, "Motivo nao pode ser nulo ou vazio.");
@@ -73,6 +107,12 @@ public class PesquisaController {
 		mapPesquisas.get(codigo).desativaPesquisa();
 	}
 
+	/**
+	 * Metodo que vai ativar uma pesquisa. Ele vai pegar a pesquisa representada
+	 * pelo codigo e vai passar o seu status para true.
+	 * 
+	 * @param codigo - String codigo.
+	 */
 	public void ativaPesquisa(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigo);
@@ -82,18 +122,34 @@ public class PesquisaController {
 		mapPesquisas.get(codigo).ativaPesquisa();
 	}
 
+	/**
+	 * Metodo que vai exibir uma pesquisa de acordo com o codigo passado como
+	 * parametro. Ele vai retornar esse codigo, caso exista, seguido do toString da
+	 * pesquisa representada por esse codigo.
+	 * 
+	 * @param codigo - String codigo.
+	 * @return - String que contem o codigo mais o toString da pesquisa a ser exibida.
+	 */
 	public String exibePesquisa(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigo);
 		return codigo + " - " + mapPesquisas.get(codigo).toString();
 	}
 
+	/**
+	 * Metodo que vai verificar se a pesquisa associada ao codigo e ativa ou nao.
+	 * Ela retorna o boolean StatusPesquisa(true ou false).
+	 * 
+	 * @param codigo - String codigo.
+	 * @return - Boolean true ou false.
+	 */
 	public boolean ehAtiva(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigo);
 		return mapPesquisas.get(codigo).getStatusPesquisa();
 	}
 
+	// US8 Raphael
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade, Atividade atividade) {
 		verificaSeExistePesquisa(codigoPesquisa);
 		if (mapPesquisas.get(codigoPesquisa).getStatusPesquisa() == false) {
@@ -127,9 +183,9 @@ public class PesquisaController {
 		saida = String.join(" | ", stringAtividades);
 		return saida;
 	}
-	
+
 	// US5 WESLLEY
-	
+
 	public boolean associaProblema(String codigoPesquisa, String codigoProblema, Problema problema) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(codigoProblema, "Campo codigoProblema nao pode ser nulo ou vazio.");
