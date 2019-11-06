@@ -267,39 +267,35 @@ public class PesquisaController {
 		return this.mapPesquisas.get(codigoPesquisa).desassociaObjetivo(codigoObjetivo);
 	}
 
-	private String ordernaPorProblema() {
-		Comparator<Pesquisa> c1 = new OrdenarPorProblema();
-		List<Pesquisa> listaPesquisasCase1 = new ArrayList<>(this.mapPesquisas.values());
-		Collections.sort(listaPesquisasCase1, c1);
-		Collections.reverse(listaPesquisasCase1);
-		List<String> saidaCase1 = new ArrayList<>();
-		for (Pesquisa p : listaPesquisasCase1) {
-			saidaCase1.add(p.getCodigo() + " - " + p.toString());
+	private String getListToString(List<Pesquisa> lista) {
+		List<String> saida = new ArrayList<>();
+		for (Pesquisa p : lista) {
+			saida.add(p.getCodigo() + " - " + p.toString());
 		}
-		return String.join(" | ", saidaCase1);
+		return String.join(" | ", saida);
+	}
+
+	private String ordernaPorProblema() {
+		Comparator<Pesquisa> comparator = new OrdenarPorProblema();
+		List<Pesquisa> listaPesquisas = new ArrayList<>(this.mapPesquisas.values());
+		Collections.sort(listaPesquisas, comparator);
+		Collections.reverse(listaPesquisas);
+		return getListToString(listaPesquisas);
 	}
 
 	private String ordenaPorObjetivos() {
-		Comparator<Pesquisa> c2 = new OrdenarPorObjetivos();
-		List<Pesquisa> listaPesquisasCase2 = new ArrayList<>(this.mapPesquisas.values());
-		Collections.sort(listaPesquisasCase2, c2);
-		Collections.reverse(listaPesquisasCase2);
-		List<String> saidaCase2 = new ArrayList<>();
-		for (Pesquisa p : listaPesquisasCase2) {
-			saidaCase2.add(p.getCodigo() + " - " + p.toString());
-		}
-		return String.join(" | ", saidaCase2);
+		Comparator<Pesquisa> comparator = new OrdenarPorObjetivos();
+		List<Pesquisa> listaPesquisas = new ArrayList<>(this.mapPesquisas.values());
+		Collections.sort(listaPesquisas, comparator);
+		Collections.reverse(listaPesquisas);
+		return getListToString(listaPesquisas);
 	}
 
 	private String ordenaPesquisa() {
-		List<Pesquisa> listaPesquisasCase3 = new ArrayList<>(this.mapPesquisas.values());
-		Collections.sort(listaPesquisasCase3);
-		Collections.reverse(listaPesquisasCase3);
-		List<String> saidaCase3 = new ArrayList<>();
-		for (Pesquisa p : listaPesquisasCase3) {
-			saidaCase3.add(p.getCodigo() + " - " + p.toString());
-		}
-		return String.join(" | ", saidaCase3);
+		List<Pesquisa> listaPesquisas = new ArrayList<>(this.mapPesquisas.values());
+		Collections.sort(listaPesquisas);
+		Collections.reverse(listaPesquisas);
+		return getListToString(listaPesquisas);
 	}
 
 	public String listaPesquisas(String ordem) {

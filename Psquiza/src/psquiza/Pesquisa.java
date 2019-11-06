@@ -217,10 +217,10 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	public boolean associaProblema(String codigoProblema, Problema problema) {
 		if (problemaAssociado.containsKey(codigoProblema)) {
 			return false;
+		} else if (!this.statusPesquisa) {
+			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (problemaAssociado.size() > 0) {
 			throw new IllegalArgumentException("Pesquisa ja associada a um problema.");
-		} else if (this.statusPesquisa == false) {
-			throw new IllegalArgumentException("Pesquisa desativada.");
 		}
 		this.problemaAssociado.put(codigoProblema, problema);
 		return true;
@@ -228,7 +228,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	public boolean desassociaProblema(String codigoProblema) {
-		if (this.statusPesquisa == false) {
+		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (!problemaAssociado.containsKey(codigoProblema)) {
 			return false;
@@ -243,7 +243,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	public boolean associaObjetivo(String codigoObjetivo, Objetivo objetivo) {
-		if (this.statusPesquisa == false) {
+		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (objetivosAssociados.containsKey(codigoObjetivo)) {
 			return false;
@@ -254,7 +254,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	public boolean desassociaObjetivo(String codigoObjetivo) {
-		if (this.statusPesquisa == false) {
+		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (!objetivosAssociados.containsKey(codigoObjetivo)) {
 			return false;
@@ -286,8 +286,8 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		if (this.problemaAssociado.size() > 0) {
 			lista = new ArrayList<>(problemaAssociado.keySet());
 			return lista.get(0);
+		} else {
+			throw new IllegalArgumentException("Pesquisa sem problema associado.");
 		}
-		return "Sem problemas associados.";
 	}
-
 }

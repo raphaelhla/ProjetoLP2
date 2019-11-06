@@ -14,7 +14,7 @@ public class OrdenarPorProblema implements Comparator<Pesquisa> {
 		} else if (!p1.getTemProblemaAssociado() && p2.getTemProblemaAssociado()) {
 			return -1;
 		}
-		return p1.getCodigoProblema().compareTo(p2.getCodigoProblema());
+		return p1.getCodigo().compareTo(p2.getCodigo());
 	}
 
 }
