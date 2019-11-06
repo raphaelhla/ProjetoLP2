@@ -213,7 +213,13 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	// METODOS DA US5 (WESLLEY)
-
+	
+	/**
+	 * Associa um problema a uma pesquisa a partir do codigo do problema, e o objeto problema.
+	 * @param codigoProblema Codigo do problema.
+	 * @param problema Objeto problema.
+	 * @return retorna true se o problema foi associado, e false se nao.
+	 */
 	public boolean associaProblema(String codigoProblema, Problema problema) {
 		if (problemaAssociado.containsKey(codigoProblema)) {
 			return false;
@@ -226,7 +232,12 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return true;
 
 	}
-
+	
+	/**
+	 * Desassocia um problema da pesquisa a partir do codigo do problema.
+	 * @param codigoProblema Codigo do problema
+	 * @return retorna true se foi desassociado e false se nao.
+	 */
 	public boolean desassociaProblema(String codigoProblema) {
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
@@ -237,11 +248,22 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return true;
 
 	}
-
+	
+	/**
+	 * Retorna se o objetivo esta associado ou nao a pesquisa a partir de seu codigo.
+	 * @param codigoObjetivo Codigo do objetivo.
+	 * @return retorna true se o objetivo esta associado ou false se nao.
+	 */
 	public boolean getAssociacaoObjetivo(String codigoObjetivo) {
 		return this.objetivosAssociados.containsKey(codigoObjetivo);
 	}
-
+	
+	/**
+	 * Associa um objetivo a uma pesquisa a partir do codigo do objetivo e o objeto objetivo.
+	 * @param codigoObjetivo Codigo do objetivo.
+	 * @param objetivo Objeto objetivo.
+	 * @return retorna true se o objetivo foi associado e false se nao.
+	 */
 	public boolean associaObjetivo(String codigoObjetivo, Objetivo objetivo) {
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
@@ -252,7 +274,12 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return true;
 
 	}
-
+	
+	/**
+	 * Desassocia o objetivo da pesquisa a partir de seu codigo.
+	 * @param codigoObjetivo Codigo do objetivo.
+	 * @return retorna true se o objetivo foi desassociado e false se nao.
+	 */
 	public boolean desassociaObjetivo(String codigoObjetivo) {
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
