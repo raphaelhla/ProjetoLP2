@@ -121,7 +121,7 @@ class PesquisaControllerTest {
 	@Test
 	public void testBusca2() {
 		assertEquals(
-				"ELE1: Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. | ELE1: Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras.",
+				"ELE1: Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. | ELE1: eleicao",
 				pc.busca("eleic"));
 	}
 }

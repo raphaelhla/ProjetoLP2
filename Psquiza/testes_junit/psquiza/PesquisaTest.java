@@ -88,4 +88,152 @@ class PesquisaTest {
 	public void testBuscaCampoInteresse2() {
 		assertFalse(pesquisaTest.buscaCampoInteresse("oi"));
 	}
+	
+	@Test
+	public void testAssociaProblema() {
+		assertTrue(pesquisaTest.associaProblema("P1", new Problema("irineu", 3)));
+	}
+	
+	@Test
+	public void testAssociaProblema2() {
+		pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
+		assertFalse(pesquisaTest.associaProblema("P1", new Problema("irineu", 3)));
+	}
+	
+	@Test
+	public void testAssociaProblemaPesquisaDesativada() {
+		try {
+			pesquisaTest.desativaPesquisa();
+			pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			 assertEquals("Pesquisa desativada.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testAssociaProblemaJaAssociada() {
+		try {
+			pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
+			pesquisaTest.associaProblema("P2", new Problema("teste", 3));
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			 assertEquals("Pesquisa ja associada a um problema.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testDesassociaProblemaPesquisaDesativada() {
+		try {
+			pesquisaTest.desativaPesquisa();
+			pesquisaTest.desassociaProblema("P1");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			 assertEquals("Pesquisa desativada.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testDesassociaProblemaPesquisaNaoAssociada() {
+		assertFalse(pesquisaTest.desassociaProblema("P1"));
+	}
+	
+	@Test
+	public void testDesassociaProblemaFeliz() {
+		pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
+		assertTrue(pesquisaTest.desassociaProblema("P1"));
+	}
+	
+	@Test
+	public void testAssociaObjetivoPesquisaDesativada() {
+		try {
+			pesquisaTest.desativaPesquisa();
+			pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3));
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			 assertEquals("Pesquisa desativada.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testAssociaObjetivoFeliz() {
+		assertTrue(pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3)));
+	}
+	
+	@Test
+	public void testAssociaObjetivoTriste() {
+		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3));
+		assertFalse(pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3)));
+	}
+	
+	@Test
+	public void testDesassociaObjetivoPesquisaDesativada() {
+		try {
+			pesquisaTest.desativaPesquisa();
+			pesquisaTest.desassociaObjetivo("P1");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			 assertEquals("Pesquisa desativada.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testDesassociaObjetivoPesquisaNaoAssociada() {
+		assertFalse(pesquisaTest.desassociaObjetivo("O1"));
+	}
+	
+	@Test
+	public void testDesassociaObjetivoFeliz() {
+		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3));
+		assertTrue(pesquisaTest.desassociaObjetivo("O1"));
+	}
+	
+	@Test
+	public void testGetAssociacaoObjetivo() {
+		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3));
+		assertTrue(pesquisaTest.getAssociacaoObjetivo("O1"));
+	}
+	
+	@Test
+	public void testGetAssociacaoObjetivo2() {
+		assertFalse(pesquisaTest.getAssociacaoObjetivo("O1"));
+	}
+	
+	@Test
+	public void testGetCodigo() {
+		assertEquals("ELE1", pesquisaTest.getCodigo());
+	}
+	
+	@Test
+	public void testGetQtdObjetivo() {
+		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3));
+		assertEquals(1, pesquisaTest.getQtdObjetivo());
+	}
+	
+	@Test
+	public void testTemProblemaAssociado() {
+		assertFalse(pesquisaTest.getTemProblemaAssociado());
+	}
+	
+	@Test
+	public void testTemProblemaAssociado2() {
+		pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
+		assertTrue(pesquisaTest.getTemProblemaAssociado());
+	}
+	
+	@Test
+	public void testGetCodigoProblema() {
+		pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
+		assertEquals("P1", pesquisaTest.getCodigoProblema());
+	}
+	
+	@Test
+	public void testGetCodigoProblemaSemProblema() {
+		try {
+			pesquisaTest.getCodigoProblema();
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			 assertEquals("Pesquisa sem problema associado.", e.getMessage());
+		}
+	}
 }
