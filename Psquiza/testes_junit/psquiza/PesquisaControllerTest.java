@@ -15,6 +15,8 @@ class PesquisaControllerTest {
 		pc.cadastraPesquisa(
 				"Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras.",
 				"eleicao");
+		pc.cadastraPesquisa("TESTE", "Irineu");
+		pc.cadastraPesquisa("Bob jow", "Irineuliston");
 	}
 
 	@Test
@@ -123,5 +125,87 @@ class PesquisaControllerTest {
 		assertEquals(
 				"ELE1: Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. | ELE1: eleicao",
 				pc.busca("eleic"));
+	}
+	
+	@Test
+	public void testAssociaProblemaFeliz() {
+		assertTrue(pc.associaProblema("ELE1", "P1", new Problema("teste", 3)));
+	}
+	
+	@Test
+	public void testAssociaProblemaTriste() {
+		Problema problema =  new Problema("teste", 3);
+		pc.associaProblema("ELE1", "P1", problema);
+		assertFalse(pc.associaProblema("ELE1", "P1", problema));
+	}
+	
+	@Test
+	public void testDesassociaProblemaFeliz() {
+		pc.associaProblema("ELE1", "P1", new Problema("teste", 3));
+		assertTrue(pc.desassociaProblema("ELE1", "P1"));
+	}
+	
+	@Test
+	public void testDesassociaProblemaTriste() {
+		assertFalse(pc.desassociaProblema("ELE1", "P1"));
+	}
+	
+	@Test
+	public void testAssociaObjetivoFeliz() {
+		assertTrue(pc.associaProblema("ELE1", "P1", new Problema("teste", 3)));
+	}
+	
+	@Test
+	public void testAssociaObjetivoTriste() {
+		Objetivo objetivo =  new Objetivo("ESPECIFICO", "teste", 2, 3);
+		pc.associaObjetivo("ELE1", "O1", objetivo);
+		assertFalse(pc.associaObjetivo("ELE1", "O1", objetivo));
+	}
+	
+	@Test
+	public void testDesassociaObjetivoFeliz() {
+		pc.associaObjetivo("ELE1", "O1", new Objetivo("ESPECIFICO", "teste", 3, 2));
+		assertTrue(pc.desassociaObjetivo("ELE1", "O1"));
+	}
+	
+	@Test
+	public void testDesassociaObjetivoTriste() {
+		assertFalse(pc.desassociaObjetivo("ELE1", "O1"));
+	}
+	
+	@Test
+	public void testVerificaAssociacaoObjetivo() {
+		try {
+			Objetivo objetivo =  new Objetivo("ESPECIFICO", "teste", 2, 3);
+			pc.associaObjetivo("ELE1", "O1", objetivo);
+			pc.associaObjetivo("IRI1", "O1", objetivo);
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			 assertEquals("Objetivo ja associado a uma pesquisa.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testListaPesquisasValorInvalido() {
+		try {
+			pc.listaPesquisas("irineu");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			 assertEquals("Valor invalido da ordem", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testListaPesquisasPorPesquisa() {
+		assertEquals("IRI2 - Bob jow - Irineuliston | IRI1 - TESTE - Irineu | ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao", pc.listaPesquisas("PESQUISA"));
+	}
+	
+	@Test
+	public void testListaPesquisasPorObjetivo() {
+		Objetivo objetivo =  new Objetivo("ESPECIFICO", "teste", 2, 3);
+		Objetivo objetivo2 =  new Objetivo("ESPECIFICO", "irineu", 5, 3);
+		pc.associaObjetivo("ELE1", "O1", objetivo);
+		pc.associaObjetivo("IRI1", "O2", objetivo2);
+		assertEquals("IRI1 - TESTE - Irineu | ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao | IRI2 - Bob jow - Irineuliston", pc.listaPesquisas("OBJETIVOS"));
 	}
 }

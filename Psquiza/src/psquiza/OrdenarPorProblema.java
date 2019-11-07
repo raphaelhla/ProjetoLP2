@@ -27,5 +27,4 @@ public class OrdenarPorProblema implements Comparator<Pesquisa> {
 		}
 		return p1.getCodigo().compareTo(p2.getCodigo());
 	}
-
 }

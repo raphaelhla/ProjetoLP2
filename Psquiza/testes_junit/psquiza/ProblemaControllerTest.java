@@ -48,4 +48,10 @@ class ProblemaControllerTest {
 		problemaController.cadastraProblema("TESTE", 4);
 		assertEquals("P1: TESTE", problemaController.busca("TEST"));
 	}
+	
+	@Test
+	public void testGetProblema() {
+		problemaController.cadastraProblema("TESTE", 4);
+		assertEquals("TESTE - 4", problemaController.getProblema("P1").toString());
+	}
 }

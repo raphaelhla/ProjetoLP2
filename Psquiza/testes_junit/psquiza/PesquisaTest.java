@@ -1,6 +1,13 @@
 package psquiza;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -235,5 +242,14 @@ class PesquisaTest {
 		} catch (IllegalArgumentException e) {
 			 assertEquals("Pesquisa sem problema associado.", e.getMessage());
 		}
+	}
+	
+	@Test
+	public void testCompareTo() {
+		List<Pesquisa> lista = new ArrayList<>();
+		lista.add(pesquisaTest);
+		lista.add(new Pesquisa("Teste", "Alok", "ALO1"));
+		Collections.sort(lista);
+		assertEquals("[Teste - Alok, Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao]", lista.toString());
 	}
 }
