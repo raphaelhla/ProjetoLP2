@@ -2,27 +2,27 @@ package psquiza;
 
 public class PesquisadorAluno implements Especialidade{
 	
-	private String semestreIngresso;
-	private String iea;
+	private int semestreIngresso;
+	private double iea;
 	
-	public PesquisadorAluno(String nome, String funcao, String biografia, String email, String fotoURL) {
+	public PesquisadorAluno(int semestreIngresso, double iea) {
 		this.semestreIngresso = semestreIngresso;
 		this.iea = iea;
 	}
 
-	public String getSemestreIngresso() {
+	public int getSemestreIngresso() {
 		return semestreIngresso;
 	}
 
-	public void setSemestreIngresso(String semestreIngresso) {
+	public void setSemestreIngresso(int semestreIngresso) {
 		this.semestreIngresso = semestreIngresso;
 	}
 
-	public String getIea() {
+	public double getIea() {
 		return iea;
 	}
 
-	public void setIea(String iea) {
+	public void setIea(double iea) {
 		this.iea = iea;
 	}
 

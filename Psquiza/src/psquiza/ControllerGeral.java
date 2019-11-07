@@ -7,37 +7,37 @@ import java.util.List;
  * Representacao de um controller geral.
  */
 public class ControllerGeral {
-	
+
 	/**
 	 * Controller de pesquisa.
 	 */
 	private PesquisaController pesquisaController;
-	
+
 	/**
 	 * Controler de pesquisador.
 	 */
 	private PesquisadorController pesquisadorController;
-	
+
 	/**
 	 * Controller de problema.
 	 */
 	private ProblemaController problemaController;
-	
+
 	/**
 	 * Controller de objetivo.
 	 */
 	private ObjetivoController objetivoController;
-	
+
 	/**
 	 * Controller de Atividade.
 	 */
 	private AtividadeController atividadeController;
-	
+
 	/**
 	 * Validador utilizado para validar entradas do sistema.
 	 */
 	private Validador validador;
-	
+
 	/**
 	 * Constroi um controller geral.
 	 */
@@ -269,12 +269,18 @@ public class ControllerGeral {
 	}
 
 	// METODS DA US6 (MATHEUS)
-	
+
 	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
-		Pesquisador pesquisador = pesquisadorController.getPesquisador(email);
-		pesquisador.setEspecialidade(new PesquisadorProfessor(formacao, unidade, data));
+		pesquisadorController.cadastraEspecialidadeProfessor(email, formacao, unidade, data);
 	}
 
+	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
+		pesquisadorController.cadastraEspecialidadeAluno(email, semestre, IEA);
+	}
+	
+	public String listaPesquisadores(String tipo) {
+		return pesquisadorController.listaPesquisadores(tipo);
+	}
 	// METODOS DA US7 (ALISSON)
 
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {

@@ -77,6 +77,11 @@ public class Pesquisador {
 	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
 	}
+	
+	public Especialidade getEspecialidade() {
+		return this.especialidade;
+	}
+	
 
 	/**
 	 * Metodo que altera o nome do pesquisador a partir de um novo nome passado como

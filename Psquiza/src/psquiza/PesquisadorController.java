@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
 /**
  * Representacao de um controller de pesquisadores.
  * 
@@ -196,5 +198,69 @@ public class PesquisadorController {
 		saida = String.join(" | ", stringPesquisadores);
 		return saida;
 	}
+	
+	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
+		Pesquisador pesquisador = getPesquisador(email);
+		pesquisador.setEspecialidade(new PesquisadorProfessor(formacao, unidade, data));
+	}
+	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
+		Pesquisador pesquisador = getPesquisador(email);
+		pesquisador.setEspecialidade(new PesquisadorAluno(semestre, IEA));
+	}
+	
+	public String listaPesquisadores(String tipo) {
+		switch (tipo) {
+		case "EXTERNO":
+			String string = "";
+			int i = 0;
+			int max = pesquisadores.size();
+			for (Pesquisador pesquisador : pesquisadores.values()) {
+				if (pesquisador.getEspecialidade().toString().equals("EXTERNO")) {
+					i++;
+					if (i < max) {
+						string += pesquisador + " | ";
+					} else {
+						string += pesquisador;
+					}
+				}
+			}
+			return string;
+		case "ALUNA":
+			String string2 = "";
+			int i2 = 0;
+			int max2 = pesquisadores.size();
+			for (Pesquisador pesquisador : pesquisadores.values()) {
+				if (pesquisador.getEspecialidade().toString().equals("ALUNA")) {
+					i2++;
+					if (i2 < max2) {
+						string2 += pesquisador + " | ";
+					} else {
+						string2 += pesquisador;
+					}
+				}
+			}
+			return string2;
+		case "PROFESSORA":
+			String string3 = "";
+			int i3 = 0;
+			int max3 = pesquisadores.size();
+			for (Pesquisador pesquisador : pesquisadores.values()) {
+				if (pesquisador.getEspecialidade().toString().equals("PROFESSORA")) {
+					i3++;
+					if (i3 < max3) {
+						string3 += pesquisador + " | ";
+					} else {
+						string3 += pesquisador;
+					}
+				}
+			}
+			return string3;
+		default:
+			throw new IllegalArgumentException("Tipo TIPO inexistente.");
+		}
+		
+
+	}
+	
 
 }
