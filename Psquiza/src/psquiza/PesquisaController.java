@@ -227,6 +227,15 @@ public class PesquisaController {
 
 	// METODOS DA US5 (WESLLEY)
 
+	/**
+	 * Associa um problema a uma pesquisa a partir do codigo da pesquisa, codigo do
+	 * problema, e o objeto problema.
+	 * 
+	 * @param codigoPesquisa Codigo da pesquisa.
+	 * @param codigoProblema Codigo do problema.
+	 * @param problema       Objeto problema.
+	 * @return retorna true se o problema foi associado, e false se nao.
+	 */
 	public boolean associaProblema(String codigoPesquisa, String codigoProblema, Problema problema) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(codigoProblema, "Campo codigoProblema nao pode ser nulo ou vazio.");
@@ -234,6 +243,14 @@ public class PesquisaController {
 		return this.mapPesquisas.get(codigoPesquisa).associaProblema(codigoProblema, problema);
 	}
 
+	/**
+	 * Desassocia um problema da pesquisa a partir do codigo da pesquisa e do codigo
+	 * do problema.
+	 * 
+	 * @param codigoPesquisa Codigo da pesquisa.
+	 * @param codigoProblema Codigo do problema.
+	 * @return retorna true se foi desassociado e false se nao.
+	 */
 	public boolean desassociaProblema(String codigoPesquisa, String codigoProblema) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(codigoProblema, "Campo codigoProblema nao pode ser nulo ou vazio.");
@@ -241,6 +258,13 @@ public class PesquisaController {
 		return this.mapPesquisas.get(codigoPesquisa).desassociaProblema(codigoProblema);
 	}
 
+	/**
+	 * Verifica se o objetivo ja esta associado a alguma pesquisa a partir do codigo
+	 * do objetivo e do codigo da pesquisa.
+	 * 
+	 * @param codigoObjetivo Codigo do objetivo.
+	 * @param codigoPesquisa Codigo da pesquisa.
+	 */
 	private void verificaAssociacaoObjetivo(String codigoObjetivo, String codigoPesquisa) {
 		verificaSeExistePesquisa(codigoPesquisa);
 		for (String chave : this.mapPesquisas.keySet()) {
@@ -252,6 +276,15 @@ public class PesquisaController {
 		}
 	}
 
+	/**
+	 * Associa um objetivo a uma pesquisa a partir do codigo do objetivo e o objeto
+	 * objetivo.
+	 * 
+	 * @param codigoPesquisa Codigo da pesquisa.
+	 * @param codigoObjetivo Codigo do objetivo.
+	 * @param objetivo       Objeto objetivo.
+	 * @return retorna true se o objetivo foi associado e false se nao.
+	 */
 	public boolean associaObjetivo(String codigoPesquisa, String codigoObjetivo, Objetivo objetivo) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(codigoObjetivo, "Campo codigoObjetivo nao pode ser nulo ou vazio.");
@@ -260,6 +293,14 @@ public class PesquisaController {
 		return this.mapPesquisas.get(codigoPesquisa).associaObjetivo(codigoObjetivo, objetivo);
 	}
 
+	/**
+	 * Desassocia o objetivo da pesquisa a partir do codigo da pesquisa e o codigo
+	 * do objetivo.
+	 * 
+	 * @param codigoPesquisa Codigo da pesquisa.
+	 * @param codigoObjetivo Codigo do objetivo.
+	 * @return retorna true se o objetivo foi desassociado e false se nao.
+	 */
 	public boolean desassociaObjetivo(String codigoPesquisa, String codigoObjetivo) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(codigoObjetivo, "Campo codigoObjetivo nao pode ser nulo ou vazio.");
@@ -267,6 +308,12 @@ public class PesquisaController {
 		return this.mapPesquisas.get(codigoPesquisa).desassociaObjetivo(codigoObjetivo);
 	}
 
+	/**
+	 * Retorna a representacao em String de todas as pesquisas de uma lista.
+	 * 
+	 * @param lista Lista de pesquisas.
+	 * @return a representacao em String de todas as pesquisas da lista.
+	 */
 	private String getListToString(List<Pesquisa> lista) {
 		List<String> saida = new ArrayList<>();
 		for (Pesquisa p : lista) {
@@ -275,6 +322,12 @@ public class PesquisaController {
 		return String.join(" | ", saida);
 	}
 
+	/**
+	 * Metodo que ordena as pesquisas utilizando como criterio o codigo do problema
+	 * associado e retorna a String que representa todas as pesquisas ordenadas.
+	 * 
+	 * @return a representacao em String de todas as pesquisas.
+	 */
 	private String ordernaPorProblema() {
 		Comparator<Pesquisa> comparator = new OrdenarPorProblema();
 		List<Pesquisa> listaPesquisas = new ArrayList<>(this.mapPesquisas.values());
@@ -283,6 +336,13 @@ public class PesquisaController {
 		return getListToString(listaPesquisas);
 	}
 
+	/**
+	 * Metodo que ordena as pesquisas utilizando como criterio a quantidade de
+	 * objetivos associados a pesquisa e retorna a String que representa todas as
+	 * pesquisas ordenadas.
+	 * 
+	 * @return a representacao em String de todas as pesquisas.
+	 */
 	private String ordenaPorObjetivos() {
 		Comparator<Pesquisa> comparator = new OrdenarPorObjetivos();
 		List<Pesquisa> listaPesquisas = new ArrayList<>(this.mapPesquisas.values());
@@ -291,6 +351,12 @@ public class PesquisaController {
 		return getListToString(listaPesquisas);
 	}
 
+	/**
+	 * Metodo que ordena as pesquisas utilizando como criterio o codigo das
+	 * pesquisas e retorna a String que representa todas as pesquisas ordenadas.
+	 * 
+	 * @return a representacao em String de todas as pesquisas.
+	 */
 	private String ordenaPesquisa() {
 		List<Pesquisa> listaPesquisas = new ArrayList<>(this.mapPesquisas.values());
 		Collections.sort(listaPesquisas);
@@ -298,6 +364,13 @@ public class PesquisaController {
 		return getListToString(listaPesquisas);
 	}
 
+	/**
+	 * Metodo que ordena e retorna a representacao em String das pesquisas a partir
+	 * do parametro ordem.
+	 * 
+	 * @param ordem A ordem de ordenacao.
+	 * @return a representacao em String de todas as pesquisas.
+	 */
 	public String listaPesquisas(String ordem) {
 		switch (ordem) {
 		case "PROBLEMA":

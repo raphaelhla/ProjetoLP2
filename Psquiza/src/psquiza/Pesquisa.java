@@ -213,11 +213,13 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	// METODOS DA US5 (WESLLEY)
-	
+
 	/**
-	 * Associa um problema a uma pesquisa a partir do codigo do problema, e o objeto problema.
+	 * Associa um problema a uma pesquisa a partir do codigo do problema, e o objeto
+	 * problema.
+	 * 
 	 * @param codigoProblema Codigo do problema.
-	 * @param problema Objeto problema.
+	 * @param problema       Objeto problema.
 	 * @return retorna true se o problema foi associado, e false se nao.
 	 */
 	public boolean associaProblema(String codigoProblema, Problema problema) {
@@ -232,10 +234,11 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return true;
 
 	}
-	
+
 	/**
 	 * Desassocia um problema da pesquisa a partir do codigo do problema.
-	 * @param codigoProblema Codigo do problema
+	 * 
+	 * @param codigoProblema Codigo do problema.
 	 * @return retorna true se foi desassociado e false se nao.
 	 */
 	public boolean desassociaProblema(String codigoProblema) {
@@ -248,20 +251,24 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return true;
 
 	}
-	
+
 	/**
-	 * Retorna se o objetivo esta associado ou nao a pesquisa a partir de seu codigo.
+	 * Retorna se o objetivo esta associado ou nao a pesquisa a partir de seu
+	 * codigo.
+	 * 
 	 * @param codigoObjetivo Codigo do objetivo.
 	 * @return retorna true se o objetivo esta associado ou false se nao.
 	 */
 	public boolean getAssociacaoObjetivo(String codigoObjetivo) {
 		return this.objetivosAssociados.containsKey(codigoObjetivo);
 	}
-	
+
 	/**
-	 * Associa um objetivo a uma pesquisa a partir do codigo do objetivo e o objeto objetivo.
+	 * Associa um objetivo a uma pesquisa a partir do codigo do objetivo e o objeto
+	 * objetivo.
+	 * 
 	 * @param codigoObjetivo Codigo do objetivo.
-	 * @param objetivo Objeto objetivo.
+	 * @param objetivo       Objeto objetivo.
 	 * @return retorna true se o objetivo foi associado e false se nao.
 	 */
 	public boolean associaObjetivo(String codigoObjetivo, Objetivo objetivo) {
@@ -274,9 +281,10 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return true;
 
 	}
-	
+
 	/**
 	 * Desassocia o objetivo da pesquisa a partir de seu codigo.
+	 * 
 	 * @param codigoObjetivo Codigo do objetivo.
 	 * @return retorna true se o objetivo foi desassociado e false se nao.
 	 */
@@ -291,23 +299,48 @@ public class Pesquisa implements Comparable<Pesquisa> {
 
 	}
 
+	/**
+	 * Retorna a String que representa o codigo da pesquisa.
+	 * 
+	 * @return a representacao em String do codigo da pesquisa.
+	 */
 	public String getCodigo() {
 		return this.codigo;
 	}
 
+	/**
+	 * Retorna um numero do tipo int que representa a quantidade de objetivos
+	 * associados a pesquisa.
+	 * 
+	 * @return a representacao em int da quantidade de objetivos associados a
+	 *         pesquisa.
+	 */
 	public int getQtdObjetivo() {
 		return this.objetivosAssociados.size();
 	}
 
+	/**
+	 * Compara o codigo de duas pesquisas, necessario para ordenacao.
+	 */
 	@Override
 	public int compareTo(Pesquisa p) {
 		return this.codigo.compareTo(p.getCodigo());
 	}
 
+	/**
+	 * Retorna se a pesquisa possui problema associado.
+	 * 
+	 * @return retorna true se a pesquisa possui problema associados e false se nao.
+	 */
 	public boolean getTemProblemaAssociado() {
 		return (this.problemaAssociado.size() > 0);
 	}
 
+	/**
+	 * Retorna o codigo do problema associado a pesquisa.
+	 * 
+	 * @return a representacao em String do codigo associado a pesquisa.
+	 */
 	public String getCodigoProblema() {
 		List<String> lista;
 		if (this.problemaAssociado.size() > 0) {
