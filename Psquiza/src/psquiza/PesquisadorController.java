@@ -54,6 +54,10 @@ public class PesquisadorController {
 		validador.verificafotoURL(fotoURL);
 		this.pesquisadores.put(email, new Pesquisador(nome, funcao, biografia, email, fotoURL));
 	}
+	
+	public Pesquisador getPesquisador(String email) {
+		return pesquisadores.get(email);
+	}
 
 	/**
 	 * Metodo que verifica se existe um pesquisador ou nao, a partir do seu email.

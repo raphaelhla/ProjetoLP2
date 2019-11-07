@@ -8,7 +8,7 @@ public class Facade {
 		args = new String[] { "psquiza.Facade", "testes_easyaccept/use_case_1.txt", "testes_easyaccept/use_case_2.txt",
 				"testes_easyaccept/use_case_3.txt", "testes_easyaccept/use_case_4.txt",
 				"testes_easyaccept/use_case_5.txt",
-				/* "testes_easyaccept/use_case_6.txt", */
+				"testes_easyaccept/use_case_6.txt", 
 				"testes_easyaccept/use_case_7.txt", "testes_easyaccept/use_case_8.txt", };
 		EasyAccept.main(args);
 	}
@@ -146,7 +146,9 @@ public class Facade {
 	}
 	
 	// METODOS DA US6 (MATHEUS)
-	
+	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
+		controllerGeral.cadastraEspecialidadeProfessor(email, formacao, unidade, data);
+	}
 	
 	
 	// METODOS DA US7 (ALISSON)

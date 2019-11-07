@@ -8,6 +8,7 @@ package psquiza;
  *
  */
 public class Pesquisador {
+	private Especialidade especialidade;
 
 	/**
 	 * Nome do pesquisador.
@@ -70,6 +71,11 @@ public class Pesquisador {
 		this.email = email;
 		this.fotoURL = fotoURL;
 		this.status = "ativo";
+		this.especialidade = new PesquisadorExterno();
+	}
+	
+	public void setEspecialidade(Especialidade especialidade) {
+		this.especialidade = especialidade;
 	}
 
 	/**
@@ -152,7 +158,7 @@ public class Pesquisador {
 	 */
 	@Override
 	public String toString() {
-		return this.nome + " (" + this.funcao + ") - " + this.biografia + " - " + this.email + " - " + this.fotoURL;
+		return this.nome + " (" + this.funcao + ") - " + this.biografia + " - " + this.email + " - " + this.fotoURL + especialidade.toString();
 	}
 
 	/**

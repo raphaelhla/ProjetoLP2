@@ -269,6 +269,11 @@ public class ControllerGeral {
 	}
 
 	// METODS DA US6 (MATHEUS)
+	
+	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
+		Pesquisador pesquisador = pesquisadorController.getPesquisador(email);
+		pesquisador.setEspecialidade(new PesquisadorProfessor(formacao, unidade, data));
+	}
 
 	// METODOS DA US7 (ALISSON)
 
