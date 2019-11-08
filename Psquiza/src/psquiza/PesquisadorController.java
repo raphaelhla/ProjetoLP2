@@ -90,6 +90,7 @@ public class PesquisadorController {
 			throw new IllegalArgumentException("Pesquisador inativo.");
 		}
 		Pesquisador pesquisador = pesquisadores.get(email);
+		
 		switch (atributo) {
 		case "NOME":
 			validador.verificaEntradaNulaVazia(novoValor, "Campo nome nao pode ser nulo ou vazio.");
@@ -115,6 +116,8 @@ public class PesquisadorController {
 			validador.verificafotoURL(novoValor);
 			pesquisador.setFotoURL(novoValor);
 			break;
+		
+			
 		default:
 			throw new IllegalArgumentException("Atributo invalido.");
 		}
@@ -261,6 +264,8 @@ public class PesquisadorController {
 		
 
 	}
+	
+	
 	
 
 }

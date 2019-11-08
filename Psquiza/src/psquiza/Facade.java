@@ -150,6 +150,14 @@ public class Facade {
 		controllerGeral.cadastraEspecialidadeProfessor(email, formacao, unidade, data);
 	}
 	
+	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
+		controllerGeral.cadastraEspecialidadeAluno(email, semestre, IEA);
+	}
+	
+	public String listaPesquisadores(String tipo) {
+		return controllerGeral.listaPesquisadores(tipo);
+	}
+	
 	
 	// METODOS DA US7 (ALISSON)
 	
