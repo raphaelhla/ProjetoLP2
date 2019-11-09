@@ -277,7 +277,7 @@ public class ControllerGeral {
 	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
 		pesquisadorController.cadastraEspecialidadeAluno(email, semestre, IEA);
 	}
-	
+
 	public String listaPesquisadores(String tipo) {
 		return pesquisadorController.listaPesquisadores(tipo);
 	}
@@ -320,6 +320,13 @@ public class ControllerGeral {
 
 	// METODOS DA US8 (RAPHAEL)
 
+	/**
+	 * Metodo que recebe um termo como parametro e retorna uma string representando
+	 * todas as entidades que possuem o termo.
+	 * 
+	 * @param termo Termo a ser procurado
+	 * @return uma string que representa todas as entidades que possuem o termo
+	 */
 	public String busca(String termo) {
 		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		String saida = "";
@@ -344,6 +351,16 @@ public class ControllerGeral {
 		return saida;
 	}
 
+	/**
+	 * Metodo que busca um termo em todas as entidades do sistema e retorna a string
+	 * que representa o resultado de acordo com o numero passado como parametro, a
+	 * partir do termo e do numero do resultado.
+	 *
+	 * @param termo             Termo a ser procurado.
+	 * @param numeroDoResultado Numero do resultado a ser exibido.
+	 * @return a string que representa o resultado de acordo com o numero passado
+	 *         como parametro
+	 */
 	public String busca(String termo, int numeroDoResultado) {
 		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		if (numeroDoResultado < 0) {
@@ -358,6 +375,13 @@ public class ControllerGeral {
 		return resultados[numeroDoResultado - 1];
 	}
 
+	/**
+	 * Metodo que conta a quantidade de resultados obtidos em uma busca de um
+	 * determinado termo passado como parametro.
+	 * 
+	 * @param termo Termo a ser procurado.
+	 * @return a quantidade de resultados obtido na busca
+	 */
 	public int contaResultadosBusca(String termo) {
 		String[] resultados = busca(termo).split(" \\| ");
 		if (busca(termo).equals("")) {

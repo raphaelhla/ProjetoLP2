@@ -78,7 +78,7 @@ class ValidadorTest {
 	@Test
 	void testVerificafotoURLInvalida2() {
 		try {
-			validador.verificafotoURL("teste");
+			validador.verificafotoURL("testEEEEEEEEEEEEEEEe");
 			fail("deveria lancar excecao");
 		} catch (IllegalArgumentException e) {
 			assertEquals("Formato de foto invalido.", e.getMessage());

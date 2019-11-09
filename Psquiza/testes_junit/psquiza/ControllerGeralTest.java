@@ -1,5 +1,7 @@
 package psquiza;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -87,5 +89,72 @@ class ControllerGeralTest {
 		} catch (IllegalArgumentException e) {
 			assertEquals("Nenhum resultado encontrado", e.getMessage());
 		}
+	}
+	
+	@Test
+	public void testAssociaProblemaFeliz() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.cadastraProblema("problema teste de computacao", 4);
+		assertTrue(controllerGeral.associaProblema("FAK1", "P1"));
+	}
+	
+	@Test
+	public void testAssociaProblemaTriste() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.cadastraProblema("problema teste de computacao", 4);
+		controllerGeral.associaProblema("FAK1", "P1");
+		assertFalse(controllerGeral.associaProblema("FAK1", "P1"));
+	}
+	
+	@Test
+	public void testDesassociaProblemaFeliz() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.cadastraProblema("problema teste de computacao", 4);
+		controllerGeral.associaProblema("FAK1", "P1");
+		assertTrue(controllerGeral.desassociaProblema("FAK1", "P1"));
+	}
+	
+	@Test
+	public void testDesassociaProblemaTriste() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.cadastraProblema("problema teste de computacao", 4);
+		assertFalse(controllerGeral.desassociaProblema("FAK1", "P1"));
+	}
+	
+	@Test
+	public void testAssociaObjetivoFeliz() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.cadastraObjetivo("GERAL", "Objetivo da computacao", 3, 2);
+		assertTrue(controllerGeral.associaObjetivo("FAK1", "O1"));
+	}
+	
+	@Test
+	public void testAssociaObjetivoTriste() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.cadastraObjetivo("GERAL", "Objetivo da computacao", 3, 2);
+		controllerGeral.associaObjetivo("FAK1", "O1");
+		assertFalse(controllerGeral.associaObjetivo("FAK1", "O1"));
+	}
+	
+	@Test
+	public void testDesassociaObjetivoFeliz() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.cadastraObjetivo("GERAL", "Objetivo da computacao", 3, 2);
+		controllerGeral.associaObjetivo("FAK1", "O1");
+		assertTrue(controllerGeral.desassociaObjetivo("FAK1", "O1"));
+	}
+	
+	@Test
+	public void testDesassociaObjetivoTriste() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.cadastraObjetivo("GERAL", "Objetivo da computacao", 3, 2);
+		assertFalse(controllerGeral.desassociaObjetivo("FAK1", "O1"));
+	}
+	
+	@Test
+	public void testListaPesquisas() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.cadastraPesquisa("teste", "teste");
+		assertEquals("TES1 - teste - teste | FAK1 - Pesquisa do uso da computacao no combate a fake news - fake news", controllerGeral.listaPesquisas("PROBLEMA"));
 	}
 }

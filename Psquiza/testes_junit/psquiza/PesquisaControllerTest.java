@@ -208,4 +208,36 @@ class PesquisaControllerTest {
 		pc.associaObjetivo("IRI1", "O2", objetivo2);
 		assertEquals("IRI1 - TESTE - Irineu | ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao | IRI2 - Bob jow - Irineuliston", pc.listaPesquisas("OBJETIVOS"));
 	}
+	
+	@Test
+	public void testListaPesquisasPorProblemas() {
+		pc.cadastraPesquisa("ola tudo bem", "mensagem de ola");
+		pc.cadastraPesquisa("pesquisa do meio ambiente", "ambiente");
+		pc.cadastraPesquisa("java", "programador");
+		Problema problema =  new Problema("teste", 3);
+		Problema problema2 =  new Problema("teste do teste", 5);
+		Problema problema3 = new Problema("teste2", 2);
+		pc.associaProblema("ELE1", "P1", problema);
+		pc.associaProblema("IRI1", "P1", problema);
+		pc.associaProblema("IRI2", "P2", problema2);
+		pc.associaProblema("PRO1", "P3", problema3);
+		
+		assertEquals("PRO1 - java - programador | IRI2 - Bob jow - Irineuliston | IRI1 - TESTE - Irineu | ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao | MEN1 - ola tudo bem - mensagem de ola | AMB1 - pesquisa do meio ambiente - ambiente", pc.listaPesquisas("PROBLEMA"));
+	}
+	
+
+	@Test
+	public void testListaPesquisasPorProblemas2() {
+		Problema problema =  new Problema("teste", 3);
+		pc.associaProblema("ELE1", "P1", problema);
+		
+		assertEquals("ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao | IRI2 - Bob jow - Irineuliston | IRI1 - TESTE - Irineu", pc.listaPesquisas("PROBLEMA"));
+	}
+	
+	@Test
+	public void testListaPesquisasPorProblemas3() {
+		Problema problema =  new Problema("teste", 3);
+		pc.associaProblema("IRI1", "P1", problema);
+		assertEquals("IRI1 - TESTE - Irineu | IRI2 - Bob jow - Irineuliston | ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao", pc.listaPesquisas("PROBLEMA"));
+	}
 }
