@@ -270,17 +270,37 @@ public class ControllerGeral {
 
 	// METODS DA US6 (MATHEUS)
 
+	public boolean associaPesquisador(String idPesquisa, String emailPesquisador) {
+		validador.verificaEntradaNulaVazia(idPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(emailPesquisador, "Campo emailPesquisador nao pode ser nulo ou vazio.");
+		Pesquisador pesquisador = this.pesquisadorController.getPesquisador(emailPesquisador);
+		return this.pesquisaController.associaPesquisador(idPesquisa, emailPesquisador, pesquisador);
+	}
+	
+	public boolean desassociaPesquisador(String idPesquisa, String emailPesquisador) {
+		validador.verificaEntradaNulaVazia(idPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(emailPesquisador, "Campo emailPesquisador nao pode ser nulo ou vazio.");
+		return this.pesquisaController.desassociaPesquisador(idPesquisa, emailPesquisador);
+	}
+	
 	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
+		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(formacao, "Campo formacao nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(unidade, "Campo unidade nao pode ser nulo ou vazio.");
+		validador.verificaData(data);
+		
 		pesquisadorController.cadastraEspecialidadeProfessor(email, formacao, unidade, data);
 	}
 
 	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
+		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
 		pesquisadorController.cadastraEspecialidadeAluno(email, semestre, IEA);
 	}
 
 	public String listaPesquisadores(String tipo) {
 		return pesquisadorController.listaPesquisadores(tipo);
 	}
+	
 	// METODOS DA US7 (ALISSON)
 
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {

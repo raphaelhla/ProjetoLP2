@@ -177,9 +177,6 @@ public class PesquisaController {
 	 */
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade, Atividade atividade) {
 		verificaSeExistePesquisa(codigoPesquisa);
-		if (mapPesquisas.get(codigoPesquisa).getStatusPesquisa() == false) {
-			throw new IllegalArgumentException("Pesquisa desativada.");
-		}
 		return this.mapPesquisas.get(codigoPesquisa).associaAtividade(codigoAtividade, atividade);
 	}
 
@@ -194,9 +191,6 @@ public class PesquisaController {
 	 */
 	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
 		verificaSeExistePesquisa(codigoPesquisa);
-		if (mapPesquisas.get(codigoPesquisa).getStatusPesquisa() == false) {
-			throw new IllegalArgumentException("Pesquisa desativada.");
-		}
 		return this.mapPesquisas.get(codigoPesquisa).desassociaAtividade(codigoAtividade);
 	}
 
@@ -253,7 +247,6 @@ public class PesquisaController {
 	 */
 	public boolean desassociaProblema(String codigoPesquisa, String codigoProblema) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(codigoProblema, "Campo codigoProblema nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigoPesquisa);
 		return this.mapPesquisas.get(codigoPesquisa).desassociaProblema(codigoProblema);
 	}
@@ -382,5 +375,17 @@ public class PesquisaController {
 		default:
 			throw new IllegalArgumentException("Valor invalido da ordem");
 		}
+	}
+
+	// US6 MATHEUS
+	
+	public boolean associaPesquisador(String idPesquisa, String emailPesquisador, Pesquisador pesquisador) {
+		verificaSeExistePesquisa(idPesquisa);
+		return this.mapPesquisas.get(idPesquisa).associaPesquisador(emailPesquisador, pesquisador);
+	}
+
+	public boolean desassociaPesquisador(String idPesquisa, String emailPesquisador) {
+		verificaSeExistePesquisa(idPesquisa);
+		return this.mapPesquisas.get(idPesquisa).desassociaPesquisador(emailPesquisador);
 	}
 }

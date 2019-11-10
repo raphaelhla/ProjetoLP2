@@ -53,6 +53,11 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 * Mapa de objetivos associados.
 	 */
 	private Map<String, Objetivo> objetivosAssociados;
+	
+	/**
+	 * Mapa de pesquisadores associados.
+	 */
+	private Map<String, Pesquisador> pesquisadoresAssociados;
 
 	/**
 	 * Constroi uma pesquisa a partir de sua descricao, campo de interesse e codigo
@@ -72,6 +77,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		this.atividadesAssociadas = new HashMap<String, Atividade>();
 		this.problemaAssociado = new HashMap<String, Problema>();
 		this.objetivosAssociados = new HashMap<String, Objetivo>();
+		this.pesquisadoresAssociados = new HashMap<String, Pesquisador>();
 	}
 
 	/**
@@ -160,7 +166,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		if (atividadesAssociadas.containsKey(codigoAtividade)) {
 			return false;
 		}
-		if (this.statusPesquisa == false) {
+		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		}
 		this.atividadesAssociadas.put(codigoAtividade, atividade);
@@ -179,7 +185,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
 			return false;
 		}
-		if (this.statusPesquisa == false) {
+		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		}
 		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
@@ -349,5 +355,27 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		} else {
 			throw new IllegalArgumentException("Pesquisa sem problema associado.");
 		}
+	}
+
+	public boolean associaPesquisador(String emailPesquisador, Pesquisador pesquisador) {
+		if (!this.statusPesquisa) {
+			throw new IllegalArgumentException("Pesquisa desativada.");
+		}
+		if (pesquisadoresAssociados.containsKey(emailPesquisador)) {
+			return false;
+		}
+		this.pesquisadoresAssociados.put(emailPesquisador, pesquisador);
+		return true;
+	}
+
+	public boolean desassociaPesquisador(String emailPesquisador) {
+		if (!this.statusPesquisa) {
+			throw new IllegalArgumentException("Pesquisa desativada.");
+		}
+		if (!pesquisadoresAssociados.containsKey(emailPesquisador)) {
+			return false;
+		}
+		this.pesquisadoresAssociados.remove(emailPesquisador);
+		return true;
 	}
 }

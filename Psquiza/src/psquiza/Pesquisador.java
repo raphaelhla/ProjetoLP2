@@ -82,6 +82,9 @@ public class Pesquisador {
 		return this.especialidade;
 	}
 	
+	public String getFuncao() {
+		return this.funcao;
+	}
 
 	/**
 	 * Metodo que altera o nome do pesquisador a partir de um novo nome passado como

@@ -203,69 +203,59 @@ public class PesquisadorController {
 	}
 	
 	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
+		verificaSeExistePesquisador(email);
 		Pesquisador pesquisador = getPesquisador(email);
+		if (!pesquisador.getFuncao().equals("professor")) {
+			throw new IllegalArgumentException("Pesquisador nao compativel com a especialidade.");
+		}
 		pesquisador.setEspecialidade(new PesquisadorProfessor(formacao, unidade, data));
 	}
 	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
+		verificaSeExistePesquisador(email);
 		Pesquisador pesquisador = getPesquisador(email);
+		if (!pesquisador.getFuncao().equals("estudante")) {
+			throw new IllegalArgumentException("Pesquisador nao compativel com a especialidade.");
+		}
 		pesquisador.setEspecialidade(new PesquisadorAluno(semestre, IEA));
 	}
 	
 	public String listaPesquisadores(String tipo) {
+		validador.verificaEntradaNulaVazia(tipo, "Campo tipo nao pode ser nulo ou vazio.");
 		switch (tipo) {
 		case "EXTERNO":
 			String string = "";
-			int i = 0;
-			int max = pesquisadores.size();
+			List<String> pesquisadoresExternos = new ArrayList<String>();
 			for (Pesquisador pesquisador : pesquisadores.values()) {
-				if (pesquisador.getEspecialidade().toString().equals("EXTERNO")) {
-					i++;
-					if (i < max) {
-						string += pesquisador + " | ";
-					} else {
-						string += pesquisador;
-					}
+				if (pesquisador.getFuncao().equals("externo")) {
+					pesquisadoresExternos.add(pesquisador.toString());
 				}
 			}
+			string = String.join(" | ", pesquisadoresExternos);
 			return string;
+		
 		case "ALUNA":
 			String string2 = "";
-			int i2 = 0;
-			int max2 = pesquisadores.size();
+			List<String> pesquisadoresAlunos = new ArrayList<String>();
 			for (Pesquisador pesquisador : pesquisadores.values()) {
-				if (pesquisador.getEspecialidade().toString().equals("ALUNA")) {
-					i2++;
-					if (i2 < max2) {
-						string2 += pesquisador + " | ";
-					} else {
-						string2 += pesquisador;
-					}
+				if (pesquisador.getFuncao().equals("estudante")) {
+					pesquisadoresAlunos.add(pesquisador.toString());
 				}
 			}
+			string = String.join(" | ", pesquisadoresAlunos);
 			return string2;
+			
 		case "PROFESSORA":
 			String string3 = "";
-			int i3 = 0;
-			int max3 = pesquisadores.size();
+			List<String> pesquisadoresProfessores = new ArrayList<String>();
 			for (Pesquisador pesquisador : pesquisadores.values()) {
-				if (pesquisador.getEspecialidade().toString().equals("PROFESSORA")) {
-					i3++;
-					if (i3 < max3) {
-						string3 += pesquisador + " | ";
-					} else {
-						string3 += pesquisador;
-					}
+				if (pesquisador.getFuncao().equals("professor")) {
+					pesquisadoresProfessores.add(pesquisador.toString());
 				}
 			}
+			string = String.join(" | ", pesquisadoresProfessores);
 			return string3;
 		default:
-			throw new IllegalArgumentException("Tipo TIPO inexistente.");
+			throw new IllegalArgumentException("Tipo " + tipo + " inexistente.");
 		}
-		
-
 	}
-	
-	
-	
-
 }

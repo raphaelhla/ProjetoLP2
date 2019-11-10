@@ -41,9 +41,4 @@ public class PesquisadorProfessor implements Especialidade{
 	public String toString() {
 		return  " - " + this.formacao + " - " + this.unidadeAlocada + " - " + this.dataContratacao;
 	}
-	
-	
-	
-	
-	
 }
