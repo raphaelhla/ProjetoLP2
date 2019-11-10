@@ -59,7 +59,7 @@ public class AtividadeController {
 	}
 
 	/**
-	 * Verifica se a atividade existe a partir de seu codigoAtividade.
+	 * Verifica se a atividade existe a partir de seu codigo.
 	 * 
 	 * @param codigoAtividade codigo da atividade.
 	 */
@@ -71,7 +71,7 @@ public class AtividadeController {
 	}
 
 	/**
-	 * Apaga uma atividade a partir de seu codigoAtividade.
+	 * Apaga uma atividade a partir de seu codigo.
 	 * 
 	 * @param codigoAtividade codigo da atividade.
 	 */
@@ -82,11 +82,11 @@ public class AtividadeController {
 	}
 
 	/**
-	 * Cadastra um item na atividade a partir do codigoAtividade da atividade e a String que
+	 * Cadastra um item na atividade a partir do codigo da atividade e a String que
 	 * representa o item.
 	 * 
 	 * @param codigoAtividade codigo da atividade.
-	 * @param item   Representacao em String do item.
+	 * @param item            Representacao em String do item.
 	 */
 	public void cadastraItem(String codigoAtividade, String item) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
@@ -132,10 +132,10 @@ public class AtividadeController {
 	}
 
 	/**
-	 * Metodo que retorna uma atividade, a partir do codigoAtividade da atividade.
+	 * Metodo que retorna uma atividade a partir do codigo da atividade.
 	 * 
 	 * @param codigoAtividade codigo da atividade.
-	 * @return uma atividade
+	 * @return uma atividade.
 	 */
 	public Atividade getAtividade(String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
@@ -144,7 +144,7 @@ public class AtividadeController {
 	}
 
 	/**
-	 * Metodo que executa uma atividade a partir do codigoAtividade da atividade, do item e
+	 * Metodo que executa uma atividade a partir do codigo da atividade, do item e
 	 * da duracao da atividade. Quando um item e executado, seu status e alterado
 	 * para "REALIZADO".
 	 * 
@@ -154,19 +154,19 @@ public class AtividadeController {
 	 */
 	public void executaAtividade(String codigoAtividade, int item, int duracao) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		validador.verificaNum(item,"Item nao pode ser nulo ou negativo.");
-		validador.verificaNum(duracao,"Duracao nao pode ser nula ou negativa.");
+		validador.verificaNum(item, "Item nao pode ser nulo ou negativo.");
+		validador.verificaNum(duracao, "Duracao nao pode ser nula ou negativa.");
 		this.mapaAtividades.get(codigoAtividade).executaAtividade(item, duracao);
 
 	}
 
 	/**
-	 * Metodo que cadastra um resultado para uma atividade a partir do codigoAtividade da
+	 * Metodo que cadastra um resultado para uma atividade a partir do codigo da
 	 * atividade e do resultado a ser cadastrado.
 	 * 
 	 * @param codigoAtividade codigo da atividade.
 	 * @param resultado       Resultado a ser cadastrado.
-	 * @return o inteiro que representa o resultado
+	 * @return o inteiro que representa o resultado.
 	 */
 	public int cadastraResultado(String codigoAtividade, String resultado) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
@@ -175,7 +175,7 @@ public class AtividadeController {
 	}
 
 	/**
-	 * Metodo que remove um resultado de uma atividade a partir do codigoAtividade da
+	 * Metodo que remove um resultado de uma atividade a partir do codigo da
 	 * atividade e do numero que representa o resultado a ser removido.
 	 * 
 	 * @param codigoAtividade codigo da atividade.
@@ -209,7 +209,7 @@ public class AtividadeController {
 	 * 
 	 * @param codigoAtividade codigo da atividade.
 	 * @return o inteiro que representa a duracao da execucao de todos os itens de
-	 *         uma atividade
+	 *         uma atividade.
 	 */
 	public int getDuracao(String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
@@ -221,8 +221,8 @@ public class AtividadeController {
 	 * Metodo que recebe um termo como parametro e retorna uma string representando
 	 * as atividades que possuem o termo.
 	 * 
-	 * @param termo Termo a ser procurado
-	 * @return uma string que representa as atividades que possuem o termo
+	 * @param termo Termo a ser procurado.
+	 * @return uma string que representa as atividades que possuem o termo.
 	 */
 	public String busca(String termo) {
 		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
