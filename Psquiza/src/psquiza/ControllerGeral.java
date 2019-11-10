@@ -300,6 +300,15 @@ public class ControllerGeral {
 	
 	// METODOS DA US7 (ALISSON)
 
+	/**
+	 * Metodo que associa uma atividade a uma pesquisa a partir do codigo da
+	 * pesquisa, do codigo da atividade e da atividade.
+	 * 
+	 * @param codigoPesquisa  Codigo da pesquisa.
+	 * @param codigoAtividade Codigo da atividade.
+	 * @param atividade       Atividade a ser associada.
+	 * @return verdadeiro se for associada com sucesso, caso contrario retorna falso
+	 */
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
@@ -307,6 +316,15 @@ public class ControllerGeral {
 		return this.pesquisaController.associaAtividade(codigoPesquisa, codigoAtividade, atividade);
 	}
 
+	/**
+	 * Metodo que desassocia uma atividade de uma pesquisa a partir do codigo da
+	 * pesquisa e do codigo da atividade.
+	 * 
+	 * @param codigoPesquisa  Codigo da pesquisa.
+	 * @param codigoAtividade Codigo da atividade.
+	 * @return verdadeiro se for desassociada com sucesso, caso contrario retorna
+	 *         falso
+	 */
 	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
@@ -314,6 +332,15 @@ public class ControllerGeral {
 		return this.pesquisaController.desassociaAtividade(codigoPesquisa, codigoAtividade);
 	}
 
+	/**
+	 * Metodo que executa uma atividade a partir do codigo da atividade, do item e
+	 * da duracao da atividade. Quando um item é executado, seu status é alterado
+	 * para "REALIZADO".
+	 * 
+	 * @param codigoAtividade Codigo da atividade.
+	 * @param item            Item executado.
+	 * @param duracao         Duracao da execucao do item.
+	 */
 	public void executaAtividade(String codigoAtividade, int item, int duracao) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		if (!pesquisaController.atividadeEstaAssociada(codigoAtividade)) {
@@ -322,18 +349,50 @@ public class ControllerGeral {
 		this.atividadeController.executaAtividade(codigoAtividade, item, duracao);
 	}
 
+	/**
+	 * Metodo que cadastra um resultado para uma atividade a partir do codigo da
+	 * atividade e do resultado a ser cadastrado.
+	 * 
+	 * @param codigoAtividade Codigo da atividade.
+	 * @param resultado       Resultado a ser cadastrado.
+	 * @return o inteiro que representa o resultado
+	 */
 	public int cadastraResultado(String codigoAtividade, String resultado) {
 		return this.atividadeController.cadastraResultado(codigoAtividade, resultado);
 	}
 
+	/**
+	 * Metodo que remove um resultado de uma atividade a partir do codigo da
+	 * atividade e do numero que representa o resultado a ser removido.
+	 * 
+	 * @param codigoAtividade Codigo da atividade.
+	 * @param numeroResultado Numero do resultado.
+	 * @return verdadeiro se a remocao for bem sucedida, caso contrario retorna
+	 *         falso.
+	 */
 	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
 		return this.atividadeController.removeResultado(codigoAtividade, numeroResultado);
 	}
 
+	/**
+	 * Metodo que retorna uma string com todos o resultados de uma atividade passada
+	 * como parametro.
+	 * 
+	 * @param codigoAtividade Codigo da atividade.
+	 * @return uma string com todos o resultados de uma atividade.
+	 */
 	public String listaResultados(String codigoAtividade) {
 		return this.atividadeController.listaResultados(codigoAtividade);
 	}
 
+	/**
+	 * Metodo que retorna o inteiro que representa a duracao da execucao de todos os
+	 * itens de uma atividade passada como parametro.
+	 * 
+	 * @param codigoAtividade Codigo da atividade.
+	 * @return o inteiro que representa a duracao da execucao de todos os itens de
+	 *         uma atividade
+	 */
 	public int getDuracao(String codigoAtividade) {
 		return this.atividadeController.getDuracao(codigoAtividade);
 	}

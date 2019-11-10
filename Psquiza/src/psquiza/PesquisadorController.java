@@ -115,14 +115,19 @@ public class PesquisadorController {
 			pesquisador.setFotoURL(novoValor);
 			break;
 		case "SEMESTRE":
+			pesquisador.alteraAtributoEspecialidade(atributo, novoValor);
 			break;
 		case "IEA":
+			pesquisador.alteraAtributoEspecialidade(atributo, novoValor);
 			break;
 		case "FORMACAO":
+			pesquisador.alteraAtributoEspecialidade(atributo, novoValor);
 			break;
 		case "UNIDADE":
+			pesquisador.alteraAtributoEspecialidade(atributo, novoValor);
 			break;
 		case "DATA":
+			pesquisador.alteraAtributoEspecialidade(atributo, novoValor);
 			break;
 		default:
 			throw new IllegalArgumentException("Atributo invalido.");
@@ -272,4 +277,5 @@ public class PesquisadorController {
 			throw new IllegalArgumentException("Tipo " + tipo + " inexistente.");
 		}
 	}
+	
 }

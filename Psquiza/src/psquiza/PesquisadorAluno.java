@@ -14,24 +14,25 @@ public class PesquisadorAluno implements Especialidade{
 		return semestreIngresso;
 	}
 
-	public void setSemestreIngresso(int semestreIngresso) {
-		this.semestreIngresso = semestreIngresso;
-	}
-
 	public double getIea() {
 		return iea;
 	}
 
-	public void setIea(double iea) {
-		this.iea = iea;
-	}
-
 	@Override
 	public String toString() {
-		return " - " + this.semestreIngresso + " - " + this.iea;
+		return " - " + this.semestreIngresso + "o SEMESTRE - " + this.iea;
 	}
 	
-	
-
-	
+	public void alteraPesquisador(String atributo, String novoValor) {
+		switch (atributo) {
+		case "SEMESTRE":
+			int valorConvertido = Integer.parseInt(novoValor);
+			this.semestreIngresso = valorConvertido;
+			break;
+		case "IEA":
+			double valorConvertido2 = Double.parseDouble(novoValor);
+			this.iea = valorConvertido2;
+			break;
+		}
+	}
 }

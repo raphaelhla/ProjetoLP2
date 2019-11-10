@@ -71,17 +71,16 @@ public class Pesquisador {
 		this.email = email;
 		this.fotoURL = fotoURL;
 		this.status = "ativo";
-		this.especialidade = new PesquisadorExterno();
 	}
-	
+
 	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
 	}
-	
+
 	public Especialidade getEspecialidade() {
 		return this.especialidade;
 	}
-	
+
 	public String getFuncao() {
 		return this.funcao;
 	}
@@ -166,7 +165,8 @@ public class Pesquisador {
 	 */
 	@Override
 	public String toString() {
-		return this.nome + " (" + this.funcao + ") - " + this.biografia + " - " + this.email + " - " + this.fotoURL + especialidade.toString();
+		return this.nome + " (" + this.funcao + ") - " + this.biografia + " - " + this.email + " - " + this.fotoURL
+				+ ((especialidade != null) ? especialidade.toString() : "");
 	}
 
 	/**
@@ -196,5 +196,9 @@ public class Pesquisador {
 	 */
 	public String getEmail() {
 		return this.email;
+	}
+
+	public void alteraAtributoEspecialidade(String atributo, String novoValor) {
+		this.especialidade.alteraPesquisador(atributo, novoValor);
 	}
 }

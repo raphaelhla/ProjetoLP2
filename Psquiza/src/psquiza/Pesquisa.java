@@ -367,8 +367,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	public boolean associaPesquisador(String emailPesquisador, Pesquisador pesquisador) {
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
-		}
-		if (pesquisadoresAssociados.containsKey(emailPesquisador)) {
+		} else if (this.pesquisadoresAssociados.containsKey(emailPesquisador)) {
 			return false;
 		}
 		this.pesquisadoresAssociados.put(emailPesquisador, pesquisador);
@@ -378,8 +377,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	public boolean desassociaPesquisador(String emailPesquisador) {
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
-		}
-		if (pesquisadoresAssociados.containsKey(emailPesquisador)) {
+		} else if (!this.pesquisadoresAssociados.containsKey(emailPesquisador)) {
 			return false;
 		}
 		this.pesquisadoresAssociados.remove(emailPesquisador);
