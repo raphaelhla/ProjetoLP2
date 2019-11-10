@@ -12,6 +12,12 @@ import psquiza.Validador;
 
 public class PesquisaController {
 	// US1 Matheus
+	/**
+	 * Classe que representa um controller de pesquisa.
+	 * 
+	 * @author matheus
+	 * 
+	 */
 
 	/**
 	 * Mapa com todas as pesquisas cadastradas no sistema.
@@ -388,11 +394,26 @@ public class PesquisaController {
 
 	// US6 MATHEUS
 	
+	/**
+	 * Metodo que vai associar um pesquisador com uma pesquisa.
+	 * 
+	 * @param idPesquisa - o código da pesquisa a ser associada.
+	 * @param emailPesquisador - o email que identifica o pesquisador a ser associado.
+	 * @param pesquisador - objeto de pesquisador a ser criado para ser associado.
+	 * @return - true ou false, caso a operaçao seja realizada com sucesso ou nao.
+	 */
 	public boolean associaPesquisador(String idPesquisa, String emailPesquisador, Pesquisador pesquisador) {
 		verificaSeExistePesquisa(idPesquisa);
 		return this.mapPesquisas.get(idPesquisa).associaPesquisador(emailPesquisador, pesquisador);
 	}
 
+	/**
+	 * Metodo que vai desassociar um pesquisador com uma pesquisa.
+	 * 
+	 * @param idPesquisa - o código da pesquisa a ser desassociada.
+	 * @param emailPesquisador - o email que identifica o pesquisador a ser desassociado.
+	 * @return - true ou false, caso a operaçao seja realizada com sucesso ou nao.
+	 */
 	public boolean desassociaPesquisador(String idPesquisa, String emailPesquisador) {
 		verificaSeExistePesquisa(idPesquisa);
 		return this.mapPesquisas.get(idPesquisa).desassociaPesquisador(emailPesquisador);

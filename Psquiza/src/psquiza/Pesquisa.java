@@ -11,6 +11,8 @@ import java.util.Map;
  * Classe Pesquisa que representa uma pesquisa. Toda pesquisa contem as srings
  * descricao, campoDeIntresse, codigo.
  * 
+ * @author matheus
+ * 
  */
 public class Pesquisa implements Comparable<Pesquisa> {
 
@@ -196,6 +198,12 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return true;
 	}
 	
+	/**
+	 * Metodo que vai verificar se a atividade esta associada ou nao.
+	 * 
+	 * @param codigoAtividade - codigo da atividade a ser procurada.
+	 * @return - true ou false, caso a atividade esteja associada ou nao.
+	 */
 	public boolean atividadeEstaAssociada(String codigoAtividade) {
 		if (atividadesAssociadas.containsKey(codigoAtividade)) {
 			return true;
@@ -363,7 +371,16 @@ public class Pesquisa implements Comparable<Pesquisa> {
 			throw new IllegalArgumentException("Pesquisa sem problema associado.");
 		}
 	}
+	
+	// US6 Matheus
 
+	/**
+	 * Metodo que vai associar um pesquisador com uma pesquisa.
+	 * 
+	 * @param emailPesquisador - o email que identifica o pesquisador a ser associado.
+	 * @param pesquisador - objeto de pesquisador que representa o pesquisador a ser associado.
+	 * @return - true ou false, caso a operaçao seja realizada com sucesso ou nao.
+	 */
 	public boolean associaPesquisador(String emailPesquisador, Pesquisador pesquisador) {
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
@@ -374,6 +391,12 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return true;
 	}
 
+	/**
+	 * Metodo que vai desassociar um pesquisador com uma pesquisa.
+	 * 
+	 * @param emailPesquisador - o email que identifica o pesquisador a ser desassociado.
+	 * @return - true ou false, caso a operaçao seja realizada com sucesso ou nao.
+	 */
 	public boolean desassociaPesquisador(String emailPesquisador) {
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");

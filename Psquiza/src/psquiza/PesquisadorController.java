@@ -57,6 +57,13 @@ public class PesquisadorController {
 		this.pesquisadores.put(email, new Pesquisador(nome, funcao, biografia, email, fotoURL));
 	}
 	
+	/**
+	 * Metodo que vai buscar um pesquisador no map pesquisadores.
+	 * 
+	 * 
+	 * @param email - email do pesquisador a ser retornado.
+	 * @return - objeto pesquisador que possui o email passado como parametro.
+	 */
 	public Pesquisador getPesquisador(String email) {
 		return pesquisadores.get(email);
 	}
@@ -214,6 +221,15 @@ public class PesquisadorController {
 		return saida;
 	}
 	
+	// US6 Matheus
+	/**
+	 * Metodo que vai cadastrar a especialidade pofessor, transformando um pesquisador externo em pesqusiador professor.
+	 * 
+	 * @param email - email do pesquisador.
+	 * @param formacao - formaçao do pesquisador professor.
+	 * @param unidade - unidade de trabalho do pesquisador professor.
+	 * @param data - data do inicio do trabalho do pesquisador professor.
+	 */
 	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
 		verificaSeExistePesquisador(email, "Pesquisadora nao encontrada.");
 		Pesquisador pesquisador = getPesquisador(email);
@@ -223,6 +239,13 @@ public class PesquisadorController {
 		pesquisador.setEspecialidade(new PesquisadorProfessor(formacao, unidade, data));
 	}
 	
+	/**
+	 * Metodo que vai cadastrar a especialidade aluno, transformando um pesquisador externo em pesqusiador aluno.
+	 *  
+	 * @param email - email do pesquisador.
+	 * @param semestre - semestre do pesquisador aluno.
+	 * @param IEA - Índice de Eficiência Acadêmica do pesquisador aluno.
+	 */
 	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
 		verificaSeExistePesquisador(email, "Pesquisadora nao encontrada.");
 		if (semestre < 1) {
@@ -238,6 +261,12 @@ public class PesquisadorController {
 		pesquisador.setEspecialidade(new PesquisadorAluno(semestre, IEA));
 	}
 	
+	/**
+	 * Metodo que vai listar os pesquisadores de acordo com a especialidade passada como parametro.
+	 *  
+	 * @param tipo - tipo dos pesquisadores a serem listados.
+	 * @return - uma lista com o toString de todos os pesquisadores daquele tipo.
+	 */
 	public String listaPesquisadores(String tipo) {
 		validador.verificaEntradaNulaVazia(tipo, "Campo tipo nao pode ser nulo ou vazio.");
 		switch (tipo) {
