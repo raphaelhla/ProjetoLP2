@@ -238,17 +238,15 @@ public class PesquisaController {
 	}
 
 	/**
-	 * Desassocia um problema da pesquisa a partir do codigo da pesquisa e do codigo
-	 * do problema.
+	 * Desassocia um problema da pesquisa a partir do codigo da pesquisa.
 	 * 
 	 * @param codigoPesquisa Codigo da pesquisa.
-	 * @param codigoProblema Codigo do problema.
 	 * @return retorna true se foi desassociado e false se nao.
 	 */
-	public boolean desassociaProblema(String codigoPesquisa, String codigoProblema) {
+	public boolean desassociaProblema(String codigoPesquisa) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigoPesquisa);
-		return this.mapPesquisas.get(codigoPesquisa).desassociaProblema(codigoProblema);
+		return this.mapPesquisas.get(codigoPesquisa).desassociaProblema();
 	}
 
 	/**

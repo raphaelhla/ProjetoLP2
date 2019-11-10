@@ -133,7 +133,7 @@ class PesquisaTest {
 	public void testDesassociaProblemaPesquisaDesativada() {
 		try {
 			pesquisaTest.desativaPesquisa();
-			pesquisaTest.desassociaProblema("P1");
+			pesquisaTest.desassociaProblema();
 			fail("deveria lancar excecao");
 		} catch (IllegalArgumentException e) {
 			 assertEquals("Pesquisa desativada.", e.getMessage());
@@ -142,13 +142,13 @@ class PesquisaTest {
 	
 	@Test
 	public void testDesassociaProblemaPesquisaNaoAssociada() {
-		assertFalse(pesquisaTest.desassociaProblema("P1"));
+		assertFalse(pesquisaTest.desassociaProblema());
 	}
 	
 	@Test
 	public void testDesassociaProblemaFeliz() {
 		pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
-		assertTrue(pesquisaTest.desassociaProblema("P1"));
+		assertTrue(pesquisaTest.desassociaProblema());
 	}
 	
 	@Test

@@ -142,12 +142,12 @@ class PesquisaControllerTest {
 	@Test
 	public void testDesassociaProblemaFeliz() {
 		pc.associaProblema("ELE1", "P1", new Problema("teste", 3));
-		assertTrue(pc.desassociaProblema("ELE1", "P1"));
+		assertTrue(pc.desassociaProblema("ELE1"));
 	}
 	
 	@Test
 	public void testDesassociaProblemaTriste() {
-		assertFalse(pc.desassociaProblema("ELE1", "P1"));
+		assertFalse(pc.desassociaProblema("ELE1"));
 	}
 	
 	@Test

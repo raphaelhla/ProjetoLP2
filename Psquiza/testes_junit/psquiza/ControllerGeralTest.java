@@ -111,14 +111,14 @@ class ControllerGeralTest {
 		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
 		controllerGeral.cadastraProblema("problema teste de computacao", 4);
 		controllerGeral.associaProblema("FAK1", "P1");
-		assertTrue(controllerGeral.desassociaProblema("FAK1", "P1"));
+		assertTrue(controllerGeral.desassociaProblema("FAK1"));
 	}
 	
 	@Test
 	public void testDesassociaProblemaTriste() {
 		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
 		controllerGeral.cadastraProblema("problema teste de computacao", 4);
-		assertFalse(controllerGeral.desassociaProblema("FAK1", "P1"));
+		assertFalse(controllerGeral.desassociaProblema("FAK1"));
 	}
 	
 	@Test

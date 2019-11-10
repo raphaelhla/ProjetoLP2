@@ -242,18 +242,17 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	/**
-	 * Desassocia um problema da pesquisa a partir do codigo do problema.
+	 * Desassocia o problema da pesquisa.
 	 * 
-	 * @param codigoProblema Codigo do problema.
 	 * @return retorna true se foi desassociado e false se nao.
 	 */
-	public boolean desassociaProblema(String codigoProblema) {
+	public boolean desassociaProblema() {
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
-		} else if (!problemaAssociado.containsKey(codigoProblema)) {
+		} else if (problemaAssociado.size() == 0) {
 			return false;
 		}
-		this.problemaAssociado.remove(codigoProblema);
+		this.problemaAssociado.clear();
 		return true;
 
 	}

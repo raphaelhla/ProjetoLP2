@@ -213,17 +213,14 @@ public class ControllerGeral {
 	}
 
 	/**
-	 * Desassocia um problema da pesquisa a partir do codigo da pesquisa e do codigo
-	 * do problema.
+	 * Desassocia um problema da pesquisa a partir do codigo da pesquisa.
 	 * 
 	 * @param codigoPesquisa Codigo da pesquisa.
-	 * @param codigoProblema Codigo do problema.
 	 * @return retorna true se foi desassociado e false se nao.
 	 */
-	public boolean desassociaProblema(String codigoPesquisa, String codigoProblema) {
+	public boolean desassociaProblema(String codigoPesquisa) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(codigoProblema, "Campo idProblema nao pode ser nulo ou vazio.");
-		return this.pesquisaController.desassociaProblema(codigoPesquisa, codigoProblema);
+		return this.pesquisaController.desassociaProblema(codigoPesquisa);
 	}
 
 	/**

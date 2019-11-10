@@ -129,8 +129,8 @@ public class Facade {
 		return controllerGeral.associaProblema(idPesquisa, idProblema);
 	}
 
-	public boolean desassociaProblema(String idPesquisa, String idProblema) {
-		return controllerGeral.desassociaProblema(idPesquisa, idProblema);
+	public boolean desassociaProblema(String idPesquisa) {
+		return controllerGeral.desassociaProblema(idPesquisa);
 	}
 
 	public boolean associaObjetivo(String idPesquisa, String idObjetivo) {
