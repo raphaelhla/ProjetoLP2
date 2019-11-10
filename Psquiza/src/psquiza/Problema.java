@@ -4,7 +4,7 @@ package psquiza;
  * Representacao de um problema. Todo problema precisa ter descricao e
  * viabilidade.
  * 
- * @author Jose Alisson - 119110645
+ * @author Jose Alisson 119110645
  *
  */
 public class Problema {
@@ -20,12 +20,20 @@ public class Problema {
 	private int viabilidade;
 
 	/**
+	 * Validador utilizado para validar entradas do sistema.
+	 */
+	private Validador validador;
+
+	/**
 	 * Controi um problema a partir da sua descricao e viabilidade.
 	 * 
 	 * @param descricao   Descricao do problema.
 	 * @param viabilidade Viabilidade do problema.
 	 */
 	public Problema(String descricao, int viabilidade) {
+		this.validador = new Validador();
+		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
+		validador.verificaViabilidade(viabilidade);
 		this.descricao = descricao;
 		this.viabilidade = viabilidade;
 
@@ -50,6 +58,7 @@ public class Problema {
 	 * @return verdade se a descricao contem o termo, caso contrario retorna falso.
 	 */
 	public boolean busca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		return this.descricao.contains(termo);
 	}
 

@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Representacao de um controller de objetivos
  * 
- * @author Jose Alisson - 119110645
+ * @author Jose Alisson 119110645
  *
  */
 public class ObjetivoController {
@@ -22,7 +22,7 @@ public class ObjetivoController {
 	private int indiceObjetivo;
 
 	/**
-	 * Validador utilizado para lançar excecoes.
+	 * Validador utilizado para lancar excecoes.
 	 */
 	private Validador validador;
 
@@ -46,12 +46,10 @@ public class ObjetivoController {
 	 * @return o codigo de identificacao do objetivo.
 	 */
 	public String cadastraObjetivo(String tipo, String descricao, int aderencia, int viabilidade) {
-		validador.verificaEntradaNulaVazia(tipo, "Campo tipo nao pode ser nulo ou vazio.");
 		validador.verificaTipoObjetivo(tipo);
 		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
 		validador.verificaAderencia(aderencia);
 		validador.verificaViabilidade(viabilidade);
-
 		Objetivo objetivo = new Objetivo(tipo, descricao, aderencia, viabilidade);
 		String chave = "O" + indiceObjetivo;
 		mapObjetivos.put(chave, objetivo);
@@ -67,6 +65,7 @@ public class ObjetivoController {
 	 *         retorna falso.
 	 */
 	private void verificaSeExisteObjetivo(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		if (!mapObjetivos.containsKey(codigo)) {
 			throw new IllegalArgumentException("Objetivo nao encontrado");
 		}
@@ -116,6 +115,7 @@ public class ObjetivoController {
 	 * @return uma string que representa os objetivos que possuem o termo
 	 */
 	public String busca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		String saida = "";
 		List<String> stringObjetivos = new ArrayList<>();
 		List<String> chaves = new ArrayList<>(mapObjetivos.keySet());

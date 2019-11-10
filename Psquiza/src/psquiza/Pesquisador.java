@@ -4,10 +4,14 @@ package psquiza;
  * Representacao de um pesquisador. Todo pesquisador precisa ter nome, funcao,
  * biografia, email e url da foto.
  * 
- * @author Raphael Agra - 119110413
+ * @author Raphael Agra 119110413
  *
  */
 public class Pesquisador {
+
+	/**
+	 * Especialidade do pesquisador.
+	 */
 	private Especialidade especialidade;
 
 	/**
@@ -41,7 +45,7 @@ public class Pesquisador {
 	private String status;
 
 	/**
-	 * Validador utilizado para lançar excecoes.
+	 * Validador utilizado para lancar excecoes.
 	 */
 	private Validador validador;
 
@@ -60,11 +64,8 @@ public class Pesquisador {
 		validador.verificaEntradaNulaVazia(nome, "Campo nome nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(funcao, "Campo funcao nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(biografia, "Campo biografia nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(fotoURL, "Campo fotoURL nao pode ser nulo ou vazio.");
 		validador.verificaEmail(email);
 		validador.verificafotoURL(fotoURL);
-
 		this.nome = nome;
 		this.funcao = funcao;
 		this.biografia = biografia;
@@ -74,11 +75,11 @@ public class Pesquisador {
 	}
 
 	// US6 Matheus
-	
+
 	/**
 	 * Metodo que vai setar uma especialidade para o pesquisador.
 	 * 
-	 * @param especialidade - nova especialidade do pesquisador.
+	 * @param especialidade nova especialidade do pesquisador.
 	 */
 	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
@@ -87,7 +88,7 @@ public class Pesquisador {
 	/**
 	 * Metodo que vai retornar a especialidade do pesquisador.
 	 * 
-	 * @return - especialidade do pesquisador.
+	 * @return especialidade do pesquisador.
 	 */
 	public Especialidade getEspecialidade() {
 		return this.especialidade;
@@ -96,7 +97,7 @@ public class Pesquisador {
 	/**
 	 * Metodo que vai retornar a funçao do pesquisador.
 	 * 
-	 * @return - funçao do pesquisador.
+	 * @return funcao do pesquisador.
 	 */
 	public String getFuncao() {
 		return this.funcao;
@@ -108,9 +109,10 @@ public class Pesquisador {
 	 * 
 	 * @param nome Nome do pesquisador.
 	 */
-	
+
 	// US2 Raphael Agra
 	public void setNome(String nome) {
+		validador.verificaEntradaNulaVazia(nome, "Campo nome nao pode ser nulo ou vazio.");
 		this.nome = nome;
 	}
 
@@ -121,6 +123,7 @@ public class Pesquisador {
 	 * @param funcao Funcao do pesquisador.
 	 */
 	public void setFuncao(String funcao) {
+		validador.verificaEntradaNulaVazia(funcao, "Campo funcao nao pode ser nulo ou vazio.");
 		this.funcao = funcao;
 	}
 
@@ -131,6 +134,7 @@ public class Pesquisador {
 	 * @param biografia Biografia do pesquisador.
 	 */
 	public void setBiografia(String biografia) {
+		validador.verificaEntradaNulaVazia(biografia, "Campo biografia nao pode ser nulo ou vazio.");
 		this.biografia = biografia;
 	}
 
@@ -141,6 +145,7 @@ public class Pesquisador {
 	 * @param email Email do pesquisador.
 	 */
 	public void setEmail(String email) {
+		validador.verificaEmail(email);
 		this.email = email;
 	}
 
@@ -151,6 +156,7 @@ public class Pesquisador {
 	 * @param fotoURL Url da foto do pesquisador.
 	 */
 	public void setFotoURL(String fotoURL) {
+		validador.verificafotoURL(fotoURL);
 		this.fotoURL = fotoURL;
 	}
 
@@ -196,6 +202,7 @@ public class Pesquisador {
 	 * @return verdade se a biografia contem o termo, caso contrario retorna falso.
 	 */
 	public boolean busca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		return this.biografia.contains(termo);
 	}
 
@@ -217,15 +224,17 @@ public class Pesquisador {
 		return this.email;
 	}
 
-	//US6 Matheus
-	
+	// US6 Matheus
+
 	/**
 	 * Metodo que vai alterar uma tributo de um objeto pesquisador.
 	 * 
-	 * @param atributo - atributo a ser alterado.
-	 * @param novoValor - novo valor desse atributo.
+	 * @param atributo  atributo a ser alterado.
+	 * @param novoValor novo valor desse atributo.
 	 */
 	public void alteraAtributoEspecialidade(String atributo, String novoValor) {
+		validador.verificaEntradaNulaVazia(atributo, "Atributo nao pode ser vazio ou nulo.");
+		validador.verificaEntradaNulaVazia(novoValor, "novoValor nao pode ser vazio ou nulo.");
 		this.especialidade.alteraPesquisador(atributo, novoValor);
 	}
 }

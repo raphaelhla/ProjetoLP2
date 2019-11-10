@@ -4,7 +4,7 @@ package psquiza;
  * Representacao de um item. Todo item precisa ter uma descricao, um status e a
  * duracao da execucao do item.
  * 
- * @author Raphael Agra - 119110413
+ * @author Raphael Agra 119110413
  *
  */
 public class Item {
@@ -23,6 +23,11 @@ public class Item {
 	 * Tempo de execucao do item.
 	 */
 	private int duracao;
+	
+	/**
+	 * Validador utilizado para validar entradas do sistema.
+	 */
+	private Validador validador;
 
 	/**
 	 * Constroi um item a partir de sua descricao.
@@ -30,6 +35,8 @@ public class Item {
 	 * @param descricao Descricao do item.
 	 */
 	public Item(String descricao) {
+		this.validador = new Validador();
+		validador.verificaEntradaNulaVazia(descricao, "Descricao nao pode ser nula ou vazia.");
 		this.descricao = descricao;
 		this.status = "PENDENTE";
 		this.duracao = 0;
@@ -51,6 +58,7 @@ public class Item {
 	 * @param duracao Duracao de execucao do item.
 	 */
 	public void executaItem(int duracao) {
+		validador.verificaNum(duracao, "Duracao nao pode ser nula ou negativa.");
 		this.status = "REALIZADO";
 		this.duracao = duracao;
 	}
@@ -90,6 +98,7 @@ public class Item {
 	 * @return verdade se a descricao contem o termo, caso contrario retorna falso.
 	 */
 	public boolean busca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		return this.descricao.contains(termo);
 	}
 }

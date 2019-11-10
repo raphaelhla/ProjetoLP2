@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Classe de ordenacao de pesquisas do criterio objetivos.
  * 
- * @author Weslley Azevedo - 119111241
+ * @author Weslley Azevedo 119111241
  *
  */
 public class OrdenarPorObjetivos implements Comparator<Pesquisa> {

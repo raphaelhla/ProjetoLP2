@@ -59,12 +59,14 @@ public class ControllerGeral {
 	 * codigo que representa os 3 primeiros caracteres do campo de interesse.O
 	 * metodo retorna esse codigo caso o cadastro seja realizado com sucesso.
 	 * 
-	 * @param descricao        - String que representa a descricao da pesquisa.
-	 * @param campoDeInteresse - String que representa o campo de interesse da
+	 * @param descricao        String que representa a descricao da pesquisa.
+	 * @param campoDeInteresse String que representa o campo de interesse da
 	 *                         pesquisa.
-	 * @return - codigo gerado da pesquisa.
+	 * @return codigo gerado da pesquisa.
 	 */
 	public String cadastraPesquisa(String descricao, String campoDeInteresse) {
+		validador.verificaEntradaNulaVazia(descricao, "Descricao nao pode ser nula ou vazia.");
+		validador.verificaCampoDeInteresse(campoDeInteresse);
 		return pesquisaController.cadastraPesquisa(descricao, campoDeInteresse);
 	}
 
@@ -73,13 +75,14 @@ public class ControllerGeral {
 	 * pesquisa, qual atributo vai ser alterado e o seu novo valor.
 	 * 
 	 * 
-	 * @param codigo               - String codigo.
-	 * @param conteudoASerAlterado - String que representa o atributo a ser
-	 *                             alterado.
-	 * @param novoConteudo         - String que representa o novo valor do atributo
+	 * @param codigo               String codigo.
+	 * @param conteudoASerAlterado String que representa o atributo a ser alterado.
+	 * @param novoConteudo         String que representa o novo valor do atributo
 	 *                             alterado.
 	 */
 	public void alteraPesquisa(String codigo, String conteudoASerAlterado, String novoConteudo) {
+		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(conteudoASerAlterado, "conteudoASerAlterado nao pode ser nulo ou vazio.");
 		pesquisaController.alteraPesquisa(codigo, conteudoASerAlterado, novoConteudo);
 	}
 
@@ -87,11 +90,12 @@ public class ControllerGeral {
 	 * Metodo que vai encerrar uma pesquisa de acordo com o codigo que representa
 	 * ela.Tambem e passado como parametro o motivo do encerramento da pesquisa.
 	 * 
-	 * 
-	 * @param codigo - String codigo.
-	 * @param motivo - String que representa o motivo do encerramento da pesquisa.
+	 * @param codigo String codigo.
+	 * @param motivo String que representa o motivo do encerramento da pesquisa.
 	 */
 	public void encerraPesquisa(String codigo, String motivo) {
+		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(motivo, "Motivo nao pode ser nulo ou vazio.");
 		pesquisaController.encerraPesquisa(codigo, motivo);
 	}
 
@@ -99,9 +103,10 @@ public class ControllerGeral {
 	 * Metodo que vai ativar uma pesquisa. Ele vai pegar a pesquisa representada
 	 * pelo codigo e vai passar o seu status para true.
 	 * 
-	 * @param codigo - String codigo.
+	 * @param codigo String codigo.
 	 */
 	public void ativaPesquisa(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		pesquisaController.ativaPesquisa(codigo);
 	}
 
@@ -110,11 +115,11 @@ public class ControllerGeral {
 	 * parametro. Ele vai retornar esse codigo, caso exista, seguido do toString da
 	 * pesquisa representada por esse codigo.
 	 * 
-	 * @param codigo - String codigo.
-	 * @return - String que contem o codigo mais o toString da pesquisa a ser
-	 *         exibida.
+	 * @param codigo String codigo.
+	 * @return String que contem o codigo mais o toString da pesquisa a ser exibida.
 	 */
 	public String exibePesquisa(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		return pesquisaController.exibePesquisa(codigo);
 	}
 
@@ -122,10 +127,11 @@ public class ControllerGeral {
 	 * Metodo que vai verificar se a pesquisa associada ao codigo e ativa ou nao.
 	 * Ela retorna o boolean StatusPesquisa(true ou false).
 	 * 
-	 * @param codigo - String codigo.
-	 * @return - Boolean true ou false.
+	 * @param codigo String codigo.
+	 * @return Boolean true ou false.
 	 */
 	public boolean pesquisaEhAtiva(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		return pesquisaController.ehAtiva(codigo);
 	}
 
@@ -142,6 +148,11 @@ public class ControllerGeral {
 	 * @param fotoURL   Url da foto do pesquisador.
 	 */
 	public void cadastraPesquisador(String nome, String funcao, String biografia, String email, String fotoURL) {
+		validador.verificaEntradaNulaVazia(nome, "Campo nome nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(funcao, "Campo funcao nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(biografia, "Campo biografia nao pode ser nulo ou vazio.");
+		validador.verificaEmail(email);
+		validador.verificafotoURL(fotoURL);
 		this.pesquisadorController.cadastraPesquisador(nome, funcao, biografia, email, fotoURL);
 	}
 
@@ -154,6 +165,8 @@ public class ControllerGeral {
 	 * @param novoValor Novo valor para o atributo.
 	 */
 	public void alteraPesquisador(String email, String atributo, String novoValor) {
+		validador.verificaEntradaNulaVazia(email, "Email nao pode ser vazio ou nulo.");
+		validador.verificaEntradaNulaVazia(atributo, "Atributo nao pode ser vazio ou nulo.");
 		this.pesquisadorController.alteraPesquisador(email, atributo, novoValor);
 	}
 
@@ -163,6 +176,7 @@ public class ControllerGeral {
 	 * @param email Email do pesquisador
 	 */
 	public void ativaPesquisador(String email) {
+		validador.verificaEntradaNulaVazia(email, "Email nao pode ser vazio ou nulo.");
 		this.pesquisadorController.ativaPesquisador(email);
 	}
 
@@ -172,8 +186,10 @@ public class ControllerGeral {
 	 * @param email Email do pesquisador
 	 */
 	public void desativaPesquisador(String email) {
+		validador.verificaEntradaNulaVazia(email, "Email nao pode ser vazio ou nulo.");
 		this.pesquisadorController.desativaPesquisador(email);
 	}
+
 	/**
 	 * Metodo que retorna a representacao em string do pesquisador a partir do seu
 	 * cpf.
@@ -182,17 +198,19 @@ public class ControllerGeral {
 	 * @return retorna a representacao em string do pesquisador
 	 */
 	public String exibePesquisador(String email) {
+		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
 		return this.pesquisadorController.exibePesquisador(email);
 	}
 
 	/**
-	 * Metodo que verifica se um pesquisador é ativo ou nao, a partir do seu email.
+	 * Metodo que verifica se um pesquisador e ativo ou nao, a partir do seu email.
 	 * 
 	 * @param email Email do pesquisador.
 	 * @return um valor booleano verdade caso o pesquisador esteja ativo, caso
 	 *         contrario retorna falso.
 	 */
 	public boolean pesquisadorEhAtivo(String email) {
+		validador.verificaEntradaNulaVazia(email, "Email nao pode ser vazio ou nulo.");
 		return this.pesquisadorController.pesquisadorEhAtivo(email);
 	}
 
@@ -206,6 +224,8 @@ public class ControllerGeral {
 	 * @return o codigo de identificacao do problema.
 	 */
 	public String cadastraProblema(String descricao, int viabilidade) {
+		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
+		validador.verificaViabilidade(viabilidade);
 		return this.problemaController.cadastraProblema(descricao, viabilidade);
 	}
 
@@ -220,6 +240,10 @@ public class ControllerGeral {
 	 * @return o codigo de identificacao do objetivo.
 	 */
 	public String cadastraObjetivo(String tipo, String descricao, int aderencia, int viabilidade) {
+		validador.verificaTipoObjetivo(tipo);
+		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
+		validador.verificaAderencia(aderencia);
+		validador.verificaViabilidade(viabilidade);
 		return this.objetivoController.cadastraObjetivo(tipo, descricao, aderencia, viabilidade);
 	}
 
@@ -229,6 +253,7 @@ public class ControllerGeral {
 	 * @param codigo Codigo do problema.
 	 */
 	public void apagarProblema(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		this.problemaController.apagarProblema(codigo);
 	}
 
@@ -238,9 +263,9 @@ public class ControllerGeral {
 	 * @param codigo Codigo do problema.
 	 */
 	public void apagarObjetivo(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		this.objetivoController.apagarObjetivo(codigo);
 	}
-
 
 	/**
 	 * Metodo que retorna a representacao em string do problema a partir do seu
@@ -250,6 +275,7 @@ public class ControllerGeral {
 	 * @return retorna a representacao em string do problema.
 	 */
 	public String exibeProblema(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		return this.problemaController.exibeProblema(codigo);
 	}
 
@@ -261,6 +287,7 @@ public class ControllerGeral {
 	 * @return retorna a representacao em string do problema.
 	 */
 	public String exibeObjetivo(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		return this.objetivoController.exibeObjetivo(codigo);
 	}
 
@@ -276,6 +303,9 @@ public class ControllerGeral {
 	 * @return a representacao em String do codigo de identificacao da atividade.
 	 */
 	public String cadastraAtividade(String descricao, String nivelRisco, String descricaoRisco) {
+		validador.verificaEntradaNulaVazia(descricao, "Campo Descricao nao pode ser nulo ou vazio.");
+		validador.verificaNivelRisco(nivelRisco);
+		validador.verificaEntradaNulaVazia(descricaoRisco, "Campo descricaoRisco nao pode ser nulo ou vazio.");
 		return this.atividadeController.cadastraAtividade(descricao, nivelRisco, descricaoRisco);
 	}
 
@@ -285,6 +315,7 @@ public class ControllerGeral {
 	 * @param codigo Codigo da atividade.
 	 */
 	public void apagaAtividade(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		this.atividadeController.apagaAtividade(codigo);
 	}
 
@@ -296,6 +327,8 @@ public class ControllerGeral {
 	 * @param item   Representacao em String do item.
 	 */
 	public void cadastraItem(String codigo, String item) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(item, "Item nao pode ser nulo ou vazio.");
 		this.atividadeController.cadastraItem(codigo, item);
 	}
 
@@ -306,6 +339,7 @@ public class ControllerGeral {
 	 * @return a representacao em String da atividade.
 	 */
 	public String exibeAtividade(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		return this.atividadeController.exibeAtividade(codigo);
 	}
 
@@ -316,6 +350,7 @@ public class ControllerGeral {
 	 * @return a representacao em Int da quantidade de itens pendentes.
 	 */
 	public int contaItensPendentes(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		return this.atividadeController.contaItensPendentes(codigo);
 	}
 
@@ -326,6 +361,7 @@ public class ControllerGeral {
 	 * @return a representacao em Int da quantidade de itens realizados.
 	 */
 	public int contaItensRealizados(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		return this.atividadeController.contaItensRealizados(codigo);
 	}
 
@@ -401,14 +437,13 @@ public class ControllerGeral {
 	}
 
 	// METODS DA US6 (MATHEUS)
-	
-	
+
 	/**
 	 * Metodo que vai associar um pesquisador com uma pesquisa.
 	 * 
-	 * @param idPesquisa - o código da pesquisa a ser associada.
-	 * @param emailPesquisador - o email que identifica o pesquisador a ser associado.
-	 * @return - true ou false, caso a operaçao seja realizada com sucesso ou nao.
+	 * @param idPesquisa       o codigo da pesquisa a ser associada.
+	 * @param emailPesquisador o email que identifica o pesquisador a ser associado.
+	 * @return true ou false, caso a operacao seja realizada com sucesso ou nao.
 	 */
 	public boolean associaPesquisador(String idPesquisa, String emailPesquisador) {
 		validador.verificaEntradaNulaVazia(idPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
@@ -416,60 +451,65 @@ public class ControllerGeral {
 		Pesquisador pesquisador = this.pesquisadorController.getPesquisador(emailPesquisador);
 		return this.pesquisaController.associaPesquisador(idPesquisa, emailPesquisador, pesquisador);
 	}
-	
-	
+
 	/**
 	 * Metodo que vai desassociar um pesquisador com uma pesquisa.
 	 * 
-	 * @param idPesquisa - o código da pesquisa a ser desassociada.
-	 * @param emailPesquisador - o email que identifica o pesquisador a ser desassociado.
-	 * @return - true ou false, caso a operaçao seja realizada com sucesso ou nao.
+	 * @param idPesquisa       o codigo da pesquisa a ser desassociada.
+	 * @param emailPesquisador o email que identifica o pesquisador a ser
+	 *                         desassociado.
+	 * @return true ou false, caso a operacao seja realizada com sucesso ou nao.
 	 */
 	public boolean desassociaPesquisador(String idPesquisa, String emailPesquisador) {
 		validador.verificaEntradaNulaVazia(idPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(emailPesquisador, "Campo emailPesquisador nao pode ser nulo ou vazio.");
 		return this.pesquisaController.desassociaPesquisador(idPesquisa, emailPesquisador);
 	}
-	
+
 	/**
-	 * Metodo que vai cadastrar a especialidade pofessor, transformando um pesquisador externo em pesqusiador professor.
+	 * Metodo que vai cadastrar a especialidade pofessor, transformando um
+	 * pesquisador externo em pesqusiador professor.
 	 * 
-	 * @param email - email do pesquisador.
-	 * @param formacao - formaçao do pesquisador professor.
-	 * @param unidade - unidade de trabalho do pesquisador professor.
-	 * @param data - data do inicio do trabalho do pesquisador professor.
+	 * @param email    email do pesquisador.
+	 * @param formacao formacao do pesquisador professor.
+	 * @param unidade  unidade de trabalho do pesquisador professor.
+	 * @param data     data do inicio do trabalho do pesquisador professor.
 	 */
 	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
 		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(formacao, "Campo formacao nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(unidade, "Campo unidade nao pode ser nulo ou vazio.");
 		validador.verificaData(data);
-		
 		pesquisadorController.cadastraEspecialidadeProfessor(email, formacao, unidade, data);
 	}
 
 	/**
-	 * Metodo que vai cadastrar a especialidade aluno, transformando um pesquisador externo em pesqusiador aluno.
-	 *  
-	 * @param email - email do pesquisador.
-	 * @param semestre - semestre do pesquisador aluno.
-	 * @param IEA - Índice de Eficiência Acadêmica do pesquisador aluno.
+	 * Metodo que vai cadastrar a especialidade aluno, transformando um pesquisador
+	 * externo em pesquisador aluno.
+	 * 
+	 * @param email    email do pesquisador.
+	 * @param semestre semestre do pesquisador aluno.
+	 * @param IEA      Indice de Eficiencia Academica do pesquisador aluno.
 	 */
 	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
 		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
+		validador.verificaSemestre(semestre);
+		validador.verificaIEA(IEA);
 		pesquisadorController.cadastraEspecialidadeAluno(email, semestre, IEA);
 	}
 
 	/**
-	 * Metodo que vai listar os pesquisadores de acordo com a especialidade passada como parametro.
-	 *  
-	 * @param tipo - tipo dos pesquisadores a serem listados.
-	 * @return - uma lista com o toString de todos os pesquisadores daquele tipo.
+	 * Metodo que vai listar os pesquisadores de acordo com a especialidade passada
+	 * como parametro.
+	 * 
+	 * @param tipo tipo dos pesquisadores a serem listados.
+	 * @return uma lista com o toString de todos os pesquisadores daquele tipo.
 	 */
 	public String listaPesquisadores(String tipo) {
+		validador.verificaEntradaNulaVazia(tipo, "Campo tipo nao pode ser nulo ou vazio.");
 		return pesquisadorController.listaPesquisadores(tipo);
 	}
-	
+
 	// METODOS DA US7 (ALISSON)
 
 	/**
@@ -506,7 +546,7 @@ public class ControllerGeral {
 
 	/**
 	 * Metodo que executa uma atividade a partir do codigo da atividade, do item e
-	 * da duracao da atividade. Quando um item é executado, seu status é alterado
+	 * da duracao da atividade. Quando um item e executado, seu status e alterado
 	 * para "REALIZADO".
 	 * 
 	 * @param codigoAtividade Codigo da atividade.
@@ -515,6 +555,8 @@ public class ControllerGeral {
 	 */
 	public void executaAtividade(String codigoAtividade, int item, int duracao) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		validador.verificaNum(item,"Item nao pode ser nulo ou negativo.");
+		validador.verificaNum(duracao,"Duracao nao pode ser nula ou negativa.");
 		if (!pesquisaController.atividadeEstaAssociada(codigoAtividade)) {
 			throw new IllegalArgumentException("Atividade sem associacoes com pesquisas.");
 		}
@@ -530,6 +572,8 @@ public class ControllerGeral {
 	 * @return o inteiro que representa o resultado
 	 */
 	public int cadastraResultado(String codigoAtividade, String resultado) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(resultado, "Resultado nao pode ser nulo ou vazio.");
 		return this.atividadeController.cadastraResultado(codigoAtividade, resultado);
 	}
 
@@ -543,6 +587,8 @@ public class ControllerGeral {
 	 *         falso.
 	 */
 	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		validador.verificaNum(numeroResultado, "numeroResultado nao pode ser nulo ou negativo.");
 		return this.atividadeController.removeResultado(codigoAtividade, numeroResultado);
 	}
 
@@ -554,6 +600,7 @@ public class ControllerGeral {
 	 * @return uma string com todos o resultados de uma atividade.
 	 */
 	public String listaResultados(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		return this.atividadeController.listaResultados(codigoAtividade);
 	}
 
@@ -566,6 +613,7 @@ public class ControllerGeral {
 	 *         uma atividade
 	 */
 	public int getDuracao(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		return this.atividadeController.getDuracao(codigoAtividade);
 	}
 
@@ -614,10 +662,7 @@ public class ControllerGeral {
 	 */
 	public String busca(String termo, int numeroDoResultado) {
 		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
-		if (numeroDoResultado < 0) {
-			throw new IllegalArgumentException("Numero do resultado nao pode ser negativo");
-		}
-
+		validador.verificaNum(numeroDoResultado,"Numero do resultado nao pode ser negativo");
 		String saida = busca(termo);
 		String[] resultados = saida.split(" \\| ");
 		if (numeroDoResultado > resultados.length) {
@@ -634,6 +679,7 @@ public class ControllerGeral {
 	 * @return a quantidade de resultados obtido na busca
 	 */
 	public int contaResultadosBusca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		String[] resultados = busca(termo).split(" \\| ");
 		if (busca(termo).equals("")) {
 			throw new IllegalArgumentException("Nenhum resultado encontrado");

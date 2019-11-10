@@ -3,13 +3,13 @@ package psquiza;
 /**
  * Representacao de um validador para verificar entradas.
  * 
- * @author Raphael Agra - 119110413
+ * @author Raphael Agra 119110413
  *
  */
 public class Validador {
 
 	/**
-	 * Metodo que verifica se uma entrada é vazia ou nula a partir da entrada e de
+	 * Metodo que verifica se uma entrada e vazia ou nula a partir da entrada e de
 	 * uma mensagem de excecao.
 	 * 
 	 * @param entrada  Entrada a ser verificada.
@@ -73,6 +73,7 @@ public class Validador {
 	 * @param nivelRisco Nivel de risco.
 	 */
 	public void verificaNivelRisco(String nivelRisco) {
+		verificaEntradaNulaVazia(nivelRisco, "Campo nivelRisco nao pode ser nulo ou vazio.");
 		if (!nivelRisco.equals("BAIXO") && !nivelRisco.equals("MEDIO") && !nivelRisco.equals("ALTO")) {
 			throw new IllegalArgumentException("Valor invalido do nivel do risco.");
 		}
@@ -85,6 +86,7 @@ public class Validador {
 	 * @param tipo Tipo de um objetivo.
 	 */
 	public void verificaTipoObjetivo(String tipo) {
+		verificaEntradaNulaVazia(tipo, "Campo tipo nao pode ser nulo ou vazio.");
 		if (!tipo.equals("GERAL") && !tipo.equals("ESPECIFICO")) {
 			throw new IllegalArgumentException("Valor invalido de tipo.");
 		}
@@ -140,23 +142,62 @@ public class Validador {
 			}
 		}
 	}
-	
+
+	/**
+	 * Metodo que verifica se data segue os padroes de formato corretos.
+	 * 
+	 * @param data Data a ser verificada.
+	 */
 	public void verificaData(String data) {
 		verificaEntradaNulaVazia(data, "Campo data nao pode ser nulo ou vazio.");
 		String[] dataSeparada = data.split("/");
-		
+
 		if (dataSeparada.length < 3) {
 			throw new IllegalArgumentException("Atributo data com formato invalido.");
 		}
-		
+
 		if (dataSeparada[0].length() != 2 || dataSeparada[1].length() != 2 || dataSeparada[2].length() != 4) {
 			throw new IllegalArgumentException("Atributo data com formato invalido.");
 		}
-		
+
 		int dia = Integer.parseInt(dataSeparada[0]);
 		int mes = Integer.parseInt(dataSeparada[1]);
 		if ((dia < 1 || dia > 31) || (mes < 1 || mes > 12)) {
 			throw new IllegalArgumentException("Atributo data com formato invalido.");
+		}
+	}
+
+	/**
+	 * Metodo que verifica se o semestre segue os padroes de formato corretos.
+	 * 
+	 * @param semestre Semestre a ser verificado.
+	 */
+	public void verificaSemestre(int semestre) {
+		if (semestre < 1) {
+			throw new IllegalArgumentException("Atributo semestre com formato invalido.");
+		}
+	}
+
+	/**
+	 * Metodo que verifica se a IEA segue os padroes de formato corretos.
+	 * 
+	 * @param iea IEA a ser verificada.
+	 */
+	public void verificaIEA(double iea) {
+		if (iea < 0 || iea > 10) {
+			throw new IllegalArgumentException("Atributo IEA com formato invalido.");
+		}
+	}
+
+	/**
+	 * Metodo que verifica se um numero segue os padroes de formato corretos.
+	 * 
+	 * @param num Numero a ser verificado.
+	 * @param msg Mensagem de erro da exception.
+	 */
+	public void verificaNum(int num, String msg) {
+		if (num < 0) {
+			throw new IllegalArgumentException(msg);
 		}
 	}
 

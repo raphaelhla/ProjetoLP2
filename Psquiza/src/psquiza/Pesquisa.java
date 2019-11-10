@@ -37,7 +37,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	private boolean statusPesquisa;
 
 	/**
-	 * Validador utilizado para lançar excecoes.
+	 * Validador utilizado para lancar excecoes.
 	 */
 	private Validador validador;
 
@@ -55,7 +55,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 * Mapa de objetivos associados.
 	 */
 	private Map<String, Objetivo> objetivosAssociados;
-	
+
 	/**
 	 * Mapa de pesquisadores associados.
 	 */
@@ -64,14 +64,16 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	/**
 	 * Constroi uma pesquisa a partir de sua descricao, campo de interesse e codigo
 	 * 
-	 * @param descricao        - String que representa a descricao da pesquisa.
-	 * @param campoDeInteresse - String que representa o campo de interesse da
+	 * @param descricao        String que representa a descricao da pesquisa.
+	 * @param campoDeInteresse String que representa o campo de interesse da
 	 *                         pesquisa.
-	 * @param codigo           - String que representa o codigo da pesquisa.
+	 * @param codigo           String que representa o codigo da pesquisa.
 	 */
 	public Pesquisa(String descricao, String campoDeInteresse, String codigo) {
 		validador = new Validador();
 		validador.verificaEntradaNulaVazia(descricao, "Descricao nao pode ser nula ou vazia.");
+		validador.verificaCampoDeInteresse(campoDeInteresse);
+		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		this.statusPesquisa = true;
 		this.descricao = descricao;
 		this.campoDeInteresse = campoDeInteresse;
@@ -85,7 +87,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	/**
 	 * Metodo que retorna a descricao da pesquisa.
 	 * 
-	 * @return - String que representa a descricao da pesquisa.
+	 * @return String que representa a descricao da pesquisa.
 	 */
 	public String getDescricao() {
 		return descricao;
@@ -94,16 +96,17 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	/**
 	 * Metodo que vai setar um novo valor para a descricao da pesquisa.
 	 * 
-	 * @param descricao - String que representa a nova descricao da pesquisa.
+	 * @param descricao String que representa a nova descricao da pesquisa.
 	 */
 	public void setDescricao(String descricao) {
+		validador.verificaEntradaNulaVazia(descricao, "Descricao nao pode ser nula ou vazia.");
 		this.descricao = descricao;
 	}
 
 	/**
 	 * Metodo que retorna o campo de interesse da pesquisa.
 	 * 
-	 * @return - String que representa o campo de interesse da pesquisa.
+	 * @return String que representa o campo de interesse da pesquisa.
 	 */
 	public String getCampoDeInteresse() {
 		return campoDeInteresse;
@@ -112,17 +115,18 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	/**
 	 * Metodo que vai setar um novo valor para o campo de interrese da pesquisa.
 	 * 
-	 * @param campoDeInteresse - String que representa o novo campo de interesse da
+	 * @param campoDeInteresse String que representa o novo campo de interesse da
 	 *                         pesquisa.
 	 */
 	public void setCampoDeInteresse(String campoDeInteresse) {
+		validador.verificaCampoDeInteresse(campoDeInteresse);
 		this.campoDeInteresse = campoDeInteresse;
 	}
 
 	/**
 	 * Metodo que retorna o status da pesquisa.
 	 * 
-	 * @return - Boolean que representa o status da pesquisa.
+	 * @return Boolean que representa o status da pesquisa.
 	 */
 	public boolean getStatusPesquisa() {
 		return statusPesquisa;
@@ -165,6 +169,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 * @return verdadeiro se for associada com sucesso, caso contrario retorna falso
 	 */
 	public boolean associaAtividade(String codigoAtividade, Atividade atividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Codigo nao pode ser nulo ou vazio.");
 		if (atividadesAssociadas.containsKey(codigoAtividade)) {
 			return false;
 		}
@@ -184,6 +189,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 *         falso
 	 */
 	public boolean desassociaAtividade(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Codigo nao pode ser nulo ou vazio.");
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		}
@@ -193,18 +199,19 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
 			throw new IllegalArgumentException("Atividade nao encontrada.");
 		}
-		
+
 		this.atividadesAssociadas.remove(codigoAtividade);
 		return true;
 	}
-	
+
 	/**
 	 * Metodo que vai verificar se a atividade esta associada ou nao.
 	 * 
-	 * @param codigoAtividade - codigo da atividade a ser procurada.
-	 * @return - true ou false, caso a atividade esteja associada ou nao.
+	 * @param codigoAtividade codigo da atividade a ser procurada.
+	 * @return true ou false, caso a atividade esteja associada ou nao.
 	 */
 	public boolean atividadeEstaAssociada(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Codigo nao pode ser nulo ou vazio.");
 		if (atividadesAssociadas.containsKey(codigoAtividade)) {
 			return true;
 		}
@@ -219,6 +226,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 * @return verdade se a descricao contem o termo, caso contrario retorna falso.
 	 */
 	public boolean buscaDescricao(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		return this.descricao.contains(termo);
 	}
 
@@ -231,6 +239,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 *         retorna falso.
 	 */
 	public boolean buscaCampoInteresse(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		return this.campoDeInteresse.contains(termo);
 	}
 
@@ -245,6 +254,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 * @return retorna true se o problema foi associado, e false se nao.
 	 */
 	public boolean associaProblema(String codigoProblema, Problema problema) {
+		validador.verificaEntradaNulaVazia(codigoProblema, "Codigo nao pode ser nulo ou vazio.");
 		if (problemaAssociado.containsKey(codigoProblema)) {
 			return false;
 		} else if (!this.statusPesquisa) {
@@ -281,6 +291,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 * @return retorna true se o objetivo esta associado ou false se nao.
 	 */
 	public boolean getAssociacaoObjetivo(String codigoObjetivo) {
+		validador.verificaEntradaNulaVazia(codigoObjetivo, "Codigo nao pode ser nulo ou vazio.");
 		return this.objetivosAssociados.containsKey(codigoObjetivo);
 	}
 
@@ -293,6 +304,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 * @return retorna true se o objetivo foi associado e false se nao.
 	 */
 	public boolean associaObjetivo(String codigoObjetivo, Objetivo objetivo) {
+		validador.verificaEntradaNulaVazia(codigoObjetivo, "Codigo nao pode ser nulo ou vazio.");
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (objetivosAssociados.containsKey(codigoObjetivo)) {
@@ -310,6 +322,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 * @return retorna true se o objetivo foi desassociado e false se nao.
 	 */
 	public boolean desassociaObjetivo(String codigoObjetivo) {
+		validador.verificaEntradaNulaVazia(codigoObjetivo, "Codigo nao pode ser nulo ou vazio.");
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (!objetivosAssociados.containsKey(codigoObjetivo)) {
@@ -371,17 +384,19 @@ public class Pesquisa implements Comparable<Pesquisa> {
 			throw new IllegalArgumentException("Pesquisa sem problema associado.");
 		}
 	}
-	
+
 	// US6 Matheus
 
 	/**
 	 * Metodo que vai associar um pesquisador com uma pesquisa.
 	 * 
-	 * @param emailPesquisador - o email que identifica o pesquisador a ser associado.
-	 * @param pesquisador - objeto de pesquisador que representa o pesquisador a ser associado.
-	 * @return - true ou false, caso a operaçao seja realizada com sucesso ou nao.
+	 * @param emailPesquisador o email que identifica o pesquisador a ser associado.
+	 * @param pesquisador      objeto de pesquisador que representa o pesquisador a
+	 *                         ser associado.
+	 * @return true ou false, caso a operacao seja realizada com sucesso ou nao.
 	 */
 	public boolean associaPesquisador(String emailPesquisador, Pesquisador pesquisador) {
+		validador.verificaEntradaNulaVazia(emailPesquisador, "Campo emailPesquisador nao pode ser nulo ou vazio.");
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (this.pesquisadoresAssociados.containsKey(emailPesquisador)) {
@@ -394,10 +409,12 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	/**
 	 * Metodo que vai desassociar um pesquisador com uma pesquisa.
 	 * 
-	 * @param emailPesquisador - o email que identifica o pesquisador a ser desassociado.
-	 * @return - true ou false, caso a operaçao seja realizada com sucesso ou nao.
+	 * @param emailPesquisador o email que identifica o pesquisador a ser
+	 *                         desassociado.
+	 * @return true ou false, caso a operacao seja realizada com sucesso ou nao.
 	 */
 	public boolean desassociaPesquisador(String emailPesquisador) {
+		validador.verificaEntradaNulaVazia(emailPesquisador, "Campo emailPesquisador nao pode ser nulo ou vazio.");
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		} else if (!this.pesquisadoresAssociados.containsKey(emailPesquisador)) {

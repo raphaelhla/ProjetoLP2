@@ -10,7 +10,7 @@ import java.util.Map;
  * Representacao de uma atividade. Toda atividade precisa ter uma descricao,
  * nivel do risco, descricao do risco
  * 
- * @author Weslley Azevedo - 11911241
+ * @author Weslley Azevedo 11911241
  *
  */
 public class Atividade {
@@ -66,7 +66,6 @@ public class Atividade {
 	public Atividade(String descricao, String nivelRisco, String descricaoRisco) {
 		this.validador = new Validador();
 		validador.verificaEntradaNulaVazia(descricao, "Campo Descricao nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(nivelRisco, "Campo nivelRisco nao pode ser nulo ou vazio.");
 		validador.verificaNivelRisco(nivelRisco);
 		validador.verificaEntradaNulaVazia(descricaoRisco, "Campo descricaoRisco nao pode ser nulo ou vazio.");
 		this.descricao = descricao;
@@ -156,12 +155,14 @@ public class Atividade {
 
 	/**
 	 * Metodo que executa uma atividade a partir do item e da duracao da atividade.
-	 * Quando um item é executado, seu status é alterado para "REALIZADO".
+	 * Quando um item e executado, seu status e alterado para "REALIZADO".
 	 * 
 	 * @param item    Item executado.
 	 * @param duracao Duracao da execucao do item.
 	 */
 	public void executaAtividade(int item, int duracao) {
+		validador.verificaNum(item, "Item nao pode ser nulo ou negativo.");
+		validador.verificaNum(duracao, "Duracao nao pode ser nula ou negativa.");
 		if (!this.itens.containsKey(item)) {
 			throw new IllegalArgumentException("Item nao encontrado.");
 		}
@@ -180,6 +181,7 @@ public class Atividade {
 	 * @return o inteiro que representa o resultado
 	 */
 	public int cadastraResultado(String resultado) {
+		validador.verificaEntradaNulaVazia(resultado, "Resultado nao pode ser nulo ou vazio.");
 		this.indiceResultados += 1;
 		this.resultados.put(this.indiceResultados, resultado);
 		return this.indiceResultados;
@@ -194,6 +196,7 @@ public class Atividade {
 	 *         falso.
 	 */
 	public boolean removeResultado(int numeroResultado) {
+		validador.verificaNum(numeroResultado, "numeroResultado nao pode ser nulo ou negativo.");
 		if (numeroResultado > indiceResultados) {
 			throw new IllegalArgumentException("Resultado nao encontrado.");
 		}
@@ -244,6 +247,7 @@ public class Atividade {
 	 * @return verdade se a descricao contem o termo, caso contrario retorna falso.
 	 */
 	public boolean buscaDescricao(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		return this.descricao.contains(termo);
 	}
 
@@ -256,6 +260,7 @@ public class Atividade {
 	 *         retorna falso.
 	 */
 	public boolean buscaDescricaoRisco(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		return this.descricaoRisco.contains(termo);
 	}
 }

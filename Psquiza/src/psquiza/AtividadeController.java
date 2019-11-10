@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Representacao de um controller de atividade.
  * 
- * @author Weslley Azevedo - 119111241
+ * @author Weslley Azevedo 119111241
  *
  */
 public class AtividadeController {
@@ -50,123 +50,121 @@ public class AtividadeController {
 	 */
 	public String cadastraAtividade(String descricao, String nivelRisco, String descricaoRisco) {
 		validador.verificaEntradaNulaVazia(descricao, "Campo Descricao nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(nivelRisco, "Campo nivelRisco nao pode ser nulo ou vazio.");
 		validador.verificaNivelRisco(nivelRisco);
 		validador.verificaEntradaNulaVazia(descricaoRisco, "Campo descricaoRisco nao pode ser nulo ou vazio.");
 		Atividade atividade = new Atividade(descricao, nivelRisco, descricaoRisco);
-		String codigo = "A" + this.indice++;
-		this.mapaAtividades.put(codigo, atividade);
-		return codigo;
+		String codigoAtividade = "A" + this.indice++;
+		this.mapaAtividades.put(codigoAtividade, atividade);
+		return codigoAtividade;
 	}
 
 	/**
-	 * Verifica se a atividade existe a partir de seu codigo.
+	 * Verifica se a atividade existe a partir de seu codigoAtividade.
 	 * 
-	 * @param codigo Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 */
-	private void verificaSeExisteAtividade(String codigo) {
-		if (!mapaAtividades.containsKey(codigo)) {
+	private void verificaSeExisteAtividade(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		if (!mapaAtividades.containsKey(codigoAtividade)) {
 			throw new IllegalArgumentException("Atividade nao encontrada");
 		}
 	}
 
 	/**
-	 * Apaga uma atividade a partir de seu codigo.
+	 * Apaga uma atividade a partir de seu codigoAtividade.
 	 * 
-	 * @param codigo Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 */
-	public void apagaAtividade(String codigo) {
-		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigo);
-		this.mapaAtividades.remove(codigo);
+	public void apagaAtividade(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(codigoAtividade);
+		this.mapaAtividades.remove(codigoAtividade);
 	}
 
 	/**
-	 * Cadastra um item na atividade a partir do codigo da atividade e a String que
+	 * Cadastra um item na atividade a partir do codigoAtividade da atividade e a String que
 	 * representa o item.
 	 * 
-	 * @param codigo Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 * @param item   Representacao em String do item.
 	 */
-	public void cadastraItem(String codigo, String item) {
-		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
+	public void cadastraItem(String codigoAtividade, String item) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(item, "Item nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigo);
-		this.mapaAtividades.get(codigo).cadastraItem(item);
+		verificaSeExisteAtividade(codigoAtividade);
+		this.mapaAtividades.get(codigoAtividade).cadastraItem(item);
 	}
 
 	/**
 	 * Retorna a String que representa a atividade.
 	 * 
-	 * @param codigo Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 * @return a representacao em String da atividade.
 	 */
-	public String exibeAtividade(String codigo) {
-		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigo);
-		return this.mapaAtividades.get(codigo).toString();
+	public String exibeAtividade(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(codigoAtividade);
+		return this.mapaAtividades.get(codigoAtividade).toString();
 	}
 
 	/**
 	 * Retorna a quantidade de itens pendentes contidos em determinada atividade.
 	 * 
-	 * @param codigo Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 * @return a representacao em Int da quantidade de itens pendentes.
 	 */
-	public int contaItensPendentes(String codigo) {
-		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigo);
-		return this.mapaAtividades.get(codigo).getQtdItensPendentes();
+	public int contaItensPendentes(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(codigoAtividade);
+		return this.mapaAtividades.get(codigoAtividade).getQtdItensPendentes();
 	}
 
 	/**
 	 * Retorna a quantidade de itens realizados contidos em determinada atividade.
 	 * 
-	 * @param codigo Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 * @return a representacao em Int da quantidade de itens realizados.
 	 */
-	public int contaItensRealizados(String codigo) {
-		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigo);
-		return this.mapaAtividades.get(codigo).getQtdItensRealizados();
+	public int contaItensRealizados(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(codigoAtividade);
+		return this.mapaAtividades.get(codigoAtividade).getQtdItensRealizados();
 	}
 
 	/**
-	 * Metodo que retorna uma atividade, a partir do codigo da atividade.
+	 * Metodo que retorna uma atividade, a partir do codigoAtividade da atividade.
 	 * 
-	 * @param codigo Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 * @return uma atividade
 	 */
-	public Atividade getAtividade(String codigo) {
-		verificaSeExisteAtividade(codigo);
-		return this.mapaAtividades.get(codigo);
+	public Atividade getAtividade(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(codigoAtividade);
+		return this.mapaAtividades.get(codigoAtividade);
 	}
 
 	/**
-	 * Metodo que executa uma atividade a partir do codigo da atividade, do item e
-	 * da duracao da atividade. Quando um item é executado, seu status é alterado
+	 * Metodo que executa uma atividade a partir do codigoAtividade da atividade, do item e
+	 * da duracao da atividade. Quando um item e executado, seu status e alterado
 	 * para "REALIZADO".
 	 * 
-	 * @param codigoAtividade Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 * @param item            Item executado.
 	 * @param duracao         Duracao da execucao do item.
 	 */
 	public void executaAtividade(String codigoAtividade, int item, int duracao) {
-		if (item < 0) {
-			throw new IllegalArgumentException("Item nao pode ser nulo ou negativo.");
-		}
-		if (duracao < 0) {
-			throw new IllegalArgumentException("Duracao nao pode ser nula ou negativa.");
-		}
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		validador.verificaNum(item,"Item nao pode ser nulo ou negativo.");
+		validador.verificaNum(duracao,"Duracao nao pode ser nula ou negativa.");
 		this.mapaAtividades.get(codigoAtividade).executaAtividade(item, duracao);
 
 	}
 
 	/**
-	 * Metodo que cadastra um resultado para uma atividade a partir do codigo da
+	 * Metodo que cadastra um resultado para uma atividade a partir do codigoAtividade da
 	 * atividade e do resultado a ser cadastrado.
 	 * 
-	 * @param codigoAtividade Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 * @param resultado       Resultado a ser cadastrado.
 	 * @return o inteiro que representa o resultado
 	 */
@@ -177,19 +175,17 @@ public class AtividadeController {
 	}
 
 	/**
-	 * Metodo que remove um resultado de uma atividade a partir do codigo da
+	 * Metodo que remove um resultado de uma atividade a partir do codigoAtividade da
 	 * atividade e do numero que representa o resultado a ser removido.
 	 * 
-	 * @param codigoAtividade Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 * @param numeroResultado Numero do resultado.
 	 * @return verdadeiro se a remocao for bem sucedida, caso contrario retorna
 	 *         falso.
 	 */
 	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		if (numeroResultado < 0) {
-			throw new IllegalArgumentException("numeroResultado nao pode ser nulo ou negativo.");
-		}
+		validador.verificaNum(numeroResultado, "numeroResultado nao pode ser nulo ou negativo.");
 		verificaSeExisteAtividade(codigoAtividade);
 		return this.mapaAtividades.get(codigoAtividade).removeResultado(numeroResultado);
 	}
@@ -198,7 +194,7 @@ public class AtividadeController {
 	 * Metodo que retorna uma string com todos o resultados de uma atividade passada
 	 * como parametro.
 	 * 
-	 * @param codigoAtividade Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 * @return uma string com todos o resultados de uma atividade.
 	 */
 	public String listaResultados(String codigoAtividade) {
@@ -211,7 +207,7 @@ public class AtividadeController {
 	 * Metodo que retorna o inteiro que representa a duracao da execucao de todos os
 	 * itens de uma atividade passada como parametro.
 	 * 
-	 * @param codigoAtividade Codigo da atividade.
+	 * @param codigoAtividade codigo da atividade.
 	 * @return o inteiro que representa a duracao da execucao de todos os itens de
 	 *         uma atividade
 	 */
@@ -229,6 +225,7 @@ public class AtividadeController {
 	 * @return uma string que representa as atividades que possuem o termo
 	 */
 	public String busca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		String saida = "";
 		List<String> stringAtividades = new ArrayList<>();
 		List<String> chaves = new ArrayList<>(mapaAtividades.keySet());

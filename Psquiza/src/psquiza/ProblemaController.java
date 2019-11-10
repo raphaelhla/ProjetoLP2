@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Representacao de um controller de problemas.
  * 
- * @author Jose Alisson - 119110645
+ * @author Jose Alisson 119110645
  *
  */
 public class ProblemaController {
@@ -26,7 +26,7 @@ public class ProblemaController {
 	private int indiceProblema;
 
 	/**
-	 * Validador utilizado para lançar excecoes.
+	 * Validador utilizado para lancar excecoes.
 	 */
 	private Validador validador;
 
@@ -64,6 +64,7 @@ public class ProblemaController {
 	 *         retorna falso.
 	 */
 	private void verificaSeExisteProblema(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Campo codigo nao pode ser nulo ou vazio.");
 		if (!mapProblemas.containsKey(codigo)) {
 			throw new IllegalArgumentException("Problema nao encontrado");
 		}
@@ -113,6 +114,7 @@ public class ProblemaController {
 	 * @return uma string que representa os problemas que possuem o termo
 	 */
 	public String busca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		String saida = "";
 		List<String> stringProblemas = new ArrayList<>();
 		List<String> chaves = new ArrayList<>(mapProblemas.keySet());

@@ -6,12 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
 /**
  * Representacao de um controller de pesquisadores.
  * 
- * @author Raphael Agra - 119110413
+ * @author Raphael Agra 119110413
  *
  */
 public class PesquisadorController {
@@ -24,7 +22,7 @@ public class PesquisadorController {
 	private Map<String, Pesquisador> pesquisadores;
 
 	/**
-	 * Validador utilizado para lançar excecoes.
+	 * Validador utilizado para lancar excecoes.
 	 */
 	private Validador validador;
 
@@ -50,19 +48,17 @@ public class PesquisadorController {
 		validador.verificaEntradaNulaVazia(nome, "Campo nome nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(funcao, "Campo funcao nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(biografia, "Campo biografia nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
-		validador.verificaEntradaNulaVazia(fotoURL, "Campo fotoURL nao pode ser nulo ou vazio.");
 		validador.verificaEmail(email);
 		validador.verificafotoURL(fotoURL);
 		this.pesquisadores.put(email, new Pesquisador(nome, funcao, biografia, email, fotoURL));
 	}
-	
+
 	/**
 	 * Metodo que vai buscar um pesquisador no map pesquisadores.
 	 * 
 	 * 
-	 * @param email - email do pesquisador a ser retornado.
-	 * @return - objeto pesquisador que possui o email passado como parametro.
+	 * @param email email do pesquisador a ser retornado.
+	 * @return objeto pesquisador que possui o email passado como parametro.
 	 */
 	public Pesquisador getPesquisador(String email) {
 		return pesquisadores.get(email);
@@ -90,14 +86,14 @@ public class PesquisadorController {
 	 * @param novoValor Novo valor para o atributo.
 	 */
 	public void alteraPesquisador(String email, String atributo, String novoValor) {
-		verificaSeExistePesquisador(email, "Pesquisador nao encontrado");
+		validador.verificaEntradaNulaVazia(email, "Email nao pode ser vazio ou nulo.");
 		validador.verificaEntradaNulaVazia(atributo, "Atributo nao pode ser vazio ou nulo.");
-		;
+		verificaSeExistePesquisador(email, "Pesquisador nao encontrado");
 		if (!pesquisadorEhAtivo(email)) {
 			throw new IllegalArgumentException("Pesquisador inativo.");
 		}
 		Pesquisador pesquisador = pesquisadores.get(email);
-		
+
 		switch (atributo) {
 		case "NOME":
 			validador.verificaEntradaNulaVazia(novoValor, "Campo nome nao pode ser nulo ou vazio.");
@@ -128,12 +124,15 @@ public class PesquisadorController {
 			pesquisador.alteraAtributoEspecialidade(atributo, novoValor);
 			break;
 		case "FORMACAO":
+			validador.verificaEntradaNulaVazia(novoValor, "Campo formacao nao pode ser nulo ou vazio.");
 			pesquisador.alteraAtributoEspecialidade(atributo, novoValor);
 			break;
 		case "UNIDADE":
+			validador.verificaEntradaNulaVazia(novoValor, "Campo unidade nao pode ser nulo ou vazio.");
 			pesquisador.alteraAtributoEspecialidade(atributo, novoValor);
 			break;
 		case "DATA":
+			validador.verificaData(novoValor);
 			pesquisador.alteraAtributoEspecialidade(atributo, novoValor);
 			break;
 		default:
@@ -147,6 +146,7 @@ public class PesquisadorController {
 	 * @param email Email do pesquisador
 	 */
 	public void ativaPesquisador(String email) {
+		validador.verificaEntradaNulaVazia(email, "Email nao pode ser vazio ou nulo.");
 		verificaSeExistePesquisador(email, "Pesquisador nao encontrado");
 		if (pesquisadorEhAtivo(email)) {
 			throw new IllegalArgumentException("Pesquisador ja ativado.");
@@ -160,6 +160,7 @@ public class PesquisadorController {
 	 * @param email Email do pesquisador
 	 */
 	public void desativaPesquisador(String email) {
+		validador.verificaEntradaNulaVazia(email, "Email nao pode ser vazio ou nulo.");
 		verificaSeExistePesquisador(email, "Pesquisador nao encontrado");
 		if (!pesquisadorEhAtivo(email)) {
 			throw new IllegalArgumentException("Pesquisador inativo.");
@@ -207,6 +208,7 @@ public class PesquisadorController {
 	 * @return uma string que representa os pesquisadores que possuem o termo
 	 */
 	public String busca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		String saida = "";
 		List<String> stringPesquisadores = new ArrayList<>();
 		List<String> chaves = new ArrayList<>(pesquisadores.keySet());
@@ -220,17 +222,22 @@ public class PesquisadorController {
 		saida = String.join(" | ", stringPesquisadores);
 		return saida;
 	}
-	
+
 	// US6 Matheus
 	/**
-	 * Metodo que vai cadastrar a especialidade pofessor, transformando um pesquisador externo em pesqusiador professor.
+	 * Metodo que vai cadastrar a especialidade pofessor, transformando um
+	 * pesquisador externo em pesqusiador professor.
 	 * 
-	 * @param email - email do pesquisador.
-	 * @param formacao - formaçao do pesquisador professor.
-	 * @param unidade - unidade de trabalho do pesquisador professor.
-	 * @param data - data do inicio do trabalho do pesquisador professor.
+	 * @param email    email do pesquisador.
+	 * @param formacao formacao do pesquisador professor.
+	 * @param unidade  unidade de trabalho do pesquisador professor.
+	 * @param data     data do inicio do trabalho do pesquisador professor.
 	 */
 	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
+		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(formacao, "Campo formacao nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(unidade, "Campo unidade nao pode ser nulo ou vazio.");
+		validador.verificaData(data);
 		verificaSeExistePesquisador(email, "Pesquisadora nao encontrada.");
 		Pesquisador pesquisador = getPesquisador(email);
 		if (!pesquisador.getFuncao().equals("professor")) {
@@ -238,40 +245,41 @@ public class PesquisadorController {
 		}
 		pesquisador.setEspecialidade(new PesquisadorProfessor(formacao, unidade, data));
 	}
-	
+
 	/**
-	 * Metodo que vai cadastrar a especialidade aluno, transformando um pesquisador externo em pesqusiador aluno.
-	 *  
-	 * @param email - email do pesquisador.
-	 * @param semestre - semestre do pesquisador aluno.
-	 * @param IEA - Índice de Eficiência Acadêmica do pesquisador aluno.
+	 * Metodo que vai cadastrar a especialidade aluno, transformando um pesquisador
+	 * externo em pesqusiador aluno.
+	 * 
+	 * @param email    email do pesquisador.
+	 * @param semestre semestre do pesquisador aluno.
+	 * @param IEA      Indice de Eficiencia Academica do pesquisador aluno.
 	 */
 	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
+		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
+		validador.verificaSemestre(semestre);
+		validador.verificaIEA(IEA);
 		verificaSeExistePesquisador(email, "Pesquisadora nao encontrada.");
-		if (semestre < 1) {
-			throw new IllegalArgumentException("Atributo semestre com formato invalido.");
-		}
-		if (IEA < 0 || IEA > 10) {
-			throw new IllegalArgumentException("Atributo IEA com formato invalido.");
-		}
 		Pesquisador pesquisador = getPesquisador(email);
 		if (!pesquisador.getFuncao().equals("estudante")) {
 			throw new IllegalArgumentException("Pesquisador nao compativel com a especialidade.");
 		}
 		pesquisador.setEspecialidade(new PesquisadorAluno(semestre, IEA));
 	}
-	
+
 	/**
-	 * Metodo que vai listar os pesquisadores de acordo com a especialidade passada como parametro.
-	 *  
-	 * @param tipo - tipo dos pesquisadores a serem listados.
-	 * @return - uma lista com o toString de todos os pesquisadores daquele tipo.
+	 * Metodo que vai listar os pesquisadores de acordo com a especialidade passada
+	 * como parametro.
+	 * 
+	 * @param tipo tipo dos pesquisadores a serem listados.
+	 * @return retorna a representacao em String de todos os pesquisadores do tipo.
 	 */
 	public String listaPesquisadores(String tipo) {
 		validador.verificaEntradaNulaVazia(tipo, "Campo tipo nao pode ser nulo ou vazio.");
+		String string = "";
+
 		switch (tipo) {
+
 		case "EXTERNO":
-			String string = "";
 			List<String> pesquisadoresExternos = new ArrayList<String>();
 			for (Pesquisador pesquisador : pesquisadores.values()) {
 				if (pesquisador.getFuncao().equals("externo")) {
@@ -280,9 +288,8 @@ public class PesquisadorController {
 			}
 			string = String.join(" | ", pesquisadoresExternos);
 			return string;
-		
+
 		case "ALUNA":
-			String string2 = "";
 			List<String> pesquisadoresAlunos = new ArrayList<String>();
 			for (Pesquisador pesquisador : pesquisadores.values()) {
 				if (pesquisador.getFuncao().equals("estudante")) {
@@ -290,10 +297,9 @@ public class PesquisadorController {
 				}
 			}
 			string = String.join(" | ", pesquisadoresAlunos);
-			return string2;
-			
+			return string;
+
 		case "PROFESSORA":
-			String string3 = "";
 			List<String> pesquisadoresProfessores = new ArrayList<String>();
 			for (Pesquisador pesquisador : pesquisadores.values()) {
 				if (pesquisador.getFuncao().equals("professor")) {
@@ -301,10 +307,11 @@ public class PesquisadorController {
 				}
 			}
 			string = String.join(" | ", pesquisadoresProfessores);
-			return string3;
+			return string;
+
 		default:
 			throw new IllegalArgumentException("Tipo " + tipo + " inexistente.");
 		}
 	}
-	
+
 }

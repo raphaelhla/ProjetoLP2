@@ -5,11 +5,15 @@ import easyaccept.EasyAccept;
 public class Facade {
 
 	public static void main(String[] args) {
-		args = new String[] { "psquiza.Facade", "testes_easyaccept/use_case_1.txt", "testes_easyaccept/use_case_2.txt",
-				"testes_easyaccept/use_case_3.txt", "testes_easyaccept/use_case_4.txt",
+		args = new String[] { "psquiza.Facade",
+				"testes_easyaccept/use_case_1.txt",
+				"testes_easyaccept/use_case_2.txt",
+				"testes_easyaccept/use_case_3.txt",
+				"testes_easyaccept/use_case_4.txt",
 				"testes_easyaccept/use_case_5.txt",
 				"testes_easyaccept/use_case_6.txt", 
-				"testes_easyaccept/use_case_7.txt", "testes_easyaccept/use_case_8.txt", };
+				"testes_easyaccept/use_case_7.txt",
+				"testes_easyaccept/use_case_8.txt", };
 		EasyAccept.main(args);
 	}
 
@@ -152,7 +156,7 @@ public class Facade {
 	}
 	
 	public boolean desassociaPesquisador(String idPesquisa, String emailPesquisador) {
-		return controllerGeral.associaPesquisador(idPesquisa, emailPesquisador);
+		return controllerGeral.desassociaPesquisador(idPesquisa, emailPesquisador);
 	}
 	
 	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {

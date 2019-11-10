@@ -4,7 +4,7 @@ package psquiza;
  * Representacao de um objetivo. Todo objetivo precisa ter tipo, descricao,
  * aderencia e viabilidade.
  * 
- * @author Jose Alisson - 119110645
+ * @author Jose Alisson 119110645
  *
  */
 public class Objetivo {
@@ -28,6 +28,11 @@ public class Objetivo {
 	 * Viabilidade do objetivo.
 	 */
 	private int viabilidade;
+	
+	/**
+	 * Validador utilizado para validar entradas do sistema.
+	 */
+	private Validador validador;
 
 	/**
 	 * Constroi um objetivo a partir do seu tipo, descricao, aderencia e
@@ -39,6 +44,11 @@ public class Objetivo {
 	 * @param viabilidade Viabilidade do objetivo.
 	 */
 	public Objetivo(String tipo, String descricao, int aderencia, int viabilidade) {
+		this.validador = new Validador();
+		validador.verificaTipoObjetivo(tipo);
+		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
+		validador.verificaAderencia(aderencia);
+		validador.verificaViabilidade(viabilidade);
 		this.tipo = tipo;
 		this.descricao = descricao;
 		this.aderencia = aderencia;
@@ -65,6 +75,7 @@ public class Objetivo {
 	 * @return verdade se a descricao contem o termo, caso contrario retorna falso.
 	 */
 	public boolean busca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		return this.descricao.contains(termo);
 	}
 

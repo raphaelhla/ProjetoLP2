@@ -10,14 +10,11 @@ import psquiza.Pesquisa;
 import java.util.Map;
 import psquiza.Validador;
 
+/**
+ * Classe que representa um controller de pesquisa.
+ * 
+ */
 public class PesquisaController {
-	// US1 Matheus
-	/**
-	 * Classe que representa um controller de pesquisa.
-	 * 
-	 * @author matheus
-	 * 
-	 */
 
 	/**
 	 * Mapa com todas as pesquisas cadastradas no sistema.
@@ -30,10 +27,13 @@ public class PesquisaController {
 	private Map<String, Integer> codigos;
 
 	/**
-	 * Validador utilizado para lançar excecoes.
+	 * Validador utilizado para lancar excecoes.
 	 */
 	private Validador validador;
 
+	/**
+	 * Constroi um controller de pesquisa.
+	 */
 	public PesquisaController() {
 		this.mapPesquisas = new HashMap<String, Pesquisa>();
 		this.codigos = new HashMap<String, Integer>();
@@ -41,15 +41,15 @@ public class PesquisaController {
 	}
 
 	/***
-	 * Metodo que vai cadastrar uma pesquisa, usando como parametro duas
-	 * strings(descricao e campo de interesse).Nesse metodo tambem sera gerado um
-	 * codigo que representa os 3 primeiros caracteres do campo de interesse.O
+	 * Metodo que cadastra uma pesquisa, usando como parametro duas
+	 * Strings(descricao e campo de interesse). Nesse metodo tambem sera gerado um
+	 * codigo que representa os 3 primeiros caracteres do campo de interesse. O
 	 * metodo retorna esse codigo caso o cadastro seja realizado com sucesso.
 	 * 
-	 * @param descricao        - String que representa a descricao da pesquisa.
-	 * @param campoDeInteresse - String que representa o campo de interesse da
+	 * @param descricao        String que representa a descricao da pesquisa.
+	 * @param campoDeInteresse String que representa o campo de interesse da
 	 *                         pesquisa.
-	 * @return - codigo gerado da pesquisa.
+	 * @return codigo gerado da pesquisa.
 	 */
 	public String cadastraPesquisa(String descricao, String campoDeInteresse) {
 		validador.verificaEntradaNulaVazia(descricao, "Descricao nao pode ser nula ou vazia.");
@@ -72,9 +72,10 @@ public class PesquisaController {
 	 * Metodo que vai verificar se o codigo ja existe no mapPesquisas. Caso nao
 	 * exista, ele mostrar a mensagem "Pesquisa nao encontrada.".
 	 * 
-	 * @param codigo - String que representa o codigo da pesquisa.
+	 * @param codigo String que representa o codigo da pesquisa.
 	 */
 	private void verificaSeExistePesquisa(String codigo) {
+		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		if (!mapPesquisas.containsKey(codigo)) {
 			throw new IllegalArgumentException("Pesquisa nao encontrada.");
 		}
@@ -84,15 +85,14 @@ public class PesquisaController {
 	 * Metodo que altera uma pesquisa. E passado um codigo que representa uma
 	 * pesquisa, qual atributo vai ser alterado e o seu novo valor.
 	 * 
-	 * 
-	 * @param codigo               - String codigo.
-	 * @param conteudoASerAlterado - String que representa o atributo a ser
-	 *                             alterado.
-	 * @param novoConteudo         - String que representa o novo valor do atributo
+	 * @param codigo               String codigo.
+	 * @param conteudoASerAlterado String que representa o atributo a ser alterado.
+	 * @param novoConteudo         String que representa o novo valor do atributo
 	 *                             alterado.
 	 */
 	public void alteraPesquisa(String codigo, String conteudoASerAlterado, String novoConteudo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(conteudoASerAlterado, "conteudoASerAlterado nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigo);
 		if (mapPesquisas.get(codigo).getStatusPesquisa() == false) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
@@ -113,9 +113,8 @@ public class PesquisaController {
 	 * Metodo que vai encerrar uma pesquisa de acordo com o codigo que representa
 	 * ela.Tambem e passado como parametro o motivo do encerramento da pesquisa.
 	 * 
-	 * 
-	 * @param codigo - String codigo.
-	 * @param motivo - String que representa o motivo do encerramento da pesquisa.
+	 * @param codigo String codigo.
+	 * @param motivo String que representa o motivo do encerramento da pesquisa.
 	 */
 	public void encerraPesquisa(String codigo, String motivo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
@@ -131,7 +130,7 @@ public class PesquisaController {
 	 * Metodo que vai ativar uma pesquisa. Ele vai pegar a pesquisa representada
 	 * pelo codigo e vai passar o seu status para true.
 	 * 
-	 * @param codigo - String codigo.
+	 * @param codigo String codigo.
 	 */
 	public void ativaPesquisa(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
@@ -147,9 +146,8 @@ public class PesquisaController {
 	 * parametro. Ele vai retornar esse codigo, caso exista, seguido do toString da
 	 * pesquisa representada por esse codigo.
 	 * 
-	 * @param codigo - String codigo.
-	 * @return - String que contem o codigo mais o toString da pesquisa a ser
-	 *         exibida.
+	 * @param codigo String codigo.
+	 * @return String que contem o codigo mais o toString da pesquisa a ser exibida.
 	 */
 	public String exibePesquisa(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
@@ -161,8 +159,8 @@ public class PesquisaController {
 	 * Metodo que vai verificar se a pesquisa associada ao codigo e ativa ou nao.
 	 * Ela retorna o boolean StatusPesquisa(true ou false).
 	 * 
-	 * @param codigo - String codigo.
-	 * @return - Boolean true ou false.
+	 * @param codigo String codigo.
+	 * @return Boolean true ou false.
 	 */
 	public boolean ehAtiva(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
@@ -182,6 +180,8 @@ public class PesquisaController {
 	 * @return verdadeiro se for associada com sucesso, caso contrario retorna falso
 	 */
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade, Atividade atividade) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigoPesquisa);
 		return this.mapPesquisas.get(codigoPesquisa).associaAtividade(codigoAtividade, atividade);
 	}
@@ -196,11 +196,22 @@ public class PesquisaController {
 	 *         falso
 	 */
 	public boolean desassociaAtividade(String codigoPesquisa, String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigoPesquisa);
 		return this.mapPesquisas.get(codigoPesquisa).desassociaAtividade(codigoAtividade);
 	}
-	
+
+	/**
+	 * Retorna um boolean que representa se a atividade esta associada a uma
+	 * pesquisa.
+	 * 
+	 * @param codigoAtividade Codigo da atividade.
+	 * @return retorna true se a atividade esta associada a alguma pesquisa e false
+	 *         se nao.
+	 */
 	public boolean atividadeEstaAssociada(String codigoAtividade) {
+		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		boolean retorno = false;
 		for (Pesquisa pesquisa : mapPesquisas.values()) {
 			if (pesquisa.atividadeEstaAssociada(codigoAtividade)) {
@@ -219,6 +230,7 @@ public class PesquisaController {
 	 * @return uma string que representa as pesquisas que possuem o termo
 	 */
 	public String busca(String termo) {
+		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		String saida = "";
 		List<String> stringAtividades = new ArrayList<>();
 		List<String> chaves = new ArrayList<>(mapPesquisas.keySet());
@@ -245,7 +257,7 @@ public class PesquisaController {
 	 * @param codigoPesquisa Codigo da pesquisa.
 	 * @param codigoProblema Codigo do problema.
 	 * @param problema       Objeto problema.
-	 * @return retorna true se o problema foi associado, e false se nao.
+	 * @return retorna true se o problema foi associado e false se nao.
 	 */
 	public boolean associaProblema(String codigoPesquisa, String codigoProblema, Problema problema) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
@@ -274,6 +286,8 @@ public class PesquisaController {
 	 * @param codigoPesquisa Codigo da pesquisa.
 	 */
 	private void verificaAssociacaoObjetivo(String codigoObjetivo, String codigoPesquisa) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Campo codigoPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(codigoObjetivo, "Campo codigoObjetivo nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigoPesquisa);
 		for (String chave : this.mapPesquisas.keySet()) {
 			if (!chave.equals(codigoPesquisa)) {
@@ -380,6 +394,7 @@ public class PesquisaController {
 	 * @return a representacao em String de todas as pesquisas.
 	 */
 	public String listaPesquisas(String ordem) {
+		validador.verificaEntradaNulaVazia(ordem, "Valor invalido da ordem");
 		switch (ordem) {
 		case "PROBLEMA":
 			return ordernaPorProblema();
@@ -393,16 +408,19 @@ public class PesquisaController {
 	}
 
 	// US6 MATHEUS
-	
+
 	/**
 	 * Metodo que vai associar um pesquisador com uma pesquisa.
 	 * 
-	 * @param idPesquisa - o código da pesquisa a ser associada.
-	 * @param emailPesquisador - o email que identifica o pesquisador a ser associado.
-	 * @param pesquisador - objeto de pesquisador a ser criado para ser associado.
-	 * @return - true ou false, caso a operaçao seja realizada com sucesso ou nao.
+	 * @param idPesquisa       o codigo da pesquisa a ser associada.
+	 * @param emailPesquisador o email que identifica o pesquisador a ser associado.
+	 * @param pesquisador      objeto de pesquisador a ser criado para ser
+	 *                         associado.
+	 * @return true ou false, caso a operacao seja realizada com sucesso ou nao.
 	 */
 	public boolean associaPesquisador(String idPesquisa, String emailPesquisador, Pesquisador pesquisador) {
+		validador.verificaEntradaNulaVazia(idPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(emailPesquisador, "Campo emailPesquisador nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(idPesquisa);
 		return this.mapPesquisas.get(idPesquisa).associaPesquisador(emailPesquisador, pesquisador);
 	}
@@ -410,12 +428,16 @@ public class PesquisaController {
 	/**
 	 * Metodo que vai desassociar um pesquisador com uma pesquisa.
 	 * 
-	 * @param idPesquisa - o código da pesquisa a ser desassociada.
-	 * @param emailPesquisador - o email que identifica o pesquisador a ser desassociado.
-	 * @return - true ou false, caso a operaçao seja realizada com sucesso ou nao.
+	 * @param idPesquisa       o codigo da pesquisa a ser desassociada.
+	 * @param emailPesquisador o email que identifica o pesquisador a ser
+	 *                         desassociado.
+	 * @return true ou false, caso a operacao seja realizada com sucesso ou nao.
 	 */
 	public boolean desassociaPesquisador(String idPesquisa, String emailPesquisador) {
+		validador.verificaEntradaNulaVazia(idPesquisa, "Campo idPesquisa nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(emailPesquisador, "Campo emailPesquisador nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(idPesquisa);
 		return this.mapPesquisas.get(idPesquisa).desassociaPesquisador(emailPesquisador);
 	}
+
 }
