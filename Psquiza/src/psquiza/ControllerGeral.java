@@ -316,6 +316,9 @@ public class ControllerGeral {
 
 	public void executaAtividade(String codigoAtividade, int item, int duracao) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+		if (!pesquisaController.atividadeEstaAssociada(codigoAtividade)) {
+			throw new IllegalArgumentException("Atividade sem associacoes com pesquisas.");
+		}
 		this.atividadeController.executaAtividade(codigoAtividade, item, duracao);
 	}
 

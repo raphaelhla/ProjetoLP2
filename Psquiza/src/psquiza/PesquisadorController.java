@@ -68,9 +68,9 @@ public class PesquisadorController {
 	 * @return um valor booleano verdade caso exista o pesquisador, caso contrario
 	 *         retorna falso.
 	 */
-	private void verificaSeExistePesquisador(String email) {
+	private void verificaSeExistePesquisador(String email, String mensagem) {
 		if (!pesquisadores.containsKey(email)) {
-			throw new IllegalArgumentException("Pesquisador nao encontrado");
+			throw new IllegalArgumentException(mensagem);
 		}
 	}
 
@@ -83,7 +83,7 @@ public class PesquisadorController {
 	 * @param novoValor Novo valor para o atributo.
 	 */
 	public void alteraPesquisador(String email, String atributo, String novoValor) {
-		verificaSeExistePesquisador(email);
+		verificaSeExistePesquisador(email, "Pesquisador nao encontrado");
 		validador.verificaEntradaNulaVazia(atributo, "Atributo nao pode ser vazio ou nulo.");
 		;
 		if (!pesquisadorEhAtivo(email)) {
@@ -105,19 +105,25 @@ public class PesquisadorController {
 			pesquisador.setBiografia(novoValor);
 			break;
 		case "EMAIL":
-			validador.verificaEntradaNulaVazia(novoValor, "Campo email nao pode ser nulo ou vazio.");
 			validador.verificaEmail(novoValor);
 			pesquisadores.remove(email);
 			pesquisador.setEmail(novoValor);
 			pesquisadores.put(novoValor, pesquisador);
 			break;
 		case "FOTO":
-			validador.verificaEntradaNulaVazia(novoValor, "Campo fotoURL nao pode ser nulo ou vazio.");
 			validador.verificafotoURL(novoValor);
 			pesquisador.setFotoURL(novoValor);
 			break;
-		
-			
+		case "SEMESTRE":
+			break;
+		case "IEA":
+			break;
+		case "FORMACAO":
+			break;
+		case "UNIDADE":
+			break;
+		case "DATA":
+			break;
 		default:
 			throw new IllegalArgumentException("Atributo invalido.");
 		}
@@ -129,7 +135,7 @@ public class PesquisadorController {
 	 * @param email Email do pesquisador
 	 */
 	public void ativaPesquisador(String email) {
-		verificaSeExistePesquisador(email);
+		verificaSeExistePesquisador(email, "Pesquisador nao encontrado");
 		if (pesquisadorEhAtivo(email)) {
 			throw new IllegalArgumentException("Pesquisador ja ativado.");
 		}
@@ -142,7 +148,7 @@ public class PesquisadorController {
 	 * @param email Email do pesquisador
 	 */
 	public void desativaPesquisador(String email) {
-		verificaSeExistePesquisador(email);
+		verificaSeExistePesquisador(email, "Pesquisador nao encontrado");
 		if (!pesquisadorEhAtivo(email)) {
 			throw new IllegalArgumentException("Pesquisador inativo.");
 		}
@@ -157,7 +163,8 @@ public class PesquisadorController {
 	 * @return retorna a representacao em string do pesquisador
 	 */
 	public String exibePesquisador(String email) {
-		verificaSeExistePesquisador(email);
+		validador.verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
+		verificaSeExistePesquisador(email, "Pesquisador nao encontrado");
 		if (pesquisadores.get(email).getStatus().equals("inativo")) {
 			throw new IllegalArgumentException("Pesquisador inativo.");
 		}
@@ -173,7 +180,7 @@ public class PesquisadorController {
 	 */
 	public boolean pesquisadorEhAtivo(String email) {
 		validador.verificaEntradaNulaVazia(email, "Email nao pode ser vazio ou nulo.");
-		verificaSeExistePesquisador(email);
+		verificaSeExistePesquisador(email, "Pesquisador nao encontrado");
 		if (pesquisadores.get(email).getStatus().equals("ativo")) {
 			return true;
 		}
@@ -203,15 +210,22 @@ public class PesquisadorController {
 	}
 	
 	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
-		verificaSeExistePesquisador(email);
+		verificaSeExistePesquisador(email, "Pesquisadora nao encontrada.");
 		Pesquisador pesquisador = getPesquisador(email);
 		if (!pesquisador.getFuncao().equals("professor")) {
 			throw new IllegalArgumentException("Pesquisador nao compativel com a especialidade.");
 		}
 		pesquisador.setEspecialidade(new PesquisadorProfessor(formacao, unidade, data));
 	}
+	
 	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
-		verificaSeExistePesquisador(email);
+		verificaSeExistePesquisador(email, "Pesquisadora nao encontrada.");
+		if (semestre < 1) {
+			throw new IllegalArgumentException("Atributo semestre com formato invalido.");
+		}
+		if (IEA < 0 || IEA > 10) {
+			throw new IllegalArgumentException("Atributo IEA com formato invalido.");
+		}
 		Pesquisador pesquisador = getPesquisador(email);
 		if (!pesquisador.getFuncao().equals("estudante")) {
 			throw new IllegalArgumentException("Pesquisador nao compativel com a especialidade.");

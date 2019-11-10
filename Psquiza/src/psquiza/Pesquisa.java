@@ -182,17 +182,25 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	 *         falso
 	 */
 	public boolean desassociaAtividade(String codigoAtividade) {
-		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
-			return false;
-		}
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		}
 		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
+			return false;
+		}
+		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
 			throw new IllegalArgumentException("Atividade nao encontrada.");
 		}
+		
 		this.atividadesAssociadas.remove(codigoAtividade);
 		return true;
+	}
+	
+	public boolean atividadeEstaAssociada(String codigoAtividade) {
+		if (atividadesAssociadas.containsKey(codigoAtividade)) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -371,7 +379,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		if (!this.statusPesquisa) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		}
-		if (!pesquisadoresAssociados.containsKey(emailPesquisador)) {
+		if (pesquisadoresAssociados.containsKey(emailPesquisador)) {
 			return false;
 		}
 		this.pesquisadoresAssociados.remove(emailPesquisador);

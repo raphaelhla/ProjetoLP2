@@ -32,6 +32,7 @@ public class Validador {
 	 * @param email Email
 	 */
 	public void verificaEmail(String email) {
+		verificaEntradaNulaVazia(email, "Campo email nao pode ser nulo ou vazio.");
 		String primeiraLetra = email.substring(0, 1);
 		String ultimaLetra = email.substring(email.length() - 1);
 
@@ -53,6 +54,7 @@ public class Validador {
 	 * @param fotoURL Link da foto.
 	 */
 	public void verificafotoURL(String fotoURL) {
+		verificaEntradaNulaVazia(fotoURL, "Campo fotoURL nao pode ser nulo ou vazio.");
 		if (fotoURL.length() < 7) {
 			throw new IllegalArgumentException("Formato de foto invalido.");
 		}
@@ -141,18 +143,19 @@ public class Validador {
 	
 	public void verificaData(String data) {
 		verificaEntradaNulaVazia(data, "Campo data nao pode ser nulo ou vazio.");
-		String[] dataSeparada = data.split(" / ");
+		String[] dataSeparada = data.split("/");
+		
 		if (dataSeparada.length < 3) {
 			throw new IllegalArgumentException("Atributo data com formato invalido.");
 		}
+		
 		if (dataSeparada[0].length() != 2 || dataSeparada[1].length() != 2 || dataSeparada[2].length() != 4) {
 			throw new IllegalArgumentException("Atributo data com formato invalido.");
 		}
 		
 		int dia = Integer.parseInt(dataSeparada[0]);
 		int mes = Integer.parseInt(dataSeparada[1]);
-		int ano = Integer.parseInt(dataSeparada[2]);
-		if ((dia < 1 && dia > 31) || mes < 1 && mes > 12) {
+		if ((dia < 1 || dia > 31) || (mes < 1 || mes > 12)) {
 			throw new IllegalArgumentException("Atributo data com formato invalido.");
 		}
 	}

@@ -193,6 +193,17 @@ public class PesquisaController {
 		verificaSeExistePesquisa(codigoPesquisa);
 		return this.mapPesquisas.get(codigoPesquisa).desassociaAtividade(codigoAtividade);
 	}
+	
+	public boolean atividadeEstaAssociada(String codigoAtividade) {
+		boolean retorno = false;
+		for (Pesquisa pesquisa : mapPesquisas.values()) {
+			if (pesquisa.atividadeEstaAssociada(codigoAtividade)) {
+				retorno = true;
+				break;
+			}
+		}
+		return retorno;
+	}
 
 	/**
 	 * Metodo que recebe um termo como parametro e retorna uma string representando
