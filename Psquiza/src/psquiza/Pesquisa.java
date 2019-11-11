@@ -158,7 +158,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return this.descricao + " - " + this.campoDeInteresse;
 	}
 
-	// US8 Raphael
+	// US6 Matheus
 
 	/**
 	 * Metodo que associa uma atividade a uma pesquisa a partir do codigo da
@@ -218,6 +218,8 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		return false;
 	}
 
+	// US8 Raphael
+	
 	/**
 	 * Metodo que verifica se a descricao da pesquisa contem uma string passada como
 	 * parametro e retorna um valor booleano.

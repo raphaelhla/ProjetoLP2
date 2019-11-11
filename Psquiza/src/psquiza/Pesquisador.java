@@ -74,35 +74,6 @@ public class Pesquisador {
 		this.status = "ativo";
 	}
 
-	// US6 Matheus
-
-	/**
-	 * Metodo que vai setar uma especialidade para o pesquisador.
-	 * 
-	 * @param especialidade nova especialidade do pesquisador.
-	 */
-	public void setEspecialidade(Especialidade especialidade) {
-		this.especialidade = especialidade;
-	}
-
-	/**
-	 * Metodo que vai retornar a especialidade do pesquisador.
-	 * 
-	 * @return especialidade do pesquisador.
-	 */
-	public Especialidade getEspecialidade() {
-		return this.especialidade;
-	}
-
-	/**
-	 * Metodo que vai retornar a funçao do pesquisador.
-	 * 
-	 * @return funcao do pesquisador.
-	 */
-	public String getFuncao() {
-		return this.funcao;
-	}
-
 	/**
 	 * Metodo que altera o nome do pesquisador a partir de um novo nome passado como
 	 * parametro.
@@ -110,7 +81,6 @@ public class Pesquisador {
 	 * @param nome Nome do pesquisador.
 	 */
 
-	// US2 Raphael Agra
 	public void setNome(String nome) {
 		validador.verificaEntradaNulaVazia(nome, "Campo nome nao pode ser nulo ou vazio.");
 		this.nome = nome;
@@ -225,6 +195,23 @@ public class Pesquisador {
 	}
 
 	// US6 Matheus
+	/**
+	 * Metodo que vai setar uma especialidade para o pesquisador.
+	 * 
+	 * @param especialidade nova especialidade do pesquisador.
+	 */
+	public void setEspecialidade(Especialidade especialidade) {
+		this.especialidade = especialidade;
+	}
+
+	/**
+	 * Metodo que vai retornar a funçao do pesquisador.
+	 * 
+	 * @return funcao do pesquisador.
+	 */
+	public String getFuncao() {
+		return this.funcao;
+	}
 
 	/**
 	 * Metodo que vai alterar uma tributo de um objeto pesquisador.

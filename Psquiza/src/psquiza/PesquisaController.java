@@ -96,22 +96,24 @@ public class PesquisaController {
 		verificaSeExistePesquisa(codigo);
 		if (mapPesquisas.get(codigo).getStatusPesquisa() == false) {
 			throw new IllegalArgumentException("Pesquisa desativada.");
-		} else {
-			if (conteudoASerAlterado.equals("DESCRICAO")) {
-				validador.verificaEntradaNulaVazia(novoConteudo, "Descricao nao pode ser nula ou vazia.");
-				mapPesquisas.get(codigo).setDescricao(novoConteudo);
-			} else if (conteudoASerAlterado.equals("CAMPO")) {
-				validador.verificaEntradaNulaVazia(novoConteudo, "Formato do campo de interesse invalido.");
-				mapPesquisas.get(codigo).setCampoDeInteresse(novoConteudo);
-			} else {
-				throw new IllegalArgumentException("Nao e possivel alterar esse valor de pesquisa.");
-			}
+		}
+		switch (conteudoASerAlterado) {
+		case "DESCRICAO":
+			validador.verificaEntradaNulaVazia(novoConteudo, "Descricao nao pode ser nula ou vazia.");
+			mapPesquisas.get(codigo).setDescricao(novoConteudo);
+			break;
+		case "CAMPO":
+			validador.verificaEntradaNulaVazia(novoConteudo, "Formato do campo de interesse invalido.");
+			mapPesquisas.get(codigo).setCampoDeInteresse(novoConteudo);
+			break;
+		default:
+			throw new IllegalArgumentException("Nao e possivel alterar esse valor de pesquisa.");
 		}
 	}
 
 	/**
-	 * Metodo que vai encerrar uma pesquisa de acordo com o codigo que representa
-	 * ela.Tambem e passado como parametro o motivo do encerramento da pesquisa.
+	 * Metodo que encerra uma pesquisa a partir do codigo da pesquisa e do motivo de
+	 * encerramento.
 	 * 
 	 * @param codigo String codigo.
 	 * @param motivo String que representa o motivo do encerramento da pesquisa.

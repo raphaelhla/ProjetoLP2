@@ -15,6 +15,24 @@ class PesquisadorTest {
 	}
 
 	@Test
+	public void testToString() {
+		assertEquals("Raphael (Estudante) - estudante de computacao - raphael@example.com - https://teste.com", p1.toString());
+	}
+	
+	@Test
+	public void testAtivaPesquisador() {
+		p1.desativaPesquisador();
+		p1.ativaPesquisador();
+		assertEquals("ativo", p1.getStatus());
+	}
+	
+	@Test
+	public void testDesativaPesquisador() {
+		p1.desativaPesquisador();
+		assertEquals("inativo", p1.getStatus());
+	}
+	
+	@Test
 	public void testBuscaDescricao() {
 		assertTrue(p1.busca("computacao"));
 	}
@@ -32,5 +50,10 @@ class PesquisadorTest {
 	@Test
 	public void testGetEmail() {
 		assertEquals("raphael@example.com", p1.getEmail());
+	}
+	
+	@Test
+	public void testGetFuncao() {
+		assertEquals("Estudante", p1.getFuncao());
 	}
 }
