@@ -34,4 +34,12 @@
 | CDU6 | Matheus |
 | CDU7 | Alisson |
 | CDU8 | Raphael |
-   
+
+     Parte 3 do projeto:
+
+| CASOS DE USO | ALUNO RESPONSÁVEL |
+| ------ | ------ |
+| CDU9 | Raphael |
+| CDU10 | Alisson |
+| CDU11 | Matheus |
+| CDU12 | Weslley |   
