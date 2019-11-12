@@ -702,4 +702,12 @@ public class ControllerGeral {
 	public int contaProximos(String idPrecedente) {
 		return this.atividadeController.contaProximos(idPrecedente);
 	}
+
+	public String pegaProximo(String idAtividade, int enesimaAtividade) {
+		return this.atividadeController.pegaProximo(idAtividade, enesimaAtividade);
+	}
+
+	public String pegaMaiorRiscoAtividades(String idAtividade) {
+		return this.atividadeController.pegaMaiorRiscoAtividades(idAtividade);
+	}
 }

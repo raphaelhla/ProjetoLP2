@@ -233,5 +233,12 @@ public class Facade {
 	public int contaProximos(String idPrecedente) {
 		return this.controllerGeral.contaProximos(idPrecedente);
 	}
+	
+	public String pegaProximo(String idAtividade, int enesimaAtividade) {
+		return this.controllerGeral.pegaProximo(idAtividade, enesimaAtividade);
+	}
 
+	public String pegaMaiorRiscoAtividades(String idAtividade) {
+		return this.controllerGeral.pegaMaiorRiscoAtividades(idAtividade);
+	}
 }

@@ -11,8 +11,8 @@ class AtividadeTest {
 	
 	@BeforeEach
 	public void criaAtividade() {
-		a1 = new Atividade("teste", "BAIXO", "descricao do teste");
-		a2 = new Atividade("irineu", "MEDIO", "testenivel");
+		a1 = new Atividade("teste", "BAIXO", "descricao do teste", "A1");
+		a2 = new Atividade("irineu", "MEDIO", "testenivel", "A2");
 	}
 	
 	@Test

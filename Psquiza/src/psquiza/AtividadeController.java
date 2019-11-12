@@ -52,8 +52,8 @@ public class AtividadeController {
 		validador.verificaEntradaNulaVazia(descricao, "Campo Descricao nao pode ser nulo ou vazio.");
 		validador.verificaNivelRisco(nivelRisco);
 		validador.verificaEntradaNulaVazia(descricaoRisco, "Campo descricaoRisco nao pode ser nulo ou vazio.");
-		Atividade atividade = new Atividade(descricao, nivelRisco, descricaoRisco);
 		String codigoAtividade = "A" + this.indice++;
+		Atividade atividade = new Atividade(descricao, nivelRisco, descricaoRisco, codigoAtividade);
 		this.mapaAtividades.put(codigoAtividade, atividade);
 		return codigoAtividade;
 	}
@@ -64,9 +64,7 @@ public class AtividadeController {
 	 * @param codigoAtividade codigo da atividade.
 	 */
 	private void verificaSeExisteAtividade(String codigoAtividade, String msg) {
-		if (!mapaAtividades.containsKey(codigoAtividade)) {
-			throw new IllegalArgumentException(msg);
-		}
+		if (!mapaAtividades.containsKey(codigoAtividade)) throw new IllegalArgumentException(msg); 
 	}
 
 	/**
@@ -262,5 +260,18 @@ public class AtividadeController {
 	public int contaProximos(String idPrecedente) {
 		validador.verificaEntradaNulaVazia(idPrecedente, "Atividade nao pode ser nulo ou vazio.");
 		return mapaAtividades.get(idPrecedente).contaProximos();
+	}
+
+	public String pegaProximo(String idAtividade, int enesimaAtividade) {
+		validador.verificaEntradaNulaVazia(idAtividade, "Atividade nao pode ser nulo ou vazio.");
+		if (enesimaAtividade < 1) throw new IllegalArgumentException("Atividade nao pode ser nulo ou vazio.");
+		if (contaProximos(idAtividade) < enesimaAtividade) throw new IllegalArgumentException("Atividade inexistente.");
+		return this.mapaAtividades.get(idAtividade).pegaProximo();
+	}
+
+	public String pegaMaiorRiscoAtividades(String idAtividade) {
+		validador.verificaEntradaNulaVazia(idAtividade, "Atividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(idAtividade, "Atividade nao encontrada.");
+		return this.mapaAtividades.get(idAtividade).pegaMaiorRiscoAtividade();
 	}
 }

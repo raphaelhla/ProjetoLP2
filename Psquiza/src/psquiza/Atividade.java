@@ -14,7 +14,7 @@ import java.util.Map;
  *
  */
 public class Atividade {
-	
+
 	private Atividade subsquente;
 
 	/**
@@ -36,6 +36,11 @@ public class Atividade {
 	 * Descricao do risco da atividade.
 	 */
 	private String descricaoRisco;
+
+	/**
+	 * Codigo de identificacao da atividade.
+	 */
+	private String codigoAtividade;
 
 	/**
 	 * Lista que contem todos os itens cadastrados na atividade.
@@ -65,7 +70,7 @@ public class Atividade {
 	 * @param nivelRisco     Nivel do risco da atividade.
 	 * @param descricaoRisco Descricao do risco da atividade.
 	 */
-	public Atividade(String descricao, String nivelRisco, String descricaoRisco) {
+	public Atividade(String descricao, String nivelRisco, String descricaoRisco, String codigoAtividade) {
 		this.validador = new Validador();
 		validador.verificaEntradaNulaVazia(descricao, "Campo Descricao nao pode ser nulo ou vazio.");
 		validador.verificaNivelRisco(nivelRisco);
@@ -73,6 +78,7 @@ public class Atividade {
 		this.descricao = descricao;
 		this.nivelRisco = nivelRisco;
 		this.descricaoRisco = descricaoRisco;
+		this.codigoAtividade = codigoAtividade;
 		this.itens = new HashMap<Integer, Item>();
 		this.resultados = new HashMap<Integer, String>();
 		this.indiceItens = 0;
@@ -165,12 +171,10 @@ public class Atividade {
 	public void executaAtividade(int item, int duracao) {
 		validador.verificaNum(item, "Item nao pode ser nulo ou negativo.");
 		validador.verificaNum(duracao, "Duracao nao pode ser nula ou negativa.");
-		if (!this.itens.containsKey(item)) {
+		if (!this.itens.containsKey(item))
 			throw new IllegalArgumentException("Item nao encontrado.");
-		}
-		if (this.itens.get(item).getStatus().equals("REALIZADO")) {
+		if (this.itens.get(item).getStatus().equals("REALIZADO"))
 			throw new IllegalArgumentException("Item ja executado.");
-		}
 		this.itens.get(item).executaItem(duracao);
 
 	}
@@ -199,12 +203,10 @@ public class Atividade {
 	 */
 	public boolean removeResultado(int numeroResultado) {
 		validador.verificaNum(numeroResultado, "numeroResultado nao pode ser nulo ou negativo.");
-		if (numeroResultado > indiceResultados) {
+		if (numeroResultado > indiceResultados)
 			throw new IllegalArgumentException("Resultado nao encontrado.");
-		}
-		if (!this.resultados.containsKey(numeroResultado)) {
+		if (!this.resultados.containsKey(numeroResultado))
 			return false;
-		}
 		this.resultados.remove(numeroResultado);
 		return true;
 	}
@@ -267,18 +269,36 @@ public class Atividade {
 	}
 
 	// US9 Raphael
-	
+
 	public void next(Atividade proxima) {
-		if (this.subsquente != null) throw new IllegalArgumentException("Atividade ja possui uma subsequente.");
+		if (this.subsquente != null)
+			throw new IllegalArgumentException("Atividade ja possui uma subsequente.");
 		this.subsquente = proxima;
 	}
-	
+
 	public void tiraProximaAtividade() {
 		this.subsquente = null;
 	}
 
 	public int contaProximos() {
-		if (this.subsquente == null) return 0;
+		if (this.subsquente == null)
+			return 0;
 		return 1 + this.subsquente.contaProximos();
+	}
+
+	public String getCodigo() {
+		return this.codigoAtividade;
+	}
+
+	public Atividade getSusquente() {
+		return this.subsquente;
+	}
+	public String pegaProximo() {
+		return this.subsquente.getCodigo();
+	}
+
+	public String pegaMaiorRiscoAtividade() {
+		 if (this.subsquente == null) throw new IllegalArgumentException("Nao existe proxima atividade.");
+		return null;
 	}
 }
