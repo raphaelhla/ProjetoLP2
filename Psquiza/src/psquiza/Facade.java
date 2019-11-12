@@ -13,7 +13,11 @@ public class Facade {
 				"testes_easyaccept/use_case_5.txt",
 				"testes_easyaccept/use_case_6.txt", 
 				"testes_easyaccept/use_case_7.txt",
-				"testes_easyaccept/use_case_8.txt", };
+				"testes_easyaccept/use_case_8.txt",
+				"testes_easyaccept/use_case_9.txt"/**,
+				"testes_easyaccept/use_case_10.txt", 
+				"testes_easyaccept/use_case_11.txt",
+				"testes_easyaccept/use_case_12.txt"*/};
 		EasyAccept.main(args);
 	}
 
@@ -224,6 +228,10 @@ public class Facade {
 	
 	public void tiraProximaAtividade(String idPrecedente) {
 		this.controllerGeral.tiraProximaAtividade(idPrecedente);
+	}
+	
+	public int contaProximos(String idPrecedente) {
+		return this.controllerGeral.contaProximos(idPrecedente);
 	}
 
 }

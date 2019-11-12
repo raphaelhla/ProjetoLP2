@@ -698,4 +698,8 @@ public class ControllerGeral {
 		 this.atividadeController.tiraProximaAtividade(idPrecedente);
 		
 	}
+
+	public int contaProximos(String idPrecedente) {
+		return this.atividadeController.contaProximos(idPrecedente);
+	}
 }

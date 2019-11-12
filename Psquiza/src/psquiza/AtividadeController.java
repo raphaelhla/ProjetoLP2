@@ -63,10 +63,9 @@ public class AtividadeController {
 	 * 
 	 * @param codigoAtividade codigo da atividade.
 	 */
-	private void verificaSeExisteAtividade(String codigoAtividade) {
-		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
+	private void verificaSeExisteAtividade(String codigoAtividade, String msg) {
 		if (!mapaAtividades.containsKey(codigoAtividade)) {
-			throw new IllegalArgumentException("Atividade nao encontrada");
+			throw new IllegalArgumentException(msg);
 		}
 	}
 
@@ -77,7 +76,7 @@ public class AtividadeController {
 	 */
 	public void apagaAtividade(String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigoAtividade);
+		verificaSeExisteAtividade(codigoAtividade, "Atividade nao encontrada");
 		this.mapaAtividades.remove(codigoAtividade);
 	}
 
@@ -91,7 +90,7 @@ public class AtividadeController {
 	public void cadastraItem(String codigoAtividade, String item) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		validador.verificaEntradaNulaVazia(item, "Item nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigoAtividade);
+		verificaSeExisteAtividade(codigoAtividade, "Atividade nao encontrada");
 		this.mapaAtividades.get(codigoAtividade).cadastraItem(item);
 	}
 
@@ -103,7 +102,7 @@ public class AtividadeController {
 	 */
 	public String exibeAtividade(String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigoAtividade);
+		verificaSeExisteAtividade(codigoAtividade, "Atividade nao encontrada");
 		return this.mapaAtividades.get(codigoAtividade).toString();
 	}
 
@@ -115,7 +114,7 @@ public class AtividadeController {
 	 */
 	public int contaItensPendentes(String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigoAtividade);
+		verificaSeExisteAtividade(codigoAtividade, "Atividade nao encontrada");
 		return this.mapaAtividades.get(codigoAtividade).getQtdItensPendentes();
 	}
 
@@ -127,7 +126,7 @@ public class AtividadeController {
 	 */
 	public int contaItensRealizados(String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigoAtividade);
+		verificaSeExisteAtividade(codigoAtividade, "Atividade nao encontrada");
 		return this.mapaAtividades.get(codigoAtividade).getQtdItensRealizados();
 	}
 
@@ -139,7 +138,7 @@ public class AtividadeController {
 	 */
 	public Atividade getAtividade(String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigoAtividade);
+		verificaSeExisteAtividade(codigoAtividade, "Atividade nao encontrada");
 		return this.mapaAtividades.get(codigoAtividade);
 	}
 
@@ -186,7 +185,7 @@ public class AtividadeController {
 	public boolean removeResultado(String codigoAtividade, int numeroResultado) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
 		validador.verificaNum(numeroResultado, "numeroResultado nao pode ser nulo ou negativo.");
-		verificaSeExisteAtividade(codigoAtividade);
+		verificaSeExisteAtividade(codigoAtividade, "Atividade nao encontrada");
 		return this.mapaAtividades.get(codigoAtividade).removeResultado(numeroResultado);
 	}
 
@@ -199,7 +198,7 @@ public class AtividadeController {
 	 */
 	public String listaResultados(String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigoAtividade);
+		verificaSeExisteAtividade(codigoAtividade, "Atividade nao encontrada");
 		return this.mapaAtividades.get(codigoAtividade).listaResultados();
 	}
 
@@ -213,7 +212,7 @@ public class AtividadeController {
 	 */
 	public int getDuracao(String codigoAtividade) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		verificaSeExisteAtividade(codigoAtividade);
+		verificaSeExisteAtividade(codigoAtividade, "Atividade nao encontrada");
 		return this.mapaAtividades.get(codigoAtividade).getDuracao();
 	}
 
@@ -244,13 +243,24 @@ public class AtividadeController {
 	}
 
 	public void defineProximaAtividade(String idPrecedente, String idSubsquente) {
+		validador.verificaEntradaNulaVazia(idPrecedente, "Atividade nao pode ser nulo ou vazio.");
+		validador.verificaEntradaNulaVazia(idSubsquente, "Atividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(idPrecedente, "Atividade nao encontrada.");
+		verificaSeExisteAtividade(idSubsquente, "Atividade nao encontrada.");
 		Atividade proxima = mapaAtividades.get(idSubsquente);
 		this.mapaAtividades.get(idPrecedente).next(proxima);
 		
 	}
 
 	public void tiraProximaAtividade(String idPrecedente) {
+		validador.verificaEntradaNulaVazia(idPrecedente, "Atividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(idPrecedente, "Atividade nao encontrada.");
 		Atividade atual = mapaAtividades.get(idPrecedente);
-		atual.next(null);
+		atual.tiraProximaAtividade();
+	}
+
+	public int contaProximos(String idPrecedente) {
+		validador.verificaEntradaNulaVazia(idPrecedente, "Atividade nao pode ser nulo ou vazio.");
+		return mapaAtividades.get(idPrecedente).contaProximos();
 	}
 }

@@ -269,6 +269,16 @@ public class Atividade {
 	// US9 Raphael
 	
 	public void next(Atividade proxima) {
+		if (this.subsquente != null) throw new IllegalArgumentException("Atividade ja possui uma subsequente.");
 		this.subsquente = proxima;
+	}
+	
+	public void tiraProximaAtividade() {
+		this.subsquente = null;
+	}
+
+	public int contaProximos() {
+		if (this.subsquente == null) return 0;
+		return 1 + this.subsquente.contaProximos();
 	}
 }
