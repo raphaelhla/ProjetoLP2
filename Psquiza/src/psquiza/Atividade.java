@@ -14,6 +14,8 @@ import java.util.Map;
  *
  */
 public class Atividade {
+	
+	private Atividade subsquente;
 
 	/**
 	 * Validador utilizado para validar entradas do sistema.
@@ -262,5 +264,11 @@ public class Atividade {
 	public boolean buscaDescricaoRisco(String termo) {
 		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
 		return this.descricaoRisco.contains(termo);
+	}
+
+	// US9 Raphael
+	
+	public void next(Atividade proxima) {
+		this.subsquente = proxima;
 	}
 }

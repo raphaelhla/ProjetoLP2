@@ -242,4 +242,15 @@ public class AtividadeController {
 		saida = String.join(" | ", stringAtividades);
 		return saida;
 	}
+
+	public void defineProximaAtividade(String idPrecedente, String idSubsquente) {
+		Atividade proxima = mapaAtividades.get(idSubsquente);
+		this.mapaAtividades.get(idPrecedente).next(proxima);
+		
+	}
+
+	public void tiraProximaAtividade(String idPrecedente) {
+		Atividade atual = mapaAtividades.get(idPrecedente);
+		atual.next(null);
+	}
 }

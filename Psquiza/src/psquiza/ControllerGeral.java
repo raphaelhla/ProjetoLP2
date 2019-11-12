@@ -686,4 +686,16 @@ public class ControllerGeral {
 		}
 		return resultados.length;
 	}
+	
+	// US9 Raphael
+
+	public void defineProximaAtividade(String idPrecedente, String idSubsquente) {
+		 this.atividadeController.defineProximaAtividade(idPrecedente, idSubsquente);
+		
+	}
+
+	public void tiraProximaAtividade(String idPrecedente) {
+		 this.atividadeController.tiraProximaAtividade(idPrecedente);
+		
+	}
 }

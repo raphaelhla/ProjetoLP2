@@ -215,5 +215,15 @@ public class Facade {
 	public int contaResultadosBusca(String termo) {
 		return this.controllerGeral.contaResultadosBusca(termo);
 	}
+	
+	// US9 Raphael
+	
+	public void defineProximaAtividade(String idPrecedente, String idSubsquente) {
+		this.controllerGeral.defineProximaAtividade(idPrecedente, idSubsquente);
+	}
+	
+	public void tiraProximaAtividade(String idPrecedente) {
+		this.controllerGeral.tiraProximaAtividade(idPrecedente);
+	}
 
 }
