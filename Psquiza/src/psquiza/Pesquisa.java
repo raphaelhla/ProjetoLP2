@@ -47,6 +47,11 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	private Map<String, Atividade> atividadesAssociadas;
 
 	/**
+	 * Lista para guardar a ordem em que as atividades foram associadas.
+	 */
+	private List<String> codigoAtividadesAssociadas;
+
+	/**
 	 * Mapa de problemas associados.
 	 */
 	private Map<String, Problema> problemaAssociado;
@@ -79,6 +84,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		this.campoDeInteresse = campoDeInteresse;
 		this.codigo = codigo;
 		this.atividadesAssociadas = new HashMap<String, Atividade>();
+		this.codigoAtividadesAssociadas = new ArrayList<String>();
 		this.problemaAssociado = new HashMap<String, Problema>();
 		this.objetivosAssociados = new HashMap<String, Objetivo>();
 		this.pesquisadoresAssociados = new HashMap<String, Pesquisador>();
@@ -177,6 +183,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		}
 		this.atividadesAssociadas.put(codigoAtividade, atividade);
+		this.codigoAtividadesAssociadas.add(codigoAtividade);
 		return true;
 	}
 
@@ -199,7 +206,13 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
 			throw new IllegalArgumentException("Atividade nao encontrada.");
 		}
-
+		
+		for (int i = 0; i < codigoAtividadesAssociadas.size(); i++) {
+			if (codigoAtividadesAssociadas.get(i).equals(codigoAtividade)) {
+				codigoAtividadesAssociadas.remove(i);
+				break;
+			}
+		}
 		this.atividadesAssociadas.remove(codigoAtividade);
 		return true;
 	}
@@ -219,7 +232,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	}
 
 	// US8 Raphael
-	
+
 	/**
 	 * Metodo que verifica se a descricao da pesquisa contem uma string passada como
 	 * parametro e retorna um valor booleano.
@@ -424,5 +437,68 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		}
 		this.pesquisadoresAssociados.remove(emailPesquisador);
 		return true;
+	}
+
+	// US10 Alisson
+
+	public boolean verificaSeTemPendencia() {
+		boolean saida = false;
+		for (Atividade e : atividadesAssociadas.values()) {
+			if (e.temPendencia())
+				saida = true;
+			break;
+		}
+		return saida;
+	}
+
+	public String estrategiaMaisAntiga() {
+		for (String e : codigoAtividadesAssociadas) {
+			if (atividadesAssociadas.get(e).temPendencia())
+				return atividadesAssociadas.get(e).getCodigo();
+		}
+		throw new IllegalArgumentException("Pesquisa sem atividades com pendencias.");
+	}
+
+	public String estrategiaMenosPendencias() {
+		int i = 0;
+		int menor = 0;
+		String atividadeMenor = "";
+		for (String e : codigoAtividadesAssociadas) {
+			System.out.println(e);
+			System.out.println(atividadesAssociadas.get(e).getQtdItensPendentes());
+			if (i == 0 && atividadesAssociadas.get(e).temPendencia()) {
+				menor = atividadesAssociadas.get(e).getQtdItensPendentes();
+				atividadeMenor = atividadesAssociadas.get(e).getCodigo();
+				i++;
+			}
+			if (atividadesAssociadas.get(e).getQtdItensPendentes() <= menor && atividadesAssociadas.get(e).temPendencia()) {
+				menor = atividadesAssociadas.get(e).getQtdItensPendentes();
+				atividadeMenor = atividadesAssociadas.get(e).getCodigo();
+			}
+		}
+		return atividadeMenor;
+	}
+
+	public String estrategiaMaiorRisco() {
+		return null;
+	}
+
+	public String estrategiaMaiorDuracao() {
+		int i = 0;
+		int maiorDuracao = 0;
+		String atividadeMaior = "";
+		for (String e : codigoAtividadesAssociadas) {
+			System.out.println(e + " - " + atividadesAssociadas.get(e).getNivelRisco());
+			if (i == 0 && atividadesAssociadas.get(e).temPendencia()) {
+				maiorDuracao = atividadesAssociadas.get(e).getDuracao();
+				atividadeMaior = atividadesAssociadas.get(e).getCodigo();
+				i++;
+			}
+			if (atividadesAssociadas.get(e).getDuracao() > maiorDuracao && atividadesAssociadas.get(e).temPendencia()) {
+				maiorDuracao = atividadesAssociadas.get(e).getDuracao();
+				atividadeMaior = atividadesAssociadas.get(e).getCodigo();
+			}
+		}
+		return atividadeMaior;
 	}
 }

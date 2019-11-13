@@ -201,4 +201,10 @@ public class Validador {
 		}
 	}
 
+	public void verificaEstrategia(String estrategia) {
+		verificaEntradaNulaVazia(estrategia, "Estrategia nao pode ser nula ou vazia.");
+		if (!estrategia.equals("MAIS_ANTIGA") && !estrategia.equals("MENOS_PENDENCIAS") && !estrategia.equals("MAIOR_RISCO") && !estrategia.equals("MAIOR_DURACAO")) {
+			throw new IllegalArgumentException("Valor invalido da estrategia");
+		}
+	}
 }

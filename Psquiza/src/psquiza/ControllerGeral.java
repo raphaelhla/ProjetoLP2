@@ -710,4 +710,14 @@ public class ControllerGeral {
 	public String pegaMaiorRiscoAtividades(String idAtividade) {
 		return this.atividadeController.pegaMaiorRiscoAtividades(idAtividade);
 	}
+
+	//US10 Alisson
+	
+	public void configuraEstrategia(String estrategia) {
+		this.pesquisaController.configuraEstrategia(estrategia);
+	}
+	
+	public String proximaAtividade(String codigoPesquisa) {
+		return this.pesquisaController.proximaAtividade(codigoPesquisa);
+	}
 }

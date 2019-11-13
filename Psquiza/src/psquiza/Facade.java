@@ -14,8 +14,8 @@ public class Facade {
 				"testes_easyaccept/use_case_6.txt", 
 				"testes_easyaccept/use_case_7.txt",
 				"testes_easyaccept/use_case_8.txt",
-				"testes_easyaccept/use_case_9.txt"/**,
-				"testes_easyaccept/use_case_10.txt", 
+				"testes_easyaccept/use_case_9.txt",
+				"testes_easyaccept/use_case_10.txt"/**, 
 				"testes_easyaccept/use_case_11.txt",
 				"testes_easyaccept/use_case_12.txt"*/};
 		EasyAccept.main(args);
@@ -240,5 +240,15 @@ public class Facade {
 
 	public String pegaMaiorRiscoAtividades(String idAtividade) {
 		return this.controllerGeral.pegaMaiorRiscoAtividades(idAtividade);
+	}
+	
+	// US10 Alisson
+	
+	public void configuraEstrategia(String estrategia) {
+		this.controllerGeral.configuraEstrategia(estrategia);
+	}
+	
+	public String proximaAtividade(String codigoPesquisa) {
+		return this.controllerGeral.proximaAtividade(codigoPesquisa);
 	}
 }

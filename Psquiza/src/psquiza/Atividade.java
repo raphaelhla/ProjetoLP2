@@ -13,7 +13,7 @@ import java.util.Map;
  * @author Weslley Azevedo 11911241
  *
  */
-public class Atividade {
+public class Atividade implements Comparable<Atividade>{
 
 	private Atividade subsquente;
 
@@ -300,5 +300,26 @@ public class Atividade {
 	public String pegaMaiorRiscoAtividade() {
 		 if (this.subsquente == null) throw new IllegalArgumentException("Nao existe proxima atividade.");
 		return null;
+	}
+	
+	// US10 Alisson
+	
+	public boolean temPendencia() {
+		boolean saida = false;
+		for (Item e : itens.values()) {
+			if (e.getStatus().equals("PENDENTE")) {
+				saida = true;
+				break;
+			}
+		}
+		return saida;
+	}
+	
+	public int compareTo(Atividade a) {
+		return this.codigoAtividade.compareTo(a.getCodigo());
+	}
+	
+	public String getNivelRisco() {
+		return this.nivelRisco;
 	}
 }

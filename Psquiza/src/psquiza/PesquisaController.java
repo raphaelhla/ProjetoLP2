@@ -26,6 +26,8 @@ public class PesquisaController {
 	 */
 	private Map<String, Integer> codigos;
 
+	private String estrategia;
+	
 	/**
 	 * Validador utilizado para lancar excecoes.
 	 */
@@ -38,6 +40,7 @@ public class PesquisaController {
 		this.mapPesquisas = new HashMap<String, Pesquisa>();
 		this.codigos = new HashMap<String, Integer>();
 		this.validador = new Validador();
+		this.estrategia = "MAIS_ANTIGA";
 	}
 
 	/***
@@ -440,6 +443,34 @@ public class PesquisaController {
 		validador.verificaEntradaNulaVazia(emailPesquisador, "Campo emailPesquisador nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(idPesquisa);
 		return this.mapPesquisas.get(idPesquisa).desassociaPesquisador(emailPesquisador);
+	}
+
+	// US10 Alisson
+	
+	public void configuraEstrategia(String estrategia) {
+		validador.verificaEstrategia(estrategia);
+		this.estrategia = estrategia;
+	}
+
+	public String proximaAtividade(String codigoPesquisa) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
+		verificaSeExistePesquisa(codigoPesquisa);
+		Pesquisa pesquisa = mapPesquisas.get(codigoPesquisa);
+		if (!pesquisa.getStatusPesquisa()) throw new IllegalArgumentException("Pesquisa desativada.");
+		if (pesquisa.verificaSeTemPendencia()) throw new IllegalArgumentException("Pesquisa sem atividades com pendencias.");
+		
+		switch (this.estrategia) {
+		case "MAIS_ANTIGA":
+			return pesquisa.estrategiaMaisAntiga();
+		case "MENOS_PENDENCIAS":
+			return pesquisa.estrategiaMenosPendencias();
+		case "MAIOR_RISCO":
+			return pesquisa.estrategiaMaiorRisco();
+		case "MAIOR_DURACAO":
+			return pesquisa.estrategiaMaiorDuracao();
+		default:
+			return pesquisa.estrategiaMaisAntiga();
+		}
 	}
 
 }
