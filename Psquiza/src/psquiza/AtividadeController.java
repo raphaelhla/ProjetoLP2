@@ -245,8 +245,11 @@ public class AtividadeController {
 		validador.verificaEntradaNulaVazia(idSubsquente, "Atividade nao pode ser nulo ou vazio.");
 		verificaSeExisteAtividade(idPrecedente, "Atividade nao encontrada.");
 		verificaSeExisteAtividade(idSubsquente, "Atividade nao encontrada.");
+		Atividade atual = mapaAtividades.get(idPrecedente);
 		Atividade proxima = mapaAtividades.get(idSubsquente);
-		this.mapaAtividades.get(idPrecedente).next(proxima);
+		if (proxima.pegaUltimo().equals(idPrecedente))
+			throw new IllegalArgumentException("Criacao de loops negada.");
+		atual.next(proxima);
 		
 	}
 
@@ -266,7 +269,7 @@ public class AtividadeController {
 		validador.verificaEntradaNulaVazia(idAtividade, "Atividade nao pode ser nulo ou vazio.");
 		if (enesimaAtividade < 1) throw new IllegalArgumentException("Atividade nao pode ser nulo ou vazio.");
 		if (contaProximos(idAtividade) < enesimaAtividade) throw new IllegalArgumentException("Atividade inexistente.");
-		return this.mapaAtividades.get(idAtividade).pegaProximo();
+		return this.mapaAtividades.get(idAtividade).pegaProximo(enesimaAtividade);
 	}
 
 	public String pegaMaiorRiscoAtividades(String idAtividade) {

@@ -464,8 +464,6 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		int menor = 0;
 		String atividadeMenor = "";
 		for (String e : codigoAtividadesAssociadas) {
-			System.out.println(e);
-			System.out.println(atividadesAssociadas.get(e).getQtdItensPendentes());
 			if (i == 0 && atividadesAssociadas.get(e).temPendencia()) {
 				menor = atividadesAssociadas.get(e).getQtdItensPendentes();
 				atividadeMenor = atividadesAssociadas.get(e).getCodigo();
@@ -488,7 +486,6 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		int maiorDuracao = 0;
 		String atividadeMaior = "";
 		for (String e : codigoAtividadesAssociadas) {
-			System.out.println(e + " - " + atividadesAssociadas.get(e).getNivelRisco());
 			if (i == 0 && atividadesAssociadas.get(e).temPendencia()) {
 				maiorDuracao = atividadesAssociadas.get(e).getDuracao();
 				atividadeMaior = atividadesAssociadas.get(e).getCodigo();

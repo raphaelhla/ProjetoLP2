@@ -13,7 +13,7 @@ import java.util.Map;
  * @author Weslley Azevedo 11911241
  *
  */
-public class Atividade implements Comparable<Atividade>{
+public class Atividade {
 
 	private Atividade subsquente;
 
@@ -293,8 +293,18 @@ public class Atividade implements Comparable<Atividade>{
 	public Atividade getSusquente() {
 		return this.subsquente;
 	}
-	public String pegaProximo() {
-		return this.subsquente.getCodigo();
+	
+	public String pegaProximo(int enesimaAtividade) {
+		if (enesimaAtividade == 0) {
+			return this.codigoAtividade;
+		}
+		return this.subsquente.pegaProximo(enesimaAtividade - 1);
+	}
+	
+	public String pegaUltimo() {
+		if (this.subsquente == null)
+			return this.codigoAtividade;
+		return this.subsquente.pegaUltimo();
 	}
 
 	public String pegaMaiorRiscoAtividade() {
@@ -313,10 +323,6 @@ public class Atividade implements Comparable<Atividade>{
 			}
 		}
 		return saida;
-	}
-	
-	public int compareTo(Atividade a) {
-		return this.codigoAtividade.compareTo(a.getCodigo());
 	}
 	
 	public String getNivelRisco() {
