@@ -5,7 +5,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import psquiza.PesquisaController;
+
+import atividade.Atividade;
+import atividade.AtividadeController;
+import objetivo.Objetivo;
+import objetivo.ObjetivoController;
+import pesquisa.PesquisaController;
+import pesquisador.Pesquisador;
+import pesquisador.PesquisadorController;
+import problema.Problema;
+import problema.ProblemaController;
 
 /**
  * Representacao de um controller geral.
