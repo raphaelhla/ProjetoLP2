@@ -1,7 +1,11 @@
 package psquiza;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import psquiza.PesquisaController;
 
 /**
  * Representacao de um controller geral.
@@ -555,8 +559,8 @@ public class ControllerGeral {
 	 */
 	public void executaAtividade(String codigoAtividade, int item, int duracao) {
 		validador.verificaEntradaNulaVazia(codigoAtividade, "Campo codigoAtividade nao pode ser nulo ou vazio.");
-		validador.verificaNum(item,"Item nao pode ser nulo ou negativo.");
-		validador.verificaNum(duracao,"Duracao nao pode ser nula ou negativa.");
+		validador.verificaNum(item, "Item nao pode ser nulo ou negativo.");
+		validador.verificaNum(duracao, "Duracao nao pode ser nula ou negativa.");
 		if (!pesquisaController.atividadeEstaAssociada(codigoAtividade)) {
 			throw new IllegalArgumentException("Atividade sem associacoes com pesquisas.");
 		}
@@ -662,7 +666,7 @@ public class ControllerGeral {
 	 */
 	public String busca(String termo, int numeroDoResultado) {
 		validador.verificaEntradaNulaVazia(termo, "Campo termo nao pode ser nulo ou vazio.");
-		validador.verificaNum(numeroDoResultado,"Numero do resultado nao pode ser negativo");
+		validador.verificaNum(numeroDoResultado, "Numero do resultado nao pode ser negativo");
 		String saida = busca(termo);
 		String[] resultados = saida.split(" \\| ");
 		if (numeroDoResultado > resultados.length) {
@@ -686,17 +690,17 @@ public class ControllerGeral {
 		}
 		return resultados.length;
 	}
-	
+
 	// US9 Raphael
 
 	public void defineProximaAtividade(String idPrecedente, String idSubsquente) {
-		 this.atividadeController.defineProximaAtividade(idPrecedente, idSubsquente);
-		
+		this.atividadeController.defineProximaAtividade(idPrecedente, idSubsquente);
+
 	}
 
 	public void tiraProximaAtividade(String idPrecedente) {
-		 this.atividadeController.tiraProximaAtividade(idPrecedente);
-		
+		this.atividadeController.tiraProximaAtividade(idPrecedente);
+
 	}
 
 	public int contaProximos(String idPrecedente) {
@@ -711,13 +715,48 @@ public class ControllerGeral {
 		return this.atividadeController.pegaMaiorRiscoAtividades(idAtividade);
 	}
 
-	//US10 Alisson
-	
+	// US10 Alisson
+
 	public void configuraEstrategia(String estrategia) {
 		this.pesquisaController.configuraEstrategia(estrategia);
 	}
-	
+
 	public String proximaAtividade(String codigoPesquisa) {
 		return this.pesquisaController.proximaAtividade(codigoPesquisa);
 	}
+
+	// US11 Matheus
+
+	/**
+	 * Metodo que vai gravar em um arquivo .txt o resumo da pesquisa.
+	 * 
+	 * @param codigoPesquisa - o codigo da pesquisa a ser gravada.
+	 * @throws IOException - excecao para usar com arquivos.
+	 */
+	public void gravarResumo(String codigoPesquisa) throws IOException {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
+		FileWriter arq = new FileWriter("CODIGO.txt");
+		PrintWriter gravarArq = new PrintWriter(arq);
+		gravarArq.print("-Pesquisa: " + pesquisaController.exibePesquisa(codigoPesquisa));
+
+	}
+
+	/**
+	 * Metodo que vai gravar em um arquivo .txt o resultado da pesquisa.
+	 * 
+	 * @param codigoPesquisa O codigo da pesquisa a ser gravada.
+	 * @throws IOException Excecao para usar com arquivos.
+	 */
+	public void gravarResultado(String codigoPesquisa) throws IOException {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
+		FileWriter arq = new FileWriter(codigoPesquisa + "-Resultados.txt");
+		PrintWriter gravarArq = new PrintWriter(arq);
+		gravarArq.print("-Pesquisa: " + pesquisaController.exibePesquisa(codigoPesquisa));
+		gravarArq.print("-Resultados:");
+		gravarArq.print("-Descrição");
+		gravarArq.print("");
+		
+
+	}
+
 }
