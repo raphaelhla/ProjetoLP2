@@ -247,8 +247,6 @@ public class AtividadeController {
 		verificaSeExisteAtividade(idSubsquente, "Atividade nao encontrada.");
 		Atividade atual = mapaAtividades.get(idPrecedente);
 		Atividade proxima = mapaAtividades.get(idSubsquente);
-		if (proxima.pegaUltimo().equals(idPrecedente))
-			throw new IllegalArgumentException("Criacao de loops negada.");
 		atual.next(proxima);
 		
 	}
@@ -275,6 +273,9 @@ public class AtividadeController {
 	public String pegaMaiorRiscoAtividades(String idAtividade) {
 		validador.verificaEntradaNulaVazia(idAtividade, "Atividade nao pode ser nulo ou vazio.");
 		verificaSeExisteAtividade(idAtividade, "Atividade nao encontrada.");
+		if (mapaAtividades.get(idAtividade).getSusquente() == null) {
+			throw new IllegalArgumentException("Nao existe proxima atividade.");
+		}
 		return this.mapaAtividades.get(idAtividade).pegaMaiorRiscoAtividade();
 	}
 }

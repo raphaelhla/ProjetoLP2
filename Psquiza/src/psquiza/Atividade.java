@@ -273,6 +273,8 @@ public class Atividade {
 	public void next(Atividade proxima) {
 		if (this.subsquente != null)
 			throw new IllegalArgumentException("Atividade ja possui uma subsequente.");
+		if (proxima.pegaUltimo().equals(this.codigoAtividade))
+			throw new IllegalArgumentException("Criacao de loops negada.");
 		this.subsquente = proxima;
 	}
 
@@ -293,27 +295,69 @@ public class Atividade {
 	public Atividade getSusquente() {
 		return this.subsquente;
 	}
-	
+
 	public String pegaProximo(int enesimaAtividade) {
 		if (enesimaAtividade == 0) {
 			return this.codigoAtividade;
 		}
 		return this.subsquente.pegaProximo(enesimaAtividade - 1);
 	}
-	
+
 	public String pegaUltimo() {
 		if (this.subsquente == null)
 			return this.codigoAtividade;
 		return this.subsquente.pegaUltimo();
 	}
 
-	public String pegaMaiorRiscoAtividade() {
-		 if (this.subsquente == null) throw new IllegalArgumentException("Nao existe proxima atividade.");
-		return null;
+	private String pegaAtividadeRiscoAlto() {
+		if (this.subsquente == null) {
+			if (this.nivelRisco.equals("ALTO"))
+				return this.codigoAtividade;
+			else
+				return null;
+		}
+		if (this.nivelRisco.equals("ALTO") && this.subsquente.pegaAtividadeRiscoAlto() == null) {
+			return this.codigoAtividade;
+		}
+		return this.subsquente.pegaAtividadeRiscoAlto();
 	}
-	
+
+	private String pegaAtividadeRiscoMedio() {
+		if (this.subsquente == null) {
+			if (this.nivelRisco.equals("MEDIO"))
+				return this.codigoAtividade;
+			else
+				return null;
+		}
+		if (this.nivelRisco.equals("MEDIO") && this.subsquente.pegaAtividadeRiscoMedio() == null) {
+			return this.codigoAtividade;
+		}
+		return this.subsquente.pegaAtividadeRiscoMedio();
+	}
+
+	private String pegaAtividadeRiscoBaixo() {
+		if (this.subsquente == null) {
+			if (this.nivelRisco.equals("BAIXO"))
+				return this.codigoAtividade;
+			else
+				return null;
+		}
+		if (this.nivelRisco.equals("BAIXO") && this.subsquente.pegaAtividadeRiscoBaixo() == null) {
+			return this.codigoAtividade;
+		}
+		return this.subsquente.pegaAtividadeRiscoBaixo();
+	}
+
+	public String pegaMaiorRiscoAtividade() {
+		if (this.pegaAtividadeRiscoAlto() != null)
+			return this.pegaAtividadeRiscoAlto();
+		else if (this.pegaAtividadeRiscoMedio() != null)
+			return this.pegaAtividadeRiscoMedio();
+		return this.pegaAtividadeRiscoBaixo();
+	}
+
 	// US10 Alisson
-	
+
 	public boolean temPendencia() {
 		boolean saida = false;
 		for (Item e : itens.values()) {
@@ -324,7 +368,7 @@ public class Atividade {
 		}
 		return saida;
 	}
-	
+
 	public String getNivelRisco() {
 		return this.nivelRisco;
 	}
