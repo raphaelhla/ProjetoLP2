@@ -24,8 +24,6 @@ executaAtividade codigoAtividade="A14" item=3 duracao=15
 executaAtividade codigoAtividade="A14" item=4 duracao=15
 expect 1 cadastraResultado codigoAtividade="A7" resultado="Analise encontrou um pequeno grupo de alunos panacas o bastatnte para atrapalhar (conscientemente) o aprendizado de outras pessoas, apenas por que o curso era diferente."
 
-
-
 #Configurando estrategias e pegando as proximas atividades
 
 expectError "Pesquisa nao pode ser nula ou vazia." proximaAtividade codigoPesquisa=""
@@ -36,7 +34,7 @@ expectError "Estrategia nao pode ser nula ou vazia." configuraEstrategia estrate
 expectError "Valor invalido da estrategia" configuraEstrategia estrategia="DO_INGLES_STRATEGY"
 expect "A7" proximaAtividade codigoPesquisa="COM3"
 configuraEstrategia estrategia="MENOS_PENDENCIAS"
-expect "A10" proximaAtividade codigoPesquisa="COM3"
+expect "A7" proximaAtividade codigoPesquisa="COM3"
 configuraEstrategia estrategia="MAIOR_RISCO"
 expect "A12" proximaAtividade codigoPesquisa="COM3"
 configuraEstrategia estrategia="MAIOR_DURACAO"

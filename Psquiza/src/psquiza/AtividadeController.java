@@ -265,7 +265,7 @@ public class AtividadeController {
 
 	public String pegaProximo(String idAtividade, int enesimaAtividade) {
 		validador.verificaEntradaNulaVazia(idAtividade, "Atividade nao pode ser nulo ou vazio.");
-		if (enesimaAtividade < 1) throw new IllegalArgumentException("Atividade nao pode ser nulo ou vazio.");
+		if (enesimaAtividade < 1) throw new IllegalArgumentException("EnesimaAtividade nao pode ser negativa ou zero.");
 		if (contaProximos(idAtividade) < enesimaAtividade) throw new IllegalArgumentException("Atividade inexistente.");
 		return this.mapaAtividades.get(idAtividade).pegaProximo(enesimaAtividade);
 	}

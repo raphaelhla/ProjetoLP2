@@ -453,32 +453,52 @@ public class Pesquisa implements Comparable<Pesquisa> {
 
 	public String estrategiaMaisAntiga() {
 		for (String e : codigoAtividadesAssociadas) {
-			if (atividadesAssociadas.get(e).temPendencia())
-				return atividadesAssociadas.get(e).getCodigo();
+			Atividade tmp = atividadesAssociadas.get(e);
+			if (tmp.temPendencia())
+				return tmp.getCodigo();
 		}
 		throw new IllegalArgumentException("Pesquisa sem atividades com pendencias.");
 	}
 
 	public String estrategiaMenosPendencias() {
-		int i = 0;
+		boolean primeiraVez = true;
 		int menor = 0;
 		String atividadeMenor = "";
 		for (String e : codigoAtividadesAssociadas) {
-			if (i == 0 && atividadesAssociadas.get(e).temPendencia()) {
-				menor = atividadesAssociadas.get(e).getQtdItensPendentes();
-				atividadeMenor = atividadesAssociadas.get(e).getCodigo();
-				i++;
+			Atividade tmp = atividadesAssociadas.get(e);
+			if (primeiraVez && tmp.temPendencia()) {
+				menor = tmp.getQtdItensPendentes();
+				atividadeMenor = tmp.getCodigo();
+				primeiraVez = false;
 			}
-			if (atividadesAssociadas.get(e).getQtdItensPendentes() < menor && atividadesAssociadas.get(e).temPendencia()) {
-				menor = atividadesAssociadas.get(e).getQtdItensPendentes();
-				atividadeMenor = atividadesAssociadas.get(e).getCodigo();
+			if (tmp.getQtdItensPendentes() < menor && tmp.temPendencia()) {
+				menor = tmp.getQtdItensPendentes();
+				atividadeMenor = tmp.getCodigo();
 			}
 		}
 		return atividadeMenor;
 	}
 
+	private int mapRisco(String risco) {
+		return (risco.equals("ALTO") ? 1 : (risco.equals("MEDIO") ? 0 : -1));
+	}
+	
 	public String estrategiaMaiorRisco() {
-		return null;
+		boolean primeiraVez = true;
+		Atividade atividadeMaior = null;
+		for (String e : codigoAtividadesAssociadas) {
+			Atividade tmp = atividadesAssociadas.get(e);
+			if (primeiraVez && tmp.temPendencia()) {
+				atividadeMaior = tmp;
+				primeiraVez = false;
+			}
+			if (!primeiraVez && mapRisco(tmp.getNivelRisco()) > mapRisco(atividadeMaior.getNivelRisco())) {
+				atividadeMaior = tmp;
+			}
+			
+		}
+		
+		return atividadeMaior.getCodigo();
 	}
 
 	public String estrategiaMaiorDuracao() {
@@ -486,14 +506,15 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		int maiorDuracao = 0;
 		String atividadeMaior = "";
 		for (String e : codigoAtividadesAssociadas) {
-			if (i == 0 && atividadesAssociadas.get(e).temPendencia()) {
-				maiorDuracao = atividadesAssociadas.get(e).getDuracao();
-				atividadeMaior = atividadesAssociadas.get(e).getCodigo();
+			Atividade tmp = atividadesAssociadas.get(e);
+			if (i == 0 && tmp.temPendencia()) {
+				maiorDuracao = tmp.getDuracao();
+				atividadeMaior = tmp.getCodigo();
 				i++;
 			}
-			if (atividadesAssociadas.get(e).getDuracao() > maiorDuracao && atividadesAssociadas.get(e).temPendencia()) {
-				maiorDuracao = atividadesAssociadas.get(e).getDuracao();
-				atividadeMaior = atividadesAssociadas.get(e).getCodigo();
+			if (tmp.getDuracao() > maiorDuracao && tmp.temPendencia()) {
+				maiorDuracao = tmp.getDuracao();
+				atividadeMaior = tmp.getCodigo();
 			}
 		}
 		return atividadeMaior;

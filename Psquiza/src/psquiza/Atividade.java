@@ -309,51 +309,24 @@ public class Atividade {
 		return this.subsquente.pegaUltimo();
 	}
 
-	private String pegaAtividadeRiscoAlto() {
-		if (this.subsquente == null) {
-			if (this.nivelRisco.equals("ALTO"))
-				return this.codigoAtividade;
-			else
-				return null;
-		}
-		if (this.nivelRisco.equals("ALTO") && this.subsquente.pegaAtividadeRiscoAlto() == null) {
-			return this.codigoAtividade;
-		}
-		return this.subsquente.pegaAtividadeRiscoAlto();
+	private int mapRisco(String risco) {
+		return (risco.equals("ALTO") ? 1 : (risco.equals("MEDIO") ? 0 : -1));
 	}
-
-	private String pegaAtividadeRiscoMedio() {
-		if (this.subsquente == null) {
-			if (this.nivelRisco.equals("MEDIO"))
-				return this.codigoAtividade;
-			else
-				return null;
+	
+	private String pegaAtividadeRiscoAux(Atividade altoRisco) {
+		
+		if(this.subsquente != null) {
+			if(mapRisco(this.nivelRisco) <= mapRisco(this.subsquente.nivelRisco)) {
+				altoRisco = this.subsquente;
+			}
+			return this.subsquente.pegaAtividadeRiscoAux(altoRisco);
 		}
-		if (this.nivelRisco.equals("MEDIO") && this.subsquente.pegaAtividadeRiscoMedio() == null) {
-			return this.codigoAtividade;
-		}
-		return this.subsquente.pegaAtividadeRiscoMedio();
-	}
-
-	private String pegaAtividadeRiscoBaixo() {
-		if (this.subsquente == null) {
-			if (this.nivelRisco.equals("BAIXO"))
-				return this.codigoAtividade;
-			else
-				return null;
-		}
-		if (this.nivelRisco.equals("BAIXO") && this.subsquente.pegaAtividadeRiscoBaixo() == null) {
-			return this.codigoAtividade;
-		}
-		return this.subsquente.pegaAtividadeRiscoBaixo();
+		
+		return altoRisco.codigoAtividade;
 	}
 
 	public String pegaMaiorRiscoAtividade() {
-		if (this.pegaAtividadeRiscoAlto() != null)
-			return this.pegaAtividadeRiscoAlto();
-		else if (this.pegaAtividadeRiscoMedio() != null)
-			return this.pegaAtividadeRiscoMedio();
-		return this.pegaAtividadeRiscoBaixo();
+		return pegaAtividadeRiscoAux(this);
 	}
 
 	// US10 Alisson
