@@ -30,7 +30,7 @@ public class PesquisaController {
 	private Map<String, Integer> codigos;
 
 	private String estrategia;
-	
+
 	/**
 	 * Validador utilizado para lancar excecoes.
 	 */
@@ -449,19 +449,36 @@ public class PesquisaController {
 	}
 
 	// US10 Alisson
-	
+
+	/**
+	 * Metodo que configura uma estrategia para utilizar no metodo proximaAtividade.
+	 * 
+	 * @param estrategia Estrategia.
+	 */
 	public void configuraEstrategia(String estrategia) {
 		validador.verificaEstrategia(estrategia);
 		this.estrategia = estrategia;
 	}
 
+	/**
+	 * Metodo que retorna a o codigo da proxima atividade de acordo com uma
+	 * estrategia configurada anteriormente a partir do codigo de uma pesquisa. Caso
+	 * a estrategia nao tenha sido configurada o metodo utiliza a estrategia
+	 * "MAIS_ANTIGA".
+	 * 
+	 * @param codigoPesquisa Codigo da pesquisa.
+	 * @return o codigo da proxima atividade de acordo com uma estrategia
+	 *         configurada anteriormente.
+	 */
 	public String proximaAtividade(String codigoPesquisa) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
 		verificaSeExistePesquisa(codigoPesquisa);
 		Pesquisa pesquisa = mapPesquisas.get(codigoPesquisa);
-		if (!pesquisa.getStatusPesquisa()) throw new IllegalArgumentException("Pesquisa desativada.");
-		if (pesquisa.verificaSeTemPendencia()) throw new IllegalArgumentException("Pesquisa sem atividades com pendencias.");
-		
+		if (!pesquisa.getStatusPesquisa())
+			throw new IllegalArgumentException("Pesquisa desativada.");
+		if (!pesquisa.verificaSeTemPendencia())
+			throw new IllegalArgumentException("Pesquisa sem atividades com pendencias.");
+
 		switch (this.estrategia) {
 		case "MAIS_ANTIGA":
 			return pesquisa.estrategiaMaisAntiga();

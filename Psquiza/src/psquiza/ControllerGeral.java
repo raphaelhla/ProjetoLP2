@@ -764,10 +764,25 @@ public class ControllerGeral {
 
 	// US10 Alisson
 
+	/**
+	 * Metodo que configura uma estrategia para utilizar no metodo proximaAtividade.
+	 * 
+	 * @param estrategia Estrategia.
+	 */
 	public void configuraEstrategia(String estrategia) {
 		this.pesquisaController.configuraEstrategia(estrategia);
 	}
 
+	/**
+	 * Metodo que retorna a o codigo da proxima atividade de acordo com uma
+	 * estrategia configurada anteriormente a partir do codigo de uma pesquisa. Caso
+	 * a estrategia nao tenha sido configurada o metodo utiliza a estrategia
+	 * "MAIS_ANTIGA".
+	 * 
+	 * @param codigoPesquisa Codigo da pesquisa.
+	 * @return o codigo da proxima atividade de acordo com uma estrategia
+	 *         configurada anteriormente.
+	 */
 	public String proximaAtividade(String codigoPesquisa) {
 		return this.pesquisaController.proximaAtividade(codigoPesquisa);
 	}
@@ -802,7 +817,8 @@ public class ControllerGeral {
 		gravarArq.print("-Resultados:");
 		gravarArq.print("-Descrição");
 		gravarArq.print("");
-
 	}
+	
+	//US12 Weslley
 
 }

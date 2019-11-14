@@ -357,7 +357,7 @@ public class Atividade {
 	 * @return um inteiro que representa o risco da atividade de acordo com seu
 	 *         nivel de risco.
 	 */
-	private int mapRisco(String risco) {
+	public int mapRisco(String risco) {
 		return (risco.equals("ALTO") ? 1 : (risco.equals("MEDIO") ? 0 : -1));
 	}
 
@@ -394,6 +394,12 @@ public class Atividade {
 
 	// US10 Alisson
 
+	/**
+	 * Metodo que verifica se a atividade tem itens pendentes.
+	 * 
+	 * @return verdade se a atividade tiver itens pendentes, caso contrario retorna
+	 *         falso.
+	 */
 	public boolean temPendencia() {
 		boolean saida = false;
 		for (Item e : itens.values()) {
@@ -405,6 +411,11 @@ public class Atividade {
 		return saida;
 	}
 
+	/**
+	 * Metodo que retorna o nivel de risco da atividade.
+	 * 
+	 * @return o nivel de risco da atividade.
+	 */
 	public String getNivelRisco() {
 		return this.nivelRisco;
 	}

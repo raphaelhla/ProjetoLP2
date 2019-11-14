@@ -1,11 +1,17 @@
 package pesquisa;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import atividade.Atividade;
+import atividade.OrdenaPorDuracao;
+import atividade.OrdenaPorMaiorRisco;
+import atividade.OrdenaPorMenosPendencias;
 import objetivo.Objetivo;
 import pesquisador.Pesquisador;
 import problema.Problema;
@@ -53,11 +59,6 @@ public class Pesquisa implements Comparable<Pesquisa> {
 	private Map<String, Atividade> atividadesAssociadas;
 
 	/**
-	 * Lista para guardar a ordem em que as atividades foram associadas.
-	 */
-	private List<String> codigoAtividadesAssociadas;
-
-	/**
 	 * Mapa de problemas associados.
 	 */
 	private Map<String, Problema> problemaAssociado;
@@ -89,8 +90,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		this.descricao = descricao;
 		this.campoDeInteresse = campoDeInteresse;
 		this.codigo = codigo;
-		this.atividadesAssociadas = new HashMap<String, Atividade>();
-		this.codigoAtividadesAssociadas = new ArrayList<String>();
+		this.atividadesAssociadas = new LinkedHashMap<String, Atividade>();
 		this.problemaAssociado = new HashMap<String, Problema>();
 		this.objetivosAssociados = new HashMap<String, Objetivo>();
 		this.pesquisadoresAssociados = new HashMap<String, Pesquisador>();
@@ -189,7 +189,6 @@ public class Pesquisa implements Comparable<Pesquisa> {
 			throw new IllegalArgumentException("Pesquisa desativada.");
 		}
 		this.atividadesAssociadas.put(codigoAtividade, atividade);
-		this.codigoAtividadesAssociadas.add(codigoAtividade);
 		return true;
 	}
 
@@ -212,13 +211,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
 			throw new IllegalArgumentException("Atividade nao encontrada.");
 		}
-		
-		for (int i = 0; i < codigoAtividadesAssociadas.size(); i++) {
-			if (codigoAtividadesAssociadas.get(i).equals(codigoAtividade)) {
-				codigoAtividadesAssociadas.remove(i);
-				break;
-			}
-		}
+
 		this.atividadesAssociadas.remove(codigoAtividade);
 		return true;
 	}
@@ -447,82 +440,101 @@ public class Pesquisa implements Comparable<Pesquisa> {
 
 	// US10 Alisson
 
+	/**
+	 * Metodo que verifica se a pesquisa possui atividades pendentes.
+	 * 
+	 * @return o valor booleano verdade se a pesquisa possuir atividades pendentes,
+	 *         caso contrario retorna falso.
+	 */
 	public boolean verificaSeTemPendencia() {
 		boolean saida = false;
 		for (Atividade e : atividadesAssociadas.values()) {
-			if (e.temPendencia())
+			if (e.temPendencia()) {
 				saida = true;
-			break;
+				break;
+			}
 		}
 		return saida;
 	}
 
+	/**
+	 * Metodo que retorna o codigo da atividade mais antiga associada a pesquisa e
+	 * que tenha itens pendentes.
+	 * 
+	 * @return o codigo da atividade mais antiga associada a pesquisa e que tenha
+	 *         itens pendentes.
+	 */
 	public String estrategiaMaisAntiga() {
-		for (String e : codigoAtividadesAssociadas) {
-			Atividade tmp = atividadesAssociadas.get(e);
-			if (tmp.temPendencia())
-				return tmp.getCodigo();
+		Atividade tmp = null;
+		for (Atividade atividade : atividadesAssociadas.values()) {
+			if (atividade.temPendencia()) {
+				tmp = atividade;
+				break;
+			}
 		}
-		throw new IllegalArgumentException("Pesquisa sem atividades com pendencias.");
+		return tmp.getCodigo();
 	}
 
+	/**
+	 * Metodo que retorna o codigo da atividade que tenha a menor quantidade de
+	 * itens pendentes associada a pesquisa.
+	 * 
+	 * @return o codigo da atividade que tenha a menor quantidade de itens pendentes
+	 *         associada a pesquisa.
+	 */
 	public String estrategiaMenosPendencias() {
-		boolean primeiraVez = true;
-		int menor = 0;
-		String atividadeMenor = "";
-		for (String e : codigoAtividadesAssociadas) {
-			Atividade tmp = atividadesAssociadas.get(e);
-			if (primeiraVez && tmp.temPendencia()) {
-				menor = tmp.getQtdItensPendentes();
-				atividadeMenor = tmp.getCodigo();
-				primeiraVez = false;
-			}
-			if (tmp.getQtdItensPendentes() < menor && tmp.temPendencia()) {
-				menor = tmp.getQtdItensPendentes();
-				atividadeMenor = tmp.getCodigo();
+		List<Atividade> atividadesOrdenadas = new ArrayList<>(atividadesAssociadas.values());
+		Comparator<Atividade> comparator = new OrdenaPorMenosPendencias();
+		Collections.sort(atividadesOrdenadas, comparator);
+		Atividade tmp = null;
+		for (Atividade atividade : atividadesOrdenadas) {
+			if (atividade.temPendencia()) {
+				tmp = atividade;
+				break;
 			}
 		}
-		return atividadeMenor;
+		return tmp.getCodigo();
 	}
 
-	private int mapRisco(String risco) {
-		return (risco.equals("ALTO") ? 1 : (risco.equals("MEDIO") ? 0 : -1));
-	}
-	
+	/**
+	 * Metodo que retorna o codigo da proxima atividade que tenha o maior nivel de
+	 * risco e que tenha itens pendentes.
+	 * 
+	 * @return o codigo da proxima atividade que tenha o maior nivel de risco e que
+	 *         tenha itens pendentes.
+	 */
 	public String estrategiaMaiorRisco() {
-		boolean primeiraVez = true;
+		List<Atividade> atividadesOrdenadas = new ArrayList<>(atividadesAssociadas.values());
+		Comparator<Atividade> comparator = new OrdenaPorMaiorRisco();
+		Collections.sort(atividadesOrdenadas, comparator);
 		Atividade atividadeMaior = null;
-		for (String e : codigoAtividadesAssociadas) {
-			Atividade tmp = atividadesAssociadas.get(e);
-			if (primeiraVez && tmp.temPendencia()) {
-				atividadeMaior = tmp;
-				primeiraVez = false;
+		for (Atividade atividade : atividadesOrdenadas) {
+			if (atividade.temPendencia()) {
+				atividadeMaior = atividade;
+				break;
 			}
-			if (!primeiraVez && mapRisco(tmp.getNivelRisco()) > mapRisco(atividadeMaior.getNivelRisco())) {
-				atividadeMaior = tmp;
-			}
-			
 		}
-		
 		return atividadeMaior.getCodigo();
 	}
 
+	/**
+	 * Metodo que retorna o codigo da proxima atividade que tenha a maior duracao e
+	 * que tenha itens pendentes.
+	 * 
+	 * @return o codigo da proxima atividade que tenha a maior duracao e que tenha
+	 *         itens pendentes.
+	 */
 	public String estrategiaMaiorDuracao() {
-		int i = 0;
-		int maiorDuracao = 0;
-		String atividadeMaior = "";
-		for (String e : codigoAtividadesAssociadas) {
-			Atividade tmp = atividadesAssociadas.get(e);
-			if (i == 0 && tmp.temPendencia()) {
-				maiorDuracao = tmp.getDuracao();
-				atividadeMaior = tmp.getCodigo();
-				i++;
-			}
-			if (tmp.getDuracao() > maiorDuracao && tmp.temPendencia()) {
-				maiorDuracao = tmp.getDuracao();
-				atividadeMaior = tmp.getCodigo();
+		List<Atividade> atividadesOrdenadas = new ArrayList<>(atividadesAssociadas.values());
+		Comparator<Atividade> comparator = new OrdenaPorDuracao();
+		Collections.sort(atividadesOrdenadas, comparator);
+		Atividade tmp = null;
+		for (Atividade atividade : atividadesOrdenadas) {
+			if (atividade.temPendencia()) {
+				tmp = atividade;
+				break;
 			}
 		}
-		return atividadeMaior;
+		return tmp.getCodigo();
 	}
 }
