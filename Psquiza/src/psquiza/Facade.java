@@ -1,5 +1,7 @@
 package psquiza;
 
+import java.io.IOException;
+
 import easyaccept.EasyAccept;
 
 public class Facade {
@@ -250,5 +252,15 @@ public class Facade {
 	
 	public String proximaAtividade(String codigoPesquisa) {
 		return this.controllerGeral.proximaAtividade(codigoPesquisa);
+	}
+	
+	//US11 Matheus
+	
+	public void gravarResumo(String codigoPesquisa) throws IOException {
+		this.controllerGeral.gravarResumo(codigoPesquisa);
+	}
+	
+	public void gravarResultados(String codigoPesquisa) throws IOException {
+		this.controllerGeral.gravarResultado(codigoPesquisa);
 	}
 }
