@@ -693,24 +693,62 @@ public class ControllerGeral {
 
 	// US9 Raphael
 
+	/**
+	 * Metodo que define uma ordem de execucao para representar uma logica de
+	 * execucao das atividades a partir de uma atividade precedente e de uma
+	 * atividade subsequente.
+	 * 
+	 * @param idPrecedente Id da atividade precedente.
+	 * @param idSubsquente Id da atividade subsequente.
+	 */
 	public void defineProximaAtividade(String idPrecedente, String idSubsquente) {
 		this.atividadeController.defineProximaAtividade(idPrecedente, idSubsquente);
-
 	}
 
+	/**
+	 * Metodo que quebra uma ordem de execucao predefinida anteriormente a partir da
+	 * atividade atual.
+	 * 
+	 * @param idPrecedente Id da atividade precedente.
+	 */
 	public void tiraProximaAtividade(String idPrecedente) {
 		this.atividadeController.tiraProximaAtividade(idPrecedente);
-
 	}
 
+	/**
+	 * Metodo que conta quantas atividades estão planejadas depois da atividade
+	 * atual a ser consultada.
+	 * 
+	 * @param idPrecedente Id da atividade precedente.
+	 * @return o inteiro que representa a quantidade de atividades planejadas depois
+	 *         da atividade atual.
+	 */
 	public int contaProximos(String idPrecedente) {
 		return this.atividadeController.contaProximos(idPrecedente);
 	}
 
+	/**
+	 * Metodo que retorna a enesima atividade, passada como parametro, associada a
+	 * execucao da atividade atual.
+	 * 
+	 * @param idAtividade      Id da atividade.
+	 * @param enesimaAtividade Numero da atividade a ser obtida.
+	 * @return o codigo da enesima atividade associada a execucao da atividade
+	 *         atual.
+	 */
 	public String pegaProximo(String idAtividade, int enesimaAtividade) {
 		return this.atividadeController.pegaProximo(idAtividade, enesimaAtividade);
 	}
 
+	/**
+	 * Metodo que navega nas atividades buscando, a partir da atividade consultada,
+	 * qual o risco mais elevado associado a execucao daquela atividade e as que se
+	 * seguem.
+	 * 
+	 * @param idAtividade Id da atividade.
+	 * @return o codigo da atividade com o risco mais elevado associando a execucao
+	 *         da atividade atual.
+	 */
 	public String pegaMaiorRiscoAtividades(String idAtividade) {
 		return this.atividadeController.pegaMaiorRiscoAtividades(idAtividade);
 	}
@@ -755,7 +793,6 @@ public class ControllerGeral {
 		gravarArq.print("-Resultados:");
 		gravarArq.print("-Descrição");
 		gravarArq.print("");
-		
 
 	}
 

@@ -270,6 +270,12 @@ public class Atividade {
 
 	// US9 Raphael
 
+	/**
+	 * Metodo que define uma ordem de execucao para representar uma logica de
+	 * execucao da atividade a partir da proxima atividade
+	 * 
+	 * @param proxima Atividade subsequente.
+	 */
 	public void next(Atividade proxima) {
 		if (this.subsquente != null)
 			throw new IllegalArgumentException("Atividade ja possui uma subsequente.");
@@ -278,24 +284,50 @@ public class Atividade {
 		this.subsquente = proxima;
 	}
 
+	/**
+	 * Metodo que quebra uma ordem de execucao predefinida anteriormente.
+	 */
 	public void tiraProximaAtividade() {
 		this.subsquente = null;
 	}
 
+	/**
+	 * Metodo que conta quantas atividades estão planejadas.
+	 * 
+	 * @return o inteiro que representa a quantidade de atividades planejadas.
+	 */
 	public int contaProximos() {
 		if (this.subsquente == null)
 			return 0;
 		return 1 + this.subsquente.contaProximos();
 	}
 
+	/**
+	 * Metodo que retorna o codigo da atividade.
+	 * 
+	 * @return o codigo da atividade.
+	 */
 	public String getCodigo() {
 		return this.codigoAtividade;
 	}
 
+	/**
+	 * Metodo que retorna a atividade susequente.
+	 * 
+	 * @return a atividade subsequente.
+	 */
 	public Atividade getSusquente() {
 		return this.subsquente;
 	}
 
+	/**
+	 * Metodo que retorna a enesima atividade, passada como parametro, associada a
+	 * execucao da atividade atual.
+	 * 
+	 * @param enesimaAtividade Numero da enesima atividade.
+	 * @return o codigo da enesima atividade associada a execucao da atividade
+	 *         atual.
+	 */
 	public String pegaProximo(int enesimaAtividade) {
 		if (enesimaAtividade == 0) {
 			return this.codigoAtividade;
@@ -303,28 +335,57 @@ public class Atividade {
 		return this.subsquente.pegaProximo(enesimaAtividade - 1);
 	}
 
+	/**
+	 * Metodo que retorna a ultima atividade associada a execucao da atividade atual
+	 * e as que se seguem.
+	 * 
+	 * @return o codigo da ultima atividade associada a execucao da atividade atual
+	 *         e as que se seguem.
+	 */
 	public String pegaUltimo() {
 		if (this.subsquente == null)
 			return this.codigoAtividade;
 		return this.subsquente.pegaUltimo();
 	}
 
+	/**
+	 * Metodo que mapeia o risco da atividade de acordo com seu nivel de risco.
+	 * 
+	 * @param risco Nivel de risco da atividade.
+	 * @return um inteiro que representa o risco da atividade de acordo com seu
+	 *         nivel de risco.
+	 */
 	private int mapRisco(String risco) {
 		return (risco.equals("ALTO") ? 1 : (risco.equals("MEDIO") ? 0 : -1));
 	}
-	
+
+	/**
+	 * Metodo que navega nas atividades subsequentes buscando qual o risco mais
+	 * elevado associado a execucao da atividade e as que se seguem.
+	 * 
+	 * @param altoRisco Atividade com o maior risco
+	 * @return o codigo da atividade com o risco mais elevado associando a execucao
+	 *         da atividade atual.
+	 */
 	private String pegaAtividadeRiscoAux(Atividade altoRisco) {
-		
-		if(this.subsquente != null) {
-			if(mapRisco(this.nivelRisco) <= mapRisco(this.subsquente.nivelRisco)) {
+
+		if (this.subsquente != null) {
+			if (mapRisco(this.nivelRisco) <= mapRisco(this.subsquente.nivelRisco)) {
 				altoRisco = this.subsquente;
 			}
 			return this.subsquente.pegaAtividadeRiscoAux(altoRisco);
 		}
-		
+
 		return altoRisco.codigoAtividade;
 	}
 
+	/**
+	 * Metodo que navega nas atividades subsequentes buscando qual o risco mais
+	 * elevado associado a execucao da atividade e as que se seguem.
+	 * 
+	 * @return o codigo da atividade com o risco mais elevado associando a execucao
+	 *         da atividade atual.
+	 */
 	public String pegaMaiorRiscoAtividade() {
 		return pegaAtividadeRiscoAux(this);
 	}
