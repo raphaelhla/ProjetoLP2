@@ -469,7 +469,7 @@ public class Pesquisa implements Comparable<Pesquisa> {
 				atividadeMenor = atividadesAssociadas.get(e).getCodigo();
 				i++;
 			}
-			if (atividadesAssociadas.get(e).getQtdItensPendentes() <= menor && atividadesAssociadas.get(e).temPendencia()) {
+			if (atividadesAssociadas.get(e).getQtdItensPendentes() < menor && atividadesAssociadas.get(e).temPendencia()) {
 				menor = atividadesAssociadas.get(e).getQtdItensPendentes();
 				atividadeMenor = atividadesAssociadas.get(e).getCodigo();
 			}
