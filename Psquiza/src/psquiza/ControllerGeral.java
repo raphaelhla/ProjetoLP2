@@ -804,7 +804,6 @@ public class ControllerGeral {
 		FileWriter arq = new FileWriter("CODIGO.txt");
 		PrintWriter gravarArq = new PrintWriter(arq);
 		gravarArq.print("-Pesquisa: " + pesquisaController.exibePesquisa(codigoPesquisa));
-
 	}
 
 	/**
