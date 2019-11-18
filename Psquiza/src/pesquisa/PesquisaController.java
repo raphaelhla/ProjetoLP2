@@ -1,5 +1,7 @@
 package pesquisa;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -491,6 +493,47 @@ public class PesquisaController implements Serializable {
 			return pesquisa.estrategiaMaiorDuracao();
 		default:
 			return pesquisa.estrategiaMaisAntiga();
+		}
+	}
+
+	// US11 Matheus
+	
+	
+
+	/**
+	* Metodo que grava em um arquivo .txt o resumo da pesquisa.
+	* 
+	* @param codigoPesquisa o codigo da pesquisa a ser gravada.
+	*/
+	public void gravarResumo(String codigoPesquisa) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
+		verificaSeExistePesquisa(codigoPesquisa);
+		try {
+			PrintWriter gravarArqquivo = new PrintWriter(new FileWriter("CODIGO.txt"));
+			gravarArqquivo.print(mapPesquisas.get(codigoPesquisa).exibePesquisa());
+			gravarArqquivo.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Metodo que grava em um arquivo .txt o resultado da pesquisa.
+	 * 
+	 * @param codigoPesquisa O codigo da pesquisa a ser gravada.
+	 */
+	public void gravarResultado(String codigoPesquisa) {
+		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
+		verificaSeExistePesquisa(codigoPesquisa);
+		try {
+			PrintWriter gravarArquivo = new PrintWriter(new FileWriter(codigoPesquisa + "-Resultados.txt"));
+			gravarArquivo.print("-Pesquisa: " + exibePesquisa(codigoPesquisa));
+			gravarArquivo.print("-Resultados:");
+			gravarArquivo.print("-Descrição");
+			gravarArquivo.print("");
+			gravarArquivo.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

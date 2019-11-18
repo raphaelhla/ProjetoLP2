@@ -799,14 +799,7 @@ public class ControllerGeral {
 	 * @param codigoPesquisa o codigo da pesquisa a ser gravada.
 	 */
 	public void gravarResumo(String codigoPesquisa) {
-		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
-		try {
-			PrintWriter gravarArqquivo = new PrintWriter(new FileWriter("CODIGO.txt"));
-			gravarArqquivo.print("-Pesquisa: " + pesquisaController.exibePesquisa(codigoPesquisa));
-			gravarArqquivo.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		pesquisaController.gravarResumo(codigoPesquisa);
 	}
 
 	/**
@@ -815,17 +808,7 @@ public class ControllerGeral {
 	 * @param codigoPesquisa O codigo da pesquisa a ser gravada.
 	 */
 	public void gravarResultado(String codigoPesquisa) {
-		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
-		try {
-			PrintWriter gravarArquivo = new PrintWriter(new FileWriter(codigoPesquisa + "-Resultados.txt"));
-			gravarArquivo.print("-Pesquisa: " + pesquisaController.exibePesquisa(codigoPesquisa));
-			gravarArquivo.print("-Resultados:");
-			gravarArquivo.print("-Descrição");
-			gravarArquivo.print("");
-			gravarArquivo.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		pesquisaController.gravarResultado(codigoPesquisa);
 	}
 
 	// US12 Weslley

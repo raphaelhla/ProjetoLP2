@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import atividade.Atividade;
 import atividade.OrdenaPorDuracao;
@@ -538,4 +539,36 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		}
 		return tmp.getCodigo();
 	}
+	
+	// US11 Matheus (teste)
+	private String exibePesquisadores() {
+        Set<String> chaves = this.pesquisadoresAssociados.keySet();
+        String pesquisadores = "";
+        for (String chave : chaves) {
+            pesquisadores += "- " + chave.toString() + "\n";
+        }
+        return pesquisadores;
+    }
+    private String exibeObjetivos() {
+    	Set<String> chaves = this.objetivosAssociados.keySet();
+        String objetivos = "";
+        for(String chave: chaves) {
+            objetivos += "- " + chave.toString() + "\n";
+        }
+        return objetivos;
+    }
+    private String exibeAtividades() {
+        Set<String> chaves = this.atividadesAssociadas.keySet();
+        String atividades = "";
+        for (String chave : chaves) {
+            atividades += "- " + chave.toString() + "\n";
+        }
+        return atividades;
+    }
+    
+    public String exibePesquisa() {
+        return "- Pesquisa: " + toString() + "\n" + "    - Pesquisadores:\n" + "        " + exibePesquisadores()
+    + "    - Problema:\n" + "       - " + this.problemaAssociado.keySet().toString() + "    - Objetivos:\n" + "        " + exibeObjetivos() + "    - Atividades:\n        " +
+    exibeAtividades();
+    }
 }
