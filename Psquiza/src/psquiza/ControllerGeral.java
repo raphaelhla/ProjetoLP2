@@ -795,38 +795,42 @@ public class ControllerGeral {
 	// US11 Matheus
 
 	/**
-	 * Metodo que vai gravar em um arquivo .txt o resumo da pesquisa.
+	 * Metodo que grava em um arquivo .txt o resumo da pesquisa.
 	 * 
-	 * @param codigoPesquisa - o codigo da pesquisa a ser gravada.
-	 * @throws IOException - excecao para usar com arquivos.
+	 * @param codigoPesquisa o codigo da pesquisa a ser gravada.
 	 */
-	public void gravarResumo(String codigoPesquisa) throws IOException {
+	public void gravarResumo(String codigoPesquisa) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
-		FileWriter arq = new FileWriter("CODIGO.txt");
-		PrintWriter gravarArq = new PrintWriter(arq);
-		gravarArq.print("-Pesquisa: " + pesquisaController.exibePesquisa(codigoPesquisa));
-		gravarArq.close();
+		try {
+			PrintWriter gravarArqquivo = new PrintWriter(new FileWriter("CODIGO.txt"));
+			gravarArqquivo.print("-Pesquisa: " + pesquisaController.exibePesquisa(codigoPesquisa));
+			gravarArqquivo.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Metodo que vai gravar em um arquivo .txt o resultado da pesquisa.
+	 * Metodo que grava em um arquivo .txt o resultado da pesquisa.
 	 * 
 	 * @param codigoPesquisa O codigo da pesquisa a ser gravada.
-	 * @throws IOException Excecao para usar com arquivos.
 	 */
-	public void gravarResultado(String codigoPesquisa) throws IOException {
+	public void gravarResultado(String codigoPesquisa) {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
-		FileWriter arq = new FileWriter(codigoPesquisa + "-Resultados.txt");
-		PrintWriter gravarArq = new PrintWriter(arq);
-		gravarArq.print("-Pesquisa: " + pesquisaController.exibePesquisa(codigoPesquisa));
-		gravarArq.print("-Resultados:");
-		gravarArq.print("-Descrição");
-		gravarArq.print("");
-		gravarArq.close();
+		try {
+			PrintWriter gravarArquivo = new PrintWriter(new FileWriter(codigoPesquisa + "-Resultados.txt"));
+			gravarArquivo.print("-Pesquisa: " + pesquisaController.exibePesquisa(codigoPesquisa));
+			gravarArquivo.print("-Resultados:");
+			gravarArquivo.print("-Descrição");
+			gravarArquivo.print("");
+			gravarArquivo.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// US12 Weslley
-	
+
 	/**
 	 * Salva o estado atual do sistema.
 	 */
@@ -848,7 +852,7 @@ public class ControllerGeral {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Carrega o estado anteriormente salvo do sistema.
 	 */
