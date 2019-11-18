@@ -1,5 +1,6 @@
 package problema;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import psquiza.Validador;
  * @author Jose Alisson 119110645
  *
  */
-public class ProblemaController {
+public class ProblemaController implements Serializable{
 
 	/**
 	 * Mapa com todos os problemas do sistema, identificados unicamente por um

@@ -1,5 +1,7 @@
 package atividade;
 
+import java.io.Serializable;
+
 import psquiza.Validador;
 
 /**
@@ -9,7 +11,7 @@ import psquiza.Validador;
  * @author Raphael Agra 119110413
  *
  */
-public class Item {
+public class Item implements Serializable{
 
 	/**
 	 * Descricao do item.

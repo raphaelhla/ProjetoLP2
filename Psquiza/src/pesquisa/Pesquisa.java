@@ -1,5 +1,6 @@
 package pesquisa;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,7 +27,7 @@ import psquiza.Validador;
  * @author matheus
  * 
  */
-public class Pesquisa implements Comparable<Pesquisa> {
+public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 
 	/**
 	 * String que representa a descricao de uma pesquisa.

@@ -1,5 +1,8 @@
 package objetivo;
 
+
+import java.io.Serializable;
+
 import psquiza.Validador;
 
 /**
@@ -9,7 +12,7 @@ import psquiza.Validador;
  * @author Jose Alisson 119110645
  *
  */
-public class Objetivo {
+public class Objetivo implements Serializable{
 
 	/**
 	 * Tipo do objetivo.

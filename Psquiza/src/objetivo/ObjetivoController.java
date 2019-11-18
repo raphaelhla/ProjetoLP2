@@ -1,5 +1,6 @@
 package objetivo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import psquiza.Validador;
  * @author Jose Alisson 119110645
  *
  */
-public class ObjetivoController {
+public class ObjetivoController implements Serializable {
 
 	private Map<String, Objetivo> mapObjetivos;
 

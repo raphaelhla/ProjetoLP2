@@ -1,7 +1,11 @@
 package psquiza;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -818,7 +822,40 @@ public class ControllerGeral {
 		gravarArq.print("-Descrição");
 		gravarArq.print("");
 	}
-	
-	//US12 Weslley
 
+	// US12 Weslley
+
+	public void salvar() {
+		try {
+			FileOutputStream backup = new FileOutputStream("backup.dat");
+			ObjectOutputStream objectOut = new ObjectOutputStream(backup);
+			objectOut.writeObject(pesquisaController);
+			objectOut.writeObject(pesquisadorController);
+			objectOut.writeObject(problemaController);
+			objectOut.writeObject(objetivoController);
+			objectOut.writeObject(atividadeController);
+			objectOut.flush();
+			objectOut.close();
+			backup.flush();
+			backup.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void carregar() {
+		try {
+			FileInputStream backup = new FileInputStream("backup.dat");
+			ObjectInputStream objectInput = new ObjectInputStream(backup);
+			this.pesquisaController = (PesquisaController) objectInput.readObject();
+			this.pesquisadorController = (PesquisadorController) objectInput.readObject();
+			this.problemaController = (ProblemaController) objectInput.readObject();
+			this.objetivoController = (ObjetivoController) objectInput.readObject();
+			this.atividadeController = (AtividadeController) objectInput.readObject();
+			objectInput.close();
+			backup.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

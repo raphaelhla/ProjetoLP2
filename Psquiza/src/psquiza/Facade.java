@@ -8,18 +8,15 @@ public class Facade {
 
 	public static void main(String[] args) {
 		args = new String[] { "psquiza.Facade",
-				"testes_easyaccept/use_case_1.txt",
-				"testes_easyaccept/use_case_2.txt",
-				"testes_easyaccept/use_case_3.txt",
-				"testes_easyaccept/use_case_4.txt",
-				"testes_easyaccept/use_case_5.txt",
-				"testes_easyaccept/use_case_6.txt", 
-				"testes_easyaccept/use_case_7.txt",
-				"testes_easyaccept/use_case_8.txt",
-				"testes_easyaccept/use_case_9.txt",
-				"testes_easyaccept/use_case_10.txt"/**, 
-				"testes_easyaccept/use_case_11.txt",
-				"testes_easyaccept/use_case_12.txt"*/};
+				/*
+				 * "testes_easyaccept/use_case_1.txt", "testes_easyaccept/use_case_2.txt",
+				 * "testes_easyaccept/use_case_3.txt", "testes_easyaccept/use_case_4.txt",
+				 * "testes_easyaccept/use_case_5.txt", "testes_easyaccept/use_case_6.txt",
+				 * "testes_easyaccept/use_case_7.txt", "testes_easyaccept/use_case_8.txt",
+				 * "testes_easyaccept/use_case_9.txt", "testes_easyaccept/use_case_10.txt",
+				 * "testes_easyaccept/use_case_11.txt",
+				 */
+				"testes_easyaccept/use_case_12CARREGAR.txt" };
 		EasyAccept.main(args);
 	}
 
@@ -30,7 +27,7 @@ public class Facade {
 	}
 
 	// METODOS DA US1 (MATHEUS)
-	
+
 	public String cadastraPesquisa(String descricao, String campoDeInteresse) {
 		return controllerGeral.cadastraPesquisa(descricao, campoDeInteresse);
 	}
@@ -134,7 +131,7 @@ public class Facade {
 	}
 
 	// METODOS DA US5 (WESLLEY)
-	
+
 	public boolean associaProblema(String idPesquisa, String idProblema) {
 		return controllerGeral.associaProblema(idPesquisa, idProblema);
 	}
@@ -154,32 +151,31 @@ public class Facade {
 	public String listaPesquisas(String ordem) {
 		return controllerGeral.listaPesquisas(ordem);
 	}
-	
+
 	// METODOS DA US6 (MATHEUS)
-	
+
 	public boolean associaPesquisador(String idPesquisa, String emailPesquisador) {
 		return controllerGeral.associaPesquisador(idPesquisa, emailPesquisador);
 	}
-	
+
 	public boolean desassociaPesquisador(String idPesquisa, String emailPesquisador) {
 		return controllerGeral.desassociaPesquisador(idPesquisa, emailPesquisador);
 	}
-	
+
 	public void cadastraEspecialidadeProfessor(String email, String formacao, String unidade, String data) {
 		controllerGeral.cadastraEspecialidadeProfessor(email, formacao, unidade, data);
 	}
-	
+
 	public void cadastraEspecialidadeAluno(String email, int semestre, double IEA) {
 		controllerGeral.cadastraEspecialidadeAluno(email, semestre, IEA);
 	}
-	
+
 	public String listaPesquisadores(String tipo) {
 		return controllerGeral.listaPesquisadores(tipo);
 	}
-	
-	
+
 	// METODOS DA US7 (ALISSON)
-	
+
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {
 		return this.controllerGeral.associaAtividade(codigoPesquisa, codigoAtividade);
 	}
@@ -207,9 +203,9 @@ public class Facade {
 	public int getDuracao(String codigoAtividade) {
 		return this.controllerGeral.getDuracao(codigoAtividade);
 	}
-	
+
 	// METODOS DA US8 (RAPHAEL)
-	
+
 	public String busca(String termo) {
 		return this.controllerGeral.busca(termo);
 	}
@@ -221,21 +217,21 @@ public class Facade {
 	public int contaResultadosBusca(String termo) {
 		return this.controllerGeral.contaResultadosBusca(termo);
 	}
-	
+
 	// US9 Raphael
-	
+
 	public void defineProximaAtividade(String idPrecedente, String idSubsquente) {
 		this.controllerGeral.defineProximaAtividade(idPrecedente, idSubsquente);
 	}
-	
+
 	public void tiraProximaAtividade(String idPrecedente) {
 		this.controllerGeral.tiraProximaAtividade(idPrecedente);
 	}
-	
+
 	public int contaProximos(String idPrecedente) {
 		return this.controllerGeral.contaProximos(idPrecedente);
 	}
-	
+
 	public String pegaProximo(String idAtividade, int enesimaAtividade) {
 		return this.controllerGeral.pegaProximo(idAtividade, enesimaAtividade);
 	}
@@ -243,24 +239,34 @@ public class Facade {
 	public String pegaMaiorRiscoAtividades(String idAtividade) {
 		return this.controllerGeral.pegaMaiorRiscoAtividades(idAtividade);
 	}
-	
+
 	// US10 Alisson
-	
+
 	public void configuraEstrategia(String estrategia) {
 		this.controllerGeral.configuraEstrategia(estrategia);
 	}
-	
+
 	public String proximaAtividade(String codigoPesquisa) {
 		return this.controllerGeral.proximaAtividade(codigoPesquisa);
 	}
-	
-	//US11 Matheus
-	
+
+	// US11 Matheus
+
 	public void gravarResumo(String codigoPesquisa) throws IOException {
 		this.controllerGeral.gravarResumo(codigoPesquisa);
 	}
-	
+
 	public void gravarResultados(String codigoPesquisa) throws IOException {
 		this.controllerGeral.gravarResultado(codigoPesquisa);
+	}
+
+	// US12 Weslley
+
+	public void salvar() {
+		this.controllerGeral.salvar();
+	}
+
+	public void carregar() {
+		this.controllerGeral.carregar();
 	}
 }

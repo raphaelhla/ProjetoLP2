@@ -1,5 +1,7 @@
 package pesquisador;
 
+import java.io.Serializable;
+
 import psquiza.Validador;
 
 /**
@@ -9,7 +11,7 @@ import psquiza.Validador;
  * @author Raphael Agra 119110413
  *
  */
-public class Pesquisador {
+public class Pesquisador implements Serializable {
 
 	/**
 	 * Especialidade do pesquisador.

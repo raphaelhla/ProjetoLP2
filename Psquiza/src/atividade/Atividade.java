@@ -1,5 +1,6 @@
 package atividade;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import psquiza.Validador;
  * @author Weslley Azevedo 11911241
  *
  */
-public class Atividade {
+public class Atividade implements Serializable{
 
 	private Atividade subsquente;
 

@@ -1,12 +1,14 @@
 package psquiza;
 
+import java.io.Serializable;
+
 /**
  * Representacao de um validador para verificar entradas.
  * 
  * @author Raphael Agra 119110413
  *
  */
-public class Validador {
+public class Validador implements Serializable{
 
 	/**
 	 * Metodo que verifica se uma entrada e vazia ou nula a partir da entrada e de

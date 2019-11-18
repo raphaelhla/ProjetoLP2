@@ -1,5 +1,6 @@
 package atividade;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import psquiza.Validador;
  * @author Weslley Azevedo 119111241
  *
  */
-public class AtividadeController {
+public class AtividadeController implements Serializable {
 
 	/**
 	 * Validador utilizado para validar entradas do sistema.

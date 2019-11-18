@@ -1,5 +1,6 @@
 package pesquisador;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import psquiza.Validador;
  * @author Raphael Agra 119110413
  *
  */
-public class PesquisadorController {
+public class PesquisadorController implements Serializable{
 
 	/**
 	 * Mapa com todos os pesquisadores do sistema, identificados unicamente por seu

@@ -1,5 +1,6 @@
 package pesquisa;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,7 +18,7 @@ import psquiza.Validador;
  * Classe que representa um controller de pesquisa.
  * 
  */
-public class PesquisaController {
+public class PesquisaController implements Serializable {
 
 	/**
 	 * Mapa com todas as pesquisas cadastradas no sistema.

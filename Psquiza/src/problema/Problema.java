@@ -1,5 +1,7 @@
 package problema;
 
+import java.io.Serializable;
+
 import psquiza.Validador;
 
 /**
@@ -9,7 +11,7 @@ import psquiza.Validador;
  * @author Jose Alisson 119110645
  *
  */
-public class Problema {
+public class Problema implements Serializable{
 
 	/**
 	 * Descricao do problema.
