@@ -1,39 +1,56 @@
 package pesquisador;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+
 import org.junit.jupiter.api.Test;
+import pesquisador.PesquisadorProfessor;
+import psquiza.ControllerGeral;
+
+
 
 class PesquisadorProfessorTest {
+	
 
 	@Test
 	void testPesquisadorProfessor() {
-		fail("Not yet implemented");
+		PesquisadorProfessor pf = new PesquisadorProfessor("ufcg", "splab", "01/01/2020");
+		assertEquals(" - ufcg - splab - 01/01/2020", pf.toString());
 	}
 
 	@Test
 	void testGetFormacao() {
-		fail("Not yet implemented");
+		PesquisadorProfessor pf = new PesquisadorProfessor("ufcg", "splab", "01/01/2020");
+		assertEquals("ufcg", pf.getFormacao());
+		
+		
 	}
 
 	@Test
 	void testGetUnidadeAlocada() {
-		fail("Not yet implemented");
+		PesquisadorProfessor pf = new PesquisadorProfessor("ufcg", "splab", "01/01/2020");
+		assertEquals("splab", pf.getUnidadeAlocada());
 	}
 
 	@Test
 	void testGetDataContratacao() {
-		fail("Not yet implemented");
+		PesquisadorProfessor pf = new PesquisadorProfessor("ufcg", "splab", "01/01/2020");
+		assertEquals("01/01/2020", pf.getDataContratacao());
 	}
 
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		PesquisadorProfessor pf = new PesquisadorProfessor("ufcg", "splab", "01/01/2020");
+		assertEquals(" - ufcg - splab - 01/01/2020", pf.toString());
 	}
 
 	@Test
 	void testAlteraPesquisador() {
-		fail("Not yet implemented");
+		PesquisadorProfessor pf = new PesquisadorProfessor("ufcg", "splab", "01/01/2020");
+		pf.alteraPesquisador("FORMACAO", "ufpe");
+		assertEquals(" - ufpe - splab - 01/01/2020", pf.toString());
+		
 	}
 
 }

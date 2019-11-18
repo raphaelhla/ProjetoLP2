@@ -207,7 +207,7 @@ public class Pesquisador {
 	}
 
 	/**
-	 * Metodo que vai retornar a funçao do pesquisador.
+	 * Metodo que vai retornar a funcao do pesquisador.
 	 * 
 	 * @return funcao do pesquisador.
 	 */
