@@ -1,7 +1,6 @@
 package pesquisador;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import pesquisador.PesquisadorAluno;
 
 import org.junit.jupiter.api.Test;

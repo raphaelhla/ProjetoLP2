@@ -86,6 +86,16 @@ class ValidadorTest {
 	}
 
 	@Test
+	void testVerificafotoURLInvalida3() {
+		try {
+			validador.verificafotoURL("https:/");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Formato de foto invalido.", e.getMessage());
+		}
+	}
+
+	@Test
 	void testVerificaNivelRiscoInvalido() {
 		try {
 			validador.verificaNivelRisco("teste");
@@ -183,6 +193,96 @@ class ValidadorTest {
 			fail("deveria lancar excecao");
 		} catch (IllegalArgumentException e) {
 			assertEquals("Formato do campo de interesse invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaDataFormatoInvalido() {
+		try {
+			validador.verificaData("111111111111111111");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo data com formato invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaDataFormatoInvalido1() {
+		try {
+			validador.verificaData("1");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo data com formato invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaDataDiaInvalido() {
+		try {
+			validador.verificaData("32/12/1999");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo data com formato invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaDataMesInvalido() {
+		try {
+			validador.verificaData("31/13/1999");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo data com formato invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaDataAnoInvalido() {
+		try {
+			validador.verificaData("31/12/0");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo data com formato invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaSemestreInvalido() {
+		try {
+			validador.verificaSemestre(0);
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo semestre com formato invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaIEAInvalidoMenorQueZero() {
+		try {
+			validador.verificaIEA(-1);
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo IEA com formato invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaIEAInvalidoMaiorQueDez() {
+		try {
+			validador.verificaIEA(11);
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo IEA com formato invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaNumInvalidoMenorQueZero() {
+		try {
+			validador.verificaNum(-1, "msg teste error");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("msg teste error", e.getMessage());
 		}
 	}
 

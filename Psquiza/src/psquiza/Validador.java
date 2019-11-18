@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Raphael Agra 119110413
  *
  */
-public class Validador implements Serializable{
+public class Validador implements Serializable {
 
 	/**
 	 * Metodo que verifica se uma entrada e vazia ou nula a partir da entrada e de
@@ -50,20 +50,20 @@ public class Validador implements Serializable{
 	}
 
 	/**
-	 * Metodo que verifica se o link de uma foto segue os padroes corretor a partir
+	 * Metodo que verifica se o link de uma foto segue os padroes corretos a partir
 	 * do link da foto
 	 * 
 	 * @param fotoURL Link da foto.
 	 */
 	public void verificafotoURL(String fotoURL) {
 		verificaEntradaNulaVazia(fotoURL, "Campo fotoURL nao pode ser nulo ou vazio.");
-		if (fotoURL.length() < 7) {
-			throw new IllegalArgumentException("Formato de foto invalido.");
-		}
-		String inicialTipo1 = fotoURL.substring(0, 7);
-		String inicialTipo2 = fotoURL.substring(0, 8);
-
-		if (!inicialTipo1.equals("http://") && !inicialTipo2.equals("https://")) {
+		if (fotoURL.length() > 7) {
+			String inicialTipo1 = fotoURL.substring(0, 7);
+			String inicialTipo2 = fotoURL.substring(0, 8);
+			if (!inicialTipo1.equals("http://") && !inicialTipo2.equals("https://")) {
+				throw new IllegalArgumentException("Formato de foto invalido.");
+			}
+		} else {
 			throw new IllegalArgumentException("Formato de foto invalido.");
 		}
 	}
@@ -205,7 +205,8 @@ public class Validador implements Serializable{
 
 	public void verificaEstrategia(String estrategia) {
 		verificaEntradaNulaVazia(estrategia, "Estrategia nao pode ser nula ou vazia.");
-		if (!estrategia.equals("MAIS_ANTIGA") && !estrategia.equals("MENOS_PENDENCIAS") && !estrategia.equals("MAIOR_RISCO") && !estrategia.equals("MAIOR_DURACAO")) {
+		if (!estrategia.equals("MAIS_ANTIGA") && !estrategia.equals("MENOS_PENDENCIAS")
+				&& !estrategia.equals("MAIOR_RISCO") && !estrategia.equals("MAIOR_DURACAO")) {
 			throw new IllegalArgumentException("Valor invalido da estrategia");
 		}
 	}

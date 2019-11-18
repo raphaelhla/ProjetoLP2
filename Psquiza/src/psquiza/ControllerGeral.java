@@ -824,11 +824,13 @@ public class ControllerGeral {
 	}
 
 	// US12 Weslley
-
+	
+	/**
+	 * Salva o estado atual do sistema.
+	 */
 	public void salvar() {
 		try {
-			FileOutputStream backup = new FileOutputStream("backup.dat");
-			ObjectOutputStream objectOut = new ObjectOutputStream(backup);
+			ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("backup.dat"));
 			objectOut.writeObject(pesquisaController);
 			objectOut.writeObject(pesquisadorController);
 			objectOut.writeObject(problemaController);
@@ -836,24 +838,23 @@ public class ControllerGeral {
 			objectOut.writeObject(atividadeController);
 			objectOut.flush();
 			objectOut.close();
-			backup.flush();
-			backup.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Carrega o estado anteriormente salvo do sistema.
+	 */
 	public void carregar() {
 		try {
-			FileInputStream backup = new FileInputStream("backup.dat");
-			ObjectInputStream objectInput = new ObjectInputStream(backup);
+			ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream("backup.dat"));
 			this.pesquisaController = (PesquisaController) objectInput.readObject();
 			this.pesquisadorController = (PesquisadorController) objectInput.readObject();
 			this.problemaController = (ProblemaController) objectInput.readObject();
 			this.objetivoController = (ObjetivoController) objectInput.readObject();
 			this.atividadeController = (AtividadeController) objectInput.readObject();
 			objectInput.close();
-			backup.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
