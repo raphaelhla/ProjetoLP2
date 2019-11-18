@@ -1,5 +1,6 @@
 package psquiza;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -804,6 +805,7 @@ public class ControllerGeral {
 		FileWriter arq = new FileWriter("CODIGO.txt");
 		PrintWriter gravarArq = new PrintWriter(arq);
 		gravarArq.print("-Pesquisa: " + pesquisaController.exibePesquisa(codigoPesquisa));
+		gravarArq.close();
 	}
 
 	/**
@@ -820,6 +822,7 @@ public class ControllerGeral {
 		gravarArq.print("-Resultados:");
 		gravarArq.print("-Descrição");
 		gravarArq.print("");
+		gravarArq.close();
 	}
 
 	// US12 Weslley
@@ -829,7 +832,11 @@ public class ControllerGeral {
 	 */
 	public void salvar() {
 		try {
-			ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("backup.dat"));
+			File diretorio = new File("arquivos");
+			if (!diretorio.exists()) {
+				diretorio.mkdirs();
+			}
+			ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("arquivos/backup.dat"));
 			objectOut.writeObject(pesquisaController);
 			objectOut.writeObject(pesquisadorController);
 			objectOut.writeObject(problemaController);
@@ -847,7 +854,7 @@ public class ControllerGeral {
 	 */
 	public void carregar() {
 		try {
-			ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream("backup.dat"));
+			ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream("arquivos/backup.dat"));
 			this.pesquisaController = (PesquisaController) objectInput.readObject();
 			this.pesquisadorController = (PesquisadorController) objectInput.readObject();
 			this.problemaController = (ProblemaController) objectInput.readObject();
