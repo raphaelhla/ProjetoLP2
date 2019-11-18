@@ -286,7 +286,8 @@ public class AtividadeController implements Serializable {
 	 */
 	public int contaProximos(String idPrecedente) {
 		validador.verificaEntradaNulaVazia(idPrecedente, "Atividade nao pode ser nulo ou vazio.");
-		return mapaAtividades.get(idPrecedente).contaProximos();
+		verificaSeExisteAtividade(idPrecedente, "Atividade nao encontrada.");
+		return this.mapaAtividades.get(idPrecedente).contaProximos();
 	}
 
 	/**
@@ -300,6 +301,7 @@ public class AtividadeController implements Serializable {
 	 */
 	public String pegaProximo(String idAtividade, int enesimaAtividade) {
 		validador.verificaEntradaNulaVazia(idAtividade, "Atividade nao pode ser nulo ou vazio.");
+		verificaSeExisteAtividade(idAtividade, "Atividade nao encontrada.");
 		if (enesimaAtividade < 1)
 			throw new IllegalArgumentException("EnesimaAtividade nao pode ser negativa ou zero.");
 		if (contaProximos(idAtividade) < enesimaAtividade)

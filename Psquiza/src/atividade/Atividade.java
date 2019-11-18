@@ -335,6 +335,9 @@ public class Atividade implements Serializable{
 		if (enesimaAtividade == 0) {
 			return this.codigoAtividade;
 		}
+		if(this.subsquente == null && enesimaAtividade == 1) {
+			throw new IndexOutOfBoundsException();
+		}
 		return this.subsquente.pegaProximo(enesimaAtividade - 1);
 	}
 

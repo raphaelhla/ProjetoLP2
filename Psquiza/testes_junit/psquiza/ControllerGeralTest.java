@@ -416,4 +416,52 @@ class ControllerGeralTest {
 				"Gaudencio (externo) - Professor de computacao - gaudencio@email.com - https://urlfoto.com | Livia (externo) - Professora de computacao - livia@email.com - https://urlfoto.com",
 				controllerGeral.listaPesquisadores("EXTERNO"));
 	}
+	
+	@Test
+	void test() {
+	}
+	
+	@Test
+	void testDefineProximaAtividade() {
+		controllerGeral.cadastraAtividade("Atividade de computacao", "MEDIO", "Pode pegar virus");
+		controllerGeral.cadastraAtividade("Atividade de pesquisa em peixe baiacu", "ALTO", "Pode morrer");
+		controllerGeral.defineProximaAtividade("A1", "A2");
+	}
+	
+	@Test
+	void testTiraProximaAtividade() {
+		controllerGeral.cadastraAtividade("Atividade de computacao", "MEDIO", "Pode pegar virus");
+		controllerGeral.cadastraAtividade("Atividade de pesquisa em peixe baiacu", "ALTO", "Pode morrer");
+		controllerGeral.tiraProximaAtividade("A1");
+	}
+	
+	@Test
+	void testContaProximo1() {
+		controllerGeral.cadastraAtividade("Atividade de computacao", "MEDIO", "Pode pegar virus");
+		controllerGeral.cadastraAtividade("Atividade de pesquisa em peixe baiacu", "ALTO", "Pode morrer");
+		controllerGeral.defineProximaAtividade("A1", "A2");
+		assertTrue(1 == controllerGeral.contaProximos("A1"));
+	}
+	
+	@Test
+	void testContaProximo2() {
+		controllerGeral.cadastraAtividade("Atividade de computacao", "MEDIO", "Pode pegar virus");
+		assertTrue(0 == controllerGeral.contaProximos("A1"));
+	}
+	
+	@Test
+	void testPegaProximo1() {
+		controllerGeral.cadastraAtividade("Atividade de computacao", "MEDIO", "Pode pegar virus");
+		controllerGeral.cadastraAtividade("Atividade de pesquisa em peixe baiacu", "ALTO", "Pode morrer");
+		controllerGeral.defineProximaAtividade("A1", "A2");
+		assertEquals("A2",controllerGeral.pegaProximo("A1", 1));
+	}
+		
+	@Test
+	void testPegaMaiorRiscoAtividades() {
+		controllerGeral.cadastraAtividade("Atividade de computacao", "MEDIO", "Pode pegar virus");
+		controllerGeral.cadastraAtividade("Atividade de pesquisa em peixe baiacu", "ALTO", "Pode morrer");
+		controllerGeral.defineProximaAtividade("A1", "A2");
+		assertEquals("A2",controllerGeral.pegaMaiorRiscoAtividades("A1"));
+	}
 }
