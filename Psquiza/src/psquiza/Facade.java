@@ -1,7 +1,5 @@
 package psquiza;
 
-import java.io.IOException;
-
 import easyaccept.EasyAccept;
 
 public class Facade {

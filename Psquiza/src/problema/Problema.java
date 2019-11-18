@@ -11,7 +11,7 @@ import psquiza.Validador;
  * @author Jose Alisson 119110645
  *
  */
-public class Problema implements Serializable{
+public class Problema implements Serializable {
 
 	/**
 	 * Descricao do problema.
