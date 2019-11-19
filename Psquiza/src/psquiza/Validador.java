@@ -11,6 +11,11 @@ import java.io.Serializable;
 public class Validador implements Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2146934080526055014L;
+
+	/**
 	 * Metodo que verifica se uma entrada e vazia ou nula a partir da entrada e de
 	 * uma mensagem de excecao.
 	 * 

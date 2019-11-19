@@ -14,6 +14,11 @@ import psquiza.Validador;
 public class Problema implements Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -27069089149027792L;
+
+	/**
 	 * Descricao do problema.
 	 */
 	private String descricao;

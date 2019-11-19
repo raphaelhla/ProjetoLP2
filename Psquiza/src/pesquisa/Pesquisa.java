@@ -31,6 +31,11 @@ import psquiza.Validador;
 public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -228465831738135575L;
+
+	/**
 	 * String que representa a descricao de uma pesquisa.
 	 */
 	private String descricao;

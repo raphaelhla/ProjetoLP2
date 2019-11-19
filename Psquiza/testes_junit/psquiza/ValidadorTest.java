@@ -289,7 +289,7 @@ class ValidadorTest {
 	@Test
 	void testVerificaDataAnoInvalido1() {
 		try {
-			validador.verificaData("31/12/0000");
+			validador.verificaData("31/12/00000");
 			fail("deveria lancar excecao");
 		} catch (IllegalArgumentException e) {
 			assertEquals("Atributo data com formato invalido.", e.getMessage());

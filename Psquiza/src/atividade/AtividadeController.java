@@ -15,7 +15,13 @@ import psquiza.Validador;
  * @author Weslley Azevedo 119111241
  *
  */
-public class AtividadeController implements Serializable {
+public class AtividadeController implements Serializable{
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3349584838993650289L;
 
 	/**
 	 * Validador utilizado para validar entradas do sistema.

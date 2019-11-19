@@ -18,6 +18,11 @@ import psquiza.Validador;
 public class PesquisadorController implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1924693220519245926L;
+
+	/**
 	 * Mapa com todos os pesquisadores do sistema, identificados unicamente por seu
 	 * email.
 	 * 

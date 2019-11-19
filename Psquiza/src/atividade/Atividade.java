@@ -16,7 +16,12 @@ import psquiza.Validador;
  * @author Weslley Azevedo 11911241
  *
  */
-public class Atividade implements Serializable{
+public class Atividade implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7285396888359965774L;
 
 	private Atividade subsquente;
 
@@ -335,9 +340,7 @@ public class Atividade implements Serializable{
 		if (enesimaAtividade == 0) {
 			return this.codigoAtividade;
 		}
-		if(this.subsquente == null && enesimaAtividade == 1) {
-			throw new IndexOutOfBoundsException();
-		}
+
 		return this.subsquente.pegaProximo(enesimaAtividade - 1);
 	}
 
@@ -362,7 +365,7 @@ public class Atividade implements Serializable{
 	 *         nivel de risco.
 	 */
 	public int mapRisco(String risco) {
-		return (risco.equals("ALTO") ? 1 : (risco.equals("MEDIO") ? 0 : -1));
+		return ((this.nivelRisco.equals("ALTO") ? 3 : (this.nivelRisco.equals("MEDIO") ? 2 : 1)));
 	}
 
 	/**
@@ -374,14 +377,12 @@ public class Atividade implements Serializable{
 	 *         da atividade atual.
 	 */
 	private String pegaAtividadeRiscoAux(Atividade altoRisco) {
-
 		if (this.subsquente != null) {
-			if (mapRisco(this.nivelRisco) <= mapRisco(this.subsquente.nivelRisco)) {
+			if (mapRisco(this.subsquente.nivelRisco) >= mapRisco(altoRisco.nivelRisco)) {
 				altoRisco = this.subsquente;
 			}
 			return this.subsquente.pegaAtividadeRiscoAux(altoRisco);
 		}
-
 		return altoRisco.codigoAtividade;
 	}
 

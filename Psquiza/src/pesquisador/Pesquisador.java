@@ -14,6 +14,11 @@ import psquiza.Validador;
 public class Pesquisador implements Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8101076942029056067L;
+
+	/**
 	 * Especialidade do pesquisador.
 	 */
 	private Especialidade especialidade;

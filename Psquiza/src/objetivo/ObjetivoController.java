@@ -17,6 +17,11 @@ import psquiza.Validador;
  */
 public class ObjetivoController implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3142360673813314170L;
+
 	private Map<String, Objetivo> mapObjetivos;
 
 	/**

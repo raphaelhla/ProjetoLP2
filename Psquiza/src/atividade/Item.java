@@ -14,6 +14,11 @@ import psquiza.Validador;
 public class Item implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9079670173414624622L;
+
+	/**
 	 * Descricao do item.
 	 */
 	private String descricao;

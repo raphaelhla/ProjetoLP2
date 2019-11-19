@@ -464,4 +464,29 @@ class ControllerGeralTest {
 		controllerGeral.defineProximaAtividade("A1", "A2");
 		assertEquals("A2",controllerGeral.pegaMaiorRiscoAtividades("A1"));
 	}
+	
+	@Test
+	void testProximaAtividade() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.configuraEstrategia("MAIOR_RISCO");
+		controllerGeral.cadastraAtividade("Atividade de computacao", "MEDIO", "Pode pegar virus");
+		controllerGeral.cadastraAtividade("Atividade de pesquisa em peixe baiacu", "ALTO", "Pode morrer");
+		controllerGeral.associaAtividade("FAK1", "A1");
+		controllerGeral.associaAtividade("FAK1", "A2");
+		controllerGeral.cadastraItem("A1", "IRIJOW");
+		controllerGeral.cadastraItem("A2", "IRINEU");
+		assertEquals("A2", controllerGeral.proximaAtividade("FAK1"));
+	}
+	
+	@Test
+	void testProximaAtividade2() {
+		controllerGeral.cadastraPesquisa("Pesquisa do uso da computacao no combate a fake news", "fake news");
+		controllerGeral.cadastraAtividade("Atividade de computacao", "MEDIO", "Pode pegar virus");
+		controllerGeral.cadastraAtividade("Atividade de pesquisa em peixe baiacu", "ALTO", "Pode morrer");
+		controllerGeral.associaAtividade("FAK1", "A1");
+		controllerGeral.associaAtividade("FAK1", "A2");
+		controllerGeral.cadastraItem("A1", "IRIJOW");
+		controllerGeral.cadastraItem("A2", "IRINEU");
+		assertEquals("A1", controllerGeral.proximaAtividade("FAK1"));
+	}
 }

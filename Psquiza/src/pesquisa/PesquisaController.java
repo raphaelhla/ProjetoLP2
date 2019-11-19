@@ -23,6 +23,11 @@ import psquiza.Validador;
 public class PesquisaController implements Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7770112965757922431L;
+
+	/**
 	 * Mapa com todas as pesquisas cadastradas no sistema.
 	 */
 	private Map<String, Pesquisa> mapPesquisas;

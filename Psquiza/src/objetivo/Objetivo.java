@@ -15,6 +15,11 @@ import psquiza.Validador;
 public class Objetivo implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3717186372081784852L;
+
+	/**
 	 * Tipo do objetivo.
 	 */
 	private String tipo;

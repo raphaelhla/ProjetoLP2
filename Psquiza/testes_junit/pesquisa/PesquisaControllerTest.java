@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import atividade.Atividade;
 import objetivo.Objetivo;
 import problema.Problema;
 
@@ -245,5 +246,81 @@ class PesquisaControllerTest {
 		Problema problema =  new Problema("teste", 3);
 		pc.associaProblema("IRI1", "P1", problema);
 		assertEquals("IRI1 - TESTE - Irineu | IRI2 - Bob jow - Irineuliston | ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao", pc.listaPesquisas("PROBLEMA"));
+	}
+	
+	@Test
+	void testProximaAtividadePesquisaDesativada() {
+		try {
+			pc.encerraPesquisa("ELE1", "BIU");
+			pc.proximaAtividade("ELE1");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Pesquisa desativada.", e.getMessage());
+		}
+	}
+	
+	@Test
+	void testProximaAtividadePesquisaSemAtividadesPendentes() {
+		try {
+			Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+			atividade.cadastraItem("testando123");
+			atividade.executaAtividade(1, 13);
+			pc.associaAtividade("ELE1", "A1", atividade);
+			pc.proximaAtividade("ELE1");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Pesquisa sem atividades com pendencias.", e.getMessage());
+		}
+	}
+	
+	@Test
+	void testProximaAtividadeEstrategiaMaisAntiga() {
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");
+		atividade2.cadastraItem("oooolfldl,fdlf");
+		atividade.cadastraItem("testando123");
+		pc.associaAtividade("ELE1", "A1", atividade);
+		pc.associaAtividade("ELE1", "A2", atividade2);
+		assertEquals("A1", pc.proximaAtividade("ELE1"));
+	}
+	
+	@Test
+	void testProximaAtividadeEstrategiaMenosPendencias() {
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");
+		atividade2.cadastraItem("oooolfldl,fdlf");
+		atividade.cadastraItem("testando123");
+		atividade.cadastraItem("llllll");
+		pc.associaAtividade("ELE1", "A1", atividade);
+		pc.associaAtividade("ELE1", "A2", atividade2);
+		pc.configuraEstrategia("MENOS_PENDENCIAS");
+		assertEquals("A2", pc.proximaAtividade("ELE1"));
+	}
+	
+	@Test
+	void testProximaAtividadeEstrategiaMaiorRisco() {
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");
+		atividade2.cadastraItem("oooolfldl,fdlf");
+		atividade.cadastraItem("testando123");
+		atividade.cadastraItem("llllll");
+		pc.associaAtividade("ELE1", "A1", atividade);
+		pc.associaAtividade("ELE1", "A2", atividade2);
+		pc.configuraEstrategia("MAIOR_RISCO");
+		assertEquals("A1", pc.proximaAtividade("ELE1"));
+	}
+	
+	@Test
+	void testProximaAtividadeEstrategiaMaiorDuracao() {
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");
+		atividade2.cadastraItem("oooolfldl,fdlf");
+		atividade.cadastraItem("testando123");
+		atividade.cadastraItem("llllll");
+		atividade.executaAtividade(2, 7);
+		pc.associaAtividade("ELE1", "A1", atividade);
+		pc.associaAtividade("ELE1", "A2", atividade2);
+		pc.configuraEstrategia("MAIOR_DURACAO");
+		assertEquals("A1", pc.proximaAtividade("ELE1"));
 	}
 }

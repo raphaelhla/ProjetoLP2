@@ -18,6 +18,11 @@ import psquiza.Validador;
 public class ProblemaController implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8766720948580242524L;
+
+	/**
 	 * Mapa com todos os problemas do sistema, identificados unicamente por um
 	 * codigo.
 	 */
