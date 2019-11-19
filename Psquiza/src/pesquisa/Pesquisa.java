@@ -550,15 +550,15 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
         Set<String> chaves = this.pesquisadoresAssociados.keySet();
         String pesquisadores = "";
         for (String chave : chaves) {
-            pesquisadores += "- " + chave.toString() + "\n";
+            pesquisadores += "        - " + this.pesquisadoresAssociados.get(chave).toString() + "\n";
         }
         return pesquisadores;
     }
     private String exibeObjetivos() {
-    	Set<String> chaves = this.objetivosAssociados.keySet();
+        Set<String> chaves = this.objetivosAssociados.keySet();
         String objetivos = "";
         for(String chave: chaves) {
-            objetivos += "- " + chave.toString() + "\n";
+            objetivos += "            - " + this.objetivosAssociados.get(chave).toString() + "\n";
         }
         return objetivos;
     }
@@ -566,14 +566,13 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
         Set<String> chaves = this.atividadesAssociadas.keySet();
         String atividades = "";
         for (String chave : chaves) {
-            atividades += "- " + chave.toString() + "\n";
+            atividades += "        - " + this.atividadesAssociadas.get(chave).toString() + "\n";
         }
         return atividades;
     }
-    
     public String exibePesquisa() {
-        return "- Pesquisa: " + toString() + "\n" + "    - Pesquisadores:\n" + "        " + exibePesquisadores()
-    + "    - Problema:\n" + "       - " + this.problemaAssociado.keySet().toString() + "    - Objetivos:\n" + "        " + exibeObjetivos() + "    - Atividades:\n        " +
+        return "- Pesquisa: " + this.codigo + " - " + toString() + "\n" + "    - Pesquisadores:\n" + exibePesquisadores()
+    + "    - Problema:\n        - "  + this.problemaAssociado.toString() + "\n    - Objetivos:\n" +  exibeObjetivos() + "    - Atividades:\n" +
     exibeAtividades();
     }
 }

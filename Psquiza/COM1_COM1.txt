@@ -1,0 +1,10 @@
+- Pesquisa: Homofobia em mensagens online de alunos de computacao do primeiro periodo. - computacao, homofobia
+    - Pesquisadores:
+        - eliane@computacao.ufcg.edu.br
+    - Problema:
+       - [P1]    - Objetivos:
+        - O1
+- O2
+- O3
+    - Atividades:
+        - A1
