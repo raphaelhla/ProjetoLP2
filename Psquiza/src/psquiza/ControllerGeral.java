@@ -820,7 +820,7 @@ public class ControllerGeral {
 			if (!diretorio.exists()) {
 				diretorio.mkdirs();
 			}
-			ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("arquivos/backup.dat"));
+			ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("arquivos/arquivo.txt"));
 			objectOut.writeObject(pesquisaController);
 			objectOut.writeObject(pesquisadorController);
 			objectOut.writeObject(problemaController);
@@ -838,7 +838,7 @@ public class ControllerGeral {
 	 */
 	public void carregar() {
 		try {
-			ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream("arquivos/backup.dat"));
+			ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream("arquivos/arquivo.txt"));
 			this.pesquisaController = (PesquisaController) objectInput.readObject();
 			this.pesquisadorController = (PesquisadorController) objectInput.readObject();
 			this.problemaController = (ProblemaController) objectInput.readObject();
