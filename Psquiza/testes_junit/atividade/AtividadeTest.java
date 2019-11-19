@@ -122,10 +122,10 @@ class AtividadeTest {
 
 	@Test
 	void testPegaMaiorRiscoAtividade() {
-		//Atividade a3 = new Atividade("oi", "ALTO", "BIU", "A3");
-		//a2.next(a3);
-		//a3.next(a1);
-		//assertEquals("A3", a2.pegaMaiorRiscoAtividade());
+		Atividade a3 = new Atividade("oi", "ALTO", "BIU", "A3");
+		a2.next(a3);
+		a3.next(a1);
+		assertEquals("A3", a2.pegaMaiorRiscoAtividade());
 	}
 
 	@Test
@@ -138,5 +138,51 @@ class AtividadeTest {
 	public void testPegaProximo2() {
 		a1.next(a2);
 		assertEquals("A2", a1.pegaProximo(1));
+	}
+
+	@Test
+	public void testExecutaAtividadeItemInexistente() {
+		try {
+			a1.executaAtividade(1, 6);
+			fail("Deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Item nao encontrado.", e.getMessage());
+		}
+	}
+
+	@Test
+	public void testExecutaAtividadeItemJaExecutado() {
+		try {
+			a1.cadastraItem("irineu");
+			a1.executaAtividade(1, 6);
+			a1.executaAtividade(1, 6);
+			fail("Deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Item ja executado.", e.getMessage());
+		}
+	}
+
+	@Test
+	public void testCadastraResultado() {
+		assertEquals(1, a1.cadastraResultado("resultado"));
+	}
+
+	@Test
+	public void testRemoveResultadoNaoEncontrado() {
+		try {
+			a1.cadastraResultado("resultado");
+			a1.removeResultado(6);
+			fail("Deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Resultado nao encontrado.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testRemoveResultadoJaRemovido() {
+		a1.cadastraResultado("resultado");
+		a1.removeResultado(1);
+		assertFalse(a1.removeResultado(1));
+		
 	}
 }

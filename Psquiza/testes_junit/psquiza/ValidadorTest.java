@@ -249,7 +249,7 @@ class ValidadorTest {
 	@Test
 	void testVerificaDataDiaInvalido1() {
 		try {
-			validador.verificaData("32/12/1999");
+			validador.verificaData("32/0/1999");
 			fail("deveria lancar excecao");
 		} catch (IllegalArgumentException e) {
 			assertEquals("Atributo data com formato invalido.", e.getMessage());
@@ -259,7 +259,27 @@ class ValidadorTest {
 	@Test
 	void testVerificaDataDiaInvalido2() {
 		try {
-			validador.verificaData("0/12/1999");
+			validador.verificaData("32/13/1999");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo data com formato invalido.", e.getMessage());
+		}
+	}
+	
+	@Test
+	void testVerificaDataDiaInvalido3() {
+		try {
+			validador.verificaData("0/15/1999");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo data com formato invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaDataDiaInvalido4() {
+		try {
+			validador.verificaData("0/0/1999");
 			fail("deveria lancar excecao");
 		} catch (IllegalArgumentException e) {
 			assertEquals("Atributo data com formato invalido.", e.getMessage());
@@ -280,6 +300,26 @@ class ValidadorTest {
 	void testVerificaDataMesInvalido2() {
 		try {
 			validador.verificaData("31/0/1999");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo data com formato invalido.", e.getMessage());
+		}
+	}
+	
+	@Test
+	void testVerificaDataMesInvalido3() {
+		try {
+			validador.verificaData("0/13/1999");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo data com formato invalido.", e.getMessage());
+		}
+	}
+
+	@Test
+	void testVerificaDataMesInvalido4() {
+		try {
+			validador.verificaData("39/0/1999");
 			fail("deveria lancar excecao");
 		} catch (IllegalArgumentException e) {
 			assertEquals("Atributo data com formato invalido.", e.getMessage());

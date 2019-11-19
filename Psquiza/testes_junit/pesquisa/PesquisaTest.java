@@ -12,6 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import atividade.Atividade;
 import objetivo.Objetivo;
 import problema.Problema;
 
@@ -255,4 +256,60 @@ class PesquisaTest {
 		Collections.sort(lista);
 		assertEquals("[Teste - Alok, Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao]", lista.toString());
 	}
+	
+	@Test
+	void testEstrategiaMaisAntiga() {
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");
+		atividade2.cadastraItem("oooolfldl,fdlf");
+		atividade.cadastraItem("testando123");
+		atividade.cadastraItem("llllll");
+		atividade.executaAtividade(2, 7);
+		atividade.executaAtividade(1, 10);
+		pesquisaTest.associaAtividade("A1", atividade);
+		pesquisaTest.associaAtividade("A2", atividade2);
+		assertEquals("A2", pesquisaTest.estrategiaMaisAntiga());
+	}
+	
+	@Test
+	void testEstrategiaMaiorDuracao() {
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");
+		atividade.cadastraItem("testando123");
+		atividade.cadastraItem("llllll");
+		atividade2.cadastraItem("oooopppp");
+		atividade2.cadastraItem("poxa");
+		atividade2.executaAtividade(1, 10);
+		atividade.executaAtividade(2, 7);
+		pesquisaTest.associaAtividade("A1", atividade);
+		pesquisaTest.associaAtividade("A2", atividade2);
+		assertEquals("A2", pesquisaTest.estrategiaMaiorDuracao());
+	}
+	
+	@Test
+	void testEstrategiaMenosPendencias() {
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");
+		atividade.cadastraItem("testando123");
+		atividade.cadastraItem("llllll");
+		atividade2.cadastraItem("ppp");
+		atividade.executaAtividade(2, 7);
+		pesquisaTest.associaAtividade("A1", atividade);
+		pesquisaTest.associaAtividade("A2", atividade2);
+		assertEquals("A1", pesquisaTest.estrategiaMenosPendencias());
+	}
+	
+	@Test
+	void testEstrategiaMaiorRisco() {
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");
+		atividade.cadastraItem("testando123");
+		atividade.cadastraItem("llllll");
+		atividade2.cadastraItem("ppp");
+		atividade.executaAtividade(2, 7);
+		pesquisaTest.associaAtividade("A1", atividade);
+		pesquisaTest.associaAtividade("A2", atividade2);
+		assertEquals("A1", pesquisaTest.estrategiaMaiorRisco());
+	}
+
 }

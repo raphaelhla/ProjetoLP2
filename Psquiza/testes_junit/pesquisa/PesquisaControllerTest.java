@@ -285,6 +285,18 @@ class PesquisaControllerTest {
 	}
 	
 	@Test
+	void testProximaAtividadeEstrategiaMaisAntiga2() {
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");
+		atividade2.cadastraItem("oooolfldl,fdlf");
+		atividade.cadastraItem("testando123");
+		pc.associaAtividade("ELE1", "A1", atividade);
+		pc.associaAtividade("ELE1", "A2", atividade2);
+		pc.configuraEstrategia("MAIS_ANTIGA");
+		assertEquals("A1", pc.proximaAtividade("ELE1"));
+	}
+	
+	@Test
 	void testProximaAtividadeEstrategiaMenosPendencias() {
 		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
 		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");

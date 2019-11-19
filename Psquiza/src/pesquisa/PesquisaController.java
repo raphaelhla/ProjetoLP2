@@ -51,7 +51,6 @@ public class PesquisaController implements Serializable {
 		this.mapPesquisas = new HashMap<String, Pesquisa>();
 		this.codigos = new HashMap<String, Integer>();
 		this.validador = new Validador();
-		this.estrategia = "MAIS_ANTIGA";
 	}
 
 	/***
@@ -487,18 +486,19 @@ public class PesquisaController implements Serializable {
 		if (!pesquisa.verificaSeTemPendencia())
 			throw new IllegalArgumentException("Pesquisa sem atividades com pendencias.");
 
-		switch (this.estrategia) {
-		case "MAIS_ANTIGA":
-			return pesquisa.estrategiaMaisAntiga();
-		case "MENOS_PENDENCIAS":
-			return pesquisa.estrategiaMenosPendencias();
-		case "MAIOR_RISCO":
-			return pesquisa.estrategiaMaiorRisco();
-		case "MAIOR_DURACAO":
-			return pesquisa.estrategiaMaiorDuracao();
-		default:
-			return pesquisa.estrategiaMaisAntiga();
+		if (this.estrategia != null) {
+			switch (this.estrategia) {
+			case "MAIS_ANTIGA":
+				return pesquisa.estrategiaMaisAntiga();
+			case "MENOS_PENDENCIAS":
+				return pesquisa.estrategiaMenosPendencias();
+			case "MAIOR_RISCO":
+				return pesquisa.estrategiaMaiorRisco();
+			case "MAIOR_DURACAO":
+				return pesquisa.estrategiaMaiorDuracao();
+			}
 		}
+		return pesquisa.estrategiaMaisAntiga();
 	}
 
 	// US11 Matheus
