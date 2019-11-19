@@ -515,7 +515,7 @@ public class PesquisaController implements Serializable {
 		verificaSeExistePesquisa(codigoPesquisa);
 		try {
 			PrintWriter gravarArqquivo = new PrintWriter(new FileWriter("_" + codigoPesquisa + ".txt"));
-			gravarArqquivo.print(mapPesquisas.get(codigoPesquisa).exibePesquisa());
+			gravarArqquivo.print(mapPesquisas.get(codigoPesquisa).exibeResumoPesquisa());
 			gravarArqquivo.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -531,8 +531,8 @@ public class PesquisaController implements Serializable {
 		validador.verificaEntradaNulaVazia(codigoPesquisa, "Pesquisa nao pode ser nula ou vazia.");
 		verificaSeExistePesquisa(codigoPesquisa);
 		try {
-			PrintWriter gravarArquivo = new PrintWriter(new FileWriter("_" + codigoPesquisa + ".txt"));
-			gravarArquivo.print(mapPesquisas.get(codigoPesquisa).exibePesquisa());
+			PrintWriter gravarArquivo = new PrintWriter(new FileWriter(codigoPesquisa + "-Resultados.txt"));
+			gravarArquivo.print(mapPesquisas.get(codigoPesquisa).exibeResultadoPesquisa());
 			gravarArquivo.close();
 		} catch (Exception e) {
 			e.printStackTrace();

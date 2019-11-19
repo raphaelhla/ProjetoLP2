@@ -4,6 +4,6 @@
     - Problema:
         - {P2=A problematica do aprendizado dos conceitos de programacao orientada a objeto - 5}
     - Objetivos:
-            - GERAL - Aumentar a porcentagem de pessoas que entregam os laboratorios na disciplina de LP2. - 8
-    - Atividades:
+         - GERAL - Aumentar a porcentagem de pessoas que entregam os laboratorios na disciplina de LP2. - 8
+  	- Atividades:
         - Monitoramento de chats dos alunos de computacao do primeiro periodo. (BAIXO - Por se tratar de apenas um monitoramento, o risco nao e elevado.) | REALIZADO - Monitoramento facebook/messenger | REALIZADO - Monitoramento slack | REALIZADO - Monitoramento discord | REALIZADO - Monitoramento whatsapp

@@ -6,8 +6,8 @@
     - Problema:
         - {P5=A problematica do aluno de cc encarregado de criar testes para projetos. - 4}
     - Objetivos:
-            - ESPECIFICO - Minimizar a quantidade de testes ruins. - 2
-    - Atividades:
+         - ESPECIFICO - Minimizar a quantidade de testes ruins. - 2
+  	- Atividades:
         - Monitoramento de chats dos alunos de computacao do primeiro periodo. (BAIXO - Por se tratar de apenas um monitoramento, o risco nao e elevado.) | REALIZADO - Monitoramento facebook/messenger | REALIZADO - Monitoramento slack | REALIZADO - Monitoramento discord | REALIZADO - Monitoramento whatsapp
         - Monitoramento por ninjas de computacao na guerra ninja. (BAIXO - Por se tratar de apenas um monitoramento, o risco nao e elevado.)
         - Analise do comportamento dos alunos de computacao com os alunos de arq/urb. (ALTO - Por se tratar de uma analise a partir de denuncias de um comportamento hostil, o risco e extremamente elevado.) | REALIZADO - Alunos de computacao atrapalhando atividades em campo dos alunos de arq/urb. | PENDENTE - Indiretas no twitter. | PENDENTE - Analisar as redes socias dos individuos ativos nos eventos dessa discurssao

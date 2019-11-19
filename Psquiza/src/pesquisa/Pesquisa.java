@@ -544,35 +544,63 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		}
 		return tmp.getCodigo();
 	}
-	
+
 	// US11 Matheus (teste)
+
+	public String listaDescricoes() {
+		Set<String> chaves = this.atividadesAssociadas.keySet();
+		String descricao = "";
+		for (String chave : chaves) {
+			descricao += "        - " + this.atividadesAssociadas.get(chave).getDescricao() + "\n"
+					+ this.atividadesAssociadas.get(chave)// .exibeDuracaoItens()
+					+ this.atividadesAssociadas.get(chave);// .exibeResultadosCadastados();
+		}
+		return descricao;
+	}
+
 	private String exibePesquisadores() {
-        Set<String> chaves = this.pesquisadoresAssociados.keySet();
-        String pesquisadores = "";
-        for (String chave : chaves) {
-            pesquisadores += "        - " + this.pesquisadoresAssociados.get(chave).toString() + "\n";
-        }
-        return pesquisadores;
-    }
-    private String exibeObjetivos() {
-        Set<String> chaves = this.objetivosAssociados.keySet();
-        String objetivos = "";
-        for(String chave: chaves) {
-            objetivos += "            - " + this.objetivosAssociados.get(chave).toString() + "\n";
-        }
-        return objetivos;
-    }
-    private String exibeAtividades() {
-        Set<String> chaves = this.atividadesAssociadas.keySet();
-        String atividades = "";
-        for (String chave : chaves) {
-            atividades += "        - " + this.atividadesAssociadas.get(chave).toString() + "\n";
-        }
-        return atividades;
-    }
-    public String exibePesquisa() {
-        return "- Pesquisa: " + this.codigo + " - " + toString() + "\n" + "    - Pesquisadores:\n" + exibePesquisadores()
-    + "    - Problema:\n        - "  + this.problemaAssociado.toString() + "\n    - Objetivos:\n" +  exibeObjetivos() + "    - Atividades:\n" +
-    exibeAtividades();
-    }
+		Set<String> chaves = this.pesquisadoresAssociados.keySet();
+		String pesquisadores = "";
+		for (String chave : chaves) {
+			pesquisadores += "        - " + this.pesquisadoresAssociados.get(chave).toString() + "\n";
+		}
+		return pesquisadores;
+	}
+
+	private String exibeObjetivos() {
+		Set<String> chaves = this.objetivosAssociados.keySet();
+		String objetivos = "";
+		for (String chave : chaves) {
+			objetivos += "         - " + this.objetivosAssociados.get(chave).toString() + "\n";
+		}
+		return objetivos;
+	}
+
+	private String exibeAtividades() {
+		Set<String> chaves = this.atividadesAssociadas.keySet();
+		String atividades = "";
+		for (String chave : chaves) {
+			atividades += "        - " + this.atividadesAssociadas.get(chave).toString() + "\n";
+		}
+		return atividades;
+	}
+
+	private String exibeProblemas() {
+		Set<String> chaves = this.atividadesAssociadas.keySet();
+		String problemas = "";
+		for (String chave : chaves) {
+			problemas += "        - " + this.problemaAssociado.get(chave).toString() + "\n";
+		}
+		return problemas;
+	}
+
+	public String exibeResumoPesquisa() {
+		return "- Pesquisa: " + this.codigo + " - " + toString() + "\n" + "    - Pesquisadores:\n"
+				+ exibePesquisadores() + "    - Problema:\n        - " + problemaAssociado.toString() + "\n    - Objetivos:\n"
+				+ exibeObjetivos() + "  	- Atividades:\n" + exibeAtividades();
+	}
+
+	public String exibeResultadoPesquisa() {
+		return "- Pesquisa: " + this.codigo + " - " + toString() + "\n" + "    - Resultados:\n" + listaDescricoes();
+	}
 }
