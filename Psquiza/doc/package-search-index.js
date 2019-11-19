@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"atividade"},{"l":"objetivo"},{"l":"pesquisa"},{"l":"pesquisador"},{"l":"problema"},{"l":"psquiza"}]

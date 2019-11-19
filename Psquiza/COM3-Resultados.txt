@@ -1,4 +1,4 @@
-- Pesquisa: COM3 - Dificuldade de pensar em bons exemplos para os testes do projeto da disciplina LP2 - computacao, bloqueio criativo, insonia
+- Pesquisa: COM3 - COM3 - Dificuldade de pensar em bons exemplos para os testes do projeto da disciplina LP2 - computacao, bloqueio criativo, insonia
     - Resultados:
         - Monitoramento de chats dos alunos de computacao do primeiro periodo.
 Monitoramento de chats dos alunos de computacao do primeiro periodo. (BAIXO - Por se tratar de apenas um monitoramento, o risco nao e elevado.) | REALIZADO - Monitoramento facebook/messenger | REALIZADO - Monitoramento slack | REALIZADO - Monitoramento discord | REALIZADO - Monitoramento whatsappMonitoramento de chats dos alunos de computacao do primeiro periodo. (BAIXO - Por se tratar de apenas um monitoramento, o risco nao e elevado.) | REALIZADO - Monitoramento facebook/messenger | REALIZADO - Monitoramento slack | REALIZADO - Monitoramento discord | REALIZADO - Monitoramento whatsapp        - Monitoramento por ninjas de computacao na guerra ninja.

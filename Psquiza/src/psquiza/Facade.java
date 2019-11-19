@@ -14,7 +14,8 @@ public class Facade {
 				  "easyaccept/use_case_9.txt", "easyaccept/use_case_10.txt",
 				  "easyaccept/use_case_11.txt",
 				 
-				"easyaccept/use_case_12SALVAR.txt" };
+				//"easyaccept/use_case_12SALVAR.txt" 
+				  };
 		EasyAccept.main(args);
 	}
 

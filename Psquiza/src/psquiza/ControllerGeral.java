@@ -384,11 +384,10 @@ public class ControllerGeral {
 
 	/**
 	 * Associa um problema a uma pesquisa a partir do codigo da pesquisa, codigo do
-	 * problema, e o objeto problema.
+	 * problema.
 	 * 
 	 * @param codigoPesquisa Codigo da pesquisa.
 	 * @param codigoProblema Codigo do problema.
-	 * @param problema       Objeto problema.
 	 * @return retorna true se o problema foi associado, e false se nao.
 	 */
 	public boolean associaProblema(String codigoPesquisa, String codigoProblema) {
@@ -415,7 +414,6 @@ public class ControllerGeral {
 	 * 
 	 * @param codigoPesquisa Codigo da pesquisa.
 	 * @param codigoObjetivo Codigo do objetivo.
-	 * @param objetivo       Objeto objetivo.
 	 * @return retorna true se o objetivo foi associado e false se nao.
 	 */
 	public boolean associaObjetivo(String codigoPesquisa, String codigoObjetivo) {
@@ -529,11 +527,10 @@ public class ControllerGeral {
 
 	/**
 	 * Metodo que associa uma atividade a uma pesquisa a partir do codigo da
-	 * pesquisa, do codigo da atividade e da atividade.
+	 * pesquisa e do codigo da atividade.
 	 * 
 	 * @param codigoPesquisa  Codigo da pesquisa.
 	 * @param codigoAtividade Codigo da atividade.
-	 * @param atividade       Atividade a ser associada.
 	 * @return verdadeiro se for associada com sucesso, caso contrario retorna falso
 	 */
 	public boolean associaAtividade(String codigoPesquisa, String codigoAtividade) {

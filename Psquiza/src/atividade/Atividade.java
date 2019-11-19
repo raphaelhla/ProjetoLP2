@@ -71,12 +71,13 @@ public class Atividade implements Serializable {
 	private int indiceResultados;
 
 	/**
-	 * Constroi uma atividade a partir da sua descricao, nivel de risco e descricao
-	 * do risco.
+	 * Constroi uma atividade a partir da sua descricao, nivel de risco,descricao do
+	 * risco e do codigo da atividade.
 	 * 
-	 * @param descricao      Descricao da atividade.
-	 * @param nivelRisco     Nivel do risco da atividade.
-	 * @param descricaoRisco Descricao do risco da atividade.
+	 * @param descricao       Descricao da atividade.
+	 * @param nivelRisco      Nivel do risco da atividade.
+	 * @param descricaoRisco  Descricao do risco da atividade.
+	 * @param codigoAtividade Codigo da atividade.
 	 */
 	public Atividade(String descricao, String nivelRisco, String descricaoRisco, String codigoAtividade) {
 		this.validador = new Validador();
@@ -373,7 +374,7 @@ public class Atividade implements Serializable {
 		default:
 			return 0;
 		}
-		
+
 	}
 
 	/**

@@ -174,7 +174,7 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 	 */
 	@Override
 	public String toString() {
-		return this.descricao + " - " + this.campoDeInteresse;
+		return this.codigo + " - " + this.descricao + " - " + this.campoDeInteresse;
 	}
 
 	// US6 Matheus
@@ -214,9 +214,6 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		}
 		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
 			return false;
-		}
-		if (!atividadesAssociadas.containsKey(codigoAtividade)) {
-			throw new IllegalArgumentException("Atividade nao encontrada.");
 		}
 
 		this.atividadesAssociadas.remove(codigoAtividade);
@@ -585,22 +582,23 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		return atividades;
 	}
 
-	private String exibeProblemas() {
-		Set<String> chaves = this.atividadesAssociadas.keySet();
+	private String exibeProblema() {
 		String problemas = "";
-		for (String chave : chaves) {
-			problemas += "        - " + this.problemaAssociado.get(chave).toString() + "\n";
+		for (Problema problema : problemaAssociado.values()) {
+			problemas += "        - " + problema.toString() + "\n";
 		}
 		return problemas;
 	}
 
 	public String exibeResumoPesquisa() {
 		return "- Pesquisa: " + this.codigo + " - " + toString() + "\n" + "    - Pesquisadores:\n"
-				+ exibePesquisadores() + "    - Problema:\n        - " + problemaAssociado.toString() + "\n    - Objetivos:\n"
+				+ exibePesquisadores() + "    - Problema:\n        - " + exibeProblema() + "\n    - Objetivos:\n"
 				+ exibeObjetivos() + "  	- Atividades:\n" + exibeAtividades();
 	}
 
 	public String exibeResultadoPesquisa() {
 		return "- Pesquisa: " + this.codigo + " - " + toString() + "\n" + "    - Resultados:\n" + listaDescricoes();
 	}
+	
+
 }

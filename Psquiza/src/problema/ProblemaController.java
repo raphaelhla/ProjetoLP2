@@ -3,7 +3,7 @@ package problema;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +42,7 @@ public class ProblemaController implements Serializable{
 	 * Constroi um controller de problemas.
 	 */
 	public ProblemaController() {
-		this.mapProblemas = new HashMap<String, Problema>();
+		this.mapProblemas = new LinkedHashMap<String, Problema>();
 		this.indiceProblema = 1;
 		this.validador = new Validador();
 	}

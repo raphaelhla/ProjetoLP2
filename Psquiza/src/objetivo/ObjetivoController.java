@@ -3,7 +3,7 @@ package objetivo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +38,7 @@ public class ObjetivoController implements Serializable {
 	 * Controi um controller de objetivos.
 	 */
 	public ObjetivoController() {
-		this.mapObjetivos = new HashMap<String, Objetivo>();
+		this.mapObjetivos = new LinkedHashMap<String, Objetivo>();
 		this.indiceObjetivo = 1;
 		this.validador = new Validador();
 	}

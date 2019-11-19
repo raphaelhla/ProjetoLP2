@@ -3,7 +3,7 @@ package pesquisador;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +38,7 @@ public class PesquisadorController implements Serializable{
 	 * Constroi um controller de pesquisadores.
 	 */
 	public PesquisadorController() {
-		this.pesquisadores = new HashMap<String, Pesquisador>();
+		this.pesquisadores = new LinkedHashMap<String, Pesquisador>();
 		this.validador = new Validador();
 	}
 

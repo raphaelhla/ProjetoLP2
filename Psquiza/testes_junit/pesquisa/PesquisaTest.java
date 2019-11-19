@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import atividade.Atividade;
 import objetivo.Objetivo;
+import pesquisador.Pesquisador;
 import problema.Problema;
 
 class PesquisaTest {
@@ -64,7 +65,7 @@ class PesquisaTest {
 
 	@Test
 	void testToString() {
-		assertEquals("Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao", pesquisaTest.toString());
+		assertEquals("ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao", pesquisaTest.toString());
 	}
 
 	@Test
@@ -98,6 +99,46 @@ class PesquisaTest {
 	@Test
 	public void testBuscaCampoInteresse2() {
 		assertFalse(pesquisaTest.buscaCampoInteresse("oi"));
+	}
+	
+	@Test
+	public void testAssociaAtividade() {
+		Atividade atividade = new Atividade("teste", "ALTO", "TESTE", "A1");
+		pesquisaTest.associaAtividade("A1", atividade);
+		assertFalse(pesquisaTest.associaAtividade("A1", atividade));
+	}
+	
+	@Test
+	public void testAssociaAtividadePesquisaDesativada() {
+		try {
+			Atividade atividade = new Atividade("teste", "ALTO", "TESTE", "A1");
+			pesquisaTest.desativaPesquisa();
+			pesquisaTest.associaAtividade("A1", atividade);
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Pesquisa desativada.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testDesassociaAtividadePesquisaDesativada() {
+		try {
+			pesquisaTest.desativaPesquisa();
+			pesquisaTest.desassociaAtividade("A1");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Pesquisa desativada.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testDesassociaAtividade() {
+		assertFalse(pesquisaTest.desassociaAtividade("A2"));
+	}
+	
+	@Test
+	public void testAtividadeEstaAssociada() {
+		assertFalse(pesquisaTest.atividadeEstaAssociada("A1"));
 	}
 	
 	@Test
@@ -254,7 +295,7 @@ class PesquisaTest {
 		lista.add(pesquisaTest);
 		lista.add(new Pesquisa("Teste", "Alok", "ALO1"));
 		Collections.sort(lista);
-		assertEquals("[Teste - Alok, Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao]", lista.toString());
+		assertEquals("[ALO1 - Teste - Alok, ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao]", lista.toString());
 	}
 	
 	@Test
@@ -310,6 +351,29 @@ class PesquisaTest {
 		pesquisaTest.associaAtividade("A1", atividade);
 		pesquisaTest.associaAtividade("A2", atividade2);
 		assertEquals("A1", pesquisaTest.estrategiaMaiorRisco());
+	}
+	
+	@Test
+	public void testAssociaPesquisadorPesquisaDesativada() {
+		try {
+			Pesquisador pesquisador = new Pesquisador("biu", "aluno", "teste", "biu@email.com", "https://teste");
+			pesquisaTest.desativaPesquisa();
+			pesquisaTest.associaPesquisador("biu@email.com", pesquisador);
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Pesquisa desativada.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testDesassociaPesquisadorPesquisaDesativada() {
+		try {
+			pesquisaTest.desativaPesquisa();
+			pesquisaTest.desassociaPesquisador("biu@email.com");
+			fail("deveria lancar excecao");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Pesquisa desativada.", e.getMessage());
+		}
 	}
 
 }

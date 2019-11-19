@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +50,7 @@ public class PesquisaController implements Serializable {
 	 */
 	public PesquisaController() {
 		this.mapPesquisas = new HashMap<String, Pesquisa>();
-		this.codigos = new HashMap<String, Integer>();
+		this.codigos = new LinkedHashMap<String, Integer>();
 		this.validador = new Validador();
 	}
 
@@ -167,7 +168,7 @@ public class PesquisaController implements Serializable {
 	public String exibePesquisa(String codigo) {
 		validador.verificaEntradaNulaVazia(codigo, "Codigo nao pode ser nulo ou vazio.");
 		verificaSeExistePesquisa(codigo);
-		return codigo + " - " + mapPesquisas.get(codigo).toString();
+		return mapPesquisas.get(codigo).toString();
 	}
 
 	/**
@@ -354,7 +355,7 @@ public class PesquisaController implements Serializable {
 	private String getListToString(List<Pesquisa> lista) {
 		List<String> saida = new ArrayList<>();
 		for (Pesquisa p : lista) {
-			saida.add(p.getCodigo() + " - " + p.toString());
+			saida.add(p.toString());
 		}
 		return String.join(" | ", saida);
 	}
