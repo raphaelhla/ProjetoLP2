@@ -365,7 +365,15 @@ public class Atividade implements Serializable {
 	 *         nivel de risco.
 	 */
 	public int mapRisco(String risco) {
-		return ((this.nivelRisco.equals("ALTO") ? 3 : (this.nivelRisco.equals("MEDIO") ? 2 : 1)));
+		switch (risco) {
+		case "ALTO":
+			return 2;
+		case "MEDIO":
+			return 1;
+		default:
+			return 0;
+		}
+		
 	}
 
 	/**
@@ -378,7 +386,7 @@ public class Atividade implements Serializable {
 	 */
 	private String pegaAtividadeRiscoAux(Atividade altoRisco) {
 		if (this.subsquente != null) {
-			if (mapRisco(this.subsquente.nivelRisco) >= mapRisco(altoRisco.nivelRisco)) {
+			if (mapRisco(altoRisco.nivelRisco) <= mapRisco(this.subsquente.nivelRisco)) {
 				altoRisco = this.subsquente;
 			}
 			return this.subsquente.pegaAtividadeRiscoAux(altoRisco);
@@ -394,7 +402,7 @@ public class Atividade implements Serializable {
 	 *         da atividade atual.
 	 */
 	public String pegaMaiorRiscoAtividade() {
-		return pegaAtividadeRiscoAux(this);
+		return pegaAtividadeRiscoAux(this.subsquente);
 	}
 
 	// US10 Alisson
