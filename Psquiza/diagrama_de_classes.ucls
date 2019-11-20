@@ -492,7 +492,7 @@
     <end type="TARGET" refId="20"/>  
   </dependency>  
   <association id="95">    
-    <bendpoint x="430" y="712"/>    
+    <bendpoint x="421" y="724"/>    
     <end type="SOURCE" refId="2" navigable="false">      
       <attribute id="96" name="atividadeController"/>      
       <multiplicity id="97" minimum="0" maximum="1"/>    
