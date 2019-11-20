@@ -378,19 +378,57 @@ class PesquisaTest {
 
 	@Test
 	public void testExibeResumoPesquisa() {
-		Pesquisa pesquisa = new Pesquisa("apenas um teste", "teste de junit", "TES1");
-		
-		assertEquals("- Pesquisa: TES1 - apenas um teste - teste de junit" + System.lineSeparator() + "    - Pesquisadores:\\n\" + exibePesquisadores()\r\n" + 
-				"				+ \"    - Problema:\\n\" + exibeProblema() + \"    - Objetivos:\\n\" + exibeObjetivos() + \"  	- Atividades:\\n\"\r\n" + 
-				"				+ exibeAtividades();", pesquisa.exibeResumoPesquisa());
-		
+		Pesquisador pesquisador = new Pesquisador("biu", "aluno", "teste", "biu@email.com", "https://teste");
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("ooooo", "MEDIO", "KKKK", "A2");
+		Problema problema = new Problema("teste", 3, "P1");
+		Objetivo objetivo = new Objetivo("GERAL", "IRINEU", 2, 1, "O1");
+		atividade.cadastraItem("testando123");
+		atividade.cadastraItem("llllll");
+		atividade2.cadastraItem("ppp");
+		atividade.executaAtividade(2, 7);
+		pesquisaTest.associaPesquisador("biu@email.com", pesquisador);
+		pesquisaTest.associaAtividade("A1", atividade);
+		pesquisaTest.associaAtividade("A2", atividade2);
+		pesquisaTest.associaProblema("P1", problema);
+		pesquisaTest.associaObjetivo("O1", objetivo);
+		assertEquals("- Pesquisa: ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao\n" + 
+				"    - Pesquisadores:\n" + 
+				"        - biu (aluno) - teste - biu@email.com - https://teste\n" + 
+				"    - Problema:\n" + 
+				"        - P1 - teste - 3\n" + 
+				"    - Objetivos:\n" + 
+				"         - O1 - GERAL - IRINEU - 3\n" + 
+				"  	- Atividades:\n" + 
+				"        - teste (ALTO - IRI)\n" + 
+				"            - PENDENTE - ITEM1\n" + 
+				"            - REALIZADO - ITEM2\n" + 
+				"        - ooooo (MEDIO - KKKK)\n" + 
+				"            - PENDENTE - ITEM1\n" + 
+				"", pesquisaTest.exibeResumoPesquisa());
 	}
 	
 	@Test
 	public void testExibeResultadoPesquisa() {
-		
+		Atividade atividade = new Atividade("teste", "ALTO", "IRI", "A1");
+		Atividade atividade2 = new Atividade("placas", "MEDIO", "KKKK", "A2");
+		atividade.cadastraItem("testando123");
+		atividade.cadastraItem("llllll");
+		atividade2.cadastraItem("ppp");
+		atividade.executaAtividade(2, 7);
+		pesquisaTest.associaAtividade("A1", atividade);
+		pesquisaTest.associaAtividade("A2", atividade2);
+		atividade.cadastraResultado("BOB DEELAN");
+		atividade.cadastraResultado("BILLY JOW");
+		atividade2.cadastraResultado("RESULTADOOO");
+		assertEquals("- Pesquisa: ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao\n" + 
+				"    - Resultados:\n" + 
+				"        - teste\n" + 
+				"           - ITEM2 - 7\n" + 
+				"           - BOB DEELAN\n" + 
+				"           - BILLY JOW\n" + 
+				"        - placas\n" + 
+				"           - RESULTADOOO\n" + 
+				"", pesquisaTest.exibeResultadoPesquisa());
 	}
-	
-	
-	
 }
