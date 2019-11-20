@@ -1,8 +1,0 @@
-- Pesquisa: Autoavaliacao na Disciplina de Programacao Orientada a Objeto. - computacao, poo
-    - Pesquisadores:
-        - matheusgr@computacao.ufcg.edu.br
-    - Problema:
-       - [P2]    - Objetivos:
-        - O4
-    - Atividades:
-        - A1
