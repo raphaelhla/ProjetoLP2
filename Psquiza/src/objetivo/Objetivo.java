@@ -1,6 +1,5 @@
 package objetivo;
 
-
 import java.io.Serializable;
 
 import psquiza.Validador;
@@ -12,7 +11,7 @@ import psquiza.Validador;
  * @author Jose Alisson 119110645
  *
  */
-public class Objetivo implements Serializable{
+public class Objetivo implements Serializable {
 
 	/**
 	 * 
@@ -38,7 +37,7 @@ public class Objetivo implements Serializable{
 	 * Viabilidade do objetivo.
 	 */
 	private int viabilidade;
-	
+
 	/**
 	 * Codigo do objetivo
 	 */
@@ -56,6 +55,7 @@ public class Objetivo implements Serializable{
 	 * @param descricao   Descricao do objetivo.
 	 * @param aderencia   Aderencia do objetivo.
 	 * @param viabilidade Viabilidade do objetivo.
+	 * @param codigo      Codigo do objetivo.
 	 */
 	public Objetivo(String tipo, String descricao, int aderencia, int viabilidade, String codigo) {
 		this.validador = new Validador();
@@ -83,8 +83,8 @@ public class Objetivo implements Serializable{
 	}
 
 	/**
-	 * Metodo que verifica se a descricao do objetivo contem uma string passada
-	 * como parametro e retorna um valor booleano.
+	 * Metodo que verifica se a descricao do objetivo contem uma string passada como
+	 * parametro e retorna um valor booleano.
 	 * 
 	 * @param termo Termo ser procurado.
 	 * @return verdade se a descricao contem o termo, caso contrario retorna falso.
@@ -102,7 +102,7 @@ public class Objetivo implements Serializable{
 	public String getDescricao() {
 		return this.descricao;
 	}
-	
+
 	public String getCodigo() {
 		return this.codigo;
 	}

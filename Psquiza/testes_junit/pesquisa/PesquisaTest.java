@@ -16,7 +16,6 @@ import atividade.Atividade;
 import objetivo.Objetivo;
 import pesquisador.Pesquisador;
 import problema.Problema;
-import pesquisador.Pesquisador;
 
 class PesquisaTest {
 

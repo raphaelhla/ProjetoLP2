@@ -583,7 +583,7 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 	private String exibeAtividades() {
 		String atividades = "";
 		for (Atividade atividade : atividadesAssociadas.values()) {
-			atividades += atividade.exibeAtividadeComItens() + System.lineSeparator();
+			atividades += atividade.exibeResumoToString() + System.lineSeparator();
 		}
 		return atividades;
 	}
@@ -613,8 +613,8 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 	private String listaDescricoes() {
 		String descricao = "";
 		for (Atividade atividade : atividadesAssociadas.values()) {
-			descricao += "        - " + atividade.getDescricao() + atividade.exibeDuracaoItem()
-					+ atividade.exibeResultadosCadastados() + System.lineSeparator();
+			descricao += "        - " + atividade.getDescricao() + atividade.exibeResumoItem()
+					+ atividade.exibeResumoResultados() + System.lineSeparator();
 		}
 		return descricao;
 	}

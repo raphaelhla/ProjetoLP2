@@ -32,7 +32,7 @@ public class Problema implements Serializable {
 	 * Codigo do problema.
 	 */
 	private String codigo;
-	
+
 	/**
 	 * Validador utilizado para validar entradas do sistema.
 	 */
@@ -43,6 +43,7 @@ public class Problema implements Serializable {
 	 * 
 	 * @param descricao   Descricao do problema.
 	 * @param viabilidade Viabilidade do problema.
+	 * @param codigo      Codigo do problema.
 	 */
 	public Problema(String descricao, int viabilidade, String codigo) {
 		this.validador = new Validador();

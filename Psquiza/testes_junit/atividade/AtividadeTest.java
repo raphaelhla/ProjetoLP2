@@ -183,6 +183,35 @@ class AtividadeTest {
 		a1.cadastraResultado("resultado");
 		a1.removeResultado(1);
 		assertFalse(a1.removeResultado(1));
-		
+	}
+	
+	@Test
+	public void testExibeDuracaoItem() {
+		a1.cadastraItem("Monitoramento slack");
+		a1.cadastraItem("Monitoramento discord");
+		a1.executaAtividade(2, 4);
+		assertEquals("\n" + 
+				"           - ITEM2 - 4", a1.exibeResumoItem());
+	}
+	
+	@Test
+	public void testExibeResumoResultados() {
+		a1.cadastraResultado("Resultado 1");
+		a1.cadastraResultado("Resultado teste");
+		assertEquals("\n" + 
+				"           - Resultado 1\n" + 
+				"           - Resultado teste", a1.exibeResumoResultados());
+	}
+	
+	@Test
+	public void testExibeResumoToString() {
+		a1.cadastraItem("Monitoramento slack");
+		a1.cadastraItem("Monitoramento discord");
+		a1.executaAtividade(2, 4);
+		a1.cadastraResultado("Resultado 1");
+		a1.cadastraResultado("Resultado teste");
+		assertEquals("        - teste (BAIXO - descricao do teste)\n" + 
+				"            - PENDENTE - ITEM1\n" + 
+				"            - REALIZADO - ITEM2", a1.exibeResumoToString());
 	}
 }

@@ -433,8 +433,14 @@ public class Atividade implements Serializable {
 	public String getNivelRisco() {
 		return this.nivelRisco;
 	}
-	
-	public String exibeDuracaoItem() {
+
+	/**
+	 * Metodo que exibe o resumo de cada item cadastrado na atividade e a sua
+	 * duracao.
+	 * 
+	 * @return String com o resumo dos itens cadastrados na atividade.
+	 */
+	public String exibeResumoItem() {
 		String saida = "";
 		for (int chave : itens.keySet()) {
 			if (itens.get(chave).getDuracao() > 0)
@@ -443,18 +449,29 @@ public class Atividade implements Serializable {
 		return saida;
 	}
 
-	public String exibeResultadosCadastados() {
+	/**
+	 * Metodo que exibe um resumo dos resultados cadastrados na atividade.
+	 * 
+	 * @return String com o resumo dos resultados cadastrados na atividade.
+	 */
+	public String exibeResumoResultados() {
 		String saida = "";
 		for (String resultado : resultados.values()) {
 			saida += (System.lineSeparator() + "           - " + resultado);
 		}
 		return saida;
 	}
-	
-	public String exibeAtividadeComItens() {
+
+	/**
+	 * Metodo que exibe o to string da atividade com um padrao diferente do
+	 * original.
+	 * 
+	 * @return String que representa a atividade com um padrao diferente.
+	 */
+	public String exibeResumoToString() {
 		String saida = "        - " + this.descricao + " (" + this.nivelRisco + " - " + this.descricaoRisco + ")";
 		for (int chave : itens.keySet()) {
-			saida += System.lineSeparator() + "            - " + itens.get(chave).getStatus() + " - ITEM" + chave ;
+			saida += System.lineSeparator() + "            - " + itens.get(chave).getStatus() + " - ITEM" + chave;
 		}
 		return saida;
 	}
