@@ -433,4 +433,29 @@ public class Atividade implements Serializable {
 	public String getNivelRisco() {
 		return this.nivelRisco;
 	}
+	
+	public String exibeDuracaoItem() {
+		String saida = "";
+		for (int chave : itens.keySet()) {
+			if (itens.get(chave).getDuracao() > 0)
+				saida += (System.lineSeparator() + "           - ITEM" + chave + " - " + itens.get(chave).getDuracao());
+		}
+		return saida;
+	}
+
+	public String exibeResultadosCadastados() {
+		String saida = "";
+		for (String resultado : resultados.values()) {
+			saida += (System.lineSeparator() + "           - " + resultado);
+		}
+		return saida;
+	}
+	
+	public String exibeAtividadeComItens() {
+		String saida = "        - " + this.descricao + " (" + this.nivelRisco + " - " + this.descricaoRisco + ")";
+		for (int chave : itens.keySet()) {
+			saida += System.lineSeparator() + "            - " + itens.get(chave).getStatus() + " - ITEM" + chave ;
+		}
+		return saida;
+	}
 }

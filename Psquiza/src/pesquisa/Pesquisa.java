@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import atividade.Atividade;
 import atividade.OrdenaPorDuracao;
@@ -99,8 +98,8 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		this.codigo = codigo;
 		this.atividadesAssociadas = new LinkedHashMap<String, Atividade>();
 		this.problemaAssociado = new HashMap<String, Problema>();
-		this.objetivosAssociados = new HashMap<String, Objetivo>();
-		this.pesquisadoresAssociados = new HashMap<String, Pesquisador>();
+		this.objetivosAssociados = new LinkedHashMap<String, Objetivo>();
+		this.pesquisadoresAssociados = new LinkedHashMap<String, Pesquisador>();
 	}
 
 	/**
@@ -542,42 +541,28 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		return tmp.getCodigo();
 	}
 
-	// US11 Matheus (teste)
-
-	public String listaDescricoes() {
-		Set<String> chaves = this.atividadesAssociadas.keySet();
-		String descricao = "";
-		for (String chave : chaves) {
-			descricao += "        - " + this.atividadesAssociadas.get(chave).getDescricao() + "\n"
-					+ this.atividadesAssociadas.get(chave)// .exibeDuracaoItens()
-					+ this.atividadesAssociadas.get(chave);// .exibeResultadosCadastados();
-		}
-		return descricao;
-	}
+	// US11 Matheus
 
 	private String exibePesquisadores() {
-		Set<String> chaves = this.pesquisadoresAssociados.keySet();
 		String pesquisadores = "";
-		for (String chave : chaves) {
-			pesquisadores += "        - " + this.pesquisadoresAssociados.get(chave).toString() + "\n";
+		for (Pesquisador pesquisador : pesquisadoresAssociados.values()) {
+			pesquisadores += "        - " + pesquisador.toString() + "\n";
 		}
 		return pesquisadores;
 	}
 
 	private String exibeObjetivos() {
-		Set<String> chaves = this.objetivosAssociados.keySet();
 		String objetivos = "";
-		for (String chave : chaves) {
-			objetivos += "         - " + this.objetivosAssociados.get(chave).toString() + "\n";
+		for (Objetivo objetivo : objetivosAssociados.values()) {
+			objetivos += "         - " + objetivo.getCodigo() + " - " + objetivo.toString() + "\n";
 		}
 		return objetivos;
 	}
 
 	private String exibeAtividades() {
-		Set<String> chaves = this.atividadesAssociadas.keySet();
 		String atividades = "";
-		for (String chave : chaves) {
-			atividades += "        - " + this.atividadesAssociadas.get(chave).toString() + "\n";
+		for (Atividade atividade : atividadesAssociadas.values()) {
+			atividades += atividade.exibeAtividadeComItens() + System.lineSeparator();
 		}
 		return atividades;
 	}
@@ -585,20 +570,27 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 	private String exibeProblema() {
 		String problemas = "";
 		for (Problema problema : problemaAssociado.values()) {
-			problemas += "        - " + problema.toString() + "\n";
+			problemas += "        - " + problema.getCodigo() + " - " + problema.toString() + System.lineSeparator();
 		}
 		return problemas;
 	}
 
+	private String listaDescricoes() {
+		String descricao = "";
+		for (Atividade atividade : atividadesAssociadas.values()) {
+			descricao += "        - " + atividade.getDescricao() + atividade.exibeDuracaoItem()
+					+ atividade.exibeResultadosCadastados() + System.lineSeparator();
+		}
+		return descricao;
+	}
+
 	public String exibeResumoPesquisa() {
-		return "- Pesquisa: " + this.codigo + " - " + toString() + "\n" + "    - Pesquisadores:\n"
-				+ exibePesquisadores() + "    - Problema:\n        - " + exibeProblema() + "\n    - Objetivos:\n"
-				+ exibeObjetivos() + "  	- Atividades:\n" + exibeAtividades();
+		return "- Pesquisa: " + toString() + System.lineSeparator() + "    - Pesquisadores:\n" + exibePesquisadores()
+				+ "    - Problema:\n" + exibeProblema() + "    - Objetivos:\n" + exibeObjetivos() + "  	- Atividades:\n"
+				+ exibeAtividades();
 	}
 
 	public String exibeResultadoPesquisa() {
-		return "- Pesquisa: " + this.codigo + " - " + toString() + "\n" + "    - Resultados:\n" + listaDescricoes();
+		return "- Pesquisa: " + toString() + System.lineSeparator() + "    - Resultados:\n" + listaDescricoes();
 	}
-	
-
 }

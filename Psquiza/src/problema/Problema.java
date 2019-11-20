@@ -29,6 +29,11 @@ public class Problema implements Serializable {
 	private int viabilidade;
 
 	/**
+	 * Codigo do problema.
+	 */
+	private String codigo;
+	
+	/**
 	 * Validador utilizado para validar entradas do sistema.
 	 */
 	private Validador validador;
@@ -39,12 +44,13 @@ public class Problema implements Serializable {
 	 * @param descricao   Descricao do problema.
 	 * @param viabilidade Viabilidade do problema.
 	 */
-	public Problema(String descricao, int viabilidade) {
+	public Problema(String descricao, int viabilidade, String codigo) {
 		this.validador = new Validador();
 		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
 		validador.verificaViabilidade(viabilidade);
 		this.descricao = descricao;
 		this.viabilidade = viabilidade;
+		this.codigo = codigo;
 
 	}
 
@@ -78,5 +84,9 @@ public class Problema implements Serializable {
 	 */
 	public String getDescricao() {
 		return this.descricao;
+	}
+
+	public String getCodigo() {
+		return this.codigo;
 	}
 }

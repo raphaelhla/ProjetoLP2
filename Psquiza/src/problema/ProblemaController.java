@@ -57,8 +57,9 @@ public class ProblemaController implements Serializable{
 	public String cadastraProblema(String descricao, int viabilidade) {
 		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
 		validador.verificaViabilidade(viabilidade);
-		Problema problema = new Problema(descricao, viabilidade);
+		
 		String chave = "P" + indiceProblema;
+		Problema problema = new Problema(descricao, viabilidade, chave);
 		mapProblemas.put(chave, problema);
 		indiceProblema += 1;
 		return chave;

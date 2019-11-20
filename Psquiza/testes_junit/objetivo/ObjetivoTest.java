@@ -13,8 +13,8 @@ class ObjetivoTest {
 	
 	@BeforeEach
 	public void criaObjetivos() {
-		o1 = new Objetivo("GERAL", "TESTE", 2, 1);
-		o2 = new Objetivo("ESPECIFICO", "TESTE", 4, 2);
+		o1 = new Objetivo("GERAL", "TESTE", 2, 1, "O1");
+		o2 = new Objetivo("ESPECIFICO", "TESTE", 4, 2, "O2");
 	}
 	
 	@Test
@@ -40,5 +40,10 @@ class ObjetivoTest {
 	@Test
 	public void testBuscaDescricao2() {
 		assertFalse(o1.busca("oi"));
+	}
+	
+	@Test
+	public void testGetCodigo() {
+		assertEquals("O1", o1.getCodigo());
 	}
 }

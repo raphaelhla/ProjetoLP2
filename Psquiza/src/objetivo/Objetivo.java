@@ -40,6 +40,10 @@ public class Objetivo implements Serializable{
 	private int viabilidade;
 	
 	/**
+	 * Codigo do objetivo
+	 */
+	private String codigo;
+	/**
 	 * Validador utilizado para validar entradas do sistema.
 	 */
 	private Validador validador;
@@ -53,7 +57,7 @@ public class Objetivo implements Serializable{
 	 * @param aderencia   Aderencia do objetivo.
 	 * @param viabilidade Viabilidade do objetivo.
 	 */
-	public Objetivo(String tipo, String descricao, int aderencia, int viabilidade) {
+	public Objetivo(String tipo, String descricao, int aderencia, int viabilidade, String codigo) {
 		this.validador = new Validador();
 		validador.verificaTipoObjetivo(tipo);
 		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
@@ -63,6 +67,7 @@ public class Objetivo implements Serializable{
 		this.descricao = descricao;
 		this.aderencia = aderencia;
 		this.viabilidade = viabilidade;
+		this.codigo = codigo;
 	}
 
 	/**
@@ -96,5 +101,9 @@ public class Objetivo implements Serializable{
 	 */
 	public String getDescricao() {
 		return this.descricao;
+	}
+	
+	public String getCodigo() {
+		return this.codigo;
 	}
 }

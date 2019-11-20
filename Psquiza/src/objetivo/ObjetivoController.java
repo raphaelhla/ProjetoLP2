@@ -58,8 +58,9 @@ public class ObjetivoController implements Serializable {
 		validador.verificaEntradaNulaVazia(descricao, "Campo descricao nao pode ser nulo ou vazio.");
 		validador.verificaAderencia(aderencia);
 		validador.verificaViabilidade(viabilidade);
-		Objetivo objetivo = new Objetivo(tipo, descricao, aderencia, viabilidade);
+		
 		String chave = "O" + indiceObjetivo;
+		Objetivo objetivo = new Objetivo(tipo, descricao, aderencia, viabilidade, chave);
 		mapObjetivos.put(chave, objetivo);
 		indiceObjetivo += 1;
 		return chave;

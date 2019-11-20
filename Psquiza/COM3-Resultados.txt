@@ -1,11 +1,22 @@
-- Pesquisa: COM3 - COM3 - Dificuldade de pensar em bons exemplos para os testes do projeto da disciplina LP2 - computacao, bloqueio criativo, insonia
+- Pesquisa: COM3 - Dificuldade de pensar em bons exemplos para os testes do projeto da disciplina LP2 - computacao, bloqueio criativo, insonia
     - Resultados:
         - Monitoramento de chats dos alunos de computacao do primeiro periodo.
-Monitoramento de chats dos alunos de computacao do primeiro periodo. (BAIXO - Por se tratar de apenas um monitoramento, o risco nao e elevado.) | REALIZADO - Monitoramento facebook/messenger | REALIZADO - Monitoramento slack | REALIZADO - Monitoramento discord | REALIZADO - Monitoramento whatsappMonitoramento de chats dos alunos de computacao do primeiro periodo. (BAIXO - Por se tratar de apenas um monitoramento, o risco nao e elevado.) | REALIZADO - Monitoramento facebook/messenger | REALIZADO - Monitoramento slack | REALIZADO - Monitoramento discord | REALIZADO - Monitoramento whatsapp        - Monitoramento por ninjas de computacao na guerra ninja.
-Monitoramento por ninjas de computacao na guerra ninja. (BAIXO - Por se tratar de apenas um monitoramento, o risco nao e elevado.)Monitoramento por ninjas de computacao na guerra ninja. (BAIXO - Por se tratar de apenas um monitoramento, o risco nao e elevado.)        - Analise do comportamento dos alunos de computacao com os alunos de arq/urb.
-Analise do comportamento dos alunos de computacao com os alunos de arq/urb. (ALTO - Por se tratar de uma analise a partir de denuncias de um comportamento hostil, o risco e extremamente elevado.) | REALIZADO - Alunos de computacao atrapalhando atividades em campo dos alunos de arq/urb. | PENDENTE - Indiretas no twitter. | PENDENTE - Analisar as redes socias dos individuos ativos nos eventos dessa discurssaoAnalise do comportamento dos alunos de computacao com os alunos de arq/urb. (ALTO - Por se tratar de uma analise a partir de denuncias de um comportamento hostil, o risco e extremamente elevado.) | REALIZADO - Alunos de computacao atrapalhando atividades em campo dos alunos de arq/urb. | PENDENTE - Indiretas no twitter. | PENDENTE - Analisar as redes socias dos individuos ativos nos eventos dessa discurssao        - Testando se a terra e plana
-Testando se a terra e plana (BAIXO - Por se tratar de uma atividade que ja se sabe que seus resultados, sendo assim uma atividade simbolica, seu risco e hiperbólicamente baixo.)Testando se a terra e plana (BAIXO - Por se tratar de uma atividade que ja se sabe que seus resultados, sendo assim uma atividade simbolica, seu risco e hiperbólicamente baixo.)        - Analise de quantas maos levantadas sao necessarias para Goku fazer uma Genki Dama que consiga derrotar Saitama
-Analise de quantas maos levantadas sao necessarias para Goku fazer uma Genki Dama que consiga derrotar Saitama (ALTO - Pela possibilidade de nao existirem pesoas o bastante no universo para levantar a mao, o risco e alto.)Analise de quantas maos levantadas sao necessarias para Goku fazer uma Genki Dama que consiga derrotar Saitama (ALTO - Pela possibilidade de nao existirem pesoas o bastante no universo para levantar a mao, o risco e alto.)        - Busca e analise de uma razao para a Netflix cancelar BoJack Horseman
-Busca e analise de uma razao para a Netflix cancelar BoJack Horseman (ALTO - Nao existe uma razao plausivel, assim o risco e elevado.) | PENDENTE - Busca por provas que a netflix esta se auto sabotando cancelando seus melhores showsBusca e analise de uma razao para a Netflix cancelar BoJack Horseman (ALTO - Nao existe uma razao plausivel, assim o risco e elevado.) | PENDENTE - Busca por provas que a netflix esta se auto sabotando cancelando seus melhores shows        - Mudancas nas relacoes do instagram, apos a ocultacao do numero de curtidas das postagens.
-Mudancas nas relacoes do instagram, apos a ocultacao do numero de curtidas das postagens. (ALTO - Por envolver uma crise economica brutal, com diversas blogueirinhas perdendo seus empregos, e de uma crise social, com diversas pessoas perdendo o rummo de suas vidas, o risco e extremamente elevado.)Mudancas nas relacoes do instagram, apos a ocultacao do numero de curtidas das postagens. (ALTO - Por envolver uma crise economica brutal, com diversas blogueirinhas perdendo seus empregos, e de uma crise social, com diversas pessoas perdendo o rummo de suas vidas, o risco e extremamente elevado.)        - Ponderacao do por que Imagine dragons e tao bom.
-Ponderacao do por que Imagine dragons e tao bom. (BAIXO - Sem risco, so provar algo obvio.) | REALIZADO - Escutar Night Visions | REALIZADO - Escutar Smoke + Mirrors | REALIZADO - Escutar Evolve | REALIZADO - Escutar Origins | PENDENTE - Comparacao com outras bandas de rockPonderacao do por que Imagine dragons e tao bom. (BAIXO - Sem risco, so provar algo obvio.) | REALIZADO - Escutar Night Visions | REALIZADO - Escutar Smoke + Mirrors | REALIZADO - Escutar Evolve | REALIZADO - Escutar Origins | PENDENTE - Comparacao com outras bandas de rock
+           - ITEM1 - 5
+           - ITEM2 - 5
+           - ITEM3 - 5
+           - ITEM4 - 5
+           - Ocorreu sem nenhum problema aparente o monitoramento de chats dos alunos de computacao do primeiro periodo em diversas plataformas.
+           - Criou-se um bom banco de dados em cima dessa analise, para que diversas pesquisas tenham acesso.
+        - Monitoramento por ninjas de computacao na guerra ninja.
+        - Analise do comportamento dos alunos de computacao com os alunos de arq/urb.
+           - ITEM1 - 1
+           - Analise encontrou um pequeno grupo de alunos panacas o bastatnte para atrapalhar (conscientemente) o aprendizado de outras pessoas, apenas por que o curso era diferente.
+        - Testando se a terra e plana
+        - Analise de quantas maos levantadas sao necessarias para Goku fazer uma Genki Dama que consiga derrotar Saitama
+        - Busca e analise de uma razao para a Netflix cancelar BoJack Horseman
+        - Mudancas nas relacoes do instagram, apos a ocultacao do numero de curtidas das postagens.
+        - Ponderacao do por que Imagine dragons e tao bom.
+           - ITEM1 - 15
+           - ITEM2 - 15
+           - ITEM3 - 15
+           - ITEM4 - 15

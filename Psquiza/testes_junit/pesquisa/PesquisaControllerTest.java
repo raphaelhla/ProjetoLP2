@@ -136,19 +136,19 @@ class PesquisaControllerTest {
 	
 	@Test
 	public void testAssociaProblemaFeliz() {
-		assertTrue(pc.associaProblema("ELE1", "P1", new Problema("teste", 3)));
+		assertTrue(pc.associaProblema("ELE1", "P1", new Problema("teste", 3, "P1")));
 	}
 	
 	@Test
 	public void testAssociaProblemaTriste() {
-		Problema problema =  new Problema("teste", 3);
+		Problema problema =  new Problema("teste", 3, "P1");
 		pc.associaProblema("ELE1", "P1", problema);
 		assertFalse(pc.associaProblema("ELE1", "P1", problema));
 	}
 	
 	@Test
 	public void testDesassociaProblemaFeliz() {
-		pc.associaProblema("ELE1", "P1", new Problema("teste", 3));
+		pc.associaProblema("ELE1", "P1", new Problema("teste", 3, "P1"));
 		assertTrue(pc.desassociaProblema("ELE1"));
 	}
 	
@@ -159,19 +159,19 @@ class PesquisaControllerTest {
 	
 	@Test
 	public void testAssociaObjetivoFeliz() {
-		assertTrue(pc.associaProblema("ELE1", "P1", new Problema("teste", 3)));
+		assertTrue(pc.associaProblema("ELE1", "P1", new Problema("teste", 3, "P1")));
 	}
 	
 	@Test
 	public void testAssociaObjetivoTriste() {
-		Objetivo objetivo =  new Objetivo("ESPECIFICO", "teste", 2, 3);
+		Objetivo objetivo =  new Objetivo("ESPECIFICO", "teste", 2, 3, "O1");
 		pc.associaObjetivo("ELE1", "O1", objetivo);
 		assertFalse(pc.associaObjetivo("ELE1", "O1", objetivo));
 	}
 	
 	@Test
 	public void testDesassociaObjetivoFeliz() {
-		pc.associaObjetivo("ELE1", "O1", new Objetivo("ESPECIFICO", "teste", 3, 2));
+		pc.associaObjetivo("ELE1", "O1", new Objetivo("ESPECIFICO", "teste", 3, 2, "O1"));
 		assertTrue(pc.desassociaObjetivo("ELE1", "O1"));
 	}
 	
@@ -183,7 +183,7 @@ class PesquisaControllerTest {
 	@Test
 	public void testVerificaAssociacaoObjetivo() {
 		try {
-			Objetivo objetivo =  new Objetivo("ESPECIFICO", "teste", 2, 3);
+			Objetivo objetivo =  new Objetivo("ESPECIFICO", "teste", 2, 3, "O1");
 			pc.associaObjetivo("ELE1", "O1", objetivo);
 			pc.associaObjetivo("IRI1", "O1", objetivo);
 			fail("deveria lancar excecao");
@@ -209,8 +209,8 @@ class PesquisaControllerTest {
 	
 	@Test
 	public void testListaPesquisasPorObjetivo() {
-		Objetivo objetivo =  new Objetivo("ESPECIFICO", "teste", 2, 3);
-		Objetivo objetivo2 =  new Objetivo("ESPECIFICO", "irineu", 5, 3);
+		Objetivo objetivo =  new Objetivo("ESPECIFICO", "teste", 2, 3, "O1");
+		Objetivo objetivo2 =  new Objetivo("ESPECIFICO", "irineu", 5, 3, "O1");
 		pc.associaObjetivo("ELE1", "O1", objetivo);
 		pc.associaObjetivo("IRI1", "O2", objetivo2);
 		assertEquals("IRI1 - TESTE - Irineu | ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao | IRI2 - Bob jow - Irineuliston", pc.listaPesquisas("OBJETIVOS"));
@@ -221,9 +221,9 @@ class PesquisaControllerTest {
 		pc.cadastraPesquisa("ola tudo bem", "mensagem de ola");
 		pc.cadastraPesquisa("pesquisa do meio ambiente", "ambiente");
 		pc.cadastraPesquisa("java", "programador");
-		Problema problema =  new Problema("teste", 3);
-		Problema problema2 =  new Problema("teste do teste", 5);
-		Problema problema3 = new Problema("teste2", 2);
+		Problema problema =  new Problema("teste", 3, "P1");
+		Problema problema2 =  new Problema("teste do teste", 5, "P2");
+		Problema problema3 = new Problema("teste2", 2, "P3");
 		pc.associaProblema("ELE1", "P1", problema);
 		pc.associaProblema("IRI1", "P1", problema);
 		pc.associaProblema("IRI2", "P2", problema2);
@@ -235,7 +235,7 @@ class PesquisaControllerTest {
 
 	@Test
 	public void testListaPesquisasPorProblemas2() {
-		Problema problema =  new Problema("teste", 3);
+		Problema problema =  new Problema("teste", 3, "P1");
 		pc.associaProblema("ELE1", "P1", problema);
 		
 		assertEquals("ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao | IRI2 - Bob jow - Irineuliston | IRI1 - TESTE - Irineu", pc.listaPesquisas("PROBLEMA"));
@@ -243,7 +243,7 @@ class PesquisaControllerTest {
 	
 	@Test
 	public void testListaPesquisasPorProblemas3() {
-		Problema problema =  new Problema("teste", 3);
+		Problema problema =  new Problema("teste", 3, "P1");
 		pc.associaProblema("IRI1", "P1", problema);
 		assertEquals("IRI1 - TESTE - Irineu | IRI2 - Bob jow - Irineuliston | ELE1 - Avaliacao de modelos preditivos para a extracao de caracteristicas significativas nas eleicoes brasileiras. - eleicao", pc.listaPesquisas("PROBLEMA"));
 	}

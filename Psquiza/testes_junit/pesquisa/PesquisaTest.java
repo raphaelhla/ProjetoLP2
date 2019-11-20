@@ -143,20 +143,20 @@ class PesquisaTest {
 	
 	@Test
 	public void testAssociaProblema() {
-		assertTrue(pesquisaTest.associaProblema("P1", new Problema("irineu", 3)));
+		assertTrue(pesquisaTest.associaProblema("P1", new Problema("irineu", 3, "P1")));
 	}
 	
 	@Test
 	public void testAssociaProblema2() {
-		pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
-		assertFalse(pesquisaTest.associaProblema("P1", new Problema("irineu", 3)));
+		pesquisaTest.associaProblema("P1", new Problema("irineu", 3, "P1"));
+		assertFalse(pesquisaTest.associaProblema("P1", new Problema("irineu", 3, "P1")));
 	}
 	
 	@Test
 	public void testAssociaProblemaPesquisaDesativada() {
 		try {
 			pesquisaTest.desativaPesquisa();
-			pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
+			pesquisaTest.associaProblema("P1", new Problema("irineu", 3, "P1"));
 			fail("deveria lancar excecao");
 		} catch (IllegalArgumentException e) {
 			 assertEquals("Pesquisa desativada.", e.getMessage());
@@ -166,8 +166,8 @@ class PesquisaTest {
 	@Test
 	public void testAssociaProblemaJaAssociada() {
 		try {
-			pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
-			pesquisaTest.associaProblema("P2", new Problema("teste", 3));
+			pesquisaTest.associaProblema("P1", new Problema("irineu", 3, "P1"));
+			pesquisaTest.associaProblema("P2", new Problema("teste", 3, "P1"));
 			fail("deveria lancar excecao");
 		} catch (IllegalArgumentException e) {
 			 assertEquals("Pesquisa ja associada a um problema.", e.getMessage());
@@ -192,7 +192,7 @@ class PesquisaTest {
 	
 	@Test
 	public void testDesassociaProblemaFeliz() {
-		pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
+		pesquisaTest.associaProblema("P1", new Problema("irineu", 3, "P1"));
 		assertTrue(pesquisaTest.desassociaProblema());
 	}
 	
@@ -200,7 +200,7 @@ class PesquisaTest {
 	public void testAssociaObjetivoPesquisaDesativada() {
 		try {
 			pesquisaTest.desativaPesquisa();
-			pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3));
+			pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3, "O1"));
 			fail("deveria lancar excecao");
 		} catch (IllegalArgumentException e) {
 			 assertEquals("Pesquisa desativada.", e.getMessage());
@@ -209,13 +209,13 @@ class PesquisaTest {
 	
 	@Test
 	public void testAssociaObjetivoFeliz() {
-		assertTrue(pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3)));
+		assertTrue(pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3, "O1")));
 	}
 	
 	@Test
 	public void testAssociaObjetivoTriste() {
-		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3));
-		assertFalse(pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3)));
+		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3, "O1"));
+		assertFalse(pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3, "O1")));
 	}
 	
 	@Test
@@ -236,13 +236,13 @@ class PesquisaTest {
 	
 	@Test
 	public void testDesassociaObjetivoFeliz() {
-		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3));
+		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3, "O1"));
 		assertTrue(pesquisaTest.desassociaObjetivo("O1"));
 	}
 	
 	@Test
 	public void testGetAssociacaoObjetivo() {
-		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3));
+		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3, "O1"));
 		assertTrue(pesquisaTest.getAssociacaoObjetivo("O1"));
 	}
 	
@@ -258,7 +258,7 @@ class PesquisaTest {
 	
 	@Test
 	public void testGetQtdObjetivo() {
-		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3));
+		pesquisaTest.associaObjetivo("O1", new Objetivo("GERAL", "irineu", 4, 3, "O1"));
 		assertEquals(1, pesquisaTest.getQtdObjetivo());
 	}
 	
@@ -269,13 +269,13 @@ class PesquisaTest {
 	
 	@Test
 	public void testTemProblemaAssociado2() {
-		pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
+		pesquisaTest.associaProblema("P1", new Problema("irineu", 3, "P1"));
 		assertTrue(pesquisaTest.getTemProblemaAssociado());
 	}
 	
 	@Test
 	public void testGetCodigoProblema() {
-		pesquisaTest.associaProblema("P1", new Problema("irineu", 3));
+		pesquisaTest.associaProblema("P1", new Problema("irineu", 3, "P1"));
 		assertEquals("P1", pesquisaTest.getCodigoProblema());
 	}
 	
@@ -376,4 +376,5 @@ class PesquisaTest {
 		}
 	}
 
+	
 }
