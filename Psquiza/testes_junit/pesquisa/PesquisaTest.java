@@ -16,6 +16,7 @@ import atividade.Atividade;
 import objetivo.Objetivo;
 import pesquisador.Pesquisador;
 import problema.Problema;
+import pesquisador.Pesquisador;
 
 class PesquisaTest {
 
@@ -376,5 +377,21 @@ class PesquisaTest {
 		}
 	}
 
+	@Test
+	public void testExibeResumoPesquisa() {
+		Pesquisa pesquisa = new Pesquisa("apenas um teste", "teste de junit", "TES1");
+		
+		assertEquals("- Pesquisa: TES1 - apenas um teste - teste de junit" + System.lineSeparator() + "    - Pesquisadores:\\n\" + exibePesquisadores()\r\n" + 
+				"				+ \"    - Problema:\\n\" + exibeProblema() + \"    - Objetivos:\\n\" + exibeObjetivos() + \"  	- Atividades:\\n\"\r\n" + 
+				"				+ exibeAtividades();", pesquisa.exibeResumoPesquisa());
+		
+	}
+	
+	@Test
+	public void testExibeResultadoPesquisa() {
+		
+	}
+	
+	
 	
 }

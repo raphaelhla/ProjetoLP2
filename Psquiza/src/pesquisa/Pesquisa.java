@@ -543,6 +543,13 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 
 	// US11 Matheus
 
+	/**
+	 * Metodo que vai exibir os pesquisadores associados, iterando o map de
+	 * pesquisadores associados e adicionando em uma string vazia.
+	 * 
+	 * 
+	 * @return String com os pesquisadores associados.
+	 */
 	private String exibePesquisadores() {
 		String pesquisadores = "";
 		for (Pesquisador pesquisador : pesquisadoresAssociados.values()) {
@@ -551,6 +558,13 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		return pesquisadores;
 	}
 
+	/**
+	 * Metodo que vai exibir os objetivos associados, iterando o map de objetivos
+	 * associados e adicionando em uma string vazia.
+	 * 
+	 * 
+	 * @return String com os objetivos associados.
+	 */
 	private String exibeObjetivos() {
 		String objetivos = "";
 		for (Objetivo objetivo : objetivosAssociados.values()) {
@@ -559,6 +573,13 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		return objetivos;
 	}
 
+	/**
+	 * Metodo que vai exibir as atividades associadas, iterando o map de atividades
+	 * associadas e adicionando em uma string vazia.
+	 * 
+	 * 
+	 * @return String com as atividades associadas.
+	 */
 	private String exibeAtividades() {
 		String atividades = "";
 		for (Atividade atividade : atividadesAssociadas.values()) {
@@ -567,6 +588,13 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		return atividades;
 	}
 
+	/**
+	 * Metodo que vai exibir os problemas associados, iterando o map de problemas
+	 * associados e adicionando em uma string vazia.
+	 * 
+	 * 
+	 * @return String com os pesquisadores associados.
+	 */
 	private String exibeProblema() {
 		String problemas = "";
 		for (Problema problema : problemaAssociado.values()) {
@@ -575,6 +603,13 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		return problemas;
 	}
 
+	/**
+	 * Metodo que vai listas as descricoes das atividades associadas, iterando o map
+	 * de atividades associadas e adicionando em uma string vazia.
+	 * 
+	 * 
+	 * @return String com as descricoes das atividades associadas.
+	 */
 	private String listaDescricoes() {
 		String descricao = "";
 		for (Atividade atividade : atividadesAssociadas.values()) {
@@ -584,12 +619,26 @@ public class Pesquisa implements Comparable<Pesquisa>, Serializable {
 		return descricao;
 	}
 
+	/**
+	 * Metodo que vai exibir o resumo de uma pesquisa de acordo com a estrutura
+	 * pedida.
+	 * 
+	 * 
+	 * @return String formatada contendo as informacoes pedidas.
+	 */
 	public String exibeResumoPesquisa() {
 		return "- Pesquisa: " + toString() + System.lineSeparator() + "    - Pesquisadores:\n" + exibePesquisadores()
 				+ "    - Problema:\n" + exibeProblema() + "    - Objetivos:\n" + exibeObjetivos() + "  	- Atividades:\n"
 				+ exibeAtividades();
 	}
 
+	/**
+	 * Metodo que vai exibir o resultado de uma pesquisa de acordo com a estrutura
+	 * pedida.
+	 * 
+	 * 
+	 * @return String formatada contendo as informacoes pedidas.
+	 */
 	public String exibeResultadoPesquisa() {
 		return "- Pesquisa: " + toString() + System.lineSeparator() + "    - Resultados:\n" + listaDescricoes();
 	}
