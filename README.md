@@ -16,6 +16,7 @@
   - [Especificação](https://docs.google.com/document/d/e/2PACX-1vRKnuseh-1y300CI4fTlgVB8XMx3yDhEl9fg2NfkyrBDqYT9-tTjHTgSdD59htIIxDtJQDdSSYLzrnv/pub)
   - [Casos de uso](https://drive.google.com/drive/folders/1H7au_Jzxi8UKih0bW8jVqAfe00ROOOMJ)
   - [Github do projeto](https://github.com/raphaelhla/ProjetoLP2)
+  - [Relatorio do projeto](https://drive.google.com/open?id=147isdd0nGiT-yfQLprrn7jXn-n3mEtk5)
   
 ## Divisao das partes
     Parte 1 do projeto:
